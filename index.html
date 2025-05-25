@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Islamic IT School</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            orange: {
+              50: '#fff7ed',
+              100: '#ffedd5',
+              200: '#fed7aa',
+              300: '#fdba74',
+              400: '#fb923c',
+              500: '#f97316',
+              600: '#ea580c',
+              700: '#c2410c',
+              800: '#9a3412',
+              900: '#7c2d12',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 scroll-smooth font-sans">
+
+<!-- Navbar -->
+<nav class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <h1 class="text-xl font-bold text-orange-600">Islamic IT School</h1>
+      </div>
+
+      <!-- Desktop menu -->
+      <div class="hidden md:flex">
+        <ul class="flex space-x-8 text-sm font-medium text-gray-700">
+          <li><a href="#beranda" class="nav-link active hover:text-orange-600">Beranda</a></li>
+          <li><a href="#sekolah" class="nav-link hover:text-orange-600">Sekolah</a></li>
+          <li><a href="#buku" class="nav-link hover:text-orange-500">Buku</a></li>
+          <li><a href="#pelatihan" class="nav-link hover:text-orange-400">Pelatihan</a></li>
+          <li><a href="#webinar" class="nav-link hover:text-orange-300">Webinar</a></li>
+          <li><a href="#channel" class="nav-link hover:text-orange-700">Channel</a></li>
+        </ul>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-900 focus:outline-none text-xl">
+          ☰
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile dropdown -->
+  <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md px-4 py-3 space-y-2 text-sm text-gray-700">
+    <a href="#beranda" class="nav-link block hover:text-orange-600">Beranda</a>
+    <a href="#sekolah" class="nav-link block hover:text-orange-600">Sekolah</a>
+    <a href="#buku" class="nav-link block hover:text-orange-500">Buku</a>
+    <a href="#pelatihan" class="nav-link block hover:text-orange-400">Pelatihan</a>
+    <a href="#webinar" class="nav-link block hover:text-orange-300">Webinar</a>
+    <a href="#channel" class="nav-link block hover:text-orange-700">Channel</a>
+  </div>
+</nav>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+  .nav-link.active {
+    font-weight: bold;
+    color: #ea580c !important; /* Tailwind orange-600 */
+    border-bottom: 2px solid #ea580c;
+  }
+</style>
+<script>
+// Highlight on scroll
+const sections = document.querySelectorAll('section');
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href').slice(1) === entry.target.id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
+sections.forEach(section => observer.observe(section));
+
+</script>
+
+  <!-- Hero Section -->
+  <section id="beranda" class="pt-32 pb-16 px-6 bg-gradient-to-br from-orange-50 to-orange-100">
+    <div class="max-w-7xl mx-auto">
+      <div class="md:flex items-center justify-between">
+        <div class="md:w-1/2 mb-10 md:mb-0">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 leading-tight">Jelajahi Dunia Belajar Bareng Kami!</h2>
+          <p class="text-gray-600 text-lg mb-8 max-w-lg">Kami hadir untuk siswa, guru, dan siapa pun yang peduli pendidikan masa depan. Yuk pilih sesuai kebutuhan kamu!</p>
+          <div class="flex space-x-4">
+            <a href="#sekolah" class="bg-orange-600 text-white px-6 py-3 rounded-md hover:bg-orange-700 transition-colors font-medium">Mulai Belajar</a>
+            <a href="#" class="border border-orange-600 text-orange-600 px-6 py-3 rounded-md hover:bg-orange-50 transition-colors font-medium">Tanya Kami</a>
+          </div>
+        </div>
+        <div class="md:w-1/2">
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+               alt="Siswa belajar bersama" 
+               class="rounded-lg shadow-xl w-full h-auto max-h-96 object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">Kenapa Memilih Belajar Seru?</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Kami menyediakan solusi pendidikan komprehensif untuk semua kebutuhan belajar</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-orange-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-orange-600 mb-4">
+            <i class="fas fa-graduation-cap text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Pendidikan Holistik</h3>
+          <p class="text-gray-600">Pendekatan pembelajaran yang mencakup aspek intelektual, emosional, dan spiritual.</p>
+        </div>
+        
+        <div class="bg-orange-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-orange-600 mb-4">
+            <i class="fas fa-chalkboard-teacher text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Pengajar Berpengalaman</h3>
+          <p class="text-gray-600">Tim pengajar profesional dengan metode pengajaran yang inovatif dan menyenangkan.</p>
+        </div>
+        
+        <div class="bg-orange-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-orange-600 mb-4">
+            <i class="fas fa-laptop-code text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Teknologi Pendidikan</h3>
+          <p class="text-gray-600">Integrasi teknologi terkini untuk mendukung proses belajar yang efektif.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEKOLAH -->
+  <section id="sekolah" class="py-20 bg-orange-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="md:flex items-center">
+        <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+          <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" 
+               alt="Sekolah Belajar Seru" 
+               class="rounded-lg shadow-md w-full h-auto object-cover">
+        </div>
+        <div class="md:w-1/2">
+          <span class="inline-block px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium mb-4">Pendidikan Dasar</span>
+          <h3 class="text-3xl font-bold text-orange-700 mb-6">SEKOLAH nya</h3>
+          <p class="text-gray-700 text-lg mb-6">Kami membuka pendaftaran untuk sekolah berbasis karakter, teknologi, dan metode aktif. Cocok untuk anak usia 6–12 tahun. Belajar menyenangkan, spiritual, dan kreatif!</p>
+          <ul class="text-gray-700 space-y-3 mb-8">
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-orange-600 mt-1 mr-2"></i>
+              <span>Kurikulum tematik terintegrasi</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-orange-600 mt-1 mr-2"></i>
+              <span>Project-based learning dan kolaborasi</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-orange-600 mt-1 mr-2"></i>
+              <span>Kelas coding, art, dan tahfidz</span>
+            </li>
+          </ul>
+          <div class="flex space-x-4">
+            <a href="#" class="bg-orange-600 text-white px-6 py-3 rounded-md hover:bg-orange-700 transition-colors font-medium">Daftar Sekarang</a>
+            <a href="#" class="border border-orange-600 text-orange-600 px-6 py-3 rounded-md hover:bg-orange-50 transition-colors font-medium">Lihat Fasilitas</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUKU -->
+  <section id="buku" class="py-20 bg-orange-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="md:flex items-center flex-row-reverse">
+        <div class="md:w-1/2 mb-10 md:mb-0 md:pl-10">
+          <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+               alt="Buku Belajar Seru" 
+               class="rounded-lg shadow-md w-full h-auto object-cover">
+        </div>
+        <div class="md:w-1/2">
+          <span class="inline-block px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium mb-4">Sumber Belajar</span>
+          <h3 class="text-3xl font-bold text-orange-700 mb-6">BUKU nya</h3>
+          <p class="text-gray-700 text-lg mb-6">Buku ini berisi panduan metode ajar yang kami gunakan di kelas. Cocok buat orang tua, guru, bahkan komunitas belajar mandiri.</p>
+          <ul class="text-gray-700 space-y-3 mb-8">
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-orange-600 mt-1 mr-2"></i>
+              <span>Panduan praktis & inspiratif</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-orange-600 mt-1 mr-2"></i>
+              <span>Berbasis nilai-nilai Islam dan akhlak</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-orange-600 mt-1 mr-2"></i>
+              <span>Disusun oleh praktisi pendidikan berpengalaman</span>
+            </li>
+          </ul>
+          <div class="flex space-x-4">
+            <a href="#" class="bg-orange-600 text-white px-6 py-3 rounded-md hover:bg-orange-700 transition-colors font-medium">Beli Sekarang</a>
+            <a href="#" class="border border-orange-600 text-orange-600 px-6 py-3 rounded-md hover:bg-orange-50 transition-colors font-medium">Preview Buku</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PELATIHAN -->
+  <section id="pelatihan" class="py-20 bg-orange-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="md:flex items-center">
+        <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" 
+               alt="Pelatihan Guru" 
+               class="rounded-lg shadow-md w-full h-auto object-cover">
+        </div>
+        <div class="md:w-1/2">
+          <span class="inline-block px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium mb-4">Pengembangan Guru</span>
+          <h3 class="text-3xl font-bold text-orange-700 mb-6">PELATIHAN nya</h3>
+          <p class="text-gray-700 text-lg mb-6">Buat guru dan praktisi pendidikan: kami mengadakan pelatihan rutin tentang metode ajar inovatif, penguatan karakter, dan manajemen kelas.</p>
+          <ul class="text-gray-700 space-y-3 mb-8">
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-orange-600 mt-1 mr-2"></i>
+              <span>Pelatihan online & offline</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-orange-600 mt-1 mr-2"></i>
+              <span>Modul lengkap + sesi tanya jawab</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-orange-600 mt-1 mr-2"></i>
+              <span>Sertifikat resmi & jaringan komunitas</span>
+            </li>
+          </ul>
+          <div class="flex space-x-4">
+            <a href="#" class="bg-orange-600 text-white px-6 py-3 rounded-md hover:bg-orange-700 transition-colors font-medium">Lihat Jadwal</a>
+            <a href="#" class="border border-orange-600 text-orange-600 px-6 py-3 rounded-md hover:bg-orange-50 transition-colors font-medium">Testimoni</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEBINAR -->
+  <section id="webinar" class="py-20 bg-orange-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="md:flex items-center flex-row-reverse">
+        <div class="md:w-1/2 mb-10 md:mb-0 md:pl-10">
+          <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+               alt="Webinar Pendidikan" 
+               class="rounded-lg shadow-md w-full h-auto object-cover">
+        </div>
+        <div class="md:w-1/2">
+          <span class="inline-block px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium mb-4">Belajar Online</span>
+          <h3 class="text-3xl font-bold text-orange-700 mb-6">WEBINAR nya</h3>
+          <p class="text-gray-700 text-lg mb-6">Gabung webinar mingguan kami. Bahas berbagai topik menarik: parenting, kurikulum merdeka, sampai literasi digital untuk anak-anak.</p>
+          <ul class="text-gray-700 space-y-3 mb-8">
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-orange-600 mt-1 mr-2"></i>
+              <span>Gratis & terbuka untuk umum</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-orange-600 mt-1 mr-2"></i>
+              <span>Pemateri profesional & inspiratif</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-orange-600 mt-1 mr-2"></i>
+              <span>Live via Zoom + rekaman tersedia</span>
+            </li>
+          </ul>
+          <div class="flex space-x-4">
+            <a href="#" class="bg-orange-600 text-white px-6 py-3 rounded-md hover:bg-orange-700 transition-colors font-medium">Daftar Webinar</a>
+            <a href="#" class="border border-orange-600 text-orange-600 px-6 py-3 rounded-md hover:bg-orange-50 transition-colors font-medium">Topik Terbaru</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHANNEL -->
+  <section id="channel" class="py-20 bg-orange-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="md:flex items-center">
+        <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+          <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+               alt="Channel YouTube" 
+               class="rounded-lg shadow-md w-full h-auto object-cover">
+        </div>
+        <div class="md:w-1/2">
+          <span class="inline-block px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium mb-4">Edukasi Digital</span>
+          <h3 class="text-3xl font-bold text-orange-700 mb-6">CHANNEL nya</h3>
+          <p class="text-gray-700 text-lg mb-6">Pantau ratusan video edukasi berkualitas di channel kami. Semua kontennya "daging", relevan, dan bermanfaat buat belajar di mana pun, kapan pun.</p>
+          <ul class="text-gray-700 space-y-3 mb-8">
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-orange-600 mt-1 mr-2"></i>
+              <span>Kategori: parenting, pembelajaran kreatif, spiritual</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-orange-600 mt-1 mr-2"></i>
+              <span>Durasi pendek & padat isi</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-orange-600 mt-1 mr-2"></i>
+              <span>Update tiap minggu</span>
+            </li>
+          </ul>
+          <div class="flex space-x-4">
+            <a href="#" class="bg-orange-700 text-white px-6 py-3 rounded-md hover:bg-orange-800 transition-colors font-medium">Subscribe Sekarang</a>
+            <a href="#" class="border border-orange-700 text-orange-700 px-6 py-3 rounded-md hover:bg-orange-50 transition-colors font-medium">Video Populer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-20 bg-orange-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">Apa Kata Mereka?</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Testimoni dari orang tua, siswa, dan peserta pelatihan kami</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Testimoni 1" class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <h4 class="font-semibold">Ibu Siti</h4>
+              <p class="text-gray-500 text-sm">Orang Tua Siswa</p>
+            </div>
+          </div>
+          <p class="text-gray-700">"Anak saya sangat senang belajar di sini. Metode pengajarannya kreatif dan membuat anak antusias belajar setiap hari."</p>
+          <div class="mt-4 text-orange-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+        
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Testimoni 2" class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <h4 class="font-semibold">Pak Budi</h4>
+              <p class="text-gray-500 text-sm">Guru SD</p>
+            </div>
+          </div>
+          <p class="text-gray-700">"Pelatihan dari Belajar Seru sangat bermanfaat. Saya bisa menerapkan metode baru yang membuat kelas lebih hidup dan interaktif."</p>
+          <div class="mt-4 text-orange-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+        </div>
+        
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Testimoni 3" class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <h4 class="font-semibold">Ibu Rina</h4>
+              <p class="text-gray-500 text-sm">Peserta Webinar</p>
+            </div>
+          </div>
+          <p class="text-gray-700">"Webinarnya sangat informatif dan pematerinya kompeten. Saya selalu menunggu webinar berikutnya karena materinya selalu up-to-date."</p>
+          <div class="mt-4 text-orange-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-orange-600 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-6">Siap Memulai Perjalanan Belajar Bersama Kami?</h2>
+      <p class="text-orange-100 text-lg mb-8 max-w-2xl mx-auto">Bergabunglah dengan ribuan peserta lainnya yang telah merasakan manfaat dari program Belajar Seru.</p>
+      <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+        <a href="#" class="bg-white text-orange-600 px-8 py-3 rounded-md hover:bg-orange-50 transition-colors font-medium">Hubungi Kami</a>
+        <a href="#" class="border border-white text-white px-8 py-3 rounded-md hover:bg-orange-700 transition-colors font-medium">Pertanyaan Umum</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white pt-12 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center mb-4">
+            <img src="https://via.placeholder.com/40x40" alt="Logo Belajar Seru" class="h-8 w-8 mr-2">
+            <h3 class="text-xl font-bold text-orange-400">Belajar Seru</h3>
+          </div>
+          <p class="text-gray-400 text-sm">Platform pendidikan inovatif untuk siswa, guru, dan orang tua.</p>
+          <div class="flex space-x-4 mt-4">
+            <a href="#" class="text-gray-400 hover:text-orange-400"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-orange-400"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-orange-400"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-400 hover:text-orange-400"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4 text-orange-400">Program</h4>
+          <ul class="space-y-2">
+            <li><a href="#sekolah" class="text-gray-400 hover:text-orange-400 text-sm">Sekolah</a></li>
+            <li><a href="#buku" class="text-gray-400 hover:text-orange-400 text-sm">Buku</a></li>
+            <li><a href="#pelatihan" class="text-gray-400 hover:text-orange-400 text-sm">Pelatihan Guru</a></li>
+            <li><a href="#webinar" class="text-gray-400 hover:text-orange-400 text-sm">Webinar</a></li>
+            <li><a href="#channel" class="text-gray-400 hover:text-orange-400 text-sm">Channel Edukasi</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4 text-orange-400">Tautan</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-orange-400 text-sm">Tentang Kami</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-orange-400 text-sm">Blog</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-orange-400 text-sm">Karir</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-orange-400 text-sm">Kebijakan Privasi</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-orange-400 text-sm">Syarat & Ketentuan</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4 text-orange-400">Kontak</h4>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+              <span>Jl. Pendidikan No. 123, Jakarta</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-phone-alt mt-1 mr-2"></i>
+              <span>(021) 1234-5678</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-envelope mt-1 mr-2"></i>
+              <span>info@belajarseru.id</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+        © 2025 Belajar Seru. Semua hak dilindungi. Dibuat dengan ❤️ untuk pendidikan Indonesia.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
