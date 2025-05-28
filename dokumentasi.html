@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dokumentasi Pembelajaran</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #f97316 0%, #0d9488 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="min-h-screen px-4 sm:px-6 py-12 max-w-screen-xl mx-auto">
+
+  <!-- Header -->
+  <header class="text-center mb-12">
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-4 inline-block relative z-10 text-black">Dokumentasi Pembelajaran</h1>
+    <div class="mx-auto h-1 bg-gradient-to-r from-orange-500 to-teal-600 rounded-full mb-6" style="width: fit-content; min-width: 40px;">
+      <div style="width:100%;height:100%;" class="mx-auto" id="dynamic-underline"></div>
+    </div>
+    <p class="text-gray-600 text-lg">Kumpulan momen proses belajar dan kolaborasi terbaik</p>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const h1 = document.querySelector('header h1');
+        const underline = document.querySelector('header .bg-gradient-to-r');
+        if (h1 && underline) {
+          underline.style.width = h1.offsetWidth + 'px';
+        }
+      });
+    </script>
+  </header>
+
+  <!-- Galeri Foto -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 place-items-center">
+    
+    <!-- Card Item -->
+    <div class="w-full max-w-sm relative overflow-hidden rounded-xl shadow-lg group">
+      <img src="img/webinar.jpg" alt="Seminar IT" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+      
+      <!-- Gradient Overlay transparan -->
+      <div class="absolute inset-0 bg-gradient-to-t from-orange-500/70 to-teal-500/40 p-4 flex flex-col justify-end">
+        <div class="text-white drop-shadow-md">
+          <h3 class="text-lg font-semibold">Seminar IT Bersertifikat</h3>
+          <div class="h-1 w-16 bg-gradient-to-r from-orange-400 to-teal-500 rounded-full my-1"></div>
+          <p class="text-sm">Seminar interaktif dengan pembicara ahli di bidang IT</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Item -->
+    <div class="w-full max-w-sm relative overflow-hidden rounded-xl shadow-lg group">
+      <img src="img/BedahBuku.JPG" alt="Seminar IT" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+      
+      <!-- Gradient Overlay transparan -->
+      <div class="absolute inset-0 bg-gradient-to-t from-orange-500/70 to-teal-500/40 p-4 flex flex-col justify-end">
+        <div class="text-white drop-shadow-md">
+          <h3 class="text-lg font-semibold">Sesi Bedah Buku</h3>
+          <div class="h-1 w-16 bg-gradient-to-r from-orange-400 to-teal-500 rounded-full my-1"></div>
+          <p class="text-sm">Diskusi mendalam tentang konsep-konsep dalam buku IT</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Item -->
+    <div class="w-full max-w-sm relative overflow-hidden rounded-xl shadow-lg group">
+      <img src="img/webinar.jpg" alt="Seminar IT" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+      
+      <!-- Gradient Overlay transparan -->
+      <div class="absolute inset-0 bg-gradient-to-t from-orange-500/70 to-teal-500/40 p-4 flex flex-col justify-end">
+        <div class="text-white drop-shadow-md">
+          <h3 class="text-lg font-semibold">Praktek Lab IT</h3>
+          <div class="h-1 w-16 bg-gradient-to-r from-orange-400 to-teal-500 rounded-full my-1"></div>
+          <p class="text-sm">Pengalaman hands-on dengan aplikasi dan teknologi terbaru</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <div class="text-center mt-20">
+    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20daftar%20kelas%20pembelajaran%20ini!" target="_blank" rel="noopener" 
+      class="inline-block bg-gradient-to-r from-orange-500 to-teal-600 px-8 py-4 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all">
+      Daftar Sekarang
+    </a>
+  </div>
+
+</body>
+</html>
