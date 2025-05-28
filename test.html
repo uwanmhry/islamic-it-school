@@ -66,21 +66,27 @@
             overflow: hidden;
             cursor: pointer;
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            background: white;
             min-width: 100px;
             height: 400px;
             flex: 0 0 100px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
+        .card {
+            background: white;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        
         .card.expanded {
             flex: 0 0 300px;
             min-width: 300px;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
         }
 
         .card-image {
@@ -88,6 +94,7 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.6s ease;
+            filter: brightness(50%);
         }
 
         .card.expanded .card-image {
@@ -99,11 +106,21 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
             padding: 30px 20px 20px;
             color: white;
             transform: translateY(0);
             transition: transform 0.6s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            padding: 30px 20px 20px 20px;
+            /* padding: 10px 0px; */
         }
 
         .card:not(.expanded) .card-overlay {
@@ -112,15 +129,18 @@
 
         .card-title {
             font-size: 1.4rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 8px;
             line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .card-subtitle {
             font-size: 0.9rem;
             opacity: 0.9;
             margin-bottom: 15px;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .card-description {
@@ -145,39 +165,121 @@
         .stat {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
-            padding: 5px 0;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .stat-icon {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
         .stat-icon.critical {
-            background: #ef4444;
+            background: #ff6b6b;
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
         }
 
         .stat-icon.warning {
-            background: #f59e0b;
+            background: #ffd93d;
+            box-shadow: 0 0 15px rgba(255, 217, 61, 0.5);
         }
 
         .stat-icon.info {
-            background: #3b82f6;
+            background: #74c0fc;
+            box-shadow: 0 0 15px rgba(116, 192, 252, 0.5);
         }
+.stat-click {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
 
-        .status-indicator {
+        .status-indicator.first {
             position: absolute;
             top: 15px;
             right: 15px;
-            width: 12px;
-            height: 12px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #3b82f6;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+        .status-indicator.second {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #facc15;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+        .status-indicator.third {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #22c55e;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+        .status-indicator.fourth {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #ec4899	;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+        .status-indicator.fifth {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background:#8b5cf6;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+        .status-indicator.first {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background: #ef4444;
-            border: 2px solid white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
         }
 
         .status-indicator.warning {
@@ -188,13 +290,19 @@
             background: #10b981;
         }
 
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
         .card-label {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 60px;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), transparent);
+            background: linear-gradient(rgba(0, 0, 0, 0.7), transparent);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -211,15 +319,26 @@
             opacity: 0;
         }
 
-        .expand-hint {
-            position: absolute;
-            bottom: 50%;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            font-size: 0.7rem;
-            opacity: 0.7;
-            transition: opacity 0.6s ease;
+      .expand-hint {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(50%);
+    color: white;
+    font-size: 1rem;
+    opacity: 0.8;
+    transition: all 0.6s ease;
+    padding: 4px 8px;
+    font-weight: 500;
+    cursor: pointer;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+
+        .expand-hint:hover {
+            transform: translateX(-50%) scale(1.1);
+            /* background: rgba(0, 0, 0, 0.7); */
         }
 
         .card.expanded .expand-hint {
@@ -232,14 +351,14 @@
             }
             
             .card {
-                flex: 0 0 120px;
-                min-width: 120px;
+                flex: 0 0 160px;
+                min-width: 160px;
                 height: 400px;
             }
             
             .card.expanded {
-                flex: 0 0 280px;
-                min-width: 280px;
+                flex: 0 0 320px;
+                min-width: 320px;
             }
             
             .header h1 {
@@ -249,6 +368,10 @@
             .card-title {
                 font-size: 1.2rem;
             }
+
+            .card-overlay {
+                padding: 25px 18px 18px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -257,28 +380,31 @@
             }
             
             .card {
-                flex: 0 0 100px;
-                min-width: 100px;
-                height: 350px;
+                flex: 0 0 140px;
+                min-width: 140px;
+                height: 400px;
             }
             
             .card.expanded {
-                flex: 0 0 260px;
-                min-width: 260px;
+                flex: 0 0 300px;
+                min-width: 300px;
             }
             
             .card-overlay {
-                padding: 20px 15px 15px;
+                padding: 25px 18px 18px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>Environmental Challenges</h1>
-            <p>Click on each card to explore critical environmental issues</p>
-        </div>
+        <!-- <div class="header">
+            <h1>MURID ANDA GAPTEK & JAUH DARI AGAMA?</h1>
+            <p> Bukan Salahnya, Tapi Sistem pendidikannya yang GAGAL Ajarkan bagaimana berteknologi secara Islami !</p>
+            <h4>Pelajari lebih lanjut metode kami !
+ sudah diterapkan di sekolah-sekolah & Terbukti berpengalaman selama 8 tahun melahirkan generasi-generasi yang soleh dan canggih.
+</h4>
+        </div> -->
 
         <div class="gallery" id="gallery">
             <!-- Cards will be dynamically generated here -->
@@ -289,64 +415,59 @@
         // Card data
         const cardData = [
             {
-                title: "Metode Ajar Sekolah Impian",
-                subtitle: "Urban Smog Crisis",
-                description: "Air pollution affects billions worldwide, causing respiratory diseases and premature death. Urban areas face severe smog from vehicle emissions and industrial activities.",
-                image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop",
+                title: "Daftar Sekarang Di Sekolah Impian",
+                subtitle: "Menjadi Ahlul Quran & IT",
+                click: "Daftar Sekolah",
+                description: "Klik Tombol di bawah ini untuk melihat kurikulum yang kami gunakan, apa saja program yang disediakan, dan segera daftar untuk menjadi Generasi Impian !",
+                image: "./img/foto-mengajar.jpg",
                 stats: [
-                    { icon: "critical", text: "7 million deaths annually" },
-                    { icon: "warning", text: "91% breathe polluted air" },
-                    { icon: "info", text: "PM2.5 most dangerous" }
+                    { icon: "info", text: "Daftar Sekolah", href: "#daftar-sekolah" },
                 ],
-                status: "critical"
+                status: "first"
             },
             {
-                title: "Buku Kami",
-                subtitle: "Amazon Rainforest",
-                description: "Deforestation destroys ecosystems that regulate climate and support biodiversity. The Amazon faces threats from logging, agriculture, and development activities.",
-                image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop",
+                title: "Buku Metode Ajar Guru Terbaik",
+                subtitle: "Kumpulan Buku Untuk Mengajar",
+                click: "Buku Ajar",
+                description: " Membongkar bagaimana teknik mengajar yang memicu kreatifitas, kompetitif, inovatif, antisipatif, dan monetitatif. Sehingga peserta didik dapat menjadi generasi-generasi yang tidak hanya ahli di bidang teknologi, tetapi juga Soleh.",
+                image: "./img/BedahBuku.jpeg",
                 stats: [
-                    { icon: "critical", text: "10M hectares lost annually" },
-                    { icon: "warning", text: "80% biodiversity in forests" },
-                    { icon: "info", text: "15% global CO2 from cutting" }
+                    { icon: "warning", text: "Beli Paket Bukunya", href: "#daftar-sekolah" },
                 ],
-                status: "critical"
+                status: "second"
             },
             {
-                title: "Pelatihan Yang Dimentori Langsung Oleh Profesional",
-                subtitle: "Climate Change",
-                description: "Greenhouse gas emissions from human activities drive climate change. CO2 levels have increased 40+ % since pre-industrial times from burning fossil fuels.",
-                image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop",
+                title: "Tak ada guru hebat yang instan.",
+                subtitle: "Dilatih Oleh Profesional",
+                click: "Pelatihan Guru",
+                description: "Ikuti pelatihan-pelatihan yang kami sediakan untuk para Guru sekolah-sekolah yang ingin mempelajari bagaimana metode ajar yang kami gunakan di Sekolah. Dan jadikan sekolah memiliki pendidik yang mencetak generasi Qurani yang melek digital !",
+                image: "./img/praktekIt.jpeg",
                 stats: [
-                    { icon: "critical", text: "36.8B tons CO2 annually" },
-                    { icon: "warning", text: "1.1°C global warming" },
-                    { icon: "info", text: "415 ppm CO2 concentration" }
+                    { icon: "critical", text: "Daftar Pelatihan Sekarang", href: "#daftar-sekolah" },
                 ],
-                status: "critical"
+                status: "third"
             },
             {
-                title: "Webinar Yang Kami Adakan Setiap 2 Minggu Sekali",
-                subtitle: "Plastic Crisis",
-                description: "Ocean pollution threatens marine ecosystems. Millions of tons of plastic enter oceans annually, forming garbage patches and contaminating the food chain.",
-                image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop",
+                title: "Akses Webinar Gratis & Berbayar",
+                subtitle: "Webinar Setiap 2 Minggu Sekali",
+                click: "Webinar",
+                description: "Buat kamu yang ingin belajar tapi ada kendala keterbatasan waktu ataupun akomodasi,  jangan bingung. Kalian bisa akses video-video yang bermanfaat dipelajari atau bahan ajar dimanapun dan kapanpun. Serta ikuti event-event webinar gratis maupun berbayar yang akan rutin kita selenggarakan",
+                image: "./img/praktekIt.jpeg",
                 stats: [
-                    { icon: "critical", text: "8M tons plastic annually" },
-                    { icon: "warning", text: "5 major garbage patches" },
-                    { icon: "info", text: "100K marine animals killed" }
+                    { icon: "info", text: "Daftar Webinar Sekarang", href: "#daftar-sekolah" },
                 ],
-                status: "critical"
+                status: "fourth"
             },
             {
-                title: "Channel Youtube & Media Sosial",
-                subtitle: "Global Crisis",
-                description: "Water scarcity affects 2 billion people globally. Climate change, population growth, and pollution threaten freshwater supplies essential for life.",
-                image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop",
+                title: "Tentang Kami",
+                subtitle: "Channel Youtube & Media Sosial",
+                click: "Tentang Kami",
+                description: "Dengan semangat untuk menciptakan generasi Islami yang, Sekolah Impian hadir sebagai jawaban atas kegelisahan orang tua dan pendidik di era digital.",
+                image: "./img/praktekIt.jpeg",
                 stats: [
-                    { icon: "critical", text: "2B people lack safe water" },
-                    { icon: "warning", text: "70% agriculture water use" },
-                    { icon: "info", text: "25% cities face water stress" }
+                    { icon: "critical", text: "Ikuti kami di Media Sosial", href: "#media-sosial" },
                 ],
-                status: "warning"
+                status: "fifth"
             }
         ];
 
@@ -361,19 +482,23 @@
                 <div class="card" data-card="${index}" data-original="${originalIndex}">
                     <img src="${data.image}" alt="${data.title}" class="card-image">
                     <div class="status-indicator ${data.status}"></div>
-                    <div class="expand-hint">Click</div>
+                    <div class="expand-hint">${data.click}</div>
                     <div class="card-overlay">
+                      <div class="card-content">  
                         <div class="card-title">${data.title}</div>
                         <div class="card-subtitle">${data.subtitle}</div>
                         <div class="card-description">${data.description}</div>
                         <div class="card-stats">
                             ${data.stats.map(stat => `
-                                <div class="stat">
-                                    <div class="stat-icon ${stat.icon}"></div>
-                                    <span>${stat.text}</span>
-                                </div>
+                                <a href="${data.href}" class="stat-click">
+                                    <div class="stat">
+                                        <div class="stat-icon ${stat.icon}"></div>
+                                        <span>${stat.text}</span>
+                                    </div>
+                                </a>
                             `).join('')}
                         </div>
+                      </div>  
                     </div>
                 </div>
             `;
@@ -448,10 +573,19 @@
         // Add event listeners to cards
         function addEventListeners() {
             document.querySelectorAll('.card').forEach(card => {
-                card.addEventListener('click', function() {
+                // Event listener untuk card (tapi bukan untuk stat buttons)
+                card.addEventListener('click', function(e) {
+                    // Cek apakah yang diklik adalah stat button atau child dari stat
+                    if (e.target.closest('.stat')) {
+                        // Jika stat button diklik, jangan expand/collapse card
+                        // Bisa tambahkan logic khusus untuk stat button di sini
+                        console.log('Stat button clicked:', e.target.closest('.stat').textContent.trim());
+                        return;
+                    }
+                    
                     const cardIndex = this.dataset.card;
                     
-                    // If clicking the same card, collapse it
+                    // If clicking the same card (but not stat), collapse it
                     if (activeCard === cardIndex) {
                         this.classList.remove('expanded');
                         activeCard = null;
@@ -478,6 +612,40 @@
                             inline: 'center'
                         });
                     }, 300);
+                });
+
+                // Event listener khusus untuk stat buttons
+                const statButtons = card.querySelectorAll('.stat');
+                statButtons.forEach(statButton => {
+                    statButton.addEventListener('click', function(e) {
+                        e.stopPropagation(); // Mencegah event bubbling ke card
+                        
+                        // Logic khusus untuk stat button
+                        const buttonText = this.textContent.trim();
+                        // console.log('Action button clicked:', buttonText);
+                        
+                        // Di sini bisa tambahkan logic sesuai kebutuhan
+                        // Misalnya redirect ke halaman lain, buka modal, dll
+                        // switch(buttonText) {
+                        //     case 'Daftar Sekolah':
+                        //         alert('Redirecting to school registration...');
+                        //         break;
+                        //     case 'Beli Paket Bukunya':
+                        //         alert('Redirecting to book purchase...');
+                        //         break;
+                        //     case 'Daftar Pelatihan Sekarang':
+                        //         alert('Redirecting to training registration...');
+                        //         break;
+                        //     case 'Daftar Webinar Sekarang':
+                        //         alert('Redirecting to webinar registration...');
+                        //         break;
+                        //     case 'Ikuti kami di Media Sosial':
+                        //         alert('Redirecting to social media...');
+                        //         break;
+                        //     default:
+                        //         alert('Button clicked: ' + buttonText);
+                        // }
+                    });
                 });
             });
         }
