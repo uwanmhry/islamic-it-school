@@ -20,6 +20,39 @@
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+        .btn-primary {
+      background: linear-gradient(135deg, #f97316 0%, #0d9488 100%);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(15, 185, 129, 0.3);
+    }
+    
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.3) 50%,
+        rgba(255,255,255,0) 100%
+      );
+      transform: rotate(30deg);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover::after {
+      left: 100%;
+    }
+
   </style>
 </head>
 <body class="min-h-screen px-4 sm:px-6 py-12 max-w-screen-xl mx-auto">
@@ -76,56 +109,56 @@
   </header>
 
   <!-- Galeri Foto -->
-  <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 place-items-center">
+<section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 place-items-center">
+  
+  <!-- Card Item -->
+  <div class="w-full max-w-sm relative overflow-hidden rounded-xl shadow-lg group">
+    <img src="img/webinar.jpg" alt="Seminar IT" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
     
-    <!-- Card Item -->
-    <div class="w-full max-w-sm relative overflow-hidden rounded-xl shadow-lg group">
-      <img src="img/webinar.jpg" alt="Seminar IT" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
-      
-      <!-- Gradient Overlay transparan -->
-      <div class="absolute inset-0 bg-gradient-to-t from-orange-500/70 to-teal-500/40 p-4 flex flex-col justify-end">
-        <div class="text-white drop-shadow-md">
-          <h3 class="text-lg font-semibold">Seminar IT Bersertifikat</h3>
-          <div class="h-1 w-16 bg-gradient-to-r from-orange-400 to-teal-500 rounded-full my-1"></div>
-          <p class="text-sm">Seminar interaktif dengan pembicara ahli di bidang IT</p>
-        </div>
+    <!-- Gradient Overlay hitam -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/40 p-4 flex flex-col justify-end">
+      <div class="text-white drop-shadow-md">
+        <h3 class="text-lg font-semibold">Seminar IT Bersertifikat</h3>
+        <div class="h-1 w-16 bg-gradient-to-r from-orange-400 to-teal-500 rounded-full my-1"></div>
+        <p class="text-sm">Seminar interaktif dengan pembicara ahli di bidang IT</p>
       </div>
     </div>
+  </div>
 
-    <!-- Card Item -->
-    <div class="w-full max-w-sm relative overflow-hidden rounded-xl shadow-lg group">
-      <img src="img/BedahBuku.JPG" alt="Seminar IT" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
-      
-      <!-- Gradient Overlay transparan -->
-      <div class="absolute inset-0 bg-gradient-to-t from-orange-500/70 to-teal-500/40 p-4 flex flex-col justify-end">
-        <div class="text-white drop-shadow-md">
-          <h3 class="text-lg font-semibold">Sesi Bedah Buku</h3>
-          <div class="h-1 w-16 bg-gradient-to-r from-orange-400 to-teal-500 rounded-full my-1"></div>
-          <p class="text-sm">Diskusi mendalam tentang konsep-konsep dalam buku IT</p>
-        </div>
+  <!-- Card Item -->
+  <div class="w-full max-w-sm relative overflow-hidden rounded-xl shadow-lg group">
+    <img src="img/BedahBuku.JPG" alt="Sesi Bedah Buku" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+    
+    <!-- Gradient Overlay hitam -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/40 p-4 flex flex-col justify-end">
+      <div class="text-white drop-shadow-md">
+        <h3 class="text-lg font-semibold">Sesi Bedah Buku</h3>
+        <div class="h-1 w-16 bg-gradient-to-r from-orange-400 to-teal-500 rounded-full my-1"></div>
+        <p class="text-sm">Diskusi mendalam tentang konsep-konsep dalam buku IT</p>
       </div>
     </div>
+  </div>
 
-    <!-- Card Item -->
-    <div class="w-full max-w-sm relative overflow-hidden rounded-xl shadow-lg group">
-      <img src="img/webinar.jpg" alt="Seminar IT" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
-      
-      <!-- Gradient Overlay transparan -->
-      <div class="absolute inset-0 bg-gradient-to-t from-orange-500/70 to-teal-500/40 p-4 flex flex-col justify-end">
-        <div class="text-white drop-shadow-md">
-          <h3 class="text-lg font-semibold">Praktek Lab IT</h3>
-          <div class="h-1 w-16 bg-gradient-to-r from-orange-400 to-teal-500 rounded-full my-1"></div>
-          <p class="text-sm">Pengalaman hands-on dengan aplikasi dan teknologi terbaru</p>
-        </div>
+  <!-- Card Item -->
+  <div class="w-full max-w-sm relative overflow-hidden rounded-xl shadow-lg group">
+    <img src="img/webinar.jpg" alt="Praktek Lab IT" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+    
+    <!-- Gradient Overlay hitam -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/40 p-4 flex flex-col justify-end">
+      <div class="text-white drop-shadow-md">
+        <h3 class="text-lg font-semibold">Praktek Lab IT</h3>
+        <div class="h-1 w-16 bg-gradient-to-r from-orange-400 to-teal-500 rounded-full my-1"></div>
+        <p class="text-sm">Pengalaman hands-on dengan aplikasi dan teknologi terbaru</p>
       </div>
     </div>
+  </div>
 
-  </section>
+</section>
 
   <!-- CTA -->
   <div class="text-center mt-20">
     <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mau%20daftar%20kelas%20pembelajaran%20ini!" target="_blank" rel="noopener" 
-      class="inline-block bg-gradient-to-r from-orange-500 to-teal-600 px-8 py-4 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all">
+      class="btn-primary inline-block bg-gradient-to-r from-orange-500 to-teal-600 px-8 py-4 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all">
       Daftar Sekarang
     </a>
   </div>
