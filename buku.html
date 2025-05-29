@@ -7,6 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="icon" href="./img/Logo-Sekolah-Impian.png" type="image/png" />
+  <link rel="stylesheet" href="css/navbar.css">
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -164,33 +165,68 @@
 <body class="min-h-screen">
   <!-- Header -->
   <header class="relative z-50 py-5 bg-white/95 glass md:max-w-[1000px] w-full mx-auto">
-        <div class="max-w-7xl mx-auto md:px-0 px-5">
-            <nav class="flex justify-between items-center">
-                <div class="flex items-center text-2xl font-bold text-gray-900">
-                    <!-- <div class="w-3 h-3 bg-gradient-to-r from-red-400 to-yellow-400 rounded-full mr-2"></div> -->
-                    <img class="w-[90px]" src="./img/Logo-Sekolah-Impian.png" alt="">
-                </div>
+      <div class="max-w-7xl mx-auto md:px-0 px-5">
+          <nav class="flex justify-between items-center">
+              <div class="flex items-center text-2xl font-bold text-gray-900">
+                  <img class="w-[90px]" src="./img/Logo-Sekolah-Impian.png" alt="">
+              </div>
 
-                <ul class="hidden md:flex items-center space-x-10">
-                    <li><a href="https://sekolahimpian.com/" class="text-gray-600 hover:text-gray-900 font-medium transition-colors">Informasi Sekolah</a></li>
-                    <li><a href="#features" class="text-gray-600 hover:text-gray-900 font-medium transition-colors">Buku Kami</a></li>
-                    <li><a href="#pricing" class="text-gray-600 hover:text-gray-900 font-medium transition-colors">Pelatihan</a></li>
-                    <li><a href="#pricing" class="text-gray-600 hover:text-gray-900 font-medium transition-colors">Webinar</a></li>
-                    <li><a href="https://www.youtube.com/channel/UCGaPL10pZk09k_anyhRf5qw" class="text-gray-600 hover:text-gray-900 font-medium transition-colors">Channel</a></li>
-                </ul>
+              <!-- Desktop Menu -->
+              <ul class="hidden md:flex items-center space-x-10">
+                  <li><a href="#home" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Home</a></li>
+                  <li><a href="https://sekolahimpian.com/" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Informasi Sekolah</a></li>
+                  <li><a href="buku.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Buku Kami</a></li>
+                  <li><a href="dokumentasi.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Pelatihan</a></li>
+                  <li><a href="" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Webinar</a></li>
+                  <li><a href="sosmed.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Channel</a></li>
+              </ul>
 
-                <div class="flex items-center gap-3">
-                    <span class="hidden md:flex h-11 w-11 rounded-full items-center justify-center bg-black text-white text-md">
-                    <i class='bx bxs-user text-[22px]'></i>
-                    </span>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="https://wa.me/085161231559" class="bg-gray-900 text-white px-5 py-2.5 rounded-lg font-semibold hover:-translate-y-1 hover:bg-gray-600 transition-transform w-auto">
-                            Kontak
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </div>
+              <!-- Desktop Right Side -->
+              <div class="hidden md:flex items-center gap-3">
+                  <span class="flex h-11 w-11 rounded-full items-center justify-center bg-black text-white text-md">
+                      <i class='bx bxs-user text-[22px]'></i>
+                  </span>
+                  <div class="flex flex-wrap gap-4">
+                      <a href="https://wa.me/6285161231559" class="bg-gray-900 text-white px-5 py-2.5 rounded-lg font-semibold hover:-translate-y-1 hover:bg-gray-600 transition-transform w-auto">
+                          Kontak
+                      </a>
+                  </div>
+              </div>
+
+              <!-- Mobile Menu Button -->
+              <div class="md:hidden flex items-center">
+                  <button id="mobile-menu-button" class="hamburger p-2">
+                      <div class="bar"></div>
+                      <div class="bar"></div>
+                      <div class="bar"></div>
+                  </button>
+              </div>
+          </nav>
+
+          <!-- Mobile Menu -->
+          <div id="mobile-menu" class="mobile-menu md:hidden">
+              <div class="px-2 pt-2 pb-3 space-y-1 bg-white/95 glass rounded-lg mt-4 shadow-lg">
+                  <a href="#home" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Home</a>
+                  <a href="https://sekolahimpian.com/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Informasi Sekolah</a>
+                  <a href="buku.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Buku Kami</a>
+                  <a href="dokumentasi.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Pelatihan</a>
+                  <a href="dokumentasi.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Webinar</a>
+                  <a href="sosmed.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Channel</a>
+                  
+                  <!-- Mobile User Section -->
+                  <div class="border-t border-gray-200 pt-4 mt-4">
+                      <div class="flex items-center px-3 py-2">
+                        
+                          <div class="flex-1">
+                                <a href="https://wa.me/6285161231559" class="bg-gray-900 text-white px-5 py-2.5 rounded-lg font-semibold hover:-translate-y-1 hover:bg-gray-600 transition-transform w-auto">
+                                  Kontak
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </header>
 
     <!-- Hero Section -->
@@ -203,14 +239,14 @@
         <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-32 h-32 bg-teal-100 rounded-full opacity-20 blur-xl"></div>
         <div class="absolute -bottom-5 right-20 w-24 h-24 bg-orange-100 rounded-full opacity-20 blur-xl"></div>
         
-        <h1 class="text-5xl md:text-6xl font-black mb-6 relative inline-block">
+        <h1 class="text-2xl md:text-3xl lg:text-4xl font-extrabold mb-4 relative inline-block">
           <span class="relative z-10 tracking-wide uppercase text-black">
             Buku Seri Teknologi Islami
           </span>
           <span class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-teal-500 rounded-full"></span>
         </h1>
         
-        <h2 class="text-2xl md:text-3xl font-light text-gray-600 mb-6">
+        <h2 class="text-xl md:text-2xl font-light text-gray-600 mb-6">
           Buku Metode Belajar Yang Kami Gunakan
         </h2>
         
@@ -254,7 +290,7 @@
       <div class="w-full h-px divider my-16 bg-gray-200"></div>
 
       <!-- CTA Button -->
-      <div class="text-center mb-20">
+      <!-- <div class="text-center mb-20">
         <button class="btn-primary px-8 py-4 text-white rounded-xl font-semibold text-lg relative overflow-hidden">
           <span class="relative z-10 flex items-center justify-center">
             Jelajahi Semua Buku
@@ -263,7 +299,7 @@
             </svg>
           </span>
         </button>
-      </div>
+      </div> -->
     </section>
 
     <!-- Packages Section -->
@@ -312,7 +348,7 @@
               </div>
             </div>
 
-            <a href="https://wa.me/6281234567890?text=Saya%20ingin%20membeli%20paket%20Basic" 
+            <a href="https://wa.me/6285161231559?text=Saya%20ingin%20membeli%20paket%20Basic" 
               target="_blank"
               class="block w-full bg-gradient-to-r from-orange-500 to-teal-500 text-white py-3.5 rounded-xl text-center font-semibold hover:shadow-lg transition-all relative overflow-hidden">
               <span class="relative z-10">Pesan Sekarang</span>
@@ -362,7 +398,7 @@
               </div>
             </div>
 
-            <a href="https://wa.me/6281234567890?text=Saya%20ingin%20membeli%20paket%20Regular" 
+            <a href="https://wa.me/6285161231559?text=Saya%20ingin%20membeli%20paket%20Regular" 
               target="_blank"
               class="block w-full bg-gradient-to-r from-teal-500 to-orange-500 text-white py-3.5 rounded-xl text-center font-semibold hover:shadow-lg transition-all relative overflow-hidden">
               <span class="relative z-10">Pesan Sekarang</span>
@@ -531,5 +567,6 @@
       });
     });
   </script>
+  <script src="js/navbar.js"></script>
 </body>
 </html>
