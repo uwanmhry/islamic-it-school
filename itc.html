@@ -7,6 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/navbar.css">
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -85,6 +86,137 @@
 </head>
 <body class="min-h-screen star-pattern">
   
+   <header
+      class="relative z-50 py-5 bg-white/95 glass md:max-w-[1000px] w-full mx-auto"
+    >
+      <div class="max-w-7xl mx-auto md:px-0 px-5">
+        <nav class="flex justify-between items-center">
+          <div class="flex items-center text-2xl font-bold text-gray-900">
+            <img class="w-[90px]" src="./img/Logo-Sekolah-Impian.png" alt="" />
+          </div>
+
+                <!-- Desktop Menu -->
+                <ul class="hidden md:flex items-center space-x-10">
+                    <li><a href="index.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Home</a></li>
+                    <li><a href="https://sekolahimpian.com/" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Informasi Sekolah</a></li>
+                    <li><a href="buku.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Buku Kami</a></li>
+                    <li><a href="dokumentasi.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Pelatihan</a></li>
+                    <li><a href="dokumentasi.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Webinar</a></li>
+                    <li><a href="sosmed.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Channel</a></li>
+                    <li><a href="ITC.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">ITC</a></li>
+                </ul>
+
+                <!-- Desktop Right Side -->
+                <div class="hidden md:flex items-center gap-3">
+                    <!-- <span class="flex h-11 w-11 rounded-full items-center justify-center bg-black text-white text-md">
+                        <i class='bx bxs-user text-[22px]'></i>
+                    </span> -->
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://wa.me/6285161231559" class="bg-gray-900 text-white px-5 py-2.5 rounded-lg font-semibold hover:-translate-y-1 hover:bg-gray-600 transition-transform w-auto">
+                            Kontak
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="hamburger p-2">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-white/95 glass rounded-lg mt-4 shadow-lg">
+                    <a href="index.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Home</a>
+                    <a href="https://sekolahimpian.com/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Informasi Sekolah</a>
+                    <a href="buku.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Buku Kami</a>
+                    <a href="dokumentasi.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Pelatihan</a>
+                    <a href="dokumentasi.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Webinar</a>
+                    <a href="sosmed.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Channel</a>
+                    <a href="itc.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">ITC</a>
+                    
+                    <!-- Mobile User Section -->
+                    <div class="border-t border-gray-200 pt-4 mt-4">
+                        <div class="flex items-center px-3 py-2">
+                         
+                            <div class="flex-1">
+                                  <a href="https://wa.me/6285161231559" class="bg-gray-900 text-white px-5 py-2.5 rounded-lg font-semibold hover:-translate-y-1 hover:bg-gray-600 transition-transform w-auto">
+                                    Kontak
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button id="mobile-menu-button" class="hamburger p-2">
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+            </button>
+          </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden">
+          <div
+            class="px-2 pt-2 pb-3 space-y-1 bg-white/95 glass rounded-lg mt-4 shadow-lg"
+          >
+            <a
+              href="#home"
+              class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
+              >Home</a
+            >
+            <a
+              href="https://sekolahimpian.com/"
+              class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
+              >Informasi Sekolah</a
+            >
+            <a
+              href="buku.html"
+              class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
+              >Buku Kami</a
+            >
+            <a
+              href="dokumentasi.html"
+              class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
+              >Pelatihan</a
+            >
+            <a
+              href="dokumentasi.html"
+              class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
+              >Webinar</a
+            >
+            <a
+              href="sosmed.html"
+              class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
+              >Channel</a
+            >
+
+            <!-- Mobile User Section -->
+            <div class="border-t border-gray-200 pt-4 mt-4">
+              <div class="flex items-center px-3 py-2">
+                <div class="flex-1">
+                  <a
+                    href="https://wa.me/6285161231559"
+                    class="bg-gray-900 text-white px-5 py-2.5 rounded-lg font-semibold hover:-translate-y-1 hover:bg-gray-600 transition-transform w-auto"
+                  >
+                    Kontak
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
   <!-- Hero Section -->
   <section class="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
     <!-- Background Elements -->
@@ -238,39 +370,78 @@
         </p>
       </div>
       
-      <!-- Event Card -->
-      <div class="card-hover bg-white p-8 md:p-12 rounded-3xl shadow-2xl border-4 border-gradient-to-r from-green-200 to-orange-200 max-w-2xl mx-auto">
-        <div class="text-6xl mb-6">📅</div>
-        <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Kelas Coba Gratis</h3>
-        
-        <div class="space-y-4 mb-8">
-          <div class="flex items-center justify-center gap-3 text-lg">
-            <i class='bx bx-calendar text-green-600 text-xl'></i>
-            <span class="font-semibold">28 Juni 2025</span>
-          </div>
+      <!-- Event Cards -->
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Lokasi 1: Bogor -->
+        <div class="card-hover bg-white p-8 rounded-3xl shadow-2xl border-4 border-green-200">
+          <div class="text-5xl mb-4">📅🟢</div>
+          <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">Kelas Coba Gratis - Bogor</h3>
           
-          <div class="flex items-start justify-center gap-3 text-lg">
-            <i class='bx bx-map text-orange-600 text-xl flex-shrink-0 mt-1'></i>
-            <div class="text-center">
-              <p class="font-semibold">SIT Bunaya</p>
-              <p class="text-gray-600">Jl. Ibrahim Adjie No. 167 A</p>
-              <p class="text-gray-600">Loji, Bogor Barat 16117</p>
+          <div class="space-y-3 mb-6">
+            <div class="flex items-center justify-center gap-3 text-base">
+              <i class='bx bx-calendar text-green-600 text-lg'></i>
+              <span class="font-semibold">28 Juni 2025</span>
+            </div>
+            
+            <div class="flex items-start justify-center gap-3 text-base">
+              <i class='bx bx-map text-green-600 text-lg flex-shrink-0 mt-1'></i>
+              <div class="text-center">
+                <p class="font-semibold">SIT Bunaya</p>
+                <p class="text-gray-600 text-sm">Jl. Ibrahim Adjie No. 167 A</p>
+                <p class="text-gray-600 text-sm">Loji, Bogor Barat 16117</p>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <div class="space-y-4">
-          <a href="https://wa.me/6285161231559?text=Halo,%20saya%20mau%20daftar%20kelas%20coba%20gratis%20Islamic%20IT%20Course%20tanggal%2028%20Juni%202025!" 
-             target="_blank" rel="noopener" 
-             class="btn-primary inline-block w-full py-4 text-white rounded-xl font-bold text-lg shadow-lg">
-            <i class='bx bxl-whatsapp mr-2 text-xl'></i>
-            Daftar Sekarang via WhatsApp
-          </a>
           
-          <p class="text-sm text-gray-600 italic">
-            * Gratis untuk 30 pendaftar pertama!
-          </p>
+          <a href="https://wa.me/6285161231559?text=Halo,%20saya%20mau%20daftar%20kelas%20coba%20gratis%20Islamic%20IT%20Course%20di%20Bogor%20tanggal%2028%20Juni%202025!" 
+             target="_blank" rel="noopener" 
+             class="btn-primary inline-block w-full py-3 text-white rounded-xl font-bold text-base shadow-lg">
+            <i class='bx bxl-whatsapp mr-2'></i>
+            Daftar Bogor
+          </a>
         </div>
+
+        <!-- Lokasi 2: Bandung -->
+        <div class="card-hover bg-white p-8 rounded-3xl shadow-2xl border-4 border-orange-200">
+          <div class="text-5xl mb-4">📅🟠</div>
+          <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">Kelas Coba Gratis - Bandung</h3>
+          
+          <div class="space-y-3 mb-6">
+            <div class="flex items-center justify-center gap-3 text-base">
+              <i class='bx bx-calendar text-orange-600 text-lg'></i>
+              <span class="font-semibold">28 Juni 2025</span>
+            </div>
+            
+            <div class="flex items-start justify-center gap-3 text-base">
+              <i class='bx bx-map text-orange-600 text-lg flex-shrink-0 mt-1'></i>
+              <div class="text-center">
+                <p class="font-semibold">Pondok STFQ Plus Bandung</p>
+                <p class="text-gray-600 text-sm">Komp. Soreang Indah, Jl. Kembar</p>
+                <p class="text-gray-600 text-sm">Blok U No.6, RT 05/RW 15</p>
+                <p class="text-gray-600 text-sm">Cingcin, Kec. Soreang</p>
+                <p class="text-gray-600 text-sm">Kab. Bandung, Jabar 40912</p>
+              </div>
+            </div>
+          </div>
+          
+          <a href="https://wa.me/6285161231559?text=Halo,%20saya%20mau%20daftar%20kelas%20coba%20gratis%20Islamic%20IT%20Course%20di%20Bandung%20tanggal%2028%20Juni%202025!" 
+             target="_blank" rel="noopener" 
+             class="btn-primary inline-block w-full py-3 text-white rounded-xl font-bold text-base shadow-lg">
+            <i class='bx bxl-whatsapp mr-2'></i>
+            Daftar Bandung
+          </a>
+        </div>
+      </div>
+        
+      
+      <div class="mt-8 text-center">
+        <p class="text-lg font-semibold text-gray-700 mb-2">
+          ⭐ Pilih lokasi yang paling dekat dengan Anda! ⭐
+        </p>
+        <p class="text-sm text-gray-600 italic">
+          * Gratis untuk 30 pendaftar pertama di setiap lokasi!
+        </p>
+      </div>
       </div>
       
       <!-- Bottom CTA -->
@@ -279,21 +450,18 @@
           🚀 Masa Depan Gemilang Dimulai dari Dunia Digital!
         </h3>
         <p class="text-lg md:text-xl mb-6">
-          Yuk kenalkan anak dengan IT sejak dini dan berikan bekal akhlak Islami untuk masa depannya!
+          Yuk kenalkan anak dengan IT sejak dini dan berikan bekal akhlak Islami untuk masa depannya!<br>
+          <span class="font-bold">🎯 Tersedia di 2 Kota: Bogor & Bandung</span>
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="https://wa.me/6285161231559?text=Halo,%20saya%20mau%20informasi%20lebih%20lanjut%20tentang%20Islamic%20IT%20Course!" 
-             target="_blank" rel="noopener" 
-             class="bg-white text-green-600 px-8 py-3 rounded-xl font-bold hover:bg-gray-100 transition-all shadow-lg">
-            <i class='bx bx-info-circle mr-2'></i>
-            Info Lengkap
-          </a>
-          <a href="tel:+6285161231559" 
-             class="bg-green-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-green-700 transition-all shadow-lg border-2 border-white">
-            <i class='bx bx-phone mr-2'></i>
-            Hubungi Langsung
+            target="_blank" rel="noopener" 
+            class="bg-green-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-green-700 transition-all shadow-lg flex items-center justify-center">
+            <i class='bx bxl-whatsapp mr-2 text-xl'></i>
+            Hubungi via WhatsApp
           </a>
         </div>
+
       </div>
     </div>
   </section>
