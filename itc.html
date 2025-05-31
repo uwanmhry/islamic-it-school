@@ -671,6 +671,32 @@
       </div>
     </div>
   </footer>
+
+  <button id="scrollToTopBtn" 
+        class="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-green-600 text-white shadow-lg hover:bg-green-700 transition hidden">
+  <i class='bx bx-up-arrow-alt text-2xl'></i>
+  </button>
+
+  <script>
+  const scrollBtn = document.getElementById("scrollToTopBtn");
+
+  // Tampilkan tombol jika scroll ke bawah
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      scrollBtn.classList.remove("hidden");
+    } else {
+      scrollBtn.classList.add("hidden");
+    }
+  });
+
+  // Scroll ke atas saat tombol diklik
+  scrollBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
   
   <script>
     function showProgram(city) {
