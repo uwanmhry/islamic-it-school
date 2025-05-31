@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Islamic IT Course - Masa Depan Gemilang</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 100%);
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #10b981 0%, #0d9488 50%, #f97316 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981 0%, #0d9488 50%, #f97316 100%);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+    }
+    
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.3) 50%,
+        rgba(255,255,255,0) 100%
+      );
+      transform: rotate(30deg);
+      transition: all 0.5s ease;
+    }
+    
+    .btn-primary:hover::after {
+      left: 100%;
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+    
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .pulse-slow {
+      animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    
+    .star-pattern {
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 60% 40%, rgba(13, 148, 136, 0.1) 0%, transparent 20%);
+    }
+  </style>
+</head>
+<body class="min-h-screen star-pattern">
+  
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="floating absolute top-20 left-10 w-16 h-16 bg-green-400/20 rounded-full blur-xl"></div>
+      <div class="floating absolute top-32 right-20 w-20 h-20 bg-orange-400/20 rounded-full blur-xl" style="animation-delay: 1s;"></div>
+      <div class="floating absolute bottom-40 left-1/4 w-12 h-12 bg-teal-400/20 rounded-full blur-xl" style="animation-delay: 2s;"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-6xl mx-auto text-center">
+      <!-- Main Title -->
+      <div class="mb-8">
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+          <span class="gradient-text block mb-2">Islamic IT Course</span>
+          <span class="text-gray-800 text-3xl md:text-4xl lg:text-5xl">Masa Depan Gemilang</span>
+        </h1>
+        
+        <div class="w-32 h-1 bg-gradient-to-r from-green-500 via-teal-500 to-orange-500 rounded-full mx-auto mb-8"></div>
+        
+        <p class="text-xl md:text-2xl text-gray-700 font-medium max-w-4xl mx-auto leading-relaxed">
+          🌟 <em>Di zaman secanggih ini, apapun cita-cita anak kita, ia harus paham teknologi!</em> 🌟
+        </p>
+      </div>
+      
+      <!-- Key Points -->
+      <div class="grid md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
+        <div class="card-hover bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-white/50">
+          <div class="text-4xl mb-4">💻</div>
+          <h3 class="text-xl font-bold text-gray-800 mb-3">Teknologi untuk Semua Profesi</h3>
+          <p class="text-gray-600">Dokter, insinyur, pengacara, bahkan PNS - semua butuh teknologi. Hanya yang mengerti teknologi yang akan sukses!</p>
+        </div>
+        
+        <div class="card-hover bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-white/50">
+          <div class="text-4xl mb-4">🕌</div>
+          <h3 class="text-xl font-bold text-gray-800 mb-3">Teknologi + Akhlak Islami</h3>
+          <p class="text-gray-600">Pintar saja tidak cukup, kaya saja tidak cukup. Anak kita harus sholeh dan Islami!</p>
+        </div>
+      </div>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="#benefits" class="btn-primary px-8 py-4 text-white rounded-xl font-bold text-lg shadow-lg inline-block">
+          <i class='bx bx-rocket mr-2'></i>
+          Kenali Manfaatnya
+        </a>
+        <a href="#trial-class" class="bg-white/90 text-gray-800 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-white transition-all border-2 border-gray-200 hover:border-green-300">
+          <i class='bx bx-calendar mr-2'></i>
+          Kelas Gratis 28 Juni
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section id="benefits" class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-6">
+          <span class="gradient-text">Mengapa Coding Sejak Dini?</span>
+        </h2>
+        <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+          Belajar coding sejak dini akan mengeluarkan banyak potensi anak. Semua kemampuan penting akan terasah dengan baik!
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Kreativitas -->
+        <div class="card-hover bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl shadow-lg border-2 border-purple-200">
+          <div class="text-6xl mb-6 text-center">🎨</div>
+          <h3 class="text-2xl font-bold text-purple-800 mb-4 text-center">Kreativitas</h3>
+          <p class="text-purple-700 text-center">Coding melatih anak berpikir kreatif dalam menyelesaikan masalah dan menciptakan solusi unik</p>
+        </div>
+        
+        <!-- Inovasi -->
+        <div class="card-hover bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl shadow-lg border-2 border-blue-200">
+          <div class="text-6xl mb-6 text-center">💡</div>
+          <h3 class="text-2xl font-bold text-blue-800 mb-4 text-center">Inovasi</h3>
+          <p class="text-blue-700 text-center">Mengembangkan kemampuan menciptakan hal-hal baru dan berpikir out of the box</p>
+        </div>
+        
+        <!-- Problem Solving -->
+        <div class="card-hover bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl shadow-lg border-2 border-green-200">
+          <div class="text-6xl mb-6 text-center">🧩</div>
+          <h3 class="text-2xl font-bold text-green-800 mb-4 text-center">Problem Solving</h3>
+          <p class="text-green-700 text-center">Melatih logika dan kemampuan memecahkan masalah kompleks step by step</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Islamic Values Section -->
+  <section class="py-20 px-4 bg-gradient-to-r from-green-50 to-teal-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-6">
+          <span class="gradient-text">Teknologi dengan Nilai-Nilai Islam</span>
+        </h2>
+        <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+          Di Islamic IT Course, kami tidak hanya mengajarkan teknologi, tapi juga menanamkan akhlak mulia
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">1</div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Belajar dengan Bismillah</h3>
+              <p class="text-gray-600">Setiap aktivitas coding dimulai dengan doa dan mengingat Allah SWT</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">2</div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Coding untuk Kebaikan</h3>
+              <p class="text-gray-600">Mengembangkan aplikasi yang bermanfaat untuk umat dan masyarakat</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">3</div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Akhlak Digital</h3>
+              <p class="text-gray-600">Belajar etika digital yang sesuai dengan ajaran Islam</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <div class="relative inline-block">
+            <div class="w-64 h-64 mx-auto bg-gradient-to-br from-green-200 via-teal-200 to-orange-200 rounded-full flex items-center justify-center text-8xl pulse-slow">
+              🕌💻
+            </div>
+            <div class="absolute -top-4 -right-4 w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center text-2xl animate-bounce">⭐</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trial Class Section -->
+  <section id="trial-class" class="py-20 px-4 bg-gradient-to-br from-orange-50 via-yellow-50 to-green-50">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-6">
+          <span class="gradient-text">🎉 Kelas Coba GRATIS! 🎉</span>
+        </h2>
+        <p class="text-xl text-gray-700 mb-8">
+          Ayah Bunda, daftarkan ananda di Islamic IT Course. Semua yang anak kita butuh ada di sini!
+        </p>
+      </div>
+      
+      <!-- Event Card -->
+      <div class="card-hover bg-white p-8 md:p-12 rounded-3xl shadow-2xl border-4 border-gradient-to-r from-green-200 to-orange-200 max-w-2xl mx-auto">
+        <div class="text-6xl mb-6">📅</div>
+        <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Kelas Coba Gratis</h3>
+        
+        <div class="space-y-4 mb-8">
+          <div class="flex items-center justify-center gap-3 text-lg">
+            <i class='bx bx-calendar text-green-600 text-xl'></i>
+            <span class="font-semibold">28 Juni 2025</span>
+          </div>
+          
+          <div class="flex items-start justify-center gap-3 text-lg">
+            <i class='bx bx-map text-orange-600 text-xl flex-shrink-0 mt-1'></i>
+            <div class="text-center">
+              <p class="font-semibold">SIT Bunaya</p>
+              <p class="text-gray-600">Jl. Ibrahim Adjie No. 167 A</p>
+              <p class="text-gray-600">Loji, Bogor Barat 16117</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="space-y-4">
+          <a href="https://wa.me/6285161231559?text=Halo,%20saya%20mau%20daftar%20kelas%20coba%20gratis%20Islamic%20IT%20Course%20tanggal%2028%20Juni%202025!" 
+             target="_blank" rel="noopener" 
+             class="btn-primary inline-block w-full py-4 text-white rounded-xl font-bold text-lg shadow-lg">
+            <i class='bx bxl-whatsapp mr-2 text-xl'></i>
+            Daftar Sekarang via WhatsApp
+          </a>
+          
+          <p class="text-sm text-gray-600 italic">
+            * Gratis untuk 30 pendaftar pertama!
+          </p>
+        </div>
+      </div>
+      
+      <!-- Bottom CTA -->
+      <div class="mt-16 p-8 bg-gradient-to-r from-green-500 via-teal-500 to-orange-500 rounded-2xl text-white">
+        <h3 class="text-2xl md:text-3xl font-bold mb-4">
+          🚀 Masa Depan Gemilang Dimulai dari Dunia Digital!
+        </h3>
+        <p class="text-lg md:text-xl mb-6">
+          Yuk kenalkan anak dengan IT sejak dini dan berikan bekal akhlak Islami untuk masa depannya!
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="https://wa.me/6285161231559?text=Halo,%20saya%20mau%20informasi%20lebih%20lanjut%20tentang%20Islamic%20IT%20Course!" 
+             target="_blank" rel="noopener" 
+             class="bg-white text-green-600 px-8 py-3 rounded-xl font-bold hover:bg-gray-100 transition-all shadow-lg">
+            <i class='bx bx-info-circle mr-2'></i>
+            Info Lengkap
+          </a>
+          <a href="tel:+6285161231559" 
+             class="bg-green-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-green-700 transition-all shadow-lg border-2 border-white">
+            <i class='bx bx-phone mr-2'></i>
+            Hubungi Langsung
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="mb-8">
+        <h3 class="text-2xl font-bold mb-4 gradient-text">Islamic IT Course</h3>
+        <p class="text-gray-300 max-w-2xl mx-auto">
+          Membangun generasi Muslim yang unggul dalam teknologi dan berakhlak mulia
+        </p>
+      </div>
+      
+      <div class="flex justify-center gap-6 mb-8">
+        <a href="https://wa.me/6285161231559" class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors">
+          <i class='bx bxl-whatsapp text-xl'></i>
+        </a>
+        <a href="tel:+6285161231559" class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+          <i class='bx bx-phone text-xl'></i>
+        </a>
+      </div>
+      
+      <div class="border-t border-gray-700 pt-8">
+        <p class="text-gray-400">&copy; 2025 Islamic IT Course. Masa depan gemilang dengan teknologi dan akhlak Islami.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
