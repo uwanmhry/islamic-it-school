@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekolah Impian - Pondok Pesantren Tahfiz dan IT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-blue-600/90 backdrop-blur-md z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <a href="#" class="text-white text-2xl font-bold flex items-center">
+                    <i class="fas fa-mosque text-yellow-400 mr-2"></i>
+                    Sekolah Impian
+                </a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-yellow-400 transition-colors duration-200">Beranda</a>
+                    <a href="#about" class="text-white hover:text-yellow-400 transition-colors duration-200">Tentang</a>
+                    <a href="#features" class="text-white hover:text-yellow-400 transition-colors duration-200">Keunggulan</a>
+                    <a href="#programs" class="text-white hover:text-yellow-400 transition-colors duration-200">Program</a>
+                    <a href="#faq" class="text-white hover:text-yellow-400 transition-colors duration-200">FAQ</a>
+                    <a href="#contact" class="text-white hover:text-yellow-400 transition-colors duration-200">Kontak</a>
+                </div>
+                <button class="md:hidden text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 flex items-center justify-center relative overflow-hidden" id="home">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full animate-float"></div>
+            <div class="absolute top-40 right-20 w-16 h-16 bg-yellow-400/20 rounded-full animate-float" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-white/10 rounded-full animate-float" style="animation-delay: 4s;"></div>
+        </div>
+        
+        <div class="text-center text-white px-4 max-w-4xl mx-auto relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up">
+                Sekolah Impian
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in-up" style="animation-delay: 0.2s;">
+                Pondok Pesantren Tahfiz dan IT
+            </p>
+            <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style="animation-delay: 0.4s;">
+                Mengintegrasikan Al-Quran dengan teknologi untuk menghasilkan generasi yang mulia di akhirat dan dunia
+            </p>
+            <a href="#about" class="inline-block bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:from-yellow-500 hover:to-yellow-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl animate-fade-in-up" style="animation-delay: 0.6s;">
+                Pelajari Lebih Lanjut
+                <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 bg-gray-50" id="about">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Tentang Sekolah Impian
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Sekolah Impian adalah institusi dakwah yang memilih pendidikan sebagai jalan perjuangannya. Misi kami adalah mengintegrasikan Al-Quran dengan teknologi, bahasa, dan karakter.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Dengan cara menghasilkan generasi yang mulia di akhirat dengan menghafal Quran & mulia di dunia karena memiliki life skill teknologi. Insya Allah Ta'ala mereka akan menjadi generasi muda yang cerdas, canggih, namun tetap soleh.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Sampai sekarang level pendidikan yang kami selenggarakan adalah tingkat SMP dan SMA, insya Allah kami sedang berjuang untuk menyelenggarakan level pendidikan yang lain baik TK, SD, maupun level yang lebih tinggi.
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="inline-block p-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl shadow-2xl">
+                        <i class="fas fa-graduation-cap text-8xl text-white mb-4"></i>
+                        <h3 class="text-2xl font-bold text-white">Pendidikan Berkualitas</h3>
+                        <p class="text-blue-100 mt-2">Integrasi Quran & Teknologi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white" id="features">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Keunggulan Kami
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded"></div>
+                <p class="text-xl text-gray-600 mt-6">Mengapa Sekolah Impian menjadi pilihan terbaik?</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-balance-scale text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Keseimbangan Orientasi</h3>
+                    <p class="text-gray-600">Keseimbangan orientasi pendidikan antara dunia dan akhirat untuk membentuk karakter yang utuh.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-purple-200 group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-brain text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Kecerdasan Terpadu</h3>
+                    <p class="text-gray-600">Mengembangkan IQ, EQ, dan SQ secara seimbang untuk membentuk pribadi yang cerdas dan berakhlak.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-green-200 group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-laptop-code text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Liquid Curriculum</h3>
+                    <p class="text-gray-600">Kurikulum fleksibel yang dapat disesuaikan dengan perkembangan zaman dan kebutuhan siswa.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-200 group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Rasio Ideal 1:6</h3>
+                    <p class="text-gray-600">Rasio guru dan siswa yang ideal untuk memberikan perhatian maksimal kepada setiap santri.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-red-200 group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-quran text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Quran Character Building</h3>
+                    <p class="text-gray-600">Pembentukan karakter berdasarkan nilai-nilai Al-Quran dalam setiap aspek pembelajaran.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-indigo-200 group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-rocket text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Technopreneurship</h3>
+                    <p class="text-gray-600">Mengembangkan jiwa kewirausahaan di bidang teknologi untuk masa depan yang cerah.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white" id="programs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Program Unggulan</h2>
+                <div class="w-24 h-1 bg-yellow-400 mx-auto rounded"></div>
+                <p class="text-xl text-blue-100 mt-6">Program-program berkualitas untuk mengembangkan potensi santri</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Program 1 -->
+                <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300 text-center group">
+                    <div class="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-book-open text-gray-900 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Tahfiz Al-Quran</h3>
+                    <p class="text-blue-100">Program menghafal Al-Quran dengan metode yang efektif dan menyenangkan</p>
+                </div>
+
+                <!-- Program 2 -->
+                <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300 text-center group">
+                    <div class="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-desktop text-gray-900 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">IT & Programming</h3>
+                    <p class="text-blue-100">Pembelajaran teknologi informasi dan pemrograman untuk masa depan digital</p>
+                </div>
+
+                <!-- Program 3 -->
+                <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300 text-center group">
+                    <div class="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-language text-gray-900 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Bahasa Arab & Inggris</h3>
+                    <p class="text-blue-100">Penguasaan bahasa internasional untuk komunikasi global</p>
+                </div>
+
+                <!-- Program 4 -->
+                <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300 text-center group">
+                    <div class="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-handshake text-gray-900 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Character Building</h3>
+                    <p class="text-blue-100">Pembentukan karakter Islami yang kuat dan berakhlak mulia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-gray-50" id="faq">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Tanya Jawab
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded"></div>
+                <p class="text-xl text-gray-600 mt-6">Pertanyaan yang sering diajukan tentang Sekolah Impian</p>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="w-full px-6 py-6 text-left bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors duration-200 flex justify-between items-center" onclick="toggleFaq(1)">
+                        <span>Apa saja kategori test PSB di Sekolah Impian?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-200" id="icon-1"></i>
+                    </button>
+                    <div class="px-6 py-6 text-gray-700 hidden" id="answer-1">
+                        <p>Kami memiliki 3 kategori indeks Test PSB: Wawancara dan berbincang untuk melihat kondisi mentalnya terutama kemampuan untuk mandiri, kemampuan oratoris, kecerdasan visual spasial, dan ketajaman logika.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="w-full px-6 py-6 text-left bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors duration-200 flex justify-between items-center" onclick="toggleFaq(2)">
+                        <span>Bagaimana sistem pembelajaran di Sekolah Impian?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-200" id="icon-2"></i>
+                    </button>
+                    <div class="px-6 py-6 text-gray-700 hidden" id="answer-2">
+                        <p>Kami menggunakan Liquid Curriculum dengan masa observasi 1 semester, Assessment NPB, NHB, NK, Character Integrated Assessment (CIA), dan Paket Lesson Plan (PLP) yang disesuaikan dengan kemampuan masing-masing santri.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="w-full px-6 py-6 text-left bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors duration-200 flex justify-between items-center" onclick="toggleFaq(3)">
+                        <span>Berapa lama target hafalan Al-Quran?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-200" id="icon-3"></i>
+                    </button>
+                    <div class="px-6 py-6 text-gray-700 hidden" id="answer-3">
+                        <p>Tergantung dari PLP (Paket Lesson Plan) yang dijalani. PLP Ziyadah tercepat adalah 3 bulan. Sedangkan untuk fase Mutqin kurang lebih 10 Juz dalam 2 tahun. Terdapat juga PLP dengan target yang disesuaikan kemampuan.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button class="w-full px-6 py-6 text-left bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors duration-200 flex justify-between items-center" onclick="toggleFaq(4)">
+                        <span>Ijazah apa saja yang didapat lulusan?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-200" id="icon-4"></i>
+                    </button>
+                    <div class="px-6 py-6 text-gray-700 hidden" id="answer-4">
+                        <p>Santri akan mendapatkan tiga jenis ijazah: ijazah tahfizh, ijazah pondok, dan ijazah sekolah nasional melalui sistem sekolah payung yang bekerjasama dengan sekolah berkurikulum nasional.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-20 bg-gray-900 text-white" id="contact">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Hubungi Kami</h2>
+            <div class="w-24 h-1 bg-yellow-400 mx-auto rounded mb-8"></div>
+            <p class="text-xl text-gray-300 mb-12">Siap bergabung dengan Sekolah Impian? Hubungi kami sekarang!</p>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-phone text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Telepon</h3>
+                    <p class="text-gray-300">+62 xxx-xxxx-xxxx</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Email</h3>
+                    <p class="text-gray-300">info@sekolahimpian.com</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-map-marker-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Alamat</h3>
+                    <p class="text-gray-300">Jl. Pendidikan No. 123, Bogor</p>
+                </div>
+            </div>
+            
+            <a href="#" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300">
+                Daftar Sekarang
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2023 Sekolah Impian. All rights reserved.</p>
+            <p class="text-gray-400 mt-2">Pondok Pesantren Tahfiz dan IT</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.remove('bg-blue-600/90');
+                navbar.classList.add('bg-blue-600');
+                navbar.classList.add('py-2');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.add('bg-blue-600/90');
+                navbar.classList.remove('bg-blue-600');
+                navbar.classList.remove('py-2');
+                navbar.classList.add('py-4');
+            }
+        });
+
+        // FAQ toggle function
+        function toggleFaq(id) {
+            const answer = document.getElementById(`answer-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                answer.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
