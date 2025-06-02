@@ -1,0 +1,22 @@
+[
+  {
+    "id": "audio1",
+    "title": "audio1",
+    "url": "audios/aud1.mp3"
+  },
+  {
+    "id": "audio2",
+    "title": "Al-Ikhlas",
+    "url": "audios/al-ikhlas.mp3"
+  },
+  {
+    "id": "audio3",
+    "title": "Al-Falaq",
+    "url": "audios/al-falaq.mp3"
+  },
+  {
+    "id": "audio4",
+    "title": "An-Nas",
+    "url": "audios/an-nas.mp3"
+  }
+]

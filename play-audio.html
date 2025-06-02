@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Play Audio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #ff6b35 0%, #22c55e 100%);
+    }
+    
+    .wave-animation {
+      animation: wave 2s ease-in-out infinite;
+    }
+    
+    @keyframes wave {
+      0%, 100% { transform: scaleY(0.5); }
+      50% { transform: scaleY(1); }
+    }
+    
+    .audio-wave {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      height: 40px;
+    }
+    
+    .wave-bar {
+      width: 3px;
+      background: linear-gradient(to top, #ff6b35, #22c55e);
+      border-radius: 2px;
+      animation: wave 1.5s ease-in-out infinite;
+    }
+    
+    .wave-bar:nth-child(1) { height: 20px; animation-delay: 0s; }
+    .wave-bar:nth-child(2) { height: 30px; animation-delay: 0.1s; }
+    .wave-bar:nth-child(3) { height: 25px; animation-delay: 0.2s; }
+    .wave-bar:nth-child(4) { height: 35px; animation-delay: 0.3s; }
+    .wave-bar:nth-child(5) { height: 20px; animation-delay: 0.4s; }
+    .wave-bar:nth-child(6) { height: 30px; animation-delay: 0.5s; }
+    .wave-bar:nth-child(7) { height: 25px; animation-delay: 0.6s; }
+    
+    .custom-audio::-webkit-media-controls-panel {
+      background: linear-gradient(135deg, #ff6b35 0%, #22c55e 100%);
+      border-radius: 12px;
+    }
+    
+    .loading-spinner {
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body class="gradient-bg min-h-screen flex items-center justify-center px-4 py-8">
+  <div class="glass-effect rounded-3xl shadow-2xl p-8 w-full max-w-lg text-center fade-in">
+
+    
+    <!-- Loading State -->
+    <div id="loadingState" class="mb-6">
+      <div class="loading-spinner w-12 h-12 border-4 border-white border-t-transparent rounded-full mx-auto mb-4"></div>
+      <h1 class="text-2xl font-semibold text-white">Memuat audio...</h1>
+    </div>
+    
+    <!-- Main Content -->
+    <div id="mainContent" style="display: none;">
+      <!-- Logo -->
+      <div class="floating mb-6">
+        <div class="w-24 h-24 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+          <img src="img/Logo-Sekolah-Impian.png" alt="Logo" class="w-16 h-16 rounded-full object-cover">
+        </div>
+      </div>
+      
+      <!-- Title -->
+      <h1 id="title" class="text-2xl font-bold text-white mb-2">Audio Player</h1>
+      <p class="text-white text-opacity-80 mb-8">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+      
+      <!-- Audio Player -->
+      <div class="bg-white bg-opacity-10 rounded-2xl p-6 mb-6">
+        <audio 
+          id="player"
+          controls
+          class="w-full custom-audio"
+          style="filter: invert(1) hue-rotate(180deg);"
+        ></audio>
+      </div>
+      
+      <!-- Status Text -->
+      <div class="bg-white bg-opacity-10 rounded-xl p-4">
+        <p class="text-sm text-white text-opacity-90">
+          <svg class="w-4 h-4 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+          </svg>
+          Jika audio tidak otomatis terputar, klik tombol play
+        </p>
+      </div>
+    </div>
+    
+    <!-- Error State -->
+    <div id="errorState" style="display: none;">
+      <div class="w-24 h-24 bg-red-500 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+        <svg class="w-12 h-12 text-red-300" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+      <h1 class="text-2xl font-bold text-white mb-2">Oops!</h1>
+      <p class="text-white text-opacity-80">Audio tidak dapat dimuat</p>
+    </div>
+  </div>
+
+  <script>
+    const player = document.getElementById('player');
+    const title = document.getElementById('title');
+    const loadingState = document.getElementById('loadingState');
+    const mainContent = document.getElementById('mainContent');
+    const errorState = document.getElementById('errorState');
+    const waveAnimation = document.getElementById('waveAnimation');
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const audioId = urlParams.get('id');
+
+    // Show wave animation when playing
+    player.addEventListener('play', () => {
+      // Wave animation removed
+    });
+
+    player.addEventListener('pause', () => {
+      // Wave animation removed
+    });
+
+    player.addEventListener('ended', () => {
+      // Wave animation removed
+    });
+
+    // Simulate loading delay for better UX
+    setTimeout(() => {
+      fetch('audios.json')
+        .then(res => res.json())
+        .then(data => {
+          const audioData = data.find(item => item.id === audioId);
+          if (audioData) {
+            title.textContent = audioData.title;
+            player.src = audioData.url;
+            
+            // Hide loading, show main content
+            loadingState.style.display = 'none';
+            mainContent.style.display = 'block';
+            
+            // Try to play
+            player.play().catch(() => {
+              console.log('Autoplay mungkin diblokir, user harus klik play');
+            });
+          } else {
+            // Show error state
+            loadingState.style.display = 'none';
+            errorState.style.display = 'block';
+          }
+        })
+        .catch(err => {
+          // Show error state
+          loadingState.style.display = 'none';
+          errorState.style.display = 'block';
+          console.error(err);
+        });
+    }, 1500); // 1.5 second loading simulation
+  </script>
+</body>
+</html>
