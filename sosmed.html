@@ -135,82 +135,61 @@
         }
     </style>
 <body class="bg-white text-gray-800">
-    <header
-      class="relative z-50 py-5 bg-white/95 glass md:max-w-[1000px] w-full mx-auto"
-    >
-      <div class="max-w-7xl mx-auto md:px-0 px-5">
+    <header class="relative z-50 py-5 bg-white/95 glass">
+      <div class="max-w-7xl mx-auto px-4 md:px-6">
         <nav class="flex justify-between items-center">
           <div class="flex items-center text-2xl font-bold text-gray-900">
-            <img class="w-[90px]" src="./img/Logo-Sekolah-Impian.png" alt="" />
+            <img class="w-[70px] h-[70px] object-contain" src="./img/Logo-Sekolah-Impian.png" alt="Sekolah Impian" />
           </div>
 
-                <!-- Desktop Menu -->
-                <ul class="hidden md:flex items-center space-x-10">
-                    <li><a href="index.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Home</a></li>
-                    <li><a href="https://sekolahimpian.com/" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Informasi Sekolah</a></li>
-                    <li><a href="buku.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Buku Kami</a></li>
-                    <li><a href="dokumentasi.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Pelatihan</a></li>
-                    <li><a href="webinar.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Webinar</a></li>
-                    <li><a href="sosmed.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Channel</a></li>
-                    <li><a href="itc.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">ITC</a></li>
-                </ul>
+          <!-- Desktop Menu -->
+          <ul class="hidden md:flex items-center space-x-8">
+            <li><a href="index.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Home</a></li>
+            <li><a href="https://sekolahimpian.com/" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Informasi Sekolah</a></li>
+            <li><a href="buku.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Buku Kami</a></li>
+            <li><a href="dokumentasi.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Pelatihan</a></li>
+            <li><a href="webinar.html" class=" text-gray-600  hover:text-gray-900 font-medium">Webinar</a></li>
+            <li><a href="sosmed.html" class=" text-orange-500  font-semibold transition-colors duration-200">Channel</a></li>
+            <li><a href="itc.html" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">ITC</a></li>
+          </ul>
 
-                <!-- Desktop Right Side -->
-                <div class="hidden md:flex items-center gap-3">
-                    <!-- <span class="flex h-11 w-11 rounded-full items-center justify-center bg-black text-white text-md">
-                        <i class='bx bxs-user text-[22px]'></i>
-                    </span> -->
-                    <div class="flex flex-wrap gap-4">
-                        <a href="https://wa.me/6285161231559" class="bg-gray-900 text-white px-5 py-2.5 rounded-lg font-semibold hover:-translate-y-1 hover:bg-gray-600 transition-transform w-auto">
-                            Kontak
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="hamburger p-2">
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                    </button>
-                </div>
-            </nav>
-
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="mobile-menu md:hidden">
-                <div class="px-2 pt-2 pb-3 space-y-1 bg-white/95 glass rounded-lg mt-4 shadow-lg">
-                    <a href="index.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Home</a>
-                    <a href="https://sekolahimpian.com/" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Informasi Sekolah</a>
-                    <a href="buku.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Buku Kami</a>
-                    <a href="dokumentasi.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Pelatihan</a>
-                    <a href="webinar.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Webinar</a>
-                    <a href="sosmed.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">Channel</a>
-                    <a href="itc.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200">ITC</a>
-                    
-                    <!-- Mobile User Section -->
-                    <div class="border-t border-gray-200 pt-4 mt-4">
-                        <div class="flex items-center px-3 py-2">
-                         
-                            <div class="flex-1">
-                                  <a href="https://wa.me/6285161231559" class="bg-gray-900 text-white px-5 py-2.5 rounded-lg font-semibold hover:-translate-y-1 hover:bg-gray-600 transition-transform w-auto">
-                                    Kontak
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <!-- Desktop Right Side -->
+          <div class="hidden md:flex items-center gap-3">
+            <a href="https://wa.me/6285161231559" class="bg-gray-900 text-white px-5 py-2.5 rounded-lg font-semibold hover:-translate-y-1 hover:bg-gray-600 transition-transform">
+              Kontak
+            </a>
           </div>
 
-          <!-- Mobile Menu Button -->
-         
+           <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button id="mobile-menu-button" class="p-2 text-gray-700 hover:text-orange-500 transition-colors">
+              <i class='bx bx-menu text-2xl'></i>
+            </button>
+          </div>
         </nav>
 
         <!-- Mobile Menu -->
-        
+        <div id="mobile-menu" class="hidden md:hidden transition-all duration-300 ease-in-out">
+
+          <div class="px-2 pt-2 pb-3 space-y-1 bg-white/90 backdrop-blur-lg rounded-lg mt-4 shadow-lg border border-white/20">
+            <a href="index.html" class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">Home</a>
+            <a href="https://sekolahimpian.com/" class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">Informasi Sekolah</a>
+            <a href="buku.html" class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">Buku Kami</a>
+            <a href="dokumentasi.html" class="block px-3 py-2 text-gray-600 hover:bg-orange-50 font-medium rounded-md">Pelatihan</a>
+            <a href="webinar.html" class="block px-3 py-2  text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">Webinar</a>
+            <a href="sosmed.html" class="block px-3 py-2 text-orange-500 hover:text-orange-500 bg-orange-50 rounded-md font-semibold  transition-all">Channel</a>
+            <a href="itc.html" class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">ITC</a>
+            
+            <div class="border-t border-gray-200 pt-4 mt-4">
+              <a href="https://wa.me/6285161231559" class="block bg-gradient-to-r from-orange-500 to-teal-600 text-white px-5 py-2.5 rounded-lg font-semibold text-center hover:from-orange-600 hover:to-teal-700 transition-all">
+                <i class='bx bxl-whatsapp mr-2'></i>Kontak
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
+
   <section class="py-5 px-4">
     <div class="max-w-6xl mx-auto text-center">
       <h2 class="text-3xl font-bold text-gray-900 mb-2">Our Social Media</h2>
@@ -275,86 +254,7 @@
       </div>
     </div>
   </section>
-  <script>
-        // Mobile menu functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            mobileMenuButton.addEventListener('click', function() {
-                // Toggle hamburger animation
-                mobileMenuButton.classList.toggle('active');
-                
-                // Toggle mobile menu
-                mobileMenu.classList.toggle('active');
-            });
-
-            // Close mobile menu when clicking on menu links
-            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-            mobileMenuLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenuButton.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                });
-            });
-
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(event) {
-                const isClickInsideNav = event.target.closest('nav');
-                if (!isClickInsideNav) {
-                    mobileMenuButton.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                }
-            });
-
-            // Smooth scroll for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
-            // Add hover effects to floating elements
-            const floatingElements = document.querySelectorAll('.floating-element');
-            floatingElements.forEach(element => {
-                element.addEventListener('mouseenter', function() {
-                    this.style.animationPlayState = 'paused';
-                    this.style.transform = 'translateY(-10px) scale(1.05)';
-                });
-
-                element.addEventListener('mouseleave', function() {
-                    this.style.animationPlayState = 'running';
-                    this.style.transform = '';
-                });
-            });
-
-            // Parallax effect for background decorations
-            window.addEventListener('scroll', function() {
-                const scrolled = window.pageYOffset;
-                const decorations = document.querySelectorAll('.bg-decoration');
-                
-                decorations.forEach((decoration, index) => {
-                    const speed = 0.5 + (index * 0.1);
-                    decoration.style.transform = `translateY(${scrolled * speed}px)`;
-                });
-            });
-
-            // Mobile menu toggle and app download
-            const getAppBtn = document.querySelector('button');
-            if (getAppBtn && !getAppBtn.id) {
-                getAppBtn.addEventListener('click', function() {
-                    alert('App download coming soon!');
-                });
-            }
-        });
-    </script>
+  <script src="js/navbar.js"></script>
 
 </body>
 </html>
