@@ -105,12 +105,12 @@
       from { box-shadow: 0 0 20px rgba(251, 191, 36, 0.5); }
       to { box-shadow: 0 0 30px rgba(251, 191, 36, 0.8); }
     }
-     .gradient-text {
+     /* .gradient-text {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-        }
+        } */
         .special-badge {
             background: linear-gradient(135deg, #ff6b6b, #ffa500);
             animation: glow 2s ease-in-out infinite alternate;
