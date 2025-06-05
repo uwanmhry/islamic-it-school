@@ -563,36 +563,43 @@
     <script>
       const books = [
         {
+          id: "book-1",
           title: "Liquid Curicullum",
           image: "img/lc.png",
           tags: ["SERI TEKNOLOGI ISLAMI"],
         },
         {
+          id: "book-2",
           title: "Islamic Technology Mindset Installation (ITMI)",
           image: "img/itmi.png",
           tags: ["SERI TEKNOLOGI ISLAMI"],
         },
         {
+          id: "book-3",
           title: "Sejarah Teknologi dari Perspektif Kaum Muslimin",
           image: "img/dariPerspektifKaumMuslimin.png",
           tags: ["SERI TEKNOLOGI ISLAMI"],
         },
         {
+          id: "book-4",
           title: "Mental Belajar Teknologi",
           image: "img/mentalBelajarTeknologi.png",
           tags: ["SERI TEKNOLOGI ISLAMI"],
         },
         {
+          id: "book-5",
           title: "IT dengan Proyek Festival",
           image: "img/denganProyekFestival.png",
           tags: ["SERI TEKNOLOGI ISLAMI"],
         },
         {
+          id: "book-6",
           title: "IT Berorientasi Produktif",
           image: "img/berorientasiProduktif.png",
           tags: ["SERI TEKNOLOGI ISLAMI"],
         },
         {
+          id: "book-7",
           title: "IT Berorientasi Monetitatif",
           image: "img/berorientasiMonetitatif.png",
           tags: ["SERI TEKNOLOGI ISLAMI"],
@@ -614,30 +621,34 @@
           .join("");
 
         return `
-        <div class="snap-start w-72 flex-shrink-0">
-          <div class="card rounded-xl p-5 h-full relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-200/30 to-teal-200/30 rounded-full -translate-y-10 translate-x-10"></div>
-            <div class="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-teal-200/20 to-orange-200/20 rounded-full translate-y-8 -translate-x-8"></div>
-            
-            <div class="relative z-10">
-              <div class="relative rounded-lg overflow-hidden mb-4 bg-gradient-to-br from-gray-50 to-gray-100 p-3 shadow-inner">
-                <img src="${book.image}" alt="${book.title}" class="w-full h-auto object-contain book-image mx-auto block">
-                <div class="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-white/10 rounded-lg"></div>
-                <div class="absolute top-2 left-2 w-8 h-16 bg-gradient-to-r from-white/40 to-transparent rounded-sm transform -skew-x-12"></div>
-              </div>
-              
-              <div>
-                <h3 class="font-bold text-gray-800 mb-3 leading-tight text-lg relative">
-                  ${book.title}
-                  <div class="absolute -bottom-1 left-0 w-8 h-0.5 bg-gradient-to-r from-orange-500 to-teal-500 rounded-full"></div>
-                </h3>
-                <div class="flex flex-wrap gap-2">
-                  ${tags}
-                </div>
-              </div>
-            </div>
-          </div>
+        <div 
+  class="snap-start w-72 flex-shrink-0 cursor-pointer"
+  onclick="window.location.href='detailbuku.html?id=${book.id}'"
+>
+  <div class="card rounded-xl p-5 h-full relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-200/30 to-teal-200/30 rounded-full -translate-y-10 translate-x-10"></div>
+    <div class="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-teal-200/20 to-orange-200/20 rounded-full translate-y-8 -translate-x-8"></div>
+
+    <div class="relative z-10">
+      <div class="relative rounded-lg overflow-hidden mb-4 bg-gradient-to-br from-gray-50 to-gray-100 p-3 shadow-inner">
+        <img src="${book.image}" alt="${book.title}" class="w-full h-auto object-contain book-image mx-auto block">
+        <div class="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-white/10 rounded-lg"></div>
+        <div class="absolute top-2 left-2 w-8 h-16 bg-gradient-to-r from-white/40 to-transparent rounded-sm transform -skew-x-12"></div>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-gray-800 mb-3 leading-tight text-lg relative">
+          ${book.title}
+          <div class="absolute -bottom-1 left-0 w-8 h-0.5 bg-gradient-to-r from-orange-500 to-teal-500 rounded-full"></div>
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          ${book.tags.map(tag => `<div class="book-tag text-gray-800 text-xs px-3 py-1 rounded-full inline-block">${tag}</div>`).join('')}
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
       `;
       }
 
