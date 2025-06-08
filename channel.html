@@ -1,650 +1,552 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Our Social Media</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="./img/Logo-Sekolah-Impian.png" type="image/png" />
-  </head>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          animation: {
-            float: "float 6s ease-in-out infinite",
-            "pulse-slow": "pulse-slow 4s ease-in-out infinite",
-            slideDown: "slideDown 0.3s ease-out",
-            slideUp: "slideUp 0.3s ease-out",
-            fadeInUp: "fadeInUp 0.8s ease-out",
-            scaleIn: "scaleIn 0.6s ease-out",
-            gradientShift: "gradientShift 3s ease-in-out infinite",
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Social Media</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="icon" href="./img/Logo-Sekolah-Impian.png" type="image/png" />
+</head>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        animation: {
+          float: "float 6s ease-in-out infinite",
+          "pulse-slow": "pulse-slow 4s ease-in-out infinite",
+          slideDown: "slideDown 0.3s ease-out",
+          slideUp: "slideUp 0.3s ease-out",
+          fadeInUp: "fadeInUp 0.8s ease-out",
+          scaleIn: "scaleIn 0.6s ease-out",
+          gradientShift: "gradientShift 3s ease-in-out infinite",
+        },
+        keyframes: {
+          float: {
+            "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
+            "33%": { transform: "translateY(-20px) rotate(1deg)" },
+            "66%": { transform: "translateY(-10px) rotate(-1deg)" },
           },
-          keyframes: {
-            float: {
-              "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
-              "33%": { transform: "translateY(-20px) rotate(1deg)" },
-              "66%": { transform: "translateY(-10px) rotate(-1deg)" },
+          "pulse-slow": {
+            "0%, 100%": {
+              transform: "scale(1) rotate(0deg)",
+              opacity: "0.1",
             },
-            "pulse-slow": {
-              "0%, 100%": {
-                transform: "scale(1) rotate(0deg)",
-                opacity: "0.1",
-              },
-              "50%": { transform: "scale(1.1) rotate(180deg)", opacity: "0.2" },
-            },
-            slideDown: {
-              "0%": { transform: "translateY(-100%)", opacity: "0" },
-              "100%": { transform: "translateY(0)", opacity: "1" },
-            },
-            slideUp: {
-              "0%": { transform: "translateY(0)", opacity: "1" },
-              "100%": { transform: "translateY(-100%)", opacity: "0" },
-            },
-            fadeInUp: {
-              "0%": { transform: "translateY(30px)", opacity: "0" },
-              "100%": { transform: "translateY(0)", opacity: "1" },
-            },
-            scaleIn: {
-              "0%": { transform: "scale(0.8)", opacity: "0" },
-              "100%": { transform: "scale(1)", opacity: "1" },
-            },
-            gradientShift: {
-              "0%, 100%": { backgroundPosition: "0% 50%" },
-              "50%": { backgroundPosition: "100% 50%" },
-            },
+            "50%": { transform: "scale(1.1) rotate(180deg)", opacity: "0.2" },
+          },
+          slideDown: {
+            "0%": { transform: "translateY(-100%)", opacity: "0" },
+            "100%": { transform: "translateY(0)", opacity: "1" },
+          },
+          slideUp: {
+            "0%": { transform: "translateY(0)", opacity: "1" },
+            "100%": { transform: "translateY(-100%)", opacity: "0" },
+          },
+          fadeInUp: {
+            "0%": { transform: "translateY(30px)", opacity: "0" },
+            "100%": { transform: "translateY(0)", opacity: "1" },
+          },
+          scaleIn: {
+            "0%": { transform: "scale(0.8)", opacity: "0" },
+            "100%": { transform: "scale(1)", opacity: "1" },
+          },
+          gradientShift: {
+            "0%, 100%": { backgroundPosition: "0% 50%" },
+            "50%": { backgroundPosition: "100% 50%" },
           },
         },
       },
-    };
-  </script>
-  <style>
-    @keyframes bounceY {
-      0%,
-      100% {
-        transform: translateY(0);
-        animation-timing-function: ease-in;
-      }
-      50% {
-        transform: translateY(-30px);
-        animation-timing-function: ease-out;
-      }
+    },
+  };
+</script>
+<style>
+  @keyframes bounceY {
+
+    0%,
+    100% {
+      transform: translateY(0);
+      animation-timing-function: ease-in;
     }
 
-    .animate-bounceY {
-      animation: bounceY 2s infinite;
+    50% {
+      transform: translateY(-30px);
+      animation-timing-function: ease-out;
     }
+  }
 
-    .glass {
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-    }
+  .animate-bounceY {
+    animation: bounceY 2s infinite;
+  }
 
-    .floating-element {
-      animation: float 6s ease-in-out infinite;
-    }
+  .glass {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
 
-    .floating-element:nth-child(2) {
-      animation-delay: 1s;
-    }
+  .floating-element {
+    animation: float 6s ease-in-out infinite;
+  }
 
-    .floating-element:nth-child(3) {
-      animation-delay: 2s;
-    }
+  .floating-element:nth-child(2) {
+    animation-delay: 1s;
+  }
 
-    .bg-decoration {
-      animation: pulse-slow 4s ease-in-out infinite;
-    }
+  .floating-element:nth-child(3) {
+    animation-delay: 2s;
+  }
 
-    .bg-decoration:nth-child(2) {
-      animation-delay: 2s;
-    }
+  .bg-decoration {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
 
-    .bg-decoration:nth-child(3) {
-      animation-delay: 1s;
-    }
+  .bg-decoration:nth-child(2) {
+    animation-delay: 2s;
+  }
 
-    /* Social media card hover effects */
-    .social-card {
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-      overflow: hidden;
-    }
+  .bg-decoration:nth-child(3) {
+    animation-delay: 1s;
+  }
 
-    .social-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
+  /* Social media card hover effects */
+  .social-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .social-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
         transparent,
         rgba(255, 255, 255, 0.2),
-        transparent
-      );
-      transition: left 0.6s;
-    }
+        transparent);
+    transition: left 0.6s;
+  }
 
-    .social-card:hover::before {
-      left: 100%;
-    }
+  .social-card:hover::before {
+    left: 100%;
+  }
 
-    .social-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-    }
+  .social-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  }
 
-    /* Gradient animations */
-    .gradient-animate {
-      background-size: 200% 200%;
-      animation: gradientShift 3s ease-in-out infinite;
-    }
+  /* Gradient animations */
+  .gradient-animate {
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease-in-out infinite;
+  }
 
-    .gradient-text {
-      background: linear-gradient(
-        135deg,
+  .gradient-text {
+    background: linear-gradient(135deg,
         #10b981 0%,
         #0d9488 50%,
-        #f97316 100%
-      );
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+        #f97316 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-    /* Mobile menu styles */
-    .mobile-menu {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-out;
-    }
+  /* Mobile menu styles */
+  .mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
 
-    .mobile-menu.active {
-      max-height: 400px;
-      transition: max-height 0.3s ease-in;
-    }
+  .mobile-menu.active {
+    max-height: 400px;
+    transition: max-height 0.3s ease-in;
+  }
 
-    /* Counter animation */
-    .counter {
-      font-family: "Arial", sans-serif;
-      font-weight: bold;
-    }
+  /* Counter animation */
+  .counter {
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+  }
 
-    /* Floating background elements */
-    .bg-shapes {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      pointer-events: none;
-    }
+  /* Floating background elements */
+  .bg-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
 
-    .shape {
-      position: absolute;
-      opacity: 0.1;
-      animation: float 8s ease-in-out infinite;
-    }
+  .shape {
+    position: absolute;
+    opacity: 0.1;
+    animation: float 8s ease-in-out infinite;
+  }
 
-    .shape:nth-child(1) {
-      top: 10%;
-      left: 10%;
-      animation-delay: 0s;
-    }
+  .shape:nth-child(1) {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+  }
 
-    .shape:nth-child(2) {
-      top: 20%;
-      right: 15%;
-      animation-delay: 2s;
-    }
+  .shape:nth-child(2) {
+    top: 20%;
+    right: 15%;
+    animation-delay: 2s;
+  }
 
-    .shape:nth-child(3) {
-      bottom: 20%;
-      left: 20%;
-      animation-delay: 4s;
-    }
+  .shape:nth-child(3) {
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 4s;
+  }
 
-    .shape:nth-child(4) {
-      bottom: 10%;
-      right: 10%;
-      animation-delay: 6s;
-    }
-  </style>
-  <body
-    class="bg-gradient-to-br from-gray-50 via-white to-blue-50 text-gray-800 min-h-screen"
-  >
-    <!-- Floating background shapes -->
-    <div class="bg-shapes">
-      <div
-        class="shape w-32 h-32 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
-      ></div>
-      <div
-        class="shape w-24 h-24 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full"
-      ></div>
-      <div
-        class="shape w-40 h-40 bg-gradient-to-r from-orange-400 to-red-400 rounded-full"
-      ></div>
-      <div
-        class="shape w-28 h-28 bg-gradient-to-r from-green-400 to-blue-400 rounded-full"
-      ></div>
-    </div>
+  .shape:nth-child(4) {
+    bottom: 10%;
+    right: 10%;
+    animation-delay: 6s;
+  }
+</style>
 
-    <header class="relative z-50 py-5 bg-white/95 glass">
-      <div class="max-w-7xl mx-auto px-4 md:px-6">
-        <nav class="flex justify-between items-center">
-          <div class="flex items-center text-2xl font-bold text-gray-900">
-            <img
-              class="w-[70px] h-[70px] object-contain"
-              src="./img/Logo-Sekolah-Impian.png"
-              alt="Sekolah Impian"
-            />
-          </div>
+<body class="bg-gradient-to-br from-gray-50 via-white to-blue-50 text-gray-800 min-h-screen">
+  <!-- Floating background shapes -->
+  <div class="bg-shapes">
+    <div class="shape w-32 h-32 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
+    <div class="shape w-24 h-24 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full"></div>
+    <div class="shape w-40 h-40 bg-gradient-to-r from-orange-400 to-red-400 rounded-full"></div>
+    <div class="shape w-28 h-28 bg-gradient-to-r from-green-400 to-blue-400 rounded-full"></div>
+  </div>
 
-          <!-- Desktop Menu -->
-          <ul class="hidden md:flex items-center space-x-8">
-            <li>
-              <a
-                href="index.html"
-                class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
-                >Home</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://sekolahimpian.com/"
-                class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
-                >Informasi Sekolah</a
-              >
-            </li>
-            <li>
-              <a
-                href="buku.html"
-                class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
-                >Buku Kami</a
-              >
-            </li>
-            <li>
-              <a
-                href="pelatihan.html"
-                class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
-                >Pelatihan</a
-              >
-            </li>
-            <li>
-              <a
-                href="webinar.html"
-                class="text-gray-600 hover:text-gray-900 font-medium"
-                >Webinar</a
-              >
-            </li>
-            <li>
-              <a
-                href="channel.html"
-                class="text-orange-500 font-semibold transition-colors duration-200"
-                >Channel</a
-              >
-            </li>
-          </ul>
+  <header class="relative z-50 py-5 bg-white/95 glass">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <nav class="flex justify-between items-center">
+        <div class="flex items-center text-2xl font-bold text-gray-900">
+          <a href="index.html">
+            <img class="w-[70px] h-[70px] object-contain" src="./img/Logo-Sekolah-Impian.png" alt="Sekolah Impian" />
+          </a>
+        </div>
 
-          <!-- Desktop Right Side -->
-          <div class="hidden md:flex items-center gap-3">
-            <a
-              href="https://wa.me/6285161231559"
-              class="bg-gray-900 text-white px-5 py-2.5 rounded-lg font-semibold hover:-translate-y-1 hover:bg-gray-600 transition-transform"
-            >
-              Kontak
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex items-center space-x-8">
+          <li>
+            <a href="index.html"
+              class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Home</a>
+          </li>
+          <li>
+            <a href="https://sekolahimpian.com/"
+              class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Informasi Sekolah</a>
+          </li>
+          <li>
+            <a href="buku.html"
+              class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Buku Kami</a>
+          </li>
+          <li>
+            <a href="pelatihan.html"
+              class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Pelatihan</a>
+          </li>
+          <li>
+            <a href="webinar.html" class="text-gray-600 hover:text-gray-900 font-medium">Webinar</a>
+          </li>
+          <li>
+            <a href="channel.html" class="text-orange-500 font-semibold transition-colors duration-200">Channel</a>
+          </li>
+        </ul>
+
+        <!-- Desktop Right Side -->
+        <div class="hidden md:flex items-center gap-3">
+          <a href="https://wa.me/6285161231559"
+            class="bg-gray-900 text-white px-5 py-2.5 rounded-lg font-semibold hover:-translate-y-1 hover:bg-gray-600 transition-transform">
+            Kontak
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-button" class="p-2 text-gray-700 hover:text-orange-500 transition-colors">
+            <i class="bx bx-menu text-2xl"></i>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden transition-all duration-300 ease-in-out">
+        <div
+          class="px-2 pt-2 pb-3 space-y-1 bg-white/90 backdrop-blur-lg rounded-lg mt-4 shadow-lg border border-white/20">
+          <a href="index.html"
+            class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">Home</a>
+          <a href="https://sekolahimpian.com/"
+            class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">Informasi
+            Sekolah</a>
+          <a href="buku.html"
+            class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">Buku
+            Kami</a>
+          <a href="pelatihan.html"
+            class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">Pelatihan</a>
+          <a href="webinar.html"
+            class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">Webinar</a>
+          <a href="channel.html"
+            class="block px-3 py-2 text-orange-500 hover:text-orange-500 bg-orange-50 rounded-md font-semibold transition-all">Channel</a>
+
+          <div class="border-t border-gray-200 pt-4 mt-4">
+            <a href="https://wa.me/6285161231559"
+              class="block bg-gradient-to-r from-orange-500 to-teal-600 text-white px-5 py-2.5 rounded-lg font-semibold text-center hover:from-orange-600 hover:to-teal-700 transition-all">
+              <i class="bx bxl-whatsapp mr-2"></i>Kontak
             </a>
           </div>
-
-          <!-- Mobile Menu Button -->
-          <div class="md:hidden flex items-center">
-            <button
-              id="mobile-menu-button"
-              class="p-2 text-gray-700 hover:text-orange-500 transition-colors"
-            >
-              <i class="bx bx-menu text-2xl"></i>
-            </button>
-          </div>
-        </nav>
-
-        <!-- Mobile Menu -->
-        <div
-          id="mobile-menu"
-          class="hidden md:hidden transition-all duration-300 ease-in-out"
-        >
-          <div
-            class="px-2 pt-2 pb-3 space-y-1 bg-white/90 backdrop-blur-lg rounded-lg mt-4 shadow-lg border border-white/20"
-          >
-            <a
-              href="index.html"
-              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
-              >Home</a
-            >
-            <a
-              href="https://sekolahimpian.com/"
-              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
-              >Informasi Sekolah</a
-            >
-            <a
-              href="buku.html"
-              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
-              >Buku Kami</a
-            >
-            <a
-              href="pelatihan.html"
-              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
-              >Pelatihan</a
-            >
-            <a
-              href="webinar.html"
-              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
-              >Webinar</a
-            >
-            <a
-              href="channel.html"
-              class="block px-3 py-2 text-orange-500 hover:text-orange-500 bg-orange-50 rounded-md font-semibold transition-all"
-              >Channel</a
-            >
-
-            <div class="border-t border-gray-200 pt-4 mt-4">
-              <a
-                href="https://wa.me/6285161231559"
-                class="block bg-gradient-to-r from-orange-500 to-teal-600 text-white px-5 py-2.5 rounded-lg font-semibold text-center hover:from-orange-600 hover:to-teal-700 transition-all"
-              >
-                <i class="bx bxl-whatsapp mr-2"></i>Kontak
-              </a>
-            </div>
-          </div>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="relative py-20 px-4 overflow-hidden">
-      <div class="max-w-6xl mx-auto text-center">
-        <div class="animate-fadeInUp text-center relative">
-          <h1
-            class="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-6 relative"
-          >
-            <span class="gradient-text">Connect With Us</span>
-            <div
-              class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-orange-500 to-teal-500 rounded-full"
-            ></div>
-          </h1>
-          <p
-            class="text-lg md:text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed"
-          >
-            Bergabunglah dengan komunitas kami di berbagai platform media sosial
-            dan dapatkan konten edukatif, tips, serta update terbaru setiap hari
-          </p>
-        </div>
-
-        <!-- Social Media Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
-          <!-- Instagram Card -->
+  <!-- Hero Section -->
+  <section class="relative py-20 px-4 overflow-hidden">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="animate-fadeInUp text-center relative">
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-6 relative">
+          <span class="gradient-text">Connect With Us</span>
           <div
-            class="social-card bg-gradient-to-br from-pink-500 via-purple-500 to-orange-400 gradient-animate text-white p-8 rounded-2xl shadow-xl"
-          >
-            <div class="flex flex-col items-center h-full">
-              <div class="bg-white/20 p-4 rounded-full mb-6">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-12 h-12"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M7.5 2C4.47 2 2 4.47 2 7.5v9C2 19.53 4.47 22 7.5 22h9c3.03 0 5.5-2.47 5.5-5.5v-9C22 4.47 19.53 2 16.5 2h-9zM12 7c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm6.5-1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"
-                  />
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold mb-2">Instagram</h3>
-              <p class="font-semibold text-lg mb-3">@sekolahimpianofficial</p>
-              <p class="text-sm text-center mb-6 opacity-90">
-                Foto dan video inspiratif setiap hari
-              </p>
-
-              <div class="grid grid-cols-3 gap-4 mb-8 w-full">
-                <div class="text-center">
-                  <p class="counter font-bold text-2xl">4K</p>
-                  <p class="text-xs opacity-80">Followers</p>
-                </div>
-                <div class="text-center">
-                  <p class="counter font-bold text-2xl">724</p>
-                  <p class="text-xs opacity-80">Posts</p>
-                </div>
-                <div class="text-center">
-                  <p class="counter font-bold text-2xl">40</p>
-                  <p class="text-xs opacity-80">Following</p>
-                </div>
-              </div>
-
-              <a
-                href="https://www.instagram.com/sekolahimpianofficial?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-                class="bg-white text-gray-800 font-semibold px-6 py-3 rounded-full hover:bg-pink-100 hover:text-pink-800 hover:shadow-xl transform hover:scale-110 transition-all duration-300 ease-in-out"
-              >
-                <i class="bx bxl-instagram mr-2"></i>Follow
-              </a>
-            </div>
+            class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-orange-500 to-teal-500 rounded-full">
           </div>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+          Bergabunglah dengan komunitas kami di berbagai platform media sosial
+          dan dapatkan konten edukatif, tips, serta update terbaru setiap hari
+        </p>
+      </div>
 
-          <!-- YouTube Card -->
-          <div
-            class="social-card bg-gradient-to-br from-red-500 to-red-700 gradient-animate text-white p-8 rounded-2xl shadow-xl"
-          >
-            <div class="flex flex-col items-center h-full">
-              <div class="bg-white/20 p-4 rounded-full mb-6">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-12 h-12"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M19.6 3.2H4.4C3.08 3.2 2 4.28 2 5.6v12.8c0 1.32 1.08 2.4 2.4 2.4h15.2c1.32 0 2.4-1.08 2.4-2.4V5.6c0-1.32-1.08-2.4-2.4-2.4zM10 16V8l6 4-6 4z"
-                  />
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold mb-2">YouTube</h3>
-              <p class="font-semibold text-lg mb-3">GSI Channel</p>
-              <p class="text-sm text-center mb-6 opacity-90">
-                Tutorial dan konten edukatif berkualitas
-              </p>
-
-              <div class="grid grid-cols-3 gap-4 mb-8 w-full">
-                <div class="text-center">
-                  <p class="counter font-bold text-2xl">6.88K</p>
-                  <p class="text-xs opacity-80">Subscribers</p>
-                </div>
-                <div class="text-center">
-                  <p class="counter font-bold text-2xl">249</p>
-                  <p class="text-xs opacity-80">Videos</p>
-                </div>
-                <div class="text-center">
-                  <p class="counter font-bold text-2xl">798K</p>
-                  <p class="text-xs opacity-80">Views</p>
-                </div>
-              </div>
-
-              <a
-                href="https://www.youtube.com/@sekolahimpianku"
-                class="bg-white text-gray-800 font-semibold px-6 py-3 rounded-full hover:bg-red-100 hover:text-red-800 hover:shadow-xl transform hover:scale-110 transition-all duration-300 ease-in-out"
-              >
-                <i class="bx bxl-youtube mr-2"></i>Subscribe
-              </a>
-            </div>
-          </div>
-
-          <!-- WhatsApp Card -->
-          <div
-            class="social-card bg-gradient-to-br from-green-500 to-green-600 gradient-animate text-white p-8 rounded-2xl shadow-xl"
-          >
-            <div class="flex flex-col items-center h-full">
-              <div class="bg-white/20 p-4 rounded-full mb-6">
-                <i class="bx bxl-whatsapp text-5xl"></i>
-              </div>
-              <h3 class="text-2xl font-bold mb-2">WhatsApp</h3>
-              <p class="font-semibold text-lg mb-3">+62 851-6123-1559</p>
-              <p class="text-sm text-center mb-6 opacity-90">
-                Konsultasi langsung dengan tim kami
-              </p>
-
-              <div class="grid grid-cols-2 gap-4 mb-8 w-full">
-                <div class="text-center">
-                  <p class="counter font-bold text-2xl">24/7</p>
-                  <p class="text-xs opacity-80">Support</p>
-                </div>
-                <div class="text-center">
-                  <p class="counter font-bold text-2xl">Fast</p>
-                  <p class="text-xs opacity-80">Response</p>
-                </div>
-              </div>
-
-              <a
-                href="https://wa.me/6285161231559"
-                class="bg-white text-gray-800 font-semibold px-6 py-3 rounded-full hover:bg-green-100 hover:text-green-800 hover:shadow-xl transform hover:scale-110 transition-all duration-300 ease-in-out"
-              >
-                <i class="bx bxl-whatsapp mr-2"></i>Chat Now
-              </a>
-            </div>
-          </div>
-
-          <!-- Website Card -->
-          <div
-            class="social-card bg-gradient-to-br from-blue-600 to-purple-600 gradient-animate text-white p-8 rounded-2xl shadow-xl"
-          >
-            <div class="flex flex-col items-center h-full">
-              <div class="bg-white/20 p-4 rounded-full mb-6">
-                <i class="bx bx-globe text-5xl"></i>
-              </div>
-              <h3 class="text-2xl font-bold mb-2">Website</h3>
-              <p class="font-semibold text-lg mb-3">sekolahimpian.com</p>
-              <p class="text-sm text-center mb-6 opacity-90">
-                Informasi lengkap tentang program kami
-              </p>
-
-              <div class="grid grid-cols-2 gap-4 mb-8 w-full">
-                <div class="text-center">
-                  <p class="counter font-bold text-2xl">Complete</p>
-                  <p class="text-xs opacity-80">Info</p>
-                </div>
-                <div class="text-center">
-                  <p class="counter font-bold text-2xl">Updated</p>
-                  <p class="text-xs opacity-80">Content</p>
-                </div>
-              </div>
-
-              <a
-                href="https://sekolahimpian.com/"
-                class="bg-white text-gray-800 font-semibold px-6 py-3 rounded-full hover:bg-blue-100 hover:text-blue-800 hover:shadow-xl transform hover:scale-110 transition-all duration-300 ease-in-out"
-              >
-                <i class="bx bx-link-external mr-2"></i>Visit
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Call to Action -->
+      <!-- Social Media Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+        <!-- Instagram Card -->
         <div
-          class="mt-20 text-center animate-fadeInUp"
-          style="animation-delay: 0.6s"
-        >
-          <div
-            class="bg-white/60 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-white/20"
-          >
-            <h3 class="text-3xl font-bold text-gray-900 mb-4">
-              Stay Connected!
-            </h3>
-            <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Jangan lewatkan update terbaru dari kami. Follow semua channel
-              media sosial untuk mendapatkan konten eksklusif dan berinteraksi
-              dengan komunitas yang luar biasa.
+          class="social-card bg-gradient-to-br from-pink-500 via-purple-500 to-orange-400 gradient-animate text-white p-8 rounded-2xl shadow-xl">
+          <div class="flex flex-col items-center h-full">
+            <div class="bg-white/20 p-4 rounded-full mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M7.5 2C4.47 2 2 4.47 2 7.5v9C2 19.53 4.47 22 7.5 22h9c3.03 0 5.5-2.47 5.5-5.5v-9C22 4.47 19.53 2 16.5 2h-9zM12 7c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm6.5-1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Instagram</h3>
+            <p class="font-semibold text-lg mb-3">@sekolahimpianofficial</p>
+            <p class="text-sm text-center mb-6 opacity-90">
+              Foto dan video inspiratif setiap hari
             </p>
-            <div class="flex flex-wrap justify-center gap-4">
-              <span
-                class="bg-gradient-to-r from-pink-500 to-orange-400 text-white px-4 py-2 rounded-full text-sm font-semibold"
-              >
-                📸 Daily Updates
-              </span>
-              <span
-                class="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold"
-              >
-                🎥 Video Tutorials
-              </span>
-              <span
-                class="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold"
-              >
-                💬 Direct Support
-              </span>
-              <span
-                class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold"
-              >
-                🌐 Complete Info
-              </span>
+
+            <div class="grid grid-cols-3 gap-4 mb-8 w-full">
+              <div class="text-center">
+                <p class="counter font-bold text-2xl">4K</p>
+                <p class="text-xs opacity-80">Followers</p>
+              </div>
+              <div class="text-center">
+                <p class="counter font-bold text-2xl">724</p>
+                <p class="text-xs opacity-80">Posts</p>
+              </div>
+              <div class="text-center">
+                <p class="counter font-bold text-2xl">40</p>
+                <p class="text-xs opacity-80">Following</p>
+              </div>
             </div>
+
+            <a href="https://www.instagram.com/sekolahimpianofficial?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+              class="bg-white text-gray-800 font-semibold px-6 py-3 rounded-full hover:bg-pink-100 hover:text-pink-800 hover:shadow-xl transform hover:scale-110 transition-all duration-300 ease-in-out">
+              <i class="bx bxl-instagram mr-2"></i>Follow
+            </a>
+          </div>
+        </div>
+
+        <!-- YouTube Card -->
+        <div
+          class="social-card bg-gradient-to-br from-red-500 to-red-700 gradient-animate text-white p-8 rounded-2xl shadow-xl">
+          <div class="flex flex-col items-center h-full">
+            <div class="bg-white/20 p-4 rounded-full mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19.6 3.2H4.4C3.08 3.2 2 4.28 2 5.6v12.8c0 1.32 1.08 2.4 2.4 2.4h15.2c1.32 0 2.4-1.08 2.4-2.4V5.6c0-1.32-1.08-2.4-2.4-2.4zM10 16V8l6 4-6 4z" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold mb-2">YouTube</h3>
+            <p class="font-semibold text-lg mb-3">GSI Channel</p>
+            <p class="text-sm text-center mb-6 opacity-90">
+              Tutorial dan konten edukatif berkualitas
+            </p>
+
+            <div class="grid grid-cols-3 gap-4 mb-8 w-full">
+              <div class="text-center">
+                <p class="counter font-bold text-2xl">6.88K</p>
+                <p class="text-xs opacity-80">Subscribers</p>
+              </div>
+              <div class="text-center">
+                <p class="counter font-bold text-2xl">249</p>
+                <p class="text-xs opacity-80">Videos</p>
+              </div>
+              <div class="text-center">
+                <p class="counter font-bold text-2xl">798K</p>
+                <p class="text-xs opacity-80">Views</p>
+              </div>
+            </div>
+
+            <a href="https://www.youtube.com/@sekolahimpianku"
+              class="bg-white text-gray-800 font-semibold px-6 py-3 rounded-full hover:bg-red-100 hover:text-red-800 hover:shadow-xl transform hover:scale-110 transition-all duration-300 ease-in-out">
+              <i class="bx bxl-youtube mr-2"></i>Subscribe
+            </a>
+          </div>
+        </div>
+
+        <!-- WhatsApp Card -->
+        <div
+          class="social-card bg-gradient-to-br from-green-500 to-green-600 gradient-animate text-white p-8 rounded-2xl shadow-xl">
+          <div class="flex flex-col items-center h-full">
+            <div class="bg-white/20 p-4 rounded-full mb-6">
+              <i class="bx bxl-whatsapp text-5xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2">WhatsApp</h3>
+            <p class="font-semibold text-lg mb-3">+62 851-6123-1559</p>
+            <p class="text-sm text-center mb-6 opacity-90">
+              Konsultasi langsung dengan tim kami
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 mb-8 w-full">
+              <div class="text-center">
+                <p class="counter font-bold text-2xl">24/7</p>
+                <p class="text-xs opacity-80">Support</p>
+              </div>
+              <div class="text-center">
+                <p class="counter font-bold text-2xl">Fast</p>
+                <p class="text-xs opacity-80">Response</p>
+              </div>
+            </div>
+
+            <a href="https://wa.me/6285161231559"
+              class="bg-white text-gray-800 font-semibold px-6 py-3 rounded-full hover:bg-green-100 hover:text-green-800 hover:shadow-xl transform hover:scale-110 transition-all duration-300 ease-in-out">
+              <i class="bx bxl-whatsapp mr-2"></i>Chat Now
+            </a>
+          </div>
+        </div>
+
+        <!-- Website Card -->
+        <div
+          class="social-card bg-gradient-to-br from-blue-600 to-purple-600 gradient-animate text-white p-8 rounded-2xl shadow-xl">
+          <div class="flex flex-col items-center h-full">
+            <div class="bg-white/20 p-4 rounded-full mb-6">
+              <i class="bx bx-globe text-5xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Website</h3>
+            <p class="font-semibold text-lg mb-3">sekolahimpian.com</p>
+            <p class="text-sm text-center mb-6 opacity-90">
+              Informasi lengkap tentang program kami
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 mb-8 w-full">
+              <div class="text-center">
+                <p class="counter font-bold text-2xl">Complete</p>
+                <p class="text-xs opacity-80">Info</p>
+              </div>
+              <div class="text-center">
+                <p class="counter font-bold text-2xl">Updated</p>
+                <p class="text-xs opacity-80">Content</p>
+              </div>
+            </div>
+
+            <a href="https://sekolahimpian.com/"
+              class="bg-white text-gray-800 font-semibold px-6 py-3 rounded-full hover:bg-blue-100 hover:text-blue-800 hover:shadow-xl transform hover:scale-110 transition-all duration-300 ease-in-out">
+              <i class="bx bx-link-external mr-2"></i>Visit
+            </a>
           </div>
         </div>
       </div>
-    </section>
 
-    <script>
-      // Mobile menu functionality
-      const mobileMenuButton = document.getElementById("mobile-menu-button");
-      const mobileMenu = document.getElementById("mobile-menu");
+      <!-- Call to Action -->
+      <div class="mt-20 text-center animate-fadeInUp" style="animation-delay: 0.6s">
+        <div class="bg-white/60 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-white/20">
+          <h3 class="text-3xl font-bold text-gray-900 mb-4">
+            Stay Connected!
+          </h3>
+          <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+            Jangan lewatkan update terbaru dari kami. Follow semua channel
+            media sosial untuk mendapatkan konten eksklusif dan berinteraksi
+            dengan komunitas yang luar biasa.
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <span
+              class="bg-gradient-to-r from-pink-500 to-orange-400 text-white px-4 py-2 rounded-full text-sm font-semibold">
+              📸 Daily Updates
+            </span>
+            <span
+              class="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+              🎥 Video Tutorials
+            </span>
+            <span
+              class="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+              💬 Direct Support
+            </span>
+            <span
+              class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+              🌐 Complete Info
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener("click", function () {
-          mobileMenu.classList.toggle("hidden");
-        });
-      }
+  <script>
+    // Mobile menu functionality
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
 
-      // Counter animation on scroll
-      const observerOptions = {
-        threshold: 0.5,
-        rootMargin: "0px 0px -100px 0px",
-      };
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener("click", function () {
+        mobileMenu.classList.toggle("hidden");
+      });
+    }
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.animationDelay = Math.random() * 0.5 + "s";
-            entry.target.classList.add("animate-scaleIn");
-          }
-        });
-      }, observerOptions);
+    // Counter animation on scroll
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: "0px 0px -100px 0px",
+    };
 
-      // Observe all social cards
-      document.querySelectorAll(".social-card").forEach((card) => {
-        observer.observe(card);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationDelay = Math.random() * 0.5 + "s";
+          entry.target.classList.add("animate-scaleIn");
+        }
+      });
+    }, observerOptions);
+
+    // Observe all social cards
+    document.querySelectorAll(".social-card").forEach((card) => {
+      observer.observe(card);
+    });
+
+    // Add parallax effect to background shapes
+    window.addEventListener("scroll", () => {
+      const scrolled = window.pageYOffset;
+      const shapes = document.querySelectorAll(".shape");
+
+      shapes.forEach((shape, index) => {
+        const speed = (index + 1) * 0.1;
+        shape.style.transform = `translateY(${scrolled * speed}px)`;
+      });
+    });
+
+    // Add hover sound effect (optional)
+    document.querySelectorAll(".social-card").forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        // You can add sound effects here if needed
+        card.style.transform = "translateY(-10px) scale(1.02)";
       });
 
-      // Add parallax effect to background shapes
-      window.addEventListener("scroll", () => {
-        const scrolled = window.pageYOffset;
-        const shapes = document.querySelectorAll(".shape");
-
-        shapes.forEach((shape, index) => {
-          const speed = (index + 1) * 0.1;
-          shape.style.transform = `translateY(${scrolled * speed}px)`;
-        });
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "translateY(0) scale(1)";
       });
+    });
+  </script>
+</body>
 
-      // Add hover sound effect (optional)
-      document.querySelectorAll(".social-card").forEach((card) => {
-        card.addEventListener("mouseenter", () => {
-          // You can add sound effects here if needed
-          card.style.transform = "translateY(-10px) scale(1.02)";
-        });
-
-        card.addEventListener("mouseleave", () => {
-          card.style.transform = "translateY(0) scale(1)";
-        });
-      });
-    </script>
-  </body>
 </html>
