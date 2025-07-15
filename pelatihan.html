@@ -738,62 +738,6 @@
     });
   </script>
 
-  <script>
-    // Animasi saat scroll masuk (menggunakan Intersection Observer)
-    document.addEventListener("DOMContentLoaded", () => {
-      const fadeElements = document.querySelectorAll('.fade-in-up');
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up');
-          }
-        });
-      }, { threshold: 0.1 });
-
-      fadeElements.forEach(el => observer.observe(el));
-
-      // Filter galeri berdasarkan kategori
-      const filterButtons = document.querySelectorAll('.filter-btn');
-      const galleryItems = document.querySelectorAll('.gallery-item');
-      const filterSelect = document.getElementById('filterSelect');
-
-      function applyFilter(filter) {
-        // Update tombol aktif di desktop
-        filterButtons.forEach(b => {
-          b.classList.remove('active', 'bg-white/70');
-          if (b.getAttribute('data-filter') === filter) {
-            b.classList.add('active');
-          }
-        });
-
-        // Tampilkan item sesuai filter
-        galleryItems.forEach(item => {
-          const category = item.getAttribute('data-category');
-          if (filter === 'all' || filter === category) {
-            item.style.display = 'block';
-            item.classList.remove('opacity-0', 'scale-95');
-            item.classList.add('opacity-100', 'scale-100');
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      }
-
-      filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const filter = btn.getAttribute('data-filter');
-          if (filterSelect) filterSelect.value = filter; // sinkronkan dropdown
-          applyFilter(filter);
-        });
-      });
-
-      if (filterSelect) {
-        filterSelect.addEventListener('change', () => {
-          const filter = filterSelect.value;
-          applyFilter(filter);
-        });
-      }
-    });
 
   </script>
   <style>
