@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Play Audio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #ff6b35 0%, #22c55e 100%);
+    }
+    
+    .wave-animation {
+      animation: wave 2s ease-in-out infinite;
+    }
+    
+    @keyframes wave {
+      0%, 100% { transform: scaleY(0.5); }
+      50% { transform: scaleY(1); }
+    }
+    
+    .audio-wave {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      height: 40px;
+    }
+    
+    .wave-bar {
+      width: 3px;
+      background: linear-gradient(to top, #ff6b35, #22c55e);
+      border-radius: 2px;
+      animation: wave 1.5s ease-in-out infinite;
+    }
+    
+    .wave-bar:nth-child(1) { height: 20px; animation-delay: 0s; }
+    .wave-bar:nth-child(2) { height: 30px; animation-delay: 0.1s; }
+    .wave-bar:nth-child(3) { height: 25px; animation-delay: 0.2s; }
+    .wave-bar:nth-child(4) { height: 35px; animation-delay: 0.3s; }
+    .wave-bar:nth-child(5) { height: 20px; animation-delay: 0.4s; }
+    .wave-bar:nth-child(6) { height: 30px; animation-delay: 0.5s; }
+    .wave-bar:nth-child(7) { height: 25px; animation-delay: 0.6s; }
+    
+    .custom-audio::-webkit-media-controls-panel {
+      background: linear-gradient(135deg, #ff6b35 0%, #22c55e 100%);
+      border-radius: 12px;
+    }
+    
+    .loading-spinner {
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    /* Enhanced Dropdown Styles */
+    .custom-dropdown {
+      position: relative;
+      width: 100%;
+    }
+    
+    .dropdown-button {
+      width: 100%;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      color: white;
+      font-weight: 500;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      outline: none;
+    }
+    
+    .dropdown-button:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .dropdown-button:focus {
+      border-color: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+    }
+    
+    .dropdown-button.active {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: #22c55e;
+    }
+    
+    .dropdown-icon {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .dropdown-button.active .dropdown-icon {
+      transform: rotate(180deg);
+      color: #22c55e;
+    }
+    
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      overflow: hidden;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .dropdown-menu.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .dropdown-item {
+      padding: 16px 20px;
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .dropdown-item:last-child {
+      border-bottom: none;
+    }
+    
+    .dropdown-item:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #22c55e;
+      padding-left: 28px;
+    }
+    
+    .dropdown-item-icon {
+      width: 18px;
+      height: 18px;
+      opacity: 0.8;
+    }
+    
+    .dropdown-placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    /* Pulse animation for selected state */
+    .pulse-animation {
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+      50% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+    }
+  </style>
+</head>
+<body class="gradient-bg min-h-screen flex items-center justify-center px-4 py-8">
+  <div class="glass-effect rounded-3xl shadow-2xl p-8 w-full max-w-lg text-center fade-in">
+
+    
+    <!-- Loading State -->
+    <div id="loadingState" class="mb-6">
+      <div class="loading-spinner w-12 h-12 border-4 border-white border-t-transparent rounded-full mx-auto mb-4"></div>
+      <h1 class="text-2xl font-semibold text-white">Memuat audio...</h1>
+    </div>
+    
+    <!-- Main Content -->
+    <div id="mainContent" style="display: none;">
+      <!-- Logo -->
+      <div class="floating mb-6">
+        <div class="w-24 h-24 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+          <img src="Logo-SI.jpg" alt="Logo" class="w-20 h-20 rounded-full object-cover">
+        </div>
+      </div>
+      
+      <!-- Title -->
+      <h1 id="title" class="text-2xl font-bold text-white mb-2">Audio Player</h1>
+      <!-- <p class="text-white text-opacity-80 mb-8">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p> -->
+      
+      <!-- Enhanced Voice Selector -->
+      <div class="mb-6">
+        <label class="block text-white font-semibold mb-3 text-left">
+          <svg class="w-5 h-5 inline mr-2 mb-1" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"/>
+          </svg>
+          Pilih Suara
+        </label>
+        
+        <div class="custom-dropdown">
+          <button type="button" class="dropdown-button" id="dropdownButton">
+            <span class="dropdown-text dropdown-placeholder">-- Pilih Suara --</span>
+            <svg class="dropdown-icon" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+          
+          <div class="dropdown-menu" id="dropdownMenu">
+            <div class="dropdown-item" data-value="ikhwan">
+              <svg class="dropdown-item-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+              </svg>
+              Ikhwan
+            </div>
+            <div class="dropdown-item" data-value="akhwat">
+              <svg class="dropdown-item-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+              </svg>
+              Akhwat
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Audio Player -->
+      <div id="audioList" class="space-y-6 mb-6"></div>       
+      
+      <!-- Status Text -->
+      <!-- <div class="bg-white bg-opacity-10 rounded-xl p-4">
+        <p class="text-sm text-white text-opacity-90">
+          <svg class="w-4 h-4 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+          </svg>
+          Jika audio tidak otomatis terputar, klik tombol play
+        </p>
+      </div> -->
+    </div>
+    
+    <!-- Error State -->
+    <div id="errorState" style="display: none;">
+      <div class="w-24 h-24 bg-red-500 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+        <svg class="w-12 h-12 text-red-300" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+      <h1 class="text-2xl font-bold text-white mb-2">Oops!</h1>
+      <p class="text-white text-opacity-80">Audio tidak dapat dimuat</p>
+    </div>
+  </div>
+
+<script>
+  const title = document.getElementById('title');
+  const loadingState = document.getElementById('loadingState');
+  const mainContent = document.getElementById('mainContent');
+  const errorState = document.getElementById('errorState');
+  const audioListContainer = document.getElementById('audioList');
+  
+  // Custom Dropdown Elements
+  const dropdownButton = document.getElementById('dropdownButton');
+  const dropdownMenu = document.getElementById('dropdownMenu');
+  const dropdownText = dropdownButton.querySelector('.dropdown-text');
+  const dropdownItems = dropdownMenu.querySelectorAll('.dropdown-item');
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const audioId = urlParams.get('id');
+
+  let allAudios = [];
+  let selectedVoice = '';
+
+  // Custom Dropdown Functionality
+  dropdownButton.addEventListener('click', function(e) {
+    e.stopPropagation();
+    toggleDropdown();
+  });
+
+  dropdownItems.forEach(item => {
+    item.addEventListener('click', function() {
+      const value = this.getAttribute('data-value');
+      const text = this.textContent.trim();
+      
+      selectedVoice = value;
+      dropdownText.textContent = text;
+      dropdownText.classList.remove('dropdown-placeholder');
+      
+      // Add pulse effect
+      dropdownButton.classList.add('pulse-animation');
+      setTimeout(() => {
+        dropdownButton.classList.remove('pulse-animation');
+      }, 2000);
+      
+      closeDropdown();
+      loadAudiosByVoice(value);
+    });
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function() {
+    closeDropdown();
+  });
+
+  function toggleDropdown() {
+    const isActive = dropdownButton.classList.contains('active');
+    if (isActive) {
+      closeDropdown();
+    } else {
+      openDropdown();
+    }
+  }
+
+  function openDropdown() {
+    dropdownButton.classList.add('active');
+    dropdownMenu.classList.add('active');
+  }
+
+  function closeDropdown() {
+    dropdownButton.classList.remove('active');
+    dropdownMenu.classList.remove('active');
+  }
+
+  function loadAudiosByVoice(voice) {
+    audioListContainer.innerHTML = ''; // Clear previous content
+
+    if (!voice) return;
+
+    const filteredAudios = allAudios.filter(audio => audio.voice === voice);
+
+    if (filteredAudios.length === 0) {
+      audioListContainer.innerHTML = `
+        <div class="bg-white bg-opacity-10 rounded-2xl p-6">
+          <p class="text-white text-opacity-80">Belum ada audio untuk suara ini.</p>
+        </div>
+      `;
+      return;
+    }
+
+    filteredAudios.forEach((audio, index) => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'bg-white bg-opacity-10 rounded-2xl p-6 fade-in';
+      wrapper.style.animationDelay = `${index * 0.1}s`;
+      wrapper.innerHTML = `
+        <h2 class="text-white text-lg font-semibold mb-4">${audio.title}</h2>
+        <audio 
+          controls 
+          class="w-full custom-audio"
+          style="filter: invert(1) hue-rotate(180deg);"
+          src="${audio.url}">
+        </audio>
+      `;
+      audioListContainer.appendChild(wrapper);
+    });
+  }
+
+  // Simulasi loading
+  setTimeout(() => {
+    fetch('audios.json')
+      .then(res => res.json())
+      .then(data => {
+        const audioData = data.find(item => item.id === audioId);
+        if (audioData) {
+          title.textContent = audioData.title;
+          allAudios = audioData.audios; // Store all audios
+          
+          loadingState.style.display = 'none';
+          mainContent.style.display = 'block';
+        } else {
+          loadingState.style.display = 'none';
+          errorState.style.display = 'block';
+        }
+      })
+      .catch(err => {
+        loadingState.style.display = 'none';
+        errorState.style.display = 'block';
+        console.error(err);
+      });
+  }, 1500);
+</script>
+</body>
+</html>

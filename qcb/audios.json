@@ -2,21 +2,44 @@
   {
     "id": "audio1",
     "title": "audio1",
-    "url": "audios/aud1.mp3"
+    "audios": [
+      { "title": "Default Audio", "url": "audios/aud1.mp3", "voice": "ikhwan" }
+    ]
   },
   {
-    "id": "audio2",
-    "title": "Al-Ikhlas",
-    "url": "audios/al-ikhlas.mp3"
+    "id": "page12",
+    "title": "Page 12 (keyword 01)",
+    "audios": [
+      { "title": "No 1", "url": "audios/page 12 No 1 i.mp3", "voice": "ikhwan" },
+      { "title": "No 1", "url": "audios/page 12 No 1 a.mp3", "voice": "akhwat" },
+      { "title": "No 2", "url": "audios/page 12 no 2 i.mp3", "voice": "ikhwan" },
+      { "title": "No 2", "url": "audios/page 12 no 2 a.mp3", "voice": "akhwat" },
+      { "title": "No 3", "url": "audios/page 12 no 3 i.mp3", "voice": "ikhwan" },
+      { "title": "No 3", "url": "audios/page 12 no 3 a.mp3", "voice": "akhwat" }
+    ]
   },
   {
-    "id": "audio3",
-    "title": "audio3",
-    "url": "audios/aud3.mp3"
+    "id": "page17",
+    "title": "Page 17 (keyword 03)",
+    "audios": [
+      { "title": "No 1", "url": "audios/page 17 no 1 i.mp3", "voice": "ikhwan" },
+      { "title": "No 1", "url": "audios/page 17 no 1 a.mp3", "voice": "akhwat" },
+      { "title": "No 2", "url": "audios/page 17 no 2 i.mp3", "voice": "ikhwan" },
+      { "title": "No 2", "url": "audios/page 17 no 2 a.mp3", "voice": "akhwat" },
+      { "title": "No 3", "url": "audios/page 17 no 3 i.mp3", "voice": "ikhwan" },
+      { "title": "No 3", "url": "audios/page 17 no 3 a.mp3", "voice": "akhwat" }
+    ]
   },
   {
-    "id": "audio4",
-    "title": "An-Nas",
-    "url": "audios/an-nas.mp3"
+    "id": "page22",
+    "title": "Page 22 (keyword 04)",
+    "audios": [
+      { "title": "No 1", "url": "audios/page 22 no 1 i.mp3", "voice": "ikhwan" },
+      { "title": "No 1", "url": "audios/page 22 no 1 a.mp3", "voice": "akhwat" },
+      { "title": "No 2", "url": "audios/page 22 no 2 i.mp3", "voice": "ikhwan" },
+      { "title": "No 2", "url": "audios/page 22 no 2 a.mp3", "voice": "akhwat" },
+      { "title": "No 3", "url": "audios/page 22 no 3 i.mp3", "voice": "ikhwan" },
+      { "title": "No 3", "url": "audios/page 22 no 3 a.mp3", "voice": "akhwat" }
+    ]
   }
 ]
