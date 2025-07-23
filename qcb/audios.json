@@ -1,86 +1,92 @@
 [
   {
-    "id": "audio1",
-    "title": "audio1",
-    "audios": [
-      { "title": "Default Audio", "url": "audios/aud1.mp3", "voice": "ikhwan" }
-    ]
-  },
-  {
     "id": "page5",
-    "title": "Page 5",
+    "title": "Keyword 1 #5",
+    "subtitle": "Belajar adalah perintah Allah",
     "audios": [
-      { "title": "No 1", "url": "audios/page 12 no 1 i.mp3", "voice": "ikhwan" },
-      { "title": "No 1", "url": "audios/page 5 full a.mp3", "voice": "akhwat" }
+      { "title": "1", "url": "audios/ikhwan/page 5 full i.mp3", "voice": "ikhwan" },
+      { "title": "1", "url": "audios/akhwat/page 5 full a.mp3", "voice": "akhwat" }
     ]
   },
   {
     "id": "page7",
-    "title": "Page 7",
+    "title": "Keyword 1 #7",
+    "subtitle": "Belajar adalah perintah Allah",
     "audios": [
-      { "title": "No 1", "url": "audios/page 12 no 1 i.mp3", "voice": "ikhwan" },
-      { "title": "No 1", "url": "audios/page 7 no 1 a.mp3", "voice": "akhwat" },
-      { "title": "No 2", "url": "audios/page 7 no 2 a.mp3", "voice": "akhwat" }
+      { "title": "1", "url": "audios/ikhwan/page 7 no 1 i.mp3", "voice": "ikhwan" },
+      { "title": "1", "url": "audios/akhwat/page 7 no 1 a.mp3", "voice": "akhwat" },
+      { "title": "2", "url": "audios/ikhwan/page 7 no 2 i.mp3", "voice": "ikhwan" },
+      { "title": "2", "url": "audios/akhwat/page 7 no 2 a.mp3", "voice": "akhwat" }
+    ]
+  },
+  {
+    "id": "page10",
+    "title": "Keyword 2 #10",
+    "subtitle": "Allah SWT mengaruniakan 3 Alat Belajar",
+    "audios": [
+      { "title": "1", "url": "audios/ikhwan/page 10 full i.mp3", "voice": "ikhwan" },
+      { "title": "1", "url": "audios/akhwat/page 10 no 1 a.mp3", "voice": "akhwat" },
+      { "title": "2", "url": "audios/akhwat/page 10 no 2 a.mp3", "voice": "akhwat" }
     ]
   },
   {
     "id": "page12",
-    "title": "Page 12 (keyword 01)",
+    "title": "Keyword 2 #12",
+    "subtitle": "Allah SWT mengaruniakan 3 Alat Belajar",
     "audios": [
-      { "title": "No 1", "url": "audios/page 12 no 1 i.mp3", "voice": "ikhwan" },
-      { "title": "No 1", "url": "audios/page 12 no 1 a.mp3", "voice": "akhwat" },
-      { "title": "No 2", "url": "audios/page 12 no 2 i.mp3", "voice": "ikhwan" },
-      { "title": "No 2", "url": "audios/page 12 no 2 a.mp3", "voice": "akhwat" },
-      { "title": "No 3", "url": "audios/page 12 no 3 i.mp3", "voice": "ikhwan" },
-      { "title": "No 3", "url": "audios/page 12 no 3 a.mp3", "voice": "akhwat" }
+      { "title": "1", "url": "audios/ikhwan/page 12 full i.mp3", "voice": "ikhwan" },
+      { "title": "1", "url": "audios/akhwat/page 12 no 1 a.mp3", "voice": "akhwat" },
+      { "title": "2", "url": "audios/ikhwan/page 12 no 2 i.mp3", "voice": "ikhwan" },
+      { "title": "2", "url": "audios/akhwat/page 12 no 2 a.mp3", "voice": "akhwat" },
+      { "title": "3", "url": "audios/ikhwan/page 12 no 3 a.mp3", "voice": "ikhwan" },
+      { "title": "3", "url": "audios/akhwat/page 12 no 3 a.mp3", "voice": "akhwat" }
     ]
   },
   {
     "id": "page15",
-    "title": "Page 15",
+    "title": "Keyword 3 #15",
+    "subtitle": "Apabila manusia tidak menggunakan 3 alat belajarnya dengan benar maka Allah SWT akan mengunci mati 3 alat belajarnya",
     "audios": [
-      { "title": "No 1", "url": "audios/page 15 no 1 i.mp3", "voice": "ikhwan" },
-      { "title": "No 1", "url": "audios/page 15 no 1 a.mp3", "voice": "akhwat" },
-      { "title": "No 2", "url": "audios/page 15 no 2 i.mp3", "voice": "ikhwan" },
-      { "title": "No 2", "url": "audios/page 15 no 2 a.mp3", "voice": "akhwat" },
-      { "title": "No 3", "url": "audios/page 15 no 3 i.mp3", "voice": "ikhwan" },
-      { "title": "No 3", "url": "audios/page 15 no 3 a.mp3", "voice": "akhwat" }
+      { "title": "1", "url": "audios/ikhwan/page 15 full i.mp3", "voice": "ikhwan" },
+      { "title": "1", "url": "audios/akhwat/page 15 no 1 a.mp3", "voice": "akhwat" },
+      { "title": "2", "url": "audios/akhwat/page 15 no 2 a.mp3", "voice": "akhwat" }
     ]
   },
   {
     "id": "page17",
-    "title": "Page 17 (keyword 03)",
+    "title": "Keyword 3 #17",
+    "subtitle": "Apabila manusia tidak menggunakan 3 alat belajarnya dengan benar maka Allah SWT akan mengunci mati 3 alat belajarnya",
     "audios": [
-      { "title": "No 1", "url": "audios/page 17 no 1 i.mp3", "voice": "ikhwan" },
-      { "title": "No 1", "url": "audios/page 17 no 1 a.mp3", "voice": "akhwat" },
-      { "title": "No 2", "url": "audios/page 17 no 2 i.mp3", "voice": "ikhwan" },
-      { "title": "No 2", "url": "audios/page 17 no 2 a.mp3", "voice": "akhwat" },
-      { "title": "No 3", "url": "audios/page 17 no 3 i.mp3", "voice": "ikhwan" },
-      { "title": "No 3", "url": "audios/page 17 no 3 a.mp3", "voice": "akhwat" }
+      { "title": "1", "url": "audios/ikhwan/page 17 no 1 i.mp3", "voice": "ikhwan" },
+      { "title": "1", "url": "audios/akhwat/page 17 no 1 a.mp3", "voice": "akhwat" },
+      { "title": "2", "url": "audios/ikhwan/page 17 no 2 i.mp3", "voice": "ikhwan" },
+      { "title": "2", "url": "audios/akhwat/page 17 no 2 a.mp3", "voice": "akhwat" },
+      { "title": "3", "url": "audios/ikhwan/page 17 no 3 i.mp3", "voice": "ikhwan" },
+      { "title": "3", "url": "audios/akhwat/page 17 no 3 a.mp3", "voice": "akhwat" }
     ]
   },
   {
     "id": "page20",
-    "title": "Page 20",
+    "title": "Keyword 4 #20",
+    "subtitle": "Manusia dikunci 3 alat belajarnya pasti akan masuk neraka",
     "audios": [
-      { "title": "No 1", "url": "audios/page 20 no 1 i.mp3", "voice": "ikhwan" },
-      { "title": "No 1", "url": "audios/page 20 no 1 a.mp3", "voice": "akhwat" },
-      { "title": "No 2", "url": "audios/page 20 no 2 i.mp3", "voice": "ikhwan" },
-      { "title": "No 2", "url": "audios/page 20 no 2 a.mp3", "voice": "akhwat" },
-      { "title": "No 3", "url": "audios/page 20 no 3 i.mp3", "voice": "ikhwan" },
-      { "title": "No 3", "url": "audios/page 20 no 3 a.mp3", "voice": "akhwat" }
+      { "title": "1", "url": "audios/ikhwan/page 20 no 1 i.mp3", "voice": "ikhwan" },
+      { "title": "1", "url": "audios/akhwat/page 20 no 1 a.mp3", "voice": "akhwat" },
+      { "title": "2", "url": "audios/akhwat/page 20 no 2 a.mp3", "voice": "akhwat" },
+      { "title": "3", "url": "audios/akhwat/page 20 no 3 a.mp3", "voice": "akhwat" },
+      { "title": "4", "url": "audios/akhwat/page 20 no 4 a.mp3", "voice": "akhwat" }
     ]
   },
   {
     "id": "page22",
-    "title": "Page 22 (keyword 04)",
+    "title": "Keyword 4 #22",
+    "subtitle": "Manusia dikunci 3 alat belajarnya pasti akan masuk neraka",
     "audios": [
-      { "title": "No 1", "url": "audios/page 22 no 1 i.mp3", "voice": "ikhwan" },
-      { "title": "No 1", "url": "audios/page 22 no 1 a.mp3", "voice": "akhwat" },
-      { "title": "No 2", "url": "audios/page 22 no 2 i.mp3", "voice": "ikhwan" },
-      { "title": "No 2", "url": "audios/page 22 no 2 a.mp3", "voice": "akhwat" },
-      { "title": "No 3", "url": "audios/page 22 no 3 i.mp3", "voice": "ikhwan" },
-      { "title": "No 3", "url": "audios/page 22 no 3 a.mp3", "voice": "akhwat" }
+      { "title": "1", "url": "audios/ikhwan/page 22 full i.mp3", "voice": "ikhwan" },
+      { "title": "1", "url": "audios/akhwat/page 22 no 1 a.mp3", "voice": "akhwat" },
+      { "title": "2", "url": "audios/akhwat/page 22 no 2 a.mp3", "voice": "akhwat" },
+      { "title": "3", "url": "audios/akhwat/page 22 no 3 a.mp3", "voice": "akhwat" },
+      { "title": "4", "url": "audios/akhwat/page 22 no 4 a.mp3", "voice": "akhwat" }
     ]
   }
 ]

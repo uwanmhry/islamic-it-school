@@ -226,8 +226,8 @@
       </div>
       
       <!-- Title -->
-      <h1 id="title" class="text-2xl font-bold text-white mb-2">Audio Player</h1>
-      <!-- <p class="text-white text-opacity-80 mb-8">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p> -->
+      <p id="title" class="text-xl text-white text-opacity-70 mb-2">Keyword</p>
+      <h1 id="subtitle" class="text-2xl text-white mb-6">Tema Audio</h1>
       
       <!-- Enhanced Voice Selector -->
       <div class="mb-6">
@@ -391,29 +391,33 @@
     });
   }
 
-  // Simulasi loading
-  setTimeout(() => {
-    fetch('audios.json')
-      .then(res => res.json())
-      .then(data => {
-        const audioData = data.find(item => item.id === audioId);
-        if (audioData) {
-          title.textContent = audioData.title;
-          allAudios = audioData.audios; // Store all audios
-          
-          loadingState.style.display = 'none';
-          mainContent.style.display = 'block';
-        } else {
-          loadingState.style.display = 'none';
-          errorState.style.display = 'block';
-        }
-      })
-      .catch(err => {
+// Simulasi loading
+setTimeout(() => {
+  fetch('audios.json')
+    .then(res => res.json())
+    .then(data => {
+      const audioData = data.find(item => item.id === audioId);
+      if (audioData) {
+        title.textContent = audioData.title;
+
+        // ✅ Menampilkan subtitle dari JSON
+        document.getElementById('subtitle').textContent = audioData.subtitle || '';
+
+        allAudios = audioData.audios;
+
+        loadingState.style.display = 'none';
+        mainContent.style.display = 'block';
+      } else {
         loadingState.style.display = 'none';
         errorState.style.display = 'block';
-        console.error(err);
-      });
-  }, 1500);
+      }
+    })
+    .catch(err => {
+      loadingState.style.display = 'none';
+      errorState.style.display = 'block';
+      console.error(err);
+    });
+}, 1500);
 </script>
 </body>
 </html>
