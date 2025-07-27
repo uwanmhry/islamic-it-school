@@ -402,8 +402,8 @@
               </div>
             </div>
 
-            <a href="https://wa.me/6285161231559?text=Saya%20ingin%20membeli%20paket%20Technology" target="_blank"
-              class="btn-primary block w-full bg-gradient-to-r from-orange-500 to-teal-500 text-white py-3.5 rounded-xl text-center font-semibold hover:shadow-lg transition-all relative overflow-hidden">
+            <a href="#"  target="_blank" data-book="Paket Technology"
+              class="wa-button btn-primary block w-full bg-gradient-to-r from-orange-500 to-teal-500 text-white py-3.5 rounded-xl text-center font-semibold hover:shadow-lg transition-all relative overflow-hidden">
               <span class="relative z-10">Pesan Sekarang</span>
             </a>
           </div>
@@ -455,8 +455,8 @@
               </div>
             </div>
 
-            <a href="https://wa.me/6285161231559?text=Saya%20ingin%20membeli%20paket%20Mindset" target="_blank"
-              class="btn-primary block w-full bg-gradient-to-r from-teal-500 to-orange-500 text-white py-3.5 rounded-xl text-center font-semibold hover:shadow-lg transition-all relative overflow-hidden">
+            <a href="#" target="_blank" data-book="Paket Mindset"
+              class="wa-button btn-primary block w-full bg-gradient-to-r from-teal-500 to-orange-500 text-white py-3.5 rounded-xl text-center font-semibold hover:shadow-lg transition-all relative overflow-hidden">
               <span class="relative z-10">Pesan Sekarang</span>
             </a>
           </div>
@@ -641,8 +641,39 @@
           behavior: "smooth",
         });
       });
+
+       const ref = new URLSearchParams(window.location.search).get("ref") || "NO_REF";
+
+  const waNumber = "6285161231559"; // Ganti sesuai kebutuhan
+
+  document.querySelectorAll(".wa-button").forEach(button => {
+    button.addEventListener("click", async (e) => {
+      e.preventDefault();
+
+      const bookTitle = button.getAttribute("data-book") || "Tanpa Judul";
+      const message = `Assalamualaikum, saya ingin membeli paket "${bookTitle}".\nReferral: ${ref}`;
+      const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+
+      try {
+        await fetch("http://localhost:5000/api/log-click", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            book_title: bookTitle,
+            referral_code: ref,
+            user_agent: navigator.userAgent
+          })
+        });
+      } catch (err) {
+        console.error("Gagal log click:", err);
+      }
+
+      window.open(waLink, "_blank");
+    });
+  });
   </script>
   <script src="js/navbar.js"></script>
+  <script src="js/ref.js"></script>
 </body>
 
 </html>

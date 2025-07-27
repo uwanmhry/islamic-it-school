@@ -278,26 +278,45 @@ function getBookIdFromUrl() {
         '';
 //${book.linkid} ${book.linkshopee}
     // Create order buttons based on available links
-    const orderButtonsHtml = `
-        <div class="mt-4 flex flex-col gap-3">
-            ${book.linkid ? `
-                <a href="https://lynk.id/gsiofficial/67ejrz6xdwgp" target="_blank" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                    </svg>
-                    Pesan Sekarang 
-                </a>` : ''
-            }
-            ${book.linkshopee ? `
-                <a href="https://shopee.co.id/product/1344216734/40051764661/" target="_blank" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                    </svg>
-                    Beli di Shopee
-                </a>` : ''
-            }
-        </div>
-    `;
+  const urlParams = new URLSearchParams(window.location.search);
+  const ref = urlParams.get("ref");
+
+  const orderButtonsHtml = `
+  <div class="mt-4 flex flex-col gap-3">
+    ${
+      ref
+        ? `
+        <a 
+          href="#" 
+          class="wa-button bg-green-600 text-white px-6 py-3 rounded-lg text-center font-semibold" 
+          data-book="${book.title}">
+          Pesan via WhatsApp
+        </a>`
+        : `
+        ${
+          book.linkid
+            ? `<a href="${book.linkid}" target="_blank" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+              Pesan Sekarang
+            </a>` : ''
+        }
+        ${
+          book.linkshopee
+            ? `<a href="${book.linkshopee}" target="_blank" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+              </svg>
+              Beli di Shopee
+            </a>` : ''
+        }`
+    }
+  </div>
+`;
+
+
+ 
 
     const navigationButtonsHtml = `
         <div class="mt-8 flex gap-4">
@@ -383,6 +402,40 @@ function getBookIdFromUrl() {
 </div>
 
     `;
+
+ if (ref) {
+    document.querySelectorAll(".wa-button").forEach(button => {
+      button.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        const waNumber = "6285161231559";
+        const bookTitle = button.getAttribute("data-book") || "Tanpa Judul";
+        const message = `Assalamualaikum, saya ingin membeli buku "${bookTitle}".\nReferral: ${ref}`;
+        const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+
+        try {
+          await fetch("http://localhost:5000/api/log-click", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              book_title: bookTitle,
+              referral_code: ref,
+              user_agent: navigator.userAgent
+            })
+          });
+        } catch (err) {
+          console.error("Gagal mencatat log click:", err);
+        }
+
+        // Tetap buka WA setelah log tercatat
+        window.open(waLink, "_blank");
+      });
+    });
+  }
+
+
 
     // Event listener untuk tombol navigasi
     if (nextBook) {
