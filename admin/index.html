@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Admin Panel - Referral Logs</title>
+  <title>Admin Panel - Referral Management</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
@@ -62,6 +62,10 @@
       background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
     }
 
+    .btn-danger {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    }
+
     .status-badge {
       transition: all 0.2s ease;
     }
@@ -113,22 +117,42 @@
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-10px); }
     }
+
+    .tab-button {
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .tab-button.active {
+      background: linear-gradient(135deg, #f97316 0%, #0d9488 100%);
+      color: white;
+    }
+
+    .tab-button.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #f97316 0%, #0d9488 100%);
+    }
+
     @media screen and (max-width: 480px) {
-  th, td {
-    font-size: 0.75rem;
-    padding: 0.5rem;
-  }
+      th, td {
+        font-size: 0.75rem;
+        padding: 0.5rem;
+      }
 
-  .btn-primary {
-    font-size: 0.8rem;
-    padding: 0.5rem 1rem;
-  }
+      .btn-primary {
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem;
+      }
 
-  .card {
-    padding: 1rem !important;
-  }
-}
-
+      .card {
+        padding: 1rem !important;
+      }
+    }
   </style>
 </head>
 
@@ -150,7 +174,7 @@
           </div>
           <div>
             <h1 class="text-2xl font-bold gradient-text">Admin Panel</h1>
-            <p class="text-sm text-gray-600">Referral Logs Management</p>
+            <p class="text-sm text-gray-600">Management System</p>
           </div>
         </div>
         
@@ -169,116 +193,226 @@
 
   <!-- Main Content -->
   <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <!-- Stats Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-      <div class="card rounded-xl p-6 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-teal-200/20 to-transparent rounded-full -translate-y-10 translate-x-10"></div>
-        <div class="relative z-10">
-          <div class="flex items-center justify-between mb-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center">
-              <i class='bx bx-check-circle text-white text-xl'></i>
-            </div>
-            <span id="total-beli" class="text-2xl font-bold text-teal-600">-</span>
-          </div>
-          <h3 class="text-gray-800 font-semibold">Total Beli</h3>
-          <p class="text-gray-600 text-sm">Status sudah beli</p>
-        </div>
-      </div>
-
-      <div class="card rounded-xl p-6 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-200/20 to-transparent rounded-full -translate-y-10 translate-x-10"></div>
-        <div class="relative z-10">
-          <div class="flex items-center justify-between mb-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
-              <i class='bx bx-clock text-white text-xl'></i>
-            </div>
-            <span id="total-belum" class="text-2xl font-bold text-orange-600">-</span>
-          </div>
-          <h3 class="text-gray-800 font-semibold">Belum Beli</h3>
-          <p class="text-gray-600 text-sm">Status belum beli</p>
-        </div>
-      </div>
-
-      <div class="card rounded-xl p-6 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-gray-200/20 to-transparent rounded-full -translate-y-10 translate-x-10"></div>
-        <div class="relative z-10">
-          <div class="flex items-center justify-between mb-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg flex items-center justify-center">
-              <i class='bx bx-list-ul text-white text-xl'></i>
-            </div>
-            <span id="total-all" class="text-2xl font-bold text-gray-600">-</span>
-          </div>
-          <h3 class="text-gray-800 font-semibold">Total Logs</h3>
-          <p class="text-gray-600 text-sm">Semua data referral</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Controls -->
-    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 flex-wrap">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
-        <h2 class="text-lg sm:text-xl font-bold text-gray-800">Referral Logs</h2>
-        <div class="flex items-center space-x-2">
-          <div class="w-2 h-2 bg-teal-500 rounded-full"></div>
-          <span class="text-sm text-gray-600">Live Data</span>
-        </div>
-      </div>
-
-      <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
-        <div class="relative w-full sm:w-60">
-          <input 
-            type="text" 
-            id="search-input"
-            placeholder="Cari referral..." 
-            class="pl-10 pr-4 py-2 w-full border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/80"
-          >
-          <i class='bx bx-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400'></i>
-        </div>
-
-        <select id="status-filter" class="w-full sm:w-auto px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white/80">
-          <option value="">Semua Status</option>
-          <option value="beli">Beli</option>
-          <option value="belum beli">Belum Beli</option>
-        </select>
-
-        <button onclick="refreshData()" class="btn-primary px-4 py-2 text-white rounded-lg font-medium flex items-center justify-center space-x-2 hover:shadow-lg transition-all">
-          <i class='bx bx-refresh'></i>
-          <span>Refresh</span>
+    <!-- Tabs -->
+    <div class="mb-8">
+      <div class="flex space-x-2 bg-white/80 p-2 rounded-xl shadow-sm">
+        <button onclick="switchTab('logs')" id="tab-logs" class="tab-button active flex-1 px-4 py-3 rounded-lg font-medium text-center flex items-center justify-center space-x-2">
+          <i class='bx bx-list-ul'></i>
+          <span>Referral Logs</span>
+        </button>
+        <button onclick="switchTab('codes')" id="tab-codes" class="tab-button flex-1 px-4 py-3 rounded-lg font-medium text-center flex items-center justify-center space-x-2 text-gray-600 hover:bg-gray-100">
+          <i class='bx bx-code-alt'></i>
+          <span>Referral Codes</span>
         </button>
       </div>
     </div>
 
+    <!-- Logs Tab Content -->
+    <div id="content-logs" class="tab-content">
+      <!-- Stats Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="card rounded-xl p-6 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-teal-200/20 to-transparent rounded-full -translate-y-10 translate-x-10"></div>
+          <div class="relative z-10">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center">
+                <i class='bx bx-check-circle text-white text-xl'></i>
+              </div>
+              <span id="total-beli" class="text-2xl font-bold text-teal-600">-</span>
+            </div>
+            <h3 class="text-gray-800 font-semibold">Total Beli</h3>
+            <p class="text-gray-600 text-sm">Status sudah beli</p>
+          </div>
+        </div>
 
-    <!-- Table -->
-    <div class="card rounded-xl overflow-hidden">
-      <div class="overflow-x-auto">
-        <table class="w-full">
-          <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
-            <tr>
-              <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID</th>
-              <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Referral Code</th>
-              <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Visitor Info</th>
-              <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
-              <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tanggal</th>
-              <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>
-            </tr>
-          </thead>
-          <tbody id="logs-tbody" class="bg-white divide-y divide-gray-100">
-            <!-- Loading state -->
-            <tr>
-              <td colspan="6" class="px-6 py-12 text-center">
-                <div class="flex flex-col items-center space-y-4">
-                  <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-teal-500 rounded-full flex items-center justify-center loading">
-                    <i class='bx bx-loader-alt text-white text-xl'></i>
-                  </div>
-                  <p class="text-gray-600">Memuat data...</p>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="card rounded-xl p-6 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-200/20 to-transparent rounded-full -translate-y-10 translate-x-10"></div>
+          <div class="relative z-10">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+                <i class='bx bx-clock text-white text-xl'></i>
+              </div>
+              <span id="total-belum" class="text-2xl font-bold text-orange-600">-</span>
+            </div>
+            <h3 class="text-gray-800 font-semibold">Belum Beli</h3>
+            <p class="text-gray-600 text-sm">Status belum beli</p>
+          </div>
+        </div>
+
+        <div class="card rounded-xl p-6 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-gray-200/20 to-transparent rounded-full -translate-y-10 translate-x-10"></div>
+          <div class="relative z-10">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg flex items-center justify-center">
+                <i class='bx bx-list-ul text-white text-xl'></i>
+              </div>
+              <span id="total-all" class="text-2xl font-bold text-gray-600">-</span>
+            </div>
+            <h3 class="text-gray-800 font-semibold">Total Logs</h3>
+            <p class="text-gray-600 text-sm">Semua data referral</p>
+          </div>
+        </div>
       </div>
-      <div id="pagination" class="mt-4"></div>
+
+      <!-- Controls -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 flex-wrap mb-6">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
+          <h2 class="text-lg sm:text-xl font-bold text-gray-800">Referral Logs</h2>
+          <div class="flex items-center space-x-2">
+            <div class="w-2 h-2 bg-teal-500 rounded-full"></div>
+            <span class="text-sm text-gray-600">Live Data</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
+          <div class="relative w-full sm:w-60">
+            <input 
+              type="text" 
+              id="search-input"
+              placeholder="Cari referral..." 
+              class="pl-10 pr-4 py-2 w-full border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/80"
+            >
+            <i class='bx bx-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400'></i>
+          </div>
+
+          <select id="status-filter" class="w-full sm:w-auto px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white/80">
+            <option value="">Semua Status</option>
+            <option value="beli">Beli</option>
+            <option value="belum beli">Belum Beli</option>
+          </select>
+
+          <button onclick="refreshData()" class="btn-primary px-4 py-2 text-white rounded-lg font-medium flex items-center justify-center space-x-2 hover:shadow-lg transition-all">
+            <i class='bx bx-refresh'></i>
+            <span>Refresh</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Logs Table -->
+      <div class="card rounded-xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
+              <tr>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Referral Code</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Detail Pembeli</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Harga</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tanggal</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="logs-tbody" class="bg-white divide-y divide-gray-100">
+              <!-- Loading state -->
+              <tr>
+                <td colspan="7" class="px-6 py-12 text-center">
+                  <div class="flex flex-col items-center space-y-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-teal-500 rounded-full flex items-center justify-center loading">
+                      <i class='bx bx-loader-alt text-white text-xl'></i>
+                    </div>
+                    <p class="text-gray-600">Memuat data...</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="logs-pagination" class="mt-4"></div>
+      </div>
+    </div>
+
+    <!-- Codes Tab Content -->
+    <div id="content-codes" class="tab-content hidden">
+      <!-- Add Code Form -->
+      <div class="card rounded-xl p-6 mb-6">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-xl font-bold text-gray-800">Tambah Kode Referral Baru</h3>
+        </div>
+        
+        <form id="add-code-form" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Kode Referral</label>
+            <input 
+              type="text" 
+              id="new-kode-referal" 
+              placeholder="Masukkan kode referral" 
+              class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+              required
+            >
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Username</label>
+            <input 
+              type="text" 
+              id="new-username" 
+              placeholder="Masukkan username" 
+              class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+              required
+            >
+          </div>
+          <div class="flex items-end">
+            <button type="submit" class="btn-success w-full px-4 py-2 text-white rounded-lg font-medium hover:shadow-lg transition-all flex items-center justify-center space-x-2">
+              <i class='bx bx-plus'></i>
+              <span>Tambah Kode</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Codes Search -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <h2 class="text-xl font-bold text-gray-800">Daftar Kode Referral</h2>
+        
+        <div class="flex items-center gap-3">
+          <div class="relative w-full sm:w-60">
+            <input 
+              type="text" 
+              id="search-codes"
+              placeholder="Cari kode atau username..." 
+              class="pl-10 pr-4 py-2 w-full border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/80"
+            >
+            <i class='bx bx-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400'></i>
+          </div>
+          
+          <button onclick="loadReferralCodes()" class="btn-primary px-4 py-2 text-white rounded-lg font-medium flex items-center space-x-2 hover:shadow-lg transition-all">
+            <i class='bx bx-refresh'></i>
+            <span>Refresh</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Codes Table -->
+      <div class="card rounded-xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
+              <tr>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Kode Referral</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Username</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Dibuat</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Total Usage</th>
+                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="codes-tbody" class="bg-white divide-y divide-gray-100">
+              <!-- Loading state -->
+              <tr>
+                <td colspan="6" class="px-6 py-12 text-center">
+                  <div class="flex flex-col items-center space-y-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-teal-500 rounded-full flex items-center justify-center loading">
+                      <i class='bx bx-loader-alt text-white text-xl'></i>
+                    </div>
+                    <p class="text-gray-600">Memuat data...</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="codes-pagination" class="mt-4"></div>
+      </div>
     </div>
   </main>
 
@@ -327,6 +461,42 @@
     </div>
   </div>
 
+  <!-- Delete Confirmation Modal -->
+  <div id="delete-modal" class="fixed inset-0 z-50 hidden">
+    <div class="modal-backdrop absolute inset-0" onclick="closeDeleteModal()"></div>
+    <div class="flex items-center justify-center min-h-screen p-4">
+      <div class="card relative w-full max-w-md rounded-2xl p-6 fade-in">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-red-600 rounded-t-2xl"></div>
+        
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-xl font-bold text-gray-800">Hapus Kode Referral</h3>
+          <button onclick="closeDeleteModal()" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-all">
+            <i class='bx bx-x text-gray-600'></i>
+          </button>
+        </div>
+
+        <div class="mb-6">
+          <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mx-auto mb-4">
+            <i class='bx bx-trash text-red-600 text-2xl'></i>
+          </div>
+          <p class="text-gray-700 text-center mb-2">Apakah Anda yakin ingin menghapus kode referral ini?</p>
+          <div class="bg-gray-50 px-4 py-3 rounded-lg text-center">
+            <span id="delete-code-text" class="text-gray-800 font-mono font-semibold"></span>
+          </div>
+        </div>
+        
+        <div class="flex space-x-3">
+          <button type="button" onclick="closeDeleteModal()" class="flex-1 px-4 py-3 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 transition-all">
+            Batal
+          </button>
+          <button type="button" onclick="confirmDelete()" class="flex-1 btn-danger px-4 py-3 text-white font-semibold rounded-lg hover:shadow-lg transition-all">
+            Hapus
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification -->
   <div id="toast" class="fixed bottom-4 right-4 z-50 hidden">
     <div class="card px-6 py-4 rounded-lg shadow-lg max-w-sm">
@@ -340,320 +510,7 @@
     </div>
   </div>
 
-  <script>
-
-    document.addEventListener('DOMContentLoaded', async () => {
-  const token = localStorage.getItem('admin_token');
-  if (!token) {
-    window.location.href = 'login.html'; // Redirect ke login jika belum login
-    return;
-  }
-
-  try {
-    const response = await fetch('http://localhost:5000/api/auth/admin-only', {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error('Token tidak valid atau kadaluarsa');
-    }
-
-    const data = await response.json();
-    console.log('Admin terverifikasi:', data);
-    // Bisa tampilkan nama admin, dsb.
-  } catch (err) {
-    console.error(err.message);
-    localStorage.removeItem('admin_token');
-    window.location.href = 'login.html';
-  }
-});
-
-    const PAGE_SIZE = 10;
-let currentPage = 1;
-
-    // API Base URL - ganti sesuai dengan server Anda
-    const API_BASE = 'http://localhost:5000/api';
-    
-    let allLogs = [];
-    let filteredLogs = [];
-
-    // Load data saat halaman dimuat
-    document.addEventListener('DOMContentLoaded', function() {
-      loadLogs();
-      setupEventListeners();
-    });
-
-    function setupEventListeners() {
-      // Search input
-      document.getElementById('search-input').addEventListener('input', handleSearch);
-      
-      // Status filter
-      document.getElementById('status-filter').addEventListener('change', handleFilter);
-      
-      // Edit form
-      document.getElementById('edit-form').addEventListener('submit', handleEditSubmit);
-    }
-
-    async function loadLogs() {
-      try {
-        const response = await fetch(`${API_BASE}/logs`);
-        if (!response.ok) throw new Error('Failed to fetch');
-        
-        allLogs = await response.json();
-        filteredLogs = [...allLogs];
-        updateStats();
-        renderTable();
-      } catch (error) {
-        console.error('Error loading logs:', error);
-        showToast('error', 'Error', 'Gagal memuat data');
-        renderError();
-      }
-    }
-
-    function updateStats() {
-      const totalBeli = allLogs.filter(log => log.status === 'beli').length;
-      const totalBelum = allLogs.filter(log => log.status === 'belum beli').length;
-      
-      document.getElementById('total-beli').textContent = totalBeli;
-      document.getElementById('total-belum').textContent = totalBelum;
-      document.getElementById('total-all').textContent = allLogs.length;
-    }
-
-   function renderTable() {
-  const tbody = document.getElementById('logs-tbody');
-
-  const start = (currentPage - 1) * PAGE_SIZE;
-  const end = start + PAGE_SIZE;
-  const pageData = filteredLogs.slice(start, end);
-
-  if (filteredLogs.length === 0) {
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="6" class="px-6 py-12 text-center">
-          <div class="flex flex-col items-center space-y-4">
-            <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
-              <i class='bx bx-search text-gray-400 text-xl'></i>
-            </div>
-            <p class="text-gray-600">Tidak ada data yang ditemukan</p>
-          </div>
-        </td>
-      </tr>
-    `;
-    document.getElementById('pagination').innerHTML = '';
-    return;
-  }
-
-  tbody.innerHTML = pageData.map(log => {
-    const createdAt = log.created_at ? new Date(log.created_at) : null;
-    const dateText = createdAt ? createdAt.toLocaleDateString('id-ID') : '-';
-    const timeText = createdAt ? createdAt.toLocaleTimeString('id-ID') : '-';
-
-    return `
-      <tr class="table-row">
-        <td class="px-6 py-4 whitespace-nowrap">
-          <span class="text-sm font-mono text-gray-800">#${log.id}</span>
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <span class="text-sm font-mono font-semibold text-gray-800">${log.referral_code || '-'}</span>
-        </td>
-        <td class="px-6 py-4">
-          <div class="text-sm">
-            <div class="text-gray-800 font-medium">${log.book_title || '-'}</div>
-          </div>
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <span class="status-badge px-3 py-1 text-xs font-semibold rounded-full ${log.status === 'beli' ? 'status-beli' : 'status-belum'}">
-            ${log.status === 'beli' ? '✓ Beli' : '⏳ Belum Beli'}
-          </span>
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <div class="text-sm text-gray-800">${dateText}</div>
-          <div class="text-xs text-gray-500">${timeText}</div>
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <button onclick="openEditModal(${log.id}, '${log.referral_code}', '${log.status}')" class="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium hover:shadow-lg transition-all flex items-center space-x-1">
-            <i class='bx bx-edit text-xs'></i><span>Edit</span>
-          </button>
-        </td>
-      </tr>
-    `;
-  }).join('');
-
-  renderPagination();
-}
-
-
-  function renderPagination() {
-    const paginationEl = document.getElementById('pagination');
-    const totalPages = Math.ceil(filteredLogs.length / PAGE_SIZE);
-
-    if (totalPages <= 1) {
-      paginationEl.innerHTML = '';
-      return;
-    }
-
-    let buttons = '';
-
-    buttons += `<button onclick="changePage(${currentPage - 1})" class="px-3 py-1 rounded ${currentPage === 1 ? 'text-gray-400' : 'text-teal-600 hover:bg-gray-100'}" ${currentPage === 1 ? 'disabled' : ''}>Prev</button>`;
-
-    for (let i = 1; i <= totalPages; i++) {
-      buttons += `<button onclick="changePage(${i})" class="px-3 py-1 mx-1 rounded ${i === currentPage ? 'bg-teal-500 text-white' : 'text-teal-600 hover:bg-gray-100'}">${i}</button>`;
-    }
-
-    buttons += `<button onclick="changePage(${currentPage + 1})" class="px-3 py-1 rounded ${currentPage === totalPages ? 'text-gray-400' : 'text-teal-600 hover:bg-gray-100'}" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>`;
-
-    paginationEl.innerHTML = `<div class="flex justify-center items-center py-4">${buttons}</div>`;
-  }
-
-  function changePage(page) {
-    const totalPages = Math.ceil(filteredLogs.length / PAGE_SIZE);
-    if (page < 1 || page > totalPages) return;
-    currentPage = page;
-    renderTable();
-  }
-
-
-    function renderError() {
-      document.getElementById('logs-tbody').innerHTML = `
-        <tr>
-          <td colspan="6" class="px-6 py-12 text-center">
-            <div class="flex flex-col items-center space-y-4">
-              <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-                <i class='bx bx-error text-red-500 text-xl'></i>
-              </div>
-              <p class="text-gray-600">Gagal memuat data</p>
-              <button onclick="loadLogs()" class="btn-primary px-4 py-2 text-white rounded-lg text-sm">
-                Coba Lagi
-              </button>
-            </div>
-          </td>
-        </tr>
-      `;
-    }
-
-function handleSearch() {
-  applyStatusFilter(); // biar status dan search jalan bareng
-}
-
-    function handleFilter() {
-      applyStatusFilter();
-    }
-
- function applyStatusFilter() {
-  const statusFilter = document.getElementById('status-filter').value;
-  const query = document.getElementById('search-input').value.toLowerCase();
-
-  // Reset ke semua log dulu
-  filteredLogs = allLogs.filter(log => {
-    const matchesStatus = statusFilter ? log.status === statusFilter : true;
-    const matchesSearch =
-      log.referral_code?.toLowerCase().includes(query) ||
-      log.ip_address?.toLowerCase().includes(query) ||
-      log.user_agent?.toLowerCase().includes(query);
-
-    return matchesStatus && matchesSearch;
-  });
-
-  currentPage = 1;
-  renderTable();
-}
-
-
-    function openEditModal(id, referralCode, status) {
-      document.getElementById('edit-id').value = id;
-      document.getElementById('edit-referral-code').textContent = referralCode;
-      document.getElementById('edit-status').value = status;
-      document.getElementById('edit-modal').classList.remove('hidden');
-    }
-
-    function closeModal() {
-      document.getElementById('edit-modal').classList.add('hidden');
-    }
-
-    async function handleEditSubmit(e) {
-      e.preventDefault();
-      
-      const id = document.getElementById('edit-id').value;
-      const status = document.getElementById('edit-status').value;
-      
-      try {
-        const response = await fetch(`${API_BASE}/logs/${id}`, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ status })
-        });
-
-        if (!response.ok) throw new Error('Failed to update');
-
-        showToast('success', 'Berhasil', 'Status berhasil diperbarui');
-        closeModal();
-        loadLogs(); // Reload data
-      } catch (error) {
-        console.error('Error updating status:', error);
-        showToast('error', 'Error', 'Gagal memperbarui status');
-      }
-    }
-
-    function refreshData() {
-      loadLogs();
-      showToast('info', 'Refresh', 'Data sedang dimuat ulang...');
-    }
-
-    function showToast(type, title, message) {
-      const toast = document.getElementById('toast');
-      const icon = document.getElementById('toast-icon');
-      const messageEl = document.getElementById('toast-message');
-      const descriptionEl = document.getElementById('toast-description');
-
-      // Set icon and color based on type
-      switch(type) {
-        case 'success':
-          icon.className = 'w-8 h-8 rounded-full flex items-center justify-center bg-green-100';
-          icon.innerHTML = '<i class="bx bx-check text-green-600"></i>';
-          break;
-        case 'error':
-          icon.className = 'w-8 h-8 rounded-full flex items-center justify-center bg-red-100';
-          icon.innerHTML = '<i class="bx bx-x text-red-600"></i>';
-          break;
-        case 'info':
-          icon.className = 'w-8 h-8 rounded-full flex items-center justify-center bg-blue-100';
-          icon.innerHTML = '<i class="bx bx-info-circle text-blue-600"></i>';
-          break;
-      }
-
-      messageEl.textContent = title;
-      descriptionEl.textContent = message;
-      
-      toast.classList.remove('hidden');
-      
-      setTimeout(() => {
-        toast.classList.add('hidden');
-      }, 4000);
-    }
-
-    // Close modal when clicking outside
-    document.getElementById('edit-modal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeModal();
-      }
-    });
-
-    // Keyboard shortcuts
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeModal();
-      }
-      if (e.key === 'F5' || (e.ctrlKey && e.key === 'r')) {
-        e.preventDefault();
-        refreshData();
-      }
-    });
-  </script>
+  <script src="./js/index.js"></script>
 </body>
 
 </html>

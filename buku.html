@@ -512,42 +512,55 @@
         title: "Liquid Curicullum",
         image: "img/lc.png",
         tags: ["SERI TEKNOLOGI ISLAMI"],
+        harga: 187000
       },
       {
         id: "book-2",
         title: "Islamic Technology Mindset Installation (ITMI)",
         image: "img/itmi.png",
         tags: ["SERI TEKNOLOGI ISLAMI"],
+        harga: 181000
+
       },
       {
         id: "book-3",
         title: "Sejarah Teknologi dari Perspektif Kaum Muslimin",
         image: "img/dariPerspektifKaumMuslimin.png",
         tags: ["SERI TEKNOLOGI ISLAMI"],
+        harga: 121000
+
       },
       {
         id: "book-4",
         title: "Mental Belajar Teknologi",
         image: "img/mentalBelajarTeknologi.png",
         tags: ["SERI TEKNOLOGI ISLAMI"],
+        harga: 105000
+
       },
       {
         id: "book-5",
         title: "IT dengan Proyek Festival",
         image: "img/denganProyekFestival.png",
         tags: ["SERI TEKNOLOGI ISLAMI"],
+        harga: 121000
+
       },
       {
         id: "book-6",
         title: "IT Berorientasi Produktif",
         image: "img/berorientasiProduktif.png",
         tags: ["SERI TEKNOLOGI ISLAMI"],
+        harga: 93000
+
       },
       {
         id: "book-7",
         title: "IT Berorientasi Monetitatif",
         image: "img/berorientasiMonetitatif.png",
         tags: ["SERI TEKNOLOGI ISLAMI"],
+        harga: 117000
+
       },
     ];
 
@@ -641,36 +654,22 @@
           behavior: "smooth",
         });
       });
+const ref = new URLSearchParams(window.location.search).get("ref") || "NO_REF";
 
-       const ref = new URLSearchParams(window.location.search).get("ref") || "NO_REF";
+document.querySelectorAll(".wa-button").forEach(button => {
+  button.addEventListener("click", async (e) => {
+    e.preventDefault();
 
-  const waNumber = "6285161231559"; // Ganti sesuai kebutuhan
+    const bookTitle = button.getAttribute("data-book") || "Tanpa Judul";
+    const price = button.getAttribute("data-price") || "0";
 
-  document.querySelectorAll(".wa-button").forEach(button => {
-    button.addEventListener("click", async (e) => {
-      e.preventDefault();
-
-      const bookTitle = button.getAttribute("data-book") || "Tanpa Judul";
-      const message = `Assalamualaikum, saya ingin membeli paket "${bookTitle}".\nReferral: ${ref}`;
-      const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
-
-      try {
-        await fetch("http://localhost:5000/api/log-click", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            book_title: bookTitle,
-            referral_code: ref,
-            user_agent: navigator.userAgent
-          })
-        });
-      } catch (err) {
-        console.error("Gagal log click:", err);
-      }
-
-      window.open(waLink, "_blank");
-    });
+    const redirectUrl = `/form_beli.html?book_title=${encodeURIComponent(bookTitle)}&ref=${encodeURIComponent(ref)}&price=${encodeURIComponent(price)}`;
+    window.location.href = redirectUrl;
   });
+});
+
+
+
   </script>
   <script src="js/navbar.js"></script>
   <script src="js/ref.js"></script>

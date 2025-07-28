@@ -18,6 +18,9 @@ jawabannya. InsyaAllah`,
     images: ["img/LC/cover.jpg", "img/LC/b-cover.jpg","img/LC/1.jpg","img/LC/2.jpg",],
     linkid: "https://gsiofficial.xyz/gsiofficial/rYM9yVK",
     linkshopee: "https://shopee.co.id/Liquid-Curicullum-Kurikulum-untuk-Sekolah-Impian-yang-Akan-Menghasilkan-Generasi-Impian-i.1344216734.28786791996",
+            harga: 187000
+        
+
   },
   {
     id: "book-2",
@@ -46,6 +49,8 @@ efektif, lebih cepat, sebab menggunakan strategi ajar yang unik`,
     images: ["img/ITMI/cover.jpg", "img/ITMI/b-cover.jpg","img/ITMI/1.jpg","img/ITMI/2.jpg", "img/ITMI/3.jpg", "img/ITMI/4.jpg", "img/ITMI/5.jpg"],
     linkid: "https://gsiofficial.xyz/gsiofficial/aYgaVW1",
     linkshopee: "https://shopee.co.id/Islamic-Technology-Mindset-Installation-(ITMI)-i.1344216734.42701668117",
+    harga: 181000
+     
   },
   {
     id: "book-3",
@@ -84,6 +89,8 @@ mendekati teknologi`,
     images: ["img/ST/cover.jpg", "img/ST/b-cover.jpg", "img/ST/1.jpg","img/ST/2.jpg", "img/ST/3.jpg", "img/ST/4.jpg" ],
     linkid: "https://gsiofficial.xyz/gsiofficial/glPZKz9",
     linkshopee: "https://shopee.co.id/Seri-Teknologi-Islami-Sejarah-Teknologi-dari-Perspektif-Kaum-Muslim-i.1344216734.40751654113",
+       harga: 121000
+       
   },
   {
     id: "book-4",
@@ -118,6 +125,8 @@ mental berteknologi" tersebut.`,
     images: ["img/BT/cover.jpg", "img/BT/b-cover.jpg", "img/BT/1.jpg","img/BT/2.jpg", ],
     linkid: "https://gsiofficial.xyz/gsiofficial/9QGJL29",
     linkshopee: "https://shopee.co.id/Seri-Teknologi-Islam-Mental-Belajar-i.1344216734.42801659863",
+     harga: 105000
+      
   },
   {
     id: "book-5",
@@ -150,6 +159,8 @@ proyek-proyek di mapel IT`,
     images: ["img/IT-PF/cover.jpg", "img/IT-PF/b-cover.jpg", "img/IT-PF/1.jpg","img/IT-PF/2.jpg", ],
     linkid: "https://gsiofficial.xyz/gsiofficial/ep5AkLv",
     linkshopee: "https://shopee.co.id/Seri-Teknologi-Islami-IT-dengan-Proyek-Festival-i.1344216734.43501664649",
+      harga: 121000
+       
   },
   {
     id: "book-6",
@@ -190,6 +201,7 @@ siswa kita belajar IT secara produktif.`,
     images: ["img/IT-BP/cover.jpg", "img/IT-BP/b-cover.jpg", "img/IT-BP/1.jpg","img/IT-BP/2.jpg",],
     linkid: "https://gsiofficial.xyz/gsiofficial/oPNVqAV",
     linkshopee: "https://shopee.co.id/Seri-Teknologi-Islami-IT-Berorientasi-Produktif-i.1344216734.41351680050",
+     harga: 93000
   },
   {
     id: "book-7",
@@ -228,6 +240,8 @@ memonetisasinya.`,
     images: ["img/IT-BM/cover.jpg", "img/IT-BM/b-cover.jpg", "img/IT-BM/1.jpg","img/IT-BM/2.jpg", "img/IT-BM/3.jpg", ],
     linkid: "https://gsiofficial.xyz/gsiofficial/xQAKrGZ",
     linkshopee: "https://shopee.co.id/Seri-Teknologi-Islami-IT-Berorientasi-Monetitatif-i.1344216734.43551675445",
+        harga: 117000
+
   }
 ];
 
@@ -289,7 +303,8 @@ function getBookIdFromUrl() {
         <a 
           href="#" 
           class="wa-button bg-green-600 text-white px-6 py-3 rounded-lg text-center font-semibold" 
-          data-book="${book.title}">
+          data-book="${book.title}"
+           data-price="${book.harga}">
           Pesan via WhatsApp
         </a>`
         : `
@@ -339,100 +354,90 @@ function getBookIdFromUrl() {
         </div>
     `;
 
-    document.getElementById('bookDetailContainer').innerHTML = `
-       <div class="max-w-6xl mx-auto p-4 bg-white rounded-lg shadow-lg">
-  <div class="flex flex-col md:flex-row gap-8">
-    <!-- Kolom Gambar dan Thumbnail -->
-    <div class="flex flex-col w-full md:w-1/3">
-      <div class="mb-4">
-        <img src="${mainImage}" alt="${book.title}" class="w-full h-auto object-cover rounded-lg shadow-md" id="mainBookImage">
+  document.getElementById('bookDetailContainer').innerHTML = `
+  <div class="max-w-6xl mx-auto p-4 bg-white rounded-lg shadow-lg">
+    <div class="flex flex-col md:flex-row gap-8">
+      <!-- Kolom Gambar dan Thumbnail -->
+      <div class="flex flex-col w-full md:w-1/3">
+        <div class="mb-4">
+          <img src="${mainImage}" alt="${book.title}" class="w-full h-auto object-cover rounded-lg shadow-md" id="mainBookImage">
+        </div>
+        <div class="flex flex-wrap gap-2 justify-center">
+          ${thumbnailsHtml}
+        </div>
+        ${orderButtonsHtml}
       </div>
-      <div class="flex flex-wrap gap-2 justify-center">
-        ${thumbnailsHtml}
-      </div>
-      ${orderButtonsHtml}
-    </div>
 
-    <!-- Kolom Detail Buku -->
-    <div class="w-full md:w-2/3">
-      <h1 class="text-3xl font-bold text-gray-900 mb-2">${book.title}</h1>
-      <h2 class="text-xl text-gray-700 mb-4">by ${book.author}</h2>
+      <!-- Kolom Detail Buku -->
+      <div class="w-full md:w-2/3">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">${book.title}</h1>
+        <h2 class="text-xl text-gray-700 mb-1">by ${book.author}</h2>
+        
+        <!-- Harga Buku -->
+        <div class="text-2xl text-green-600 font-semibold mb-4">
+          Rp${parseInt(book.harga).toLocaleString('id-ID')}
+        </div>
 
-      <p class="text-gray-600 mb-6 leading-relaxed">${book.description}</p>
+        <p class="text-gray-600 mb-6 leading-relaxed">${book.description}</p>
 
-      <div class="bg-gray-50 p-4 rounded-lg mb-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4">
-          <div class="flex flex-col">
-            <span class="text-sm text-gray-500">Publisher</span>
-            <span class="font-medium text-gray-800">${book.publisher}</span>
-          </div>
-          <div class="flex flex-col">
-            <span class="text-sm text-gray-500">Page Count</span>
-            <span class="font-medium text-gray-800">${book.pageCount}</span>
-          </div>
-          <div class="flex flex-col">
-            <span class="text-sm text-gray-500">Language</span>
-            <span class="font-medium text-gray-800">${book.language}</span>
-          </div>
-          <div class="flex flex-col">
-            <span class="text-sm text-gray-500">Dimensions</span>
-            <span class="font-medium text-gray-800">${book.dimensions}</span>
-          </div>
-          <div class="flex flex-col">
-            <span class="text-sm text-gray-500">ISBN</span>
-            <span class="font-medium text-gray-800">${book.isbn}</span>
-          </div>
-          <div class="flex flex-col">
-            <span class="text-sm text-gray-500">Series</span>
-            <span class="font-medium text-gray-800">${book.series}</span>
+        <div class="bg-gray-50 p-4 rounded-lg mb-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4">
+            <div class="flex flex-col">
+              <span class="text-sm text-gray-500">Publisher</span>
+              <span class="font-medium text-gray-800">${book.publisher}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-sm text-gray-500">Page Count</span>
+              <span class="font-medium text-gray-800">${book.pageCount}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-sm text-gray-500">Language</span>
+              <span class="font-medium text-gray-800">${book.language}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-sm text-gray-500">Dimensions</span>
+              <span class="font-medium text-gray-800">${book.dimensions}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-sm text-gray-500">ISBN</span>
+              <span class="font-medium text-gray-800">${book.isbn}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-sm text-gray-500">Series</span>
+              <span class="font-medium text-gray-800">${book.series}</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="mb-6">
-        <h3 class="text-sm text-gray-500 mb-2">Categories</h3>
-        <div class="flex flex-wrap">
-          ${categoriesHtml}
+        <div class="mb-6">
+          <h3 class="text-sm text-gray-500 mb-2">Categories</h3>
+          <div class="flex flex-wrap">
+            ${categoriesHtml}
+          </div>
         </div>
-      </div>
 
-      ${navigationButtonsHtml}
+        ${navigationButtonsHtml}
+      </div>
     </div>
   </div>
-</div>
+`;
 
-    `;
 
  if (ref) {
-    document.querySelectorAll(".wa-button").forEach(button => {
-      button.addEventListener("click", async (e) => {
-        e.preventDefault();
+    const ref = new URLSearchParams(window.location.search).get("ref") || "NO_REF";
 
-        const waNumber = "6285161231559";
-        const bookTitle = button.getAttribute("data-book") || "Tanpa Judul";
-        const message = `Assalamualaikum, saya ingin membeli buku "${bookTitle}".\nReferral: ${ref}`;
-        const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+document.querySelectorAll(".wa-button").forEach(button => {
+  button.addEventListener("click", async (e) => {
+    e.preventDefault();
 
-        try {
-          await fetch("http://localhost:5000/api/log-click", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              book_title: bookTitle,
-              referral_code: ref,
-              user_agent: navigator.userAgent
-            })
-          });
-        } catch (err) {
-          console.error("Gagal mencatat log click:", err);
-        }
+    const bookTitle = button.getAttribute("data-book") || "Tanpa Judul";
+    const price = button.getAttribute("data-price") || "0";
 
-        // Tetap buka WA setelah log tercatat
-        window.open(waLink, "_blank");
-      });
-    });
+    const redirectUrl = `/form_beli.html?book_title=${encodeURIComponent(bookTitle)}&ref=${encodeURIComponent(ref)}&price=${encodeURIComponent(price)}`;
+    window.location.href = redirectUrl;
+  });
+});
+
   }
 
 
