@@ -305,7 +305,7 @@ function getBookIdFromUrl() {
           class="wa-button bg-green-600 text-white px-6 py-3 rounded-lg text-center font-semibold" 
           data-book="${book.title}"
            data-price="${book.harga}">
-          Pesan via WhatsApp
+          Pesan Sekarang
         </a>`
         : `
         ${
@@ -426,17 +426,20 @@ function getBookIdFromUrl() {
  if (ref) {
     const ref = new URLSearchParams(window.location.search).get("ref") || "NO_REF";
 
-document.querySelectorAll(".wa-button").forEach(button => {
-  button.addEventListener("click", async (e) => {
-    e.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".wa-button").forEach(button => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
 
-    const bookTitle = button.getAttribute("data-book") || "Tanpa Judul";
-    const price = button.getAttribute("data-price") || "0";
+      const bookTitle = button.getAttribute("data-book") || "Tanpa Judul";
+      const price = button.getAttribute("data-price") || "0";
 
-    const redirectUrl = `/form_beli.html?book_title=${encodeURIComponent(bookTitle)}&ref=${encodeURIComponent(ref)}&price=${encodeURIComponent(price)}`;
-    window.location.href = redirectUrl;
+      const redirectUrl = `/form_beli.html?book_title=${encodeURIComponent(bookTitle)}&ref=${encodeURIComponent(ref)}&price=${encodeURIComponent(price)}`;
+      window.location.href = redirectUrl;
+    });
   });
 });
+
 
   }
 
