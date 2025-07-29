@@ -12,6 +12,7 @@ let currentLogsPage = 1;
 let currentCodesPage = 1;
 let currentTab = 'logs';
 let deleteTargetId = null;
+let allData = [];
 
 // Initialize application
 document.addEventListener('DOMContentLoaded', async () => {
@@ -278,13 +279,10 @@ async function loadReferralCodes() {
     
     const codes = await response.json();
     
-    // Get usage count for each code
-    for (let code of codes) {
-      const usageCount = allLogs.filter(log => log.referral_code === code.kode_referal).length;
-      code.usage_count = usageCount;
-    }
-    
+    // The API should now provide usage_count directly
+    // No need to calculate locally anymore
     allCodes = codes;
+    allData = codes;
     filteredCodes = [...allCodes];
     renderCodesTable();
   } catch (error) {
@@ -317,39 +315,45 @@ function renderCodesTable() {
     return;
   }
 
-  tbody.innerHTML = pageData.map(code => {
-    const createdAt = code.created_at ? new Date(code.created_at) : null;
-    const dateText = createdAt ? createdAt.toLocaleDateString('id-ID') : '-';
-    const timeText = createdAt ? createdAt.toLocaleTimeString('id-ID') : '-';
+// Hitung total pemakaian dari seluruh data
+const referralCounts = allData.reduce((acc, item) => {
+  acc[item.kode_referal] = (acc[item.kode_referal] || 0) + 1;
+  return acc;
+}, {});
 
-    return `
-      <tr class="table-row">
-        <td class="px-6 py-4 whitespace-nowrap">
-          <span class="text-sm font-mono text-gray-800">#${code.id}</span>
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <span class="text-sm font-mono font-semibold text-gray-800">${code.kode_referal}</span>
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <span class="text-sm text-gray-800">${code.username}</span>
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <div class="text-sm text-gray-800">${dateText}</div>
-          <div class="text-xs text-gray-500">${timeText}</div>
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <span class="px-3 py-1 text-xs font-semibold rounded-full bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800">
-            ${code.usage_count || 0} kali
-          </span>
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <button onclick="openDeleteModal(${code.id}, '${code.kode_referal}')" class="btn-danger px-3 py-1.5 text-white rounded-lg text-xs font-medium hover:shadow-lg transition-all flex items-center space-x-1">
-            <i class='bx bx-trash text-xs'></i><span>Hapus</span>
-          </button>
-        </td>
-      </tr>
-    `;
-  }).join('');
+tbody.innerHTML = pageData.map(code => {
+  const createdAt = code.created_at ? new Date(code.created_at) : null;
+  const dateText = createdAt ? createdAt.toLocaleDateString('id-ID') : '-';
+  const timeText = createdAt ? createdAt.toLocaleTimeString('id-ID') : '-';
+
+  return `
+    <tr class="table-row">
+      <td class="px-6 py-4 whitespace-nowrap">
+        <span class="text-sm font-mono text-gray-800">#${code.id}</span>
+      </td>
+      <td class="px-6 py-4 whitespace-nowrap">
+        <span class="text-sm font-mono font-semibold text-gray-800">${code.kode_referal}</span>
+      </td>
+      <td class="px-6 py-4 whitespace-nowrap">
+        <span class="text-sm text-gray-800">${code.username}</span>
+      </td>
+      <td class="px-6 py-4 whitespace-nowrap">
+        <div class="text-sm text-gray-800">${dateText}</div>
+        <div class="text-xs text-gray-500">${timeText}</div>
+      </td>
+      <td class="px-6 py-4 whitespace-nowrap">
+        <span class="px-3 py-1 text-xs font-semibold rounded-full bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800">
+          ${code.usage} kali
+        </span>
+      </td>
+      <td class="px-6 py-4 whitespace-nowrap">
+        <button onclick="openDeleteModal(${code.id}, '${code.kode_referal}')" class="btn-danger px-3 py-1.5 text-white rounded-lg text-xs font-medium hover:shadow-lg transition-all flex items-center space-x-1">
+          <i class='bx bx-trash text-xs'></i><span>Hapus</span>
+        </button>
+      </td>
+    </tr>
+  `;
+}).join('')
 
   renderCodesPagination();
 }
