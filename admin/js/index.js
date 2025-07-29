@@ -343,7 +343,7 @@ tbody.innerHTML = pageData.map(code => {
       </td>
       <td class="px-6 py-4 whitespace-nowrap">
         <span class="px-3 py-1 text-xs font-semibold rounded-full bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800">
-          ${referralCounts[code.kode_referal] || 0} kali
+          ${code.usage} kali
         </span>
       </td>
       <td class="px-6 py-4 whitespace-nowrap">

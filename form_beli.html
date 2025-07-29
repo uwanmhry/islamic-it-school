@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Form Pembelian Buku</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Midtrans Snap.js -->
+  <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-ZMewLn7labSKJRCZ"></script>
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
   <div class="max-w-xl w-full bg-white p-8 rounded-lg shadow-lg">
@@ -70,9 +72,32 @@
           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
       </div>
 
+      <div>
+        <label for="customer_email" class="block text-sm font-semibold text-gray-700 mb-2">
+          Email (Opsional)
+        </label>
+        <input type="email" id="customer_email" name="customer_email"
+          placeholder="contoh@email.com"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
+      </div>
+
+      <!-- Info Pembayaran -->
+      <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+        <h3 class="text-sm font-semibold text-green-800 mb-2">💳 Metode Pembayaran</h3>
+        <p class="text-sm text-green-700">
+          Setelah klik "Bayar Sekarang", Anda akan dapat memilih metode pembayaran:
+        </p>
+        <ul class="text-xs text-green-600 mt-2 space-y-1">
+          <li>• Kartu Kredit/Debit</li>
+          <li>• Bank Transfer (BCA, BNI, BRI, Mandiri)</li>
+          <li>• E-Wallet (GoPay, OVO, DANA, ShopeePay)</li>
+          <li>• QRIS & Virtual Account</li>
+        </ul>
+      </div>
+
       <button type="submit" id="submitBtn"
         class="w-full py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition duration-200 font-semibold">
-        <span id="submitText">Beli Sekarang</span>
+        <span id="submitText">Bayar Sekarang</span>
         <span id="loadingText" class="hidden">Memproses...</span>
       </button>
     </form>
@@ -82,6 +107,7 @@
     <!-- Info tambahan -->
     <div class="mt-6 text-xs text-gray-500 text-center">
       <p>Dengan melakukan pembelian, Anda menyetujui syarat dan ketentuan yang berlaku.</p>
+      <p class="mt-1">Pembayaran diproses dengan aman melalui Midtrans</p>
     </div>
   </div>
 
@@ -156,7 +182,6 @@ async function validateReferralCode(refCode) {
     const referralCodes = await response.json();
     
     // Cek apakah kode referral ada di database
-    // Field yang dicek: kode_referal sesuai struktur database
     const validReferral = referralCodes.find(item => 
       item.kode_referal === refCode
     );
@@ -204,6 +229,30 @@ function updatePriceDisplay(originalPrice, hasValidDiscount) {
   }
 }
 
+// Fungsi untuk menambah usage referral code
+async function incrementReferralUsage(refCode) {
+  try {
+    const response = await fetch(`http://localhost:5000/api/referal/use/${refCode}`, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log('Referral usage incremented:', result.message);
+    
+  } catch (error) {
+    console.error('Error incrementing referral usage:', error);
+    // Jangan hentikan proses pembelian jika gagal update usage
+  }
+}
+
 // Handle form submission
 document.getElementById('purchaseForm').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -231,6 +280,7 @@ document.getElementById('purchaseForm').addEventListener('submit', async (e) => 
   const nama = formData.get('nama_pembeli').trim();
   const alamat = formData.get('alamat').trim();
   const nomor = formData.get('nomor_pembeli').trim();
+  const customerEmail = formData.get('customer_email') ? formData.get('customer_email').trim() : '';
   
   if (!nama || !alamat || !nomor) {
     showMessage('Harap isi semua field yang wajib!', 'error');
@@ -241,6 +291,13 @@ document.getElementById('purchaseForm').addEventListener('submit', async (e) => 
   // Validasi nomor telepon
   if (!/^[0-9+\-\s]{10,15}$/.test(nomor)) {
     showMessage('Format nomor telepon tidak valid!', 'error');
+    resetButton();
+    return;
+  }
+
+  // Validasi email jika diisi
+  if (customerEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
+    showMessage('Format email tidak valid!', 'error');
     resetButton();
     return;
   }
@@ -270,6 +327,7 @@ document.getElementById('purchaseForm').addEventListener('submit', async (e) => 
   };
 
   try {
+    // Log ke database dulu
     const response = await fetch('http://localhost:5000/api/log-click', {
       method: 'POST',
       headers: { 
@@ -286,13 +344,78 @@ document.getElementById('purchaseForm').addEventListener('submit', async (e) => 
     const result = await response.json();
     
     if (result.success !== false) {
-      const discountMessage = isValidReferral && finalPrice < originalPrice 
-        ? ` (Hemat Rp ${(originalPrice - finalPrice).toLocaleString('id-ID')})` 
-        : '';
-      showMessage(`✅ Pembelian berhasil${discountMessage}! Anda akan dihubungi segera.`, 'success');
-      document.getElementById('purchaseForm').reset();
+      // Update referral usage jika valid
+      if (isValidReferral && referralCode.trim() !== '' && referralCode !== 'NO_REF') {
+        await incrementReferralUsage(referralCode);
+      }
+
+      // Buat transaksi Midtrans menggunakan Snap Preference
+      try {
+        const midtransResponse = await fetch('http://localhost:5000/api/midtrans/create-transaction', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            nama: nama,
+            nomor: nomor,
+            alamat: alamat,
+            amount: finalPrice,
+            item_name: formData.get('book_title'),
+            referral_code: referralCode,
+            customer_email: customerEmail,
+            // Tidak perlu payment_type untuk Snap Preference
+            log_id: result.id // ID dari log yang baru dibuat
+          })
+        });
+
+        if (!midtransResponse.ok) {
+          const errorData = await midtransResponse.json();
+          console.error('Midtrans Error Response:', errorData);
+          throw new Error(`Midtrans Error: ${errorData.message || midtransResponse.status}`);
+        }
+
+        const midtransResult = await midtransResponse.json();
+
+        if (midtransResult.success && midtransResult.token) {
+          // Reset button sebelum buka Snap
+          resetButton();
+          
+          // Buka Midtrans Snap popup
+          window.snap.pay(midtransResult.token, {
+            onSuccess: function(result) {
+              console.log('Payment success:', result);
+              showMessage('✅ Pembayaran berhasil! Terima kasih atas pembelian Anda.', 'success');
+              
+              // Optional: redirect ke halaman sukses setelah beberapa detik
+              setTimeout(() => {
+                window.location.href = '/payment-success.html?order_id=' + midtransResult.order_id;
+              }, 3000);
+            },
+            onPending: function(result) {
+              console.log('Payment pending:', result);
+              showMessage('⏳ Pembayaran pending. Silakan selesaikan pembayaran Anda.', 'warning');
+            },
+            onError: function(result) {
+              console.log('Payment error:', result);
+              showMessage('❌ Terjadi kesalahan saat memproses pembayaran.', 'error');
+            },
+            onClose: function() {
+              console.log('Payment popup closed');
+              showMessage('ℹ️ Pembayaran dibatalkan atau ditutup.', 'warning');
+            }
+          });
+
+        } else {
+          showMessage('❌ Gagal membuat transaksi pembayaran: ' + (midtransResult.message || 'Unknown error'), 'error');
+        }
+
+      } catch (midtransErr) {
+        console.error('Midtrans Error:', midtransErr);
+        showMessage('❌ Terjadi kesalahan saat menghubungkan ke sistem pembayaran: ' + midtransErr.message, 'error');
+      }
     } else {
-      showMessage(result.message || 'Gagal memproses pembelian', 'error');
+      showMessage('❌ Gagal menyimpan data pembelian.', 'error');
     }
     
   } catch (error) {
@@ -349,6 +472,24 @@ document.getElementById('nomor_pembeli').addEventListener('input', function(e) {
     e.target.setCustomValidity('Hanya boleh menggunakan angka, +, -, dan spasi');
   } else {
     e.target.setCustomValidity('');
+  }
+});
+
+// Validasi real-time untuk email
+document.getElementById('customer_email').addEventListener('input', function(e) {
+  const value = e.target.value;
+  if (value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+    e.target.setCustomValidity('Format email tidak valid');
+  } else {
+    e.target.setCustomValidity('');
+  }
+});
+
+// Handle jika Snap.js gagal dimuat
+window.addEventListener('load', function() {
+  if (typeof window.snap === 'undefined') {
+    console.error('Midtrans Snap.js failed to load');
+    showMessage('❌ Gagal memuat sistem pembayaran. Silakan refresh halaman.', 'error');
   }
 });
 </script>

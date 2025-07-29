@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pembayaran Berhasil</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-green-50 to-blue-50 min-h-screen flex items-center justify-center p-6">
+  <div class="max-w-md w-full bg-white p-8 rounded-xl shadow-lg text-center">
+    <!-- Success Icon -->
+    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+      <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+      </svg>
+    </div>
+
+    <h1 class="text-2xl font-bold text-gray-800 mb-4">Pembayaran Berhasil!</h1>
+    
+    <p class="text-gray-600 mb-6">
+      Terima kasih atas pembelian Anda. Transaksi telah berhasil diproses.
+    </p>
+
+    <!-- Order Info -->
+    <div id="orderInfo" class="bg-gray-50 p-4 rounded-lg mb-6 text-left">
+      <p class="text-sm text-gray-600 mb-2">
+        <strong>Order ID:</strong> <span id="orderId" class="text-gray-800">-</span>
+      </p>
+      <p class="text-sm text-gray-600">
+        <strong>Status:</strong> <span class="text-green-600 font-semibold">Berhasil</span>
+      </p>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="bg-blue-50 p-4 rounded-lg mb-6 text-left">
+      <h3 class="font-semibold text-blue-800 mb-2">Langkah Selanjutnya:</h3>
+      <ul class="text-sm text-blue-700 space-y-1">
+        <li>• Kami akan mengirim konfirmasi ke email Anda</li>
+        <li>• Buku akan disiapkan untuk pengiriman</li>
+        <li>• Estimasi pengiriman 2-3 hari kerja</li>
+      </ul>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="space-y-3">
+      <button 
+        onclick="window.location.href='/'"
+        class="w-full py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200 font-semibold">
+        Kembali ke Beranda
+      </button>
+      
+      <button 
+        onclick="window.print()"
+        class="w-full py-3 px-6 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition duration-200 font-semibold">
+        Cetak Bukti Pembayaran
+      </button>
+    </div>
+
+    <!-- Contact Support -->
+    <div class="mt-6 pt-4 border-t border-gray-200">
+      <p class="text-xs text-gray-500">
+        Butuh bantuan? 
+        <a href="mailto:support@yourdomain.com" class="text-blue-600 hover:underline">
+          Hubungi Support
+        </a>
+      </p>
+    </div>
+  </div>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const orderId = urlParams.get('order_id');
+  
+  if (orderId) {
+    document.getElementById('orderId').textContent = orderId;
+
+    // Update status log ke 'beli'
+    fetch(`http://localhost:5000/api/logs/${orderId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ status: 'beli' })
+    })
+    .then(response => {
+      if (!response.ok) throw new Error('Gagal update status');
+      console.log('Status berhasil diperbarui ke "beli"');
+    })
+    .catch(error => {
+      console.error('Gagal memperbarui status log:', error);
+    });
+  } else {
+    document.getElementById('orderId').textContent = 'Tidak tersedia';
+  }
+
+  // Auto redirect (opsional)
+  setTimeout(() => {
+    if (confirm('Redirect ke beranda dalam 5 detik. Klik OK untuk redirect sekarang atau Cancel untuk tetap di halaman ini.')) {
+      window.location.href = '/';
+    }
+  }, 25000);
+</script>
+
+</body>
+</html>
