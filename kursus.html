@@ -574,7 +574,7 @@
         </div>
 
         <!-- Bandung Programs -->
-        <div id="programs-bandung" class="grid md:grid-cols-2 gap-8 hidden">
+        <div id="programs-bandung" class="hidden md:grid-cols-2 gap-8">
           <!-- Office for Kids -->
           <div class="program-card p-8 rounded-3xl">
             <div
@@ -1034,7 +1034,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12 px-4">
+    <!-- <footer class="bg-gray-800 text-white py-12 px-4">
       <div class="max-w-4xl mx-auto text-center">
         <div class="mb-8">
           <h3 class="text-2xl font-bold mb-4 gradient-text">
@@ -1053,15 +1053,15 @@
           </p>
         </div>
       </div>
-    </footer>
+    </footer> -->
 
     <!-- Scroll to Top Button -->
-    <button
+    <!-- <button
       id="scrollToTopBtn"
       class="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-green-600 text-white shadow-lg hover:bg-green-700 transition hidden"
     >
       <i class="bx bx-up-arrow-alt text-2xl"></i>
-    </button>
+    </button> -->
 
     <style>
       /* Animasi fade-in-up */
@@ -1233,12 +1233,16 @@
           bandungBtn.className =
             "px-6 py-3 rounded-xl font-bold text-lg transition-all text-gray-600 hover:bg-gray-100 ml-2";
           bogorPrograms.classList.remove("hidden");
+          bogorPrograms.classList.add("grid");
           bandungPrograms.classList.add("hidden");
+          bandungPrograms.classList.remove("grid");
         } else {
           bandungBtn.className =
             "px-6 py-3 rounded-xl font-bold text-lg transition-all bg-orange-500 text-white shadow-lg ml-2";
-          bogorBtn.className =
-            "px-6 py-3 rounded-xl font-bold text-lg transition-all text-gray-600 hover:bg-gray-100";
+          bandungPrograms.classList.remove("hidden");
+          bandungPrograms.classList.add("grid");
+          bogorPrograms.classList.add("hidden");
+          bogorPrograms.classList.remove("grid");
           bandungPrograms.classList.remove("hidden");
           bogorPrograms.classList.add("hidden");
         }
