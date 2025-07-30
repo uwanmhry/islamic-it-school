@@ -31,6 +31,7 @@
       </p>
     </div>
 
+
     <!-- Status Update Info -->
     <div id="statusUpdate" class="bg-yellow-50 border border-yellow-200 p-3 rounded-lg mb-6 hidden">
       <p class="text-sm text-yellow-700">🔄 Memperbarui status transaksi...</p>
@@ -43,6 +44,7 @@
     <div id="statusError" class="bg-red-50 border border-red-200 p-3 rounded-lg mb-6 hidden">
       <p class="text-sm text-red-700">⚠️ Gagal memperbarui status transaksi</p>
     </div>
+
 
     <!-- Next Steps -->
     <div class="bg-blue-50 p-4 rounded-lg mb-6 text-left">
@@ -80,11 +82,11 @@
     </div>
   </div>
 
-// Fixed success page script
+
 <script>
   const urlParams = new URLSearchParams(window.location.search);
   const orderId = urlParams.get('order_id');
-  
+
   // Elements
   const statusUpdate = document.getElementById('statusUpdate');
   const statusSuccess = document.getElementById('statusSuccess');
@@ -234,6 +236,7 @@
       clearInterval(window.redirectInterval);
     }
   });
+
 </script>
 
 </body>

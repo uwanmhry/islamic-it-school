@@ -1,238 +1,333 @@
 <!DOCTYPE html>
 <html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webinar Pendidikan Online - Sekolah Impian</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="./img/Logo-Sekolah-Impian.png" type="image/png" />
+    <link rel="stylesheet" href="css/navbar.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Webinar Pendidikan Online - Sekolah Impian</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="icon" href="./img/Logo-Sekolah-Impian.png" type="image/png" />
-  <link rel="stylesheet" href="css/navbar.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        min-height: 100vh;
+      }
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-      min-height: 100vh;
-    }
+      .gradient-text {
+        background: linear-gradient(135deg, #f97316 0%, #0d9488 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
 
-    .gradient-text {
-      background: linear-gradient(135deg, #f97316 0%, #0d9488 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+      .btn-primary {
+        background: linear-gradient(135deg, #f97316 0%, #0d9488 100%);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #f97316 0%, #0d9488 100%);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(15, 185, 129, 0.4);
+      }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(15, 185, 129, 0.4);
-    }
-
-    .btn-primary::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(to bottom right,
+      .btn-primary::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          to bottom right,
           rgba(255, 255, 255, 0) 0%,
           rgba(255, 255, 255, 0.3) 50%,
-          rgba(255, 255, 255, 0) 100%);
-      transform: rotate(30deg);
-      transition: all 0.3s ease;
-    }
-
-    .btn-primary:hover::after {
-      left: 100%;
-    }
-
-    .card-hover {
-      transition: all 0.4s ease;
-    }
-
-    .card-hover:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    }
-
-    .floating-icon {
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translateY(0px);
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: rotate(30deg);
+        transition: all 0.3s ease;
       }
 
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
-    .pulse-bg {
-      animation: pulse-bg 2s infinite;
-    }
-
-    @keyframes pulse-bg {
-
-      0%,
-      100% {
-        background-color: rgba(249, 115, 22, 0.1);
+      .btn-primary:hover::after {
+        left: 100%;
       }
 
-      50% {
-        background-color: rgba(13, 148, 136, 0.1);
+      .card-hover {
+        transition: all 0.4s ease;
       }
-    }
 
-    .glass {
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-    }
+      .card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
 
-    .stat-counter {
-      font-size: 2.5rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #f97316 0%, #0d9488 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-  </style>
-</head>
+      .floating-icon {
+        animation: float 3s ease-in-out infinite;
+      }
 
-<body class="min-h-screen">
-  <!-- Header -->
-  <header class="relative z-50 py-5 bg-white/95 glass">
-    <div class="max-w-7xl mx-auto px-4 md:px-6">
-      <nav class="flex justify-between items-center">
-        <div class="flex items-center text-2xl font-bold text-gray-900">
-          <a href="index.html">
-            <img class="w-[70px] h-[70px] object-contain" src="./img/Logo-Sekolah-Impian.png" alt="Sekolah Impian" />
-          </a>
-        </div>
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
 
-        <!-- Desktop Menu -->
-        <ul class="hidden md:flex items-center space-x-8">
-          <li><a href="index.html"
-              class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Home</a></li>
-          <li><a href="https://sekolahimpian.com/"
-              class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"> Sekolah</a>
-          </li>
-          <li><a href="buku.html"
-              class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Buku </a></li>
-          <li><a href="pelatihan.html"
-              class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Pelatihan</a></li>
-          <li><a href="webinar.html" class=" text-orange-500 font-semibold transition-colors duration-200">Webinar</a></li>
-          <li><a href="channel.html"
-              class=" text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Channel</a></li>
-        </ul>
+        50% {
+          transform: translateY(-10px);
+        }
+      }
 
-        <!-- Desktop Right Side -->
-        <div class="hidden md:flex items-center gap-3">
-          <a href="https://wa.me/6285161231559"
-            class="bg-gray-900 text-white px-5 py-2.5 rounded-lg font-semibold hover:-translate-y-1 hover:bg-gray-600 transition-transform">
-            Kontak
-          </a>
-        </div>
+      .pulse-bg {
+        animation: pulse-bg 2s infinite;
+      }
 
-        <!-- Mobile Menu Button -->
-        <div class="md:hidden flex items-center">
-          <button id="mobile-menu-button" class="p-2 text-gray-700 hover:text-orange-500 transition-colors">
-            <i class='bx bx-menu text-2xl'></i>
-          </button>
-        </div>
-      </nav>
+      @keyframes pulse-bg {
+        0%,
+        100% {
+          background-color: rgba(249, 115, 22, 0.1);
+        }
 
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="hidden md:hidden transition-all duration-300 ease-in-out">
+        50% {
+          background-color: rgba(13, 148, 136, 0.1);
+        }
+      }
 
+      .glass {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+      }
+
+      .stat-counter {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #f97316 0%, #0d9488 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen">
+    <!-- Header -->
+    <header class="relative z-50 py-5 bg-white/95 glass">
+      <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <nav class="flex justify-between items-center">
+          <div class="flex items-center text-2xl font-bold text-gray-900">
+            <a href="index.html">
+              <img
+                class="w-[70px] h-[70px] object-contain"
+                src="./img/Logo-Sekolah-Impian.png"
+                alt="Sekolah Impian"
+              />
+            </a>
+          </div>
+
+          <!-- Desktop Menu -->
+          <ul class="hidden md:flex items-center space-x-8">
+            <li>
+              <a
+                href="index.html"
+                class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://sekolahimpian.com/"
+                class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
+              >
+                Sekolah</a
+              >
+            </li>
+            <li>
+              <a
+                href="buku.html"
+                class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
+                >Buku
+              </a>
+            </li>
+            <li>
+              <a
+                href="pelatihan.html"
+                class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
+                >Pelatihan</a
+              >
+            </li>
+            <li>
+              <a
+                href="kursus.html"
+                class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
+                >Kursus</a
+              >
+            </li>
+            <li>
+              <a
+                href="webinar.html"
+                class="text-orange-500 font-semibold transition-colors duration-200"
+                >Webinar</a
+              >
+            </li>
+            <li>
+              <a
+                href="channel.html"
+                class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
+                >Channel</a
+              >
+            </li>
+          </ul>
+
+          <!-- Desktop Right Side -->
+          <div class="hidden md:flex items-center gap-3">
+            <a
+              href="https://wa.me/6285161231559"
+              class="bg-gray-900 text-white px-5 py-2.5 rounded-lg font-semibold hover:-translate-y-1 hover:bg-gray-600 transition-transform"
+            >
+              Kontak
+            </a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button
+              id="mobile-menu-button"
+              class="p-2 text-gray-700 hover:text-orange-500 transition-colors"
+            >
+              <i class="bx bx-menu text-2xl"></i>
+            </button>
+          </div>
+        </nav>
+
+        <!-- Mobile Menu -->
         <div
-          class="px-2 pt-2 pb-3 space-y-1 bg-white/90 backdrop-blur-lg rounded-lg mt-4 shadow-lg border border-white/20">
-          <a href="index.html"
-            class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">Home</a>
-          <a href="https://sekolahimpian.com/"
-            class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">
-            Sekolah</a>
-          <a href="buku.html"
-            class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">Buku
+          id="mobile-menu"
+          class="hidden md:hidden transition-all duration-300 ease-in-out"
+        >
+          <div
+            class="px-2 pt-2 pb-3 space-y-1 bg-white/90 backdrop-blur-lg rounded-lg mt-4 shadow-lg border border-white/20"
+          >
+            <a
+              href="index.html"
+              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
+              >Home</a
+            >
+            <a
+              href="https://sekolahimpian.com/"
+              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
+            >
+              Sekolah</a
+            >
+            <a
+              href="buku.html"
+              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
+              >Buku
             </a>
-          <a href="pelatihan.html"
-            class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">Pelatihan</a>
-          <a href="webinar.html"
-            class="block px-3 py-2 text-orange-500 bg-orange-50 rounded-md font-semibold transition-all">Webinar</a>
-          <a href="channel.html"
-            class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium  transition-all">Channel</a>
+            <a
+              href="pelatihan.html"
+              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
+              >Pelatihan</a
+            >
+            <a
+              href="kursus.html"
+              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
+              >Kursus</a
+            >
+            <a
+              href="webinar.html"
+              class="block px-3 py-2 text-orange-500 bg-orange-50 rounded-md font-semibold transition-all"
+              >Webinar</a
+            >
+            <a
+              href="channel.html"
+              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
+              >Channel</a
+            >
 
-          <div class="border-t border-gray-200 pt-4 mt-4">
-            <a href="https://wa.me/6285161231559"
-              class="block bg-gradient-to-r from-orange-500 to-teal-600 text-white px-5 py-2.5 rounded-lg font-semibold text-center hover:from-orange-600 hover:to-teal-700 transition-all">
-              <i class='bx bxl-whatsapp mr-2'></i>Kontak
-            </a>
+            <div class="border-t border-gray-200 pt-4 mt-4">
+              <a
+                href="https://wa.me/6285161231559"
+                class="block bg-gradient-to-r from-orange-500 to-teal-600 text-white px-5 py-2.5 rounded-lg font-semibold text-center hover:from-orange-600 hover:to-teal-700 transition-all"
+              >
+                <i class="bx bxl-whatsapp mr-2"></i>Kontak
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </header>
-  <!-- End Header -->
+    </header>
+    <!-- End Header -->
 
-  <!-- Hero Section -->
-  <section class="relative pt-20 pb-16 px-4 overflow-hidden">
-    <div class="max-w-6xl mx-auto text-center">
-      <!-- Floating Icons -->
-      <div class="absolute top-20 left-10 floating-icon">
-        <i class='bx bx-video text-4xl text-orange-400 opacity-20'></i>
-      </div>
-      <div class="absolute top-32 right-20 floating-icon" style="animation-delay: 1s;">
-        <i class='bx bx-group text-4xl text-teal-400 opacity-20'></i>
-      </div>
-      <div class="absolute bottom-20 left-20 floating-icon" style="animation-delay: 2s;">
-        <i class='bx bx-book-open text-4xl text-orange-400 opacity-20'></i>
-      </div>
+    <!-- Hero Section -->
+    <section class="relative pt-20 pb-16 px-4 overflow-hidden">
+      <div class="max-w-6xl mx-auto text-center">
+        <!-- Floating Icons -->
+        <div class="absolute top-20 left-10 floating-icon">
+          <i class="bx bx-video text-4xl text-orange-400 opacity-20"></i>
+        </div>
+        <div
+          class="absolute top-32 right-20 floating-icon"
+          style="animation-delay: 1s"
+        >
+          <i class="bx bx-group text-4xl text-teal-400 opacity-20"></i>
+        </div>
+        <div
+          class="absolute bottom-20 left-20 floating-icon"
+          style="animation-delay: 2s"
+        >
+          <i class="bx bx-book-open text-4xl text-orange-400 opacity-20"></i>
+        </div>
 
-      <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-6 relative">
-        <span class="gradient-text">Webinar Pendidikan</span>
-        <br>
-        <span class="text-gray-800">Masa Depan Gemilang</span>
-        <!-- <div
+        <h1
+          class="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-6 relative"
+        >
+          <span class="gradient-text">Webinar Pendidikan</span>
+          <br />
+          <span class="text-gray-800">Masa Depan Gemilang</span>
+          <!-- <div
           class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-orange-500 to-teal-500 rounded-full">
         </div> -->
-      </h1>
+        </h1>
 
-      <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-        Bergabunglah dengan <strong>ribuan orang tua, guru, dan penyelenggara pendidikan</strong> dalam diskusi dan
-        seminar online yang akan mengubah cara pandang Anda tentang pendidikan modern
-      </p>
+        <p
+          class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
+        >
+          Bergabunglah dengan
+          <strong>ribuan orang tua, guru, dan penyelenggara pendidikan</strong>
+          dalam diskusi dan seminar online yang akan mengubah cara pandang Anda
+          tentang pendidikan modern
+        </p>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-        <a href="#daftar"
-          class="btn-primary inline-block px-8 py-4 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all">
-          <i class='bx bx-video-recording mr-2'></i>
-          Daftar Webinar
-        </a>
-        <a href="#jadwal"
-          class="bg-white text-gray-800 px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all border border-gray-200">
-          <i class='bx bx-calendar mr-2'></i>
-          Lihat Jadwal
-        </a>
-      </div>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <a
+            href="#daftar"
+            class="btn-primary inline-block px-8 py-4 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
+          >
+            <i class="bx bx-video-recording mr-2"></i>
+            Daftar Webinar
+          </a>
+          <a
+            href="#jadwal"
+            class="bg-white text-gray-800 px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all border border-gray-200"
+          >
+            <i class="bx bx-calendar mr-2"></i>
+            Lihat Jadwal
+          </a>
+        </div>
 
-      <!-- Stats -->
-      <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+        <!-- Stats -->
+        <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
           <div class="glass rounded-2xl p-6 text-center">
             <div class="stat-counter">5000+</div>
             <p class="text-gray-600 font-medium">Peserta Aktif</p>
@@ -246,163 +341,220 @@
             <p class="text-gray-600 font-medium">Expert Speaker</p>
           </div>
         </div> -->
-    </div>
-  </section>
-
-  <!-- Untuk Siapa Section -->
-  <section class="py-16 px-4 bg-white">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
-        <span class="gradient-text">Untuk Siapa</span> Webinar Ini?
-      </h2>
-      <p class="text-center text-gray-600 mb-12 text-lg">Dirancang khusus untuk komunitas pendidikan Indonesia</p>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Orang Tua -->
-        <div class="card-hover bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 text-center">
-          <div class="w-20 h-20 bg-orange-500 rounded-full mx-auto mb-6 flex items-center justify-center">
-            <i class='bx bx-heart text-3xl text-white'></i>
-          </div>
-          <h3 class="text-2xl font-bold text-gray-800 mb-4">Orang Tua</h3>
-          <ul class="text-gray-600 space-y-2 text-left">
-            <li>✓ Memahami perkembangan anak di era digital</li>
-            <li>✓ Tips mendampingi belajar online</li>
-            <li>✓ Memilih sekolah yang tepat</li>
-            <li>✓ Komunikasi efektif dengan guru</li>
-            <li>✓ Mengembangkan karakter anak</li>
-          </ul>
-        </div>
-
-        <!-- Guru -->
-        <div class="card-hover bg-gradient-to-br from-teal-50 to-teal-100 rounded-2xl p-8 text-center">
-          <div class="w-20 h-20 bg-teal-500 rounded-full mx-auto mb-6 flex items-center justify-center">
-            <i class='bx bx-chalkboard text-3xl text-white'></i>
-          </div>
-          <h3 class="text-2xl font-bold text-gray-800 mb-4">Guru & Pengajar</h3>
-          <ul class="text-gray-600 space-y-2 text-left">
-            <li>✓ Metode pembelajaran inovatif</li>
-            <li>✓ Teknologi dalam pendidikan</li>
-            <li>✓ Manajemen kelas digital</li>
-            <li>✓ Penilaian berbasis kompetensi</li>
-            <li>✓ Pengembangan kurikulum</li>
-          </ul>
-        </div>
-
-        <!-- Penyelenggara -->
-        <div class="card-hover bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 text-center">
-          <div class="w-20 h-20 bg-purple-500 rounded-full mx-auto mb-6 flex items-center justify-center">
-            <i class='bx bx-buildings text-3xl text-white'></i>
-          </div>
-          <h3 class="text-2xl font-bold text-gray-800 mb-4">Penyelenggara Pendidikan</h3>
-          <ul class="text-gray-600 space-y-2 text-left">
-            <li>✓ Strategi digitalisasi sekolah</li>
-            <li>✓ Manajemen lembaga pendidikan</li>
-            <li>✓ Regulasi pendidikan terbaru</li>
-            <li>✓ Kemitraan dengan orang tua</li>
-            <li>✓ Peningkatan kualitas pendidikan</li>
-          </ul>
-        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Jadwal Webinar -->
-  <section id="jadwal" class="py-16 px-4 bg-gray-50">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
-        <span class="gradient-text">Jadwal Webinar</span> Terbaru
-      </h2>
-      <p class="text-center text-gray-600 mb-12 text-lg">Webinar rutin setiap minggu dengan topik yang berbeda</p>
+    <!-- Untuk Siapa Section -->
+    <section class="py-16 px-4 bg-white">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+          <span class="gradient-text">Untuk Siapa</span> Webinar Ini?
+        </h2>
+        <p class="text-center text-gray-600 mb-12 text-lg">
+          Dirancang khusus untuk komunitas pendidikan Indonesia
+        </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="card-hover bg-white rounded-2xl p-6 shadow-lg">
-          <div class="flex items-start space-x-4">
-            <div class="pulse-bg w-16 h-16 rounded-full flex items-center justify-center">
-              <i class='bx bx-calendar text-2xl text-orange-600'></i>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Orang Tua -->
+          <div
+            class="card-hover bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 text-center"
+          >
+            <div
+              class="w-20 h-20 bg-orange-500 rounded-full mx-auto mb-6 flex items-center justify-center"
+            >
+              <i class="bx bx-heart text-3xl text-white"></i>
             </div>
-            <div class="flex-1">
-              <h3 class="text-xl font-bold text-gray-800 mb-2">Pendidikan Karakter di Era Digital</h3>
-              <p class="text-gray-600 mb-3">Bagaimana membangun karakter anak di tengah dominasi teknologi</p>
-              <div class="text-sm text-gray-500 space-y-1">
-                <p><i class='bx bx-time mr-2'></i>Coming Soon</p>
-                <p><i class='bx bx-user mr-2'></i>Ust. Purwanto Abdul Ghafar</p>
-                <p><i class='bx bx-group mr-2'></i>-</p>
-              </div>
-              <button
-                class="mt-4 bg-orange-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-orange-600 transition-colors">
-                Daftar Sekarang
-              </button>
-            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Orang Tua</h3>
+            <ul class="text-gray-600 space-y-2 text-left">
+              <li>✓ Memahami perkembangan anak di era digital</li>
+              <li>✓ Tips mendampingi belajar online</li>
+              <li>✓ Memilih sekolah yang tepat</li>
+              <li>✓ Komunikasi efektif dengan guru</li>
+              <li>✓ Mengembangkan karakter anak</li>
+            </ul>
           </div>
-        </div>
 
-        <div class="card-hover bg-white rounded-2xl p-6 shadow-lg">
-          <div class="flex items-start space-x-4">
-            <div class="pulse-bg w-16 h-16 rounded-full flex items-center justify-center">
-              <i class='bx bx-laptop text-2xl text-teal-600'></i>
+          <!-- Guru -->
+          <div
+            class="card-hover bg-gradient-to-br from-teal-50 to-teal-100 rounded-2xl p-8 text-center"
+          >
+            <div
+              class="w-20 h-20 bg-teal-500 rounded-full mx-auto mb-6 flex items-center justify-center"
+            >
+              <i class="bx bx-chalkboard text-3xl text-white"></i>
             </div>
-            <div class="flex-1">
-              <h3 class="text-xl font-bold text-gray-800 mb-2">Teknologi AI dalam Pembelajaran</h3>
-              <p class="text-gray-600 mb-3">Memanfaatkan kecerdasan buatan untuk meningkatkan kualitas belajar</p>
-              <div class="text-sm text-gray-500 space-y-1">
-                <p><i class='bx bx-time mr-2'></i>Coming Soon</p>
-                <p><i class='bx bx-user mr-2'></i>Ust. Purwanto Abdul Ghafar</p>
-                <p><i class='bx bx-group mr-2'></i>-</p>
-              </div>
-              <button
-                class="mt-4 bg-teal-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-teal-600 transition-colors">
-                Daftar Sekarang
-              </button>
-            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+              Guru & Pengajar
+            </h3>
+            <ul class="text-gray-600 space-y-2 text-left">
+              <li>✓ Metode pembelajaran inovatif</li>
+              <li>✓ Teknologi dalam pendidikan</li>
+              <li>✓ Manajemen kelas digital</li>
+              <li>✓ Penilaian berbasis kompetensi</li>
+              <li>✓ Pengembangan kurikulum</li>
+            </ul>
           </div>
-        </div>
 
-        <div class="card-hover bg-white rounded-2xl p-6 shadow-lg">
-          <div class="flex items-start space-x-4">
-            <div class="pulse-bg w-16 h-16 rounded-full flex items-center justify-center">
-              <i class='bx bx-home-heart text-2xl text-purple-600'></i>
+          <!-- Penyelenggara -->
+          <div
+            class="card-hover bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 text-center"
+          >
+            <div
+              class="w-20 h-20 bg-purple-500 rounded-full mx-auto mb-6 flex items-center justify-center"
+            >
+              <i class="bx bx-buildings text-3xl text-white"></i>
             </div>
-            <div class="flex-1">
-              <h3 class="text-xl font-bold text-gray-800 mb-2">Kemitraan Orang Tua dan Sekolah</h3>
-              <p class="text-gray-600 mb-3">Membangun komunikasi yang efektif antara rumah dan sekolah</p>
-              <div class="text-sm text-gray-500 space-y-1">
-                <p><i class='bx bx-time mr-2'></i>Coming Soon</p>
-                <p><i class='bx bx-user mr-2'></i>Ust. Purwanto Abdul Ghafar</p>
-                <p><i class='bx bx-group mr-2'></i>-</p>
-              </div>
-              <button
-                class="mt-4 bg-purple-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-600 transition-colors">
-                Daftar Sekarang
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-hover bg-white rounded-2xl p-6 shadow-lg">
-          <div class="flex items-start space-x-4">
-            <div class="pulse-bg w-16 h-16 rounded-full flex items-center justify-center">
-              <i class='bx bx-brain text-2xl text-pink-600'></i>
-            </div>
-            <div class="flex-1">
-              <h3 class="text-xl font-bold text-gray-800 mb-2">Metode Pembelajaran Abad 21</h3>
-              <p class="text-gray-600 mb-3">Strategi mengajar yang relevan dengan tuntutan masa depan</p>
-              <div class="text-sm text-gray-500 space-y-1">
-                <p><i class='bx bx-time mr-2'></i>Coming Soon</p>
-                <p><i class='bx bx-user mr-2'></i>Ust. Purwanto Abdul Ghafar</p>
-                <p><i class='bx bx-group mr-2'></i>-</p>
-              </div>
-              <button
-                class="mt-4 bg-pink-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-600 transition-colors">
-                Daftar Sekarang
-              </button>
-            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+              Penyelenggara Pendidikan
+            </h3>
+            <ul class="text-gray-600 space-y-2 text-left">
+              <li>✓ Strategi digitalisasi sekolah</li>
+              <li>✓ Manajemen lembaga pendidikan</li>
+              <li>✓ Regulasi pendidikan terbaru</li>
+              <li>✓ Kemitraan dengan orang tua</li>
+              <li>✓ Peningkatan kualitas pendidikan</li>
+            </ul>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- <section id="jadwal" class="py-16 px-4 bg-gray-50">
+    <!-- Jadwal Webinar -->
+    <section id="jadwal" class="py-16 px-4 bg-gray-50">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+          <span class="gradient-text">Jadwal Webinar</span> Terbaru
+        </h2>
+        <p class="text-center text-gray-600 mb-12 text-lg">
+          Webinar rutin setiap minggu dengan topik yang berbeda
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="card-hover bg-white rounded-2xl p-6 shadow-lg">
+            <div class="flex items-start space-x-4">
+              <div
+                class="pulse-bg w-16 h-16 rounded-full flex items-center justify-center"
+              >
+                <i class="bx bx-calendar text-2xl text-orange-600"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">
+                  Pendidikan Karakter di Era Digital
+                </h3>
+                <p class="text-gray-600 mb-3">
+                  Bagaimana membangun karakter anak di tengah dominasi teknologi
+                </p>
+                <div class="text-sm text-gray-500 space-y-1">
+                  <p><i class="bx bx-time mr-2"></i>Coming Soon</p>
+                  <p>
+                    <i class="bx bx-user mr-2"></i>Ust. Purwanto Abdul Ghafar
+                  </p>
+                  <p><i class="bx bx-group mr-2"></i>-</p>
+                </div>
+                <button
+                  class="mt-4 bg-orange-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-orange-600 transition-colors"
+                >
+                  Daftar Sekarang
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-hover bg-white rounded-2xl p-6 shadow-lg">
+            <div class="flex items-start space-x-4">
+              <div
+                class="pulse-bg w-16 h-16 rounded-full flex items-center justify-center"
+              >
+                <i class="bx bx-laptop text-2xl text-teal-600"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">
+                  Teknologi AI dalam Pembelajaran
+                </h3>
+                <p class="text-gray-600 mb-3">
+                  Memanfaatkan kecerdasan buatan untuk meningkatkan kualitas
+                  belajar
+                </p>
+                <div class="text-sm text-gray-500 space-y-1">
+                  <p><i class="bx bx-time mr-2"></i>Coming Soon</p>
+                  <p>
+                    <i class="bx bx-user mr-2"></i>Ust. Purwanto Abdul Ghafar
+                  </p>
+                  <p><i class="bx bx-group mr-2"></i>-</p>
+                </div>
+                <button
+                  class="mt-4 bg-teal-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-teal-600 transition-colors"
+                >
+                  Daftar Sekarang
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-hover bg-white rounded-2xl p-6 shadow-lg">
+            <div class="flex items-start space-x-4">
+              <div
+                class="pulse-bg w-16 h-16 rounded-full flex items-center justify-center"
+              >
+                <i class="bx bx-home-heart text-2xl text-purple-600"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">
+                  Kemitraan Orang Tua dan Sekolah
+                </h3>
+                <p class="text-gray-600 mb-3">
+                  Membangun komunikasi yang efektif antara rumah dan sekolah
+                </p>
+                <div class="text-sm text-gray-500 space-y-1">
+                  <p><i class="bx bx-time mr-2"></i>Coming Soon</p>
+                  <p>
+                    <i class="bx bx-user mr-2"></i>Ust. Purwanto Abdul Ghafar
+                  </p>
+                  <p><i class="bx bx-group mr-2"></i>-</p>
+                </div>
+                <button
+                  class="mt-4 bg-purple-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-600 transition-colors"
+                >
+                  Daftar Sekarang
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-hover bg-white rounded-2xl p-6 shadow-lg">
+            <div class="flex items-start space-x-4">
+              <div
+                class="pulse-bg w-16 h-16 rounded-full flex items-center justify-center"
+              >
+                <i class="bx bx-brain text-2xl text-pink-600"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">
+                  Metode Pembelajaran Abad 21
+                </h3>
+                <p class="text-gray-600 mb-3">
+                  Strategi mengajar yang relevan dengan tuntutan masa depan
+                </p>
+                <div class="text-sm text-gray-500 space-y-1">
+                  <p><i class="bx bx-time mr-2"></i>Coming Soon</p>
+                  <p>
+                    <i class="bx bx-user mr-2"></i>Ust. Purwanto Abdul Ghafar
+                  </p>
+                  <p><i class="bx bx-group mr-2"></i>-</p>
+                </div>
+                <button
+                  class="mt-4 bg-pink-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-600 transition-colors"
+                >
+                  Daftar Sekarang
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section id="jadwal" class="py-16 px-4 bg-gray-50">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
                 <span class="gradient-text">Jadwal Webinar</span> Terbaru
@@ -430,106 +582,124 @@
         </div>
     </section> -->
 
-  <!-- Keunggulan Webinar -->
-  <section class="py-16 px-4 bg-white">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
-        <span class="gradient-text">Mengapa Memilih</span> Webinar Kami?
-      </h2>
+    <!-- Keunggulan Webinar -->
+    <section class="py-16 px-4 bg-white">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+          <span class="gradient-text">Mengapa Memilih</span> Webinar Kami?
+        </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="text-center p-6">
-          <div class="w-16 h-16 bg-orange-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-            <i class='bx bx-gift text-2xl text-orange-600'></i>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="text-center p-6">
+            <div
+              class="w-16 h-16 bg-orange-100 rounded-full mx-auto mb-4 flex items-center justify-center"
+            >
+              <i class="bx bx-gift text-2xl text-orange-600"></i>
+            </div>
+            <h3 class="font-bold text-gray-800 mb-2">Biaya Terjangkau</h3>
+            <p class="text-gray-600 text-sm">
+              Investasi kecil untuk manfaat besar
+            </p>
           </div>
-          <h3 class="font-bold text-gray-800 mb-2">Biaya Terjangkau</h3>
-          <p class="text-gray-600 text-sm">Investasi kecil untuk manfaat besar</p>
-        </div>
 
-        <div class="text-center p-6">
-          <div class="w-16 h-16 bg-teal-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-            <i class='bx bx-badge-check text-2xl text-teal-600'></i>
+          <div class="text-center p-6">
+            <div
+              class="w-16 h-16 bg-teal-100 rounded-full mx-auto mb-4 flex items-center justify-center"
+            >
+              <i class="bx bx-badge-check text-2xl text-teal-600"></i>
+            </div>
+            <h3 class="font-bold text-gray-800 mb-2">Sertifikat Resmi</h3>
+            <p class="text-gray-600 text-sm">Dapatkan sertifikat kehadiran</p>
           </div>
-          <h3 class="font-bold text-gray-800 mb-2">Sertifikat Resmi</h3>
-          <p class="text-gray-600 text-sm">Dapatkan sertifikat kehadiran</p>
-        </div>
 
-        <div class="text-center p-6">
-          <div class="w-16 h-16 bg-purple-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-            <i class='bx bx-play-circle text-2xl text-purple-600'></i>
+          <div class="text-center p-6">
+            <div
+              class="w-16 h-16 bg-purple-100 rounded-full mx-auto mb-4 flex items-center justify-center"
+            >
+              <i class="bx bx-play-circle text-2xl text-purple-600"></i>
+            </div>
+            <h3 class="font-bold text-gray-800 mb-2">Rekaman Tersedia</h3>
+            <p class="text-gray-600 text-sm">Tonton ulang kapan saja</p>
           </div>
-          <h3 class="font-bold text-gray-800 mb-2">Rekaman Tersedia</h3>
-          <p class="text-gray-600 text-sm">Tonton ulang kapan saja</p>
-        </div>
 
-        <div class="text-center p-6">
-          <div class="w-16 h-16 bg-pink-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-            <i class='bx bx-support text-2xl text-pink-600'></i>
+          <div class="text-center p-6">
+            <div
+              class="w-16 h-16 bg-pink-100 rounded-full mx-auto mb-4 flex items-center justify-center"
+            >
+              <i class="bx bx-support text-2xl text-pink-600"></i>
+            </div>
+            <h3 class="font-bold text-gray-800 mb-2">Diskusi Interaktif</h3>
+            <p class="text-gray-600 text-sm">
+              Tanya jawab langsung dengan expert
+            </p>
           </div>
-          <h3 class="font-bold text-gray-800 mb-2">Diskusi Interaktif</h3>
-          <p class="text-gray-600 text-sm">Tanya jawab langsung dengan expert</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Testimoni -->
+    <!-- Testimoni -->
 
-  <!-- CTA Section -->
-  <section id="daftar" class="py-20 px-4 bg-gradient-to-br from-orange-500 to-teal-600">
-    <div class="max-w-4xl mx-auto text-center text-white">
-      <h2 class="text-3xl md:text-5xl font-bold mb-6">
-        Siap Bergabung dengan Komunitas Pendidikan Terdepan?
-      </h2>
-      <p class="text-xl md:text-2xl mb-8 opacity-90">
-        Daftar sekarang dan jadilah bagian dari revolusi pendidikan Indonesia!
-      </p>
+    <!-- CTA Section -->
+    <section
+      id="daftar"
+      class="py-20 px-4 bg-gradient-to-br from-orange-500 to-teal-600"
+    >
+      <div class="max-w-4xl mx-auto text-center text-white">
+        <h2 class="text-3xl md:text-5xl font-bold mb-6">
+          Siap Bergabung dengan Komunitas Pendidikan Terdepan?
+        </h2>
+        <p class="text-xl md:text-2xl mb-8 opacity-90">
+          Daftar sekarang dan jadilah bagian dari revolusi pendidikan Indonesia!
+        </p>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="https://wa.me/6285161231559?text=Halo,%20saya%20mau%20daftar%20webinar%20pendidikan!"
-          class="bg-white text-orange-600 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:scale-105">
-          <i class='bx bxl-whatsapp mr-2'></i>
-          Daftar via WhatsApp
-        </a>
-        <!-- <a href="mailto:info@sekolahimpian.com?subject=Pendaftaran%20Webinar" 
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="https://wa.me/6285161231559?text=Halo,%20saya%20mau%20daftar%20webinar%20pendidikan!"
+            class="bg-white text-orange-600 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:scale-105"
+          >
+            <i class="bx bxl-whatsapp mr-2"></i>
+            Daftar via WhatsApp
+          </a>
+          <!-- <a href="mailto:info@sekolahimpian.com?subject=Pendaftaran%20Webinar" 
              class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-orange-600 transition-all">
             <i class='bx bx-envelope mr-2'></i>
             Daftar via Email
           </a> -->
+        </div>
+
+        <p class="mt-6 text-sm opacity-80">
+          *Kapasitas terbatas! Daftar sekarang untuk mengamankan tempat Anda
+        </p>
       </div>
+    </section>
+    <button
+      id="scrollToTopBtn"
+      class="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-green-600 text-white shadow-lg hover:bg-green-700 transition hidden"
+    >
+      <i class="bx bx-up-arrow-alt text-2xl"></i>
+    </button>
 
-      <p class="mt-6 text-sm opacity-80">
-        *Kapasitas terbatas! Daftar sekarang untuk mengamankan tempat Anda
-      </p>
-    </div>
-  </section>
-  <button id="scrollToTopBtn"
-    class="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-green-600 text-white shadow-lg hover:bg-green-700 transition hidden">
-    <i class='bx bx-up-arrow-alt text-2xl'></i>
-  </button>
+    <script>
+      const scrollBtn = document.getElementById("scrollToTopBtn");
 
-  <script>
-    const scrollBtn = document.getElementById("scrollToTopBtn");
-
-    // Tampilkan tombol jika scroll ke bawah
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        scrollBtn.classList.remove("hidden");
-      } else {
-        scrollBtn.classList.add("hidden");
-      }
-    });
-
-    // Scroll ke atas saat tombol diklik
-    scrollBtn.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+      // Tampilkan tombol jika scroll ke bawah
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          scrollBtn.classList.remove("hidden");
+        } else {
+          scrollBtn.classList.add("hidden");
+        }
       });
-    });
-  </script>
 
-  <script src="js/navbar.js"></script>
-</body>
+      // Scroll ke atas saat tombol diklik
+      scrollBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+    </script>
 
+    <script src="js/navbar.js"></script>
+  </body>
 </html>
