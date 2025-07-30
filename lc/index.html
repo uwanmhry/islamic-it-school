@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Liquid Curriculum - Revolusi Pendidikan Islami</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="/img/LC/cover.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/script.js"></script>
     <script>
@@ -154,7 +155,7 @@
                 class="absolute inset-0 bg-gradient-to-r from-emerald-500 to-orange-500 rounded-3xl blur-3xl opacity-30 animate-pulse-slow"
               ></div>
               <img
-                src="/img/LC/cover.jpg"
+                src="/img/LC/mockup.png"
                 alt="Cover Liquid Curriculum"
                 class="relative z-10 w-full rounded-3xl shadow-2xl animate-float hover:scale-105 transition-transform duration-500 border-4 border-white"
               />
@@ -373,346 +374,118 @@
 
     <!-- Book Specifications Section -->
     <section id="specs" class="py-20 bg-white">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-16 fade-in-element">
-          <h2
-            class="text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-600 to-orange-600 bg-clip-text text-transparent"
-          >
-            DETAIL BUKU
-          </h2>
-          <p class="text-xl text-gray-600">
-            Spesifikasi lengkap buku Liquid Curriculum
-          </p>
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-4 fade-in-element">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-emerald-600 to-orange-600 bg-clip-text text-transparent">
+                    DETAIL BUKU
+                </h2>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center fade-in-element">
+                    <p class="text-gray-600 mb-6 text-lg leading-relaxed max-w-3xl mx-auto">
+                        Tujuan pendidikan dari Liquid Curriculum adalah mencapai
+                        stabilisasi moral, mental, dan produktifitas lebih cepat.
+                    </p>
+
+                    <!-- Gallery Section -->
+                    <div class="relative max-w-6xl mx-auto mt-8 px-8">
+                        <div class="overflow-hidden">
+                            <div class="flex gap-4 pb-4 overflow-x-auto snap-x snap-mandatory scroll-smooth gallery-container" id="book-gallery">
+                                <div class="flex-shrink-0 w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-1rem)] snap-center cursor-pointer" onclick="openLightbox(0)">
+                                    <div class="h-80 bg-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow flex items-center justify-center">
+                                        <img src="/img/LC/cover.jpg" alt="Cover Liquid Curriculum" class="h-full w-auto object-contain" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-1rem)] snap-center cursor-pointer" onclick="openLightbox(1)">
+                                    <div class="h-80 bg-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow flex items-center justify-center">
+                                        <img src="/img/LC/b-cover.jpg" alt="Back Cover Liquid Curriculum" class="h-full w-auto object-contain" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-1rem)] snap-center cursor-pointer" onclick="openLightbox(2)">
+                                    <div class="h-80 bg-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow flex items-center justify-center">
+                                        <img src="/img/LC/1.jpg" alt="Halaman Dalam Buku" class="h-full w-auto object-contain" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-1rem)] snap-center cursor-pointer" onclick="openLightbox(3)">
+                                    <div class="h-80 bg-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow flex items-center justify-center">
+                                        <img src="/img/LC/2.jpg" alt="Halaman Dalam Buku" class="h-full w-auto object-contain" loading="lazy">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Arrows -->
+                        <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md z-10" onclick="scrollGallery(-1)">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+                        <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md z-10" onclick="scrollGallery(1)">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Dots Indicator -->
+                    <div class="flex justify-center mt-4 space-x-2" id="gallery-dots">
+                        <button class="w-3 h-3 rounded-full bg-emerald-500 transition-all duration-300" data-slide="0" onclick="goToSlide(0)"></button>
+                        <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" data-slide="1" onclick="goToSlide(1)"></button>
+                        <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" data-slide="2" onclick="goToSlide(2)"></button>
+                        <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" data-slide="3" onclick="goToSlide(3)"></button>
+                    </div>
+                </div>
+
+                <!-- Lightbox Modal -->
+                <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center">
+                    <button class="absolute top-4 right-4 text-white hover:text-emerald-400 transition-colors z-50" onclick="closeLightbox()">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+
+                    <div class="relative w-full max-w-6xl h-full flex items-center">
+                        <button class="absolute left-4 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full z-10 transition-colors" onclick="lightboxPrev()">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+
+                        <div class="w-full h-full flex overflow-hidden">
+                            <div class="flex lightbox-slider" id="lightbox-slider">
+                                <div class="w-full h-full flex-shrink-0 flex items-center justify-center p-4">
+                                    <img src="/img/LC/cover.jpg" alt="Cover Liquid Curriculum" class="max-h-[90vh] max-w-full object-contain">
+                                </div>
+                                <div class="w-full h-full flex-shrink-0 flex items-center justify-center p-4">
+                                    <img src="/img/LC/b-cover.jpg" alt="Back Cover Liquid Curriculum" class="max-h-[90vh] max-w-full object-contain">
+                                </div>
+                                <div class="w-full h-full flex-shrink-0 flex items-center justify-center p-4">
+                                    <img src="/img/LC/1.jpg" alt="Halaman Dalam Buku" class="max-h-[90vh] max-w-full object-contain">
+                                </div>
+                                <div class="w-full h-full flex-shrink-0 flex items-center justify-center p-4">
+                                    <img src="/img/LC/2.jpg" alt="Halaman Dalam Buku" class="max-h-[90vh] max-w-full object-contain">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="absolute right-4 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full z-10 transition-colors" onclick="lightboxNext()">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Lightbox Dots -->
+                    <div class="absolute bottom-8 left-0 right-0 flex justify-center space-x-2" id="lightbox-dots">
+                        <button class="w-3 h-3 rounded-full bg-emerald-500 transition-all duration-300" data-slide="0" onclick="lightboxGoToSlide(0)"></button>
+                        <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" data-slide="1" onclick="lightboxGoToSlide(1)"></button>
+                        <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" data-slide="2" onclick="lightboxGoToSlide(2)"></button>
+                        <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" data-slide="3" onclick="lightboxGoToSlide(3)"></button>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="max-w-4xl mx-auto">
-          <div class="glass-effect rounded-3xl p-8 fade-in-element">
-            <div class="grid md:grid-cols-2 gap-8">
-              <div class="space-y-4">
-                <div class="flex justify-between border-b border-gray-200 pb-2">
-                  <span class="font-semibold text-gray-700">Judul:</span>
-                  <span class="text-gray-600">Liquid Curriculum</span>
-                </div>
-                <div class="flex justify-between border-b border-gray-200 pb-2">
-                  <span class="font-semibold text-gray-700">Penulis:</span>
-                  <span class="text-gray-600"
-                    >Ustadz Purwanto Abdul Ghaffar</span
-                  >
-                </div>
-                <div class="flex justify-between border-b border-gray-200 pb-2">
-                  <span class="font-semibold text-gray-700">Penerbit:</span>
-                  <span class="text-gray-600">Bintang Semesta Media</span>
-                </div>
-                <div class="flex justify-between border-b border-gray-200 pb-2">
-                  <span class="font-semibold text-gray-700">ISBN:</span>
-                  <span class="text-gray-600">978-623-129-470-8</span>
-                </div>
-                <div class="flex justify-between border-b border-gray-200 pb-2">
-                  <span class="font-semibold text-gray-700">Bahasa:</span>
-                  <span class="text-gray-600">Indonesia</span>
-                </div>
-              </div>
-              <div class="space-y-4">
-                <div class="flex justify-between border-b border-gray-200 pb-2">
-                  <span class="font-semibold text-gray-700">Halaman:</span>
-                  <span class="text-gray-600">x + 326</span>
-                </div>
-                <div class="flex justify-between border-b border-gray-200 pb-2">
-                  <span class="font-semibold text-gray-700">Dimensi:</span>
-                  <span class="text-gray-600">14 x 20 cm</span>
-                </div>
-                <div class="flex justify-between border-b border-gray-200 pb-2">
-                  <span class="font-semibold text-gray-700">Seri:</span>
-                  <span class="text-gray-600">Karya Independen</span>
-                </div>
-                <div>
-                  <span class="font-semibold text-gray-700 block mb-2"
-                    >Kategori:</span
-                  >
-                  <div class="flex flex-wrap gap-2">
-                    <span
-                      class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm font-medium"
-                      >Pendidikan</span
-                    >
-                    <span
-                      class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium"
-                      >Parenting</span
-                    >
-                    <span
-                      class="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm font-medium"
-                      >Islami</span
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-12 text-center fade-in-element">
-            <h3 class="text-2xl font-bold mb-6 text-gray-800">
-              Deskripsi Buku
-            </h3>
-            <p
-              class="text-gray-600 mb-6 text-lg leading-relaxed max-w-3xl mx-auto"
-            >
-              Tujuan pendidikan dari Liquid Curriculum adalah mencapai
-              stabilisasi moral, mental, dan produktifitas lebih cepat. Siapapun
-              yang mendambakan lahirnya generasi impian, baik anda adalah
-              seorang guru maupun orang tua, Liquid Curriculum adalah
-              jawabannya. InsyaAllah.
-            </p>
-
-            <!-- Horizontal Sliding Gallery -->
-            <div class="relative max-w-6xl mx-auto mt-8 px-8">
-              <div class="overflow-hidden">
-                <div
-                  class="grid grid-flow-col auto-cols-[calc(33.333%-1rem)] gap-4 pb-4 overflow-x-auto snap-x snap-mandatory scroll-smooth"
-                  id="book-gallery"
-                >
-                  <div
-                    class="snap-center cursor-pointer"
-                    onclick="openLightbox(0)"
-                  >
-                    <img
-                      src="/img/LC/cover.jpg"
-                      alt="Cover Liquid Curriculum"
-                      class="rounded-xl shadow-md w-full h-64 object-cover hover:shadow-lg transition-shadow"
-                    />
-                  </div>
-                  <div
-                    class="snap-center cursor-pointer"
-                    onclick="openLightbox(1)"
-                  >
-                    <img
-                      src="/img/LC/b-cover.jpg"
-                      alt="Back Cover Liquid Curriculum"
-                      class="rounded-xl shadow-md w-full h-64 object-cover hover:shadow-lg transition-shadow"
-                    />
-                  </div>
-                  <div
-                    class="snap-center cursor-pointer"
-                    onclick="openLightbox(2)"
-                  >
-                    <img
-                      src="/img/LC/1.jpg"
-                      alt="Halaman Dalam Buku"
-                      class="rounded-xl shadow-md w-full h-64 object-cover hover:shadow-lg transition-shadow"
-                    />
-                  </div>
-                  <div
-                    class="snap-center cursor-pointer"
-                    onclick="openLightbox(3)"
-                  >
-                    <img
-                      src="/img/LC/2.jpg"
-                      alt="Halaman Dalam Buku"
-                      class="rounded-xl shadow-md w-full h-64 object-cover hover:shadow-lg transition-shadow"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <!-- Navigation Arrows -->
-              <button
-                class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md z-10"
-                onclick="scrollGallery(-1)"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </button>
-              <button
-                class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md z-10"
-                onclick="scrollGallery(1)"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
-            </div>
-
-            <!-- Dots Indicator -->
-            <div class="flex justify-center mt-4 space-x-2" id="gallery-dots">
-              <button
-                class="w-3 h-3 rounded-full bg-gray-300 hover:bg-emerald-500 transition-colors"
-                onclick="goToSlide(0)"
-              ></button>
-              <button
-                class="w-3 h-3 rounded-full bg-gray-300 hover:bg-emerald-500 transition-colors"
-                onclick="goToSlide(1)"
-              ></button>
-              <button
-                class="w-3 h-3 rounded-full bg-gray-300 hover:bg-emerald-500 transition-colors"
-                onclick="goToSlide(2)"
-              ></button>
-              <button
-                class="w-3 h-3 rounded-full bg-gray-300 hover:bg-emerald-500 transition-colors"
-                onclick="goToSlide(3)"
-              ></button>
-            </div>
-          </div>
-
-          <!-- Lightbox Modal -->
-          <div
-            id="lightbox"
-            class="fixed inset-0 bg-black bg-opacity-90 z-50 items-center justify-center hidden"
-          >
-            <button
-              onclick="closeLightbox()"
-              class="absolute top-4 right-4 text-white hover:text-emerald-400 transition-colors z-50"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-
-            <div class="relative w-full max-w-6xl h-full flex items-center">
-              <button
-                onclick="lightboxPrev()"
-                class="absolute left-4 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full z-10"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-8 w-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </button>
-
-              <div class="w-full h-full flex overflow-hidden">
-                <div
-                  class="flex transition-transform duration-300 ease-in-out"
-                  id="lightbox-slider"
-                  style="transform: translateX(0)"
-                >
-                  <div
-                    class="w-full h-full flex-shrink-0 flex items-center justify-center p-4"
-                  >
-                    <img
-                      src="/img/LC/cover.jpg"
-                      alt="Cover Liquid Curriculum"
-                      class="max-h-[90vh] max-w-full object-contain"
-                    />
-                  </div>
-                  <div
-                    class="w-full h-full flex-shrink-0 flex items-center justify-center p-4"
-                  >
-                    <img
-                      src="/img/LC/b-cover.jpg"
-                      alt="Back Cover Liquid Curriculum"
-                      class="max-h-[90vh] max-w-full object-contain"
-                    />
-                  </div>
-                  <div
-                    class="w-full h-full flex-shrink-0 flex items-center justify-center p-4"
-                  >
-                    <img
-                      src="/img/LC/1.jpg"
-                      alt="Halaman Dalam Buku"
-                      class="max-h-[90vh] max-w-full object-contain"
-                    />
-                  </div>
-                  <div
-                    class="w-full h-full flex-shrink-0 flex items-center justify-center p-4"
-                  >
-                    <img
-                      src="/img/LC/2.jpg"
-                      alt="Halaman Dalam Buku"
-                      class="max-h-[90vh] max-w-full object-contain"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <button
-                onclick="lightboxNext()"
-                class="absolute right-4 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full z-10"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-8 w-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
-            </div>
-
-            <!-- Lightbox Dots -->
-            <div
-              class="absolute bottom-8 left-0 right-0 flex justify-center space-x-2"
-              id="lightbox-dots"
-            >
-              <button
-                class="w-3 h-3 rounded-full bg-gray-300 hover:bg-emerald-500 transition-colors"
-                onclick="lightboxGoToSlide(0)"
-              ></button>
-              <button
-                class="w-3 h-3 rounded-full bg-gray-300 hover:bg-emerald-500 transition-colors"
-                onclick="lightboxGoToSlide(1)"
-              ></button>
-              <button
-                class="w-3 h-3 rounded-full bg-gray-300 hover:bg-emerald-500 transition-colors"
-                onclick="lightboxGoToSlide(2)"
-              ></button>
-              <button
-                class="w-3 h-3 rounded-full bg-gray-300 hover:bg-emerald-500 transition-colors"
-                onclick="lightboxGoToSlide(3)"
-              ></button>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
-
     <!-- CTA Section -->
     <section id="beli" class="py-20 gradient-bg relative overflow-hidden">
       <div class="absolute inset-0 bg-black opacity-30"></div>
@@ -787,7 +560,7 @@
                 <div class="bg-emerald-50 p-4 rounded-lg">
                   <div class="text-sm text-gray-500 mb-1">Harga Normal</div>
                   <div class="text-3xl font-bold text-emerald-600">
-                    Rp 250.000
+                    Rp 200.000
                   </div>
                   <div class="text-sm text-gray-500 mt-1">+ Ongkos Kirim</div>
                 </div>
@@ -870,10 +643,6 @@
                     Rp 187.000
                   </div>
                   <div class="text-sm text-gray-500 mt-1">+ Ongkos Kirim</div>
-                  <div class="text-xs text-orange-500 mt-2">
-                    *Promo berakhir dalam
-                    <span class="font-bold">23:59:59</span>
-                  </div>
                 </div>
               </div>
             </div>

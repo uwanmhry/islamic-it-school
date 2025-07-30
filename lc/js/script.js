@@ -1,221 +1,297 @@
 // Main gallery variables
 let currentSlide = 0;
+let lightboxCurrentSlide = 0;
 const totalSlides = 4;
-const gallery = document.getElementById("book-gallery");
 
-// Calculate card width to show 3 at a time
-function updateCardSizing() {
-  const containerWidth = gallery.parentElement.offsetWidth;
-  const cardWidth = Math.floor(containerWidth / 3) - 16; // minus gap
-  gallery.style.gridAutoColumns = `${cardWidth}px`;
+// Initialize when DOM is loaded
+document.addEventListener("DOMContentLoaded", function() {
+    init();
+});
+
+// Initialize page
+function init() {
+    setupEventListeners();
+    setupScrollEffects();
+    updateActiveDot();
+    updateCardSizing();
 }
 
-// Initialize and update on resize
-updateCardSizing();
-window.addEventListener("resize", updateCardSizing); // Lightbox variables
-let lightboxCurrentSlide = 0;
-const lightboxSlider = document.getElementById("lightbox-slider");
+// Calculate card width based on screen size
+function updateCardSizing() {
+    const gallery = document.getElementById("book-gallery");
+    if (!gallery) return;
+    
+    const containerWidth = gallery.parentElement.offsetWidth;
+    let cardWidth;
+    
+    // Responsive card sizing
+    if (window.innerWidth < 768) { // Mobile
+        cardWidth = containerWidth - 32; // Full width minus padding
+    } else if (window.innerWidth < 1024) { // Tablet
+        cardWidth = Math.floor(containerWidth / 2) - 16; // 2 cards
+    } else { // Desktop
+        cardWidth = Math.floor(containerWidth / 3) - 16; // 3 cards
+    }
+    
+    // Update CSS custom property for responsive design
+    document.documentElement.style.setProperty('--card-width', cardWidth + 'px');
+}
 
 // Main gallery functions
 function scrollGallery(direction) {
-  const gallery = document.getElementById("book-gallery");
-  const scrollAmount = gallery.offsetWidth * 0.8 * direction;
-  gallery.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    const gallery = document.getElementById("book-gallery");
+    if (!gallery) return;
+    
+    // Get actual card width including gap based on screen size
+    let cardWidth;
+    if (window.innerWidth < 768) { // Mobile - 1 card
+        cardWidth = gallery.children[0].offsetWidth;
+    } else if (window.innerWidth < 1024) { // Tablet - 2 cards
+        cardWidth = gallery.children[0].offsetWidth + 16;
+    } else { // Desktop - 3 cards  
+        cardWidth = gallery.children[0].offsetWidth + 16;
+    }
+    
+    const scrollAmount = cardWidth * direction;
+    
+    gallery.scrollBy({ 
+        left: scrollAmount, 
+        behavior: "smooth" 
+    });
 
-  setTimeout(() => {
-    updateActiveDot();
-  }, 300);
+    // Update current slide based on scroll position
+    setTimeout(() => {
+        updateCurrentSlideFromScroll();
+        updateActiveDot();
+    }, 300);
 }
 
 function goToSlide(index) {
-  const gallery = document.getElementById("book-gallery");
-  const slide = gallery.children[index];
-  slide.scrollIntoView({
-    behavior: "smooth",
-    block: "nearest",
-    inline: "center",
-  });
-  currentSlide = index;
-  updateActiveDot();
+    const gallery = document.getElementById("book-gallery");
+    if (!gallery || index < 0 || index >= totalSlides) return;
+    
+    const slide = gallery.children[index];
+    if (slide) {
+        slide.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+        });
+        currentSlide = index;
+        updateActiveDot();
+    }
+}
+
+function updateCurrentSlideFromScroll() {
+    const gallery = document.getElementById("book-gallery");
+    if (!gallery) return;
+    
+    const scrollPosition = gallery.scrollLeft;
+    let cardWidth;
+    
+    // Calculate card width based on screen size
+    if (window.innerWidth < 768) { // Mobile - 1 card
+        cardWidth = gallery.children[0].offsetWidth;
+    } else if (window.innerWidth < 1024) { // Tablet - 2 cards
+        cardWidth = gallery.children[0].offsetWidth + 16;
+    } else { // Desktop - 3 cards
+        cardWidth = gallery.children[0].offsetWidth + 16;
+    }
+    
+    currentSlide = Math.round(scrollPosition / cardWidth);
+    
+    // Ensure currentSlide is within bounds
+    currentSlide = Math.max(0, Math.min(currentSlide, totalSlides - 1));
 }
 
 function updateActiveDot() {
-  const dots = document.querySelectorAll("#gallery-dots button");
-  dots.forEach((dot, index) => {
-    if (index === currentSlide) {
-      dot.classList.remove("bg-gray-300");
-      dot.classList.add("bg-emerald-500", "w-4");
-    } else {
-      dot.classList.add("bg-gray-300");
-      dot.classList.remove("bg-emerald-500", "w-4");
-    }
-  });
+    const dots = document.querySelectorAll("#gallery-dots button");
+    dots.forEach((dot, index) => {
+        const isActive = index === currentSlide;
+        
+        if (isActive) {
+            dot.classList.remove("bg-gray-300");
+            dot.classList.add("bg-emerald-500", "scale-125");
+        } else {
+            dot.classList.add("bg-gray-300");
+            dot.classList.remove("bg-emerald-500", "scale-125");
+        }
+    });
 }
 
 // Lightbox functions
 function openLightbox(index) {
-  const lightbox = document.getElementById("lightbox");
-  lightboxCurrentSlide = index;
-  updateLightboxSlider();
-  lightbox.classList.remove("hidden");
-  document.body.style.overflow = "hidden";
-  updateLightboxDots();
+    const lightbox = document.getElementById("lightbox");
+    if (!lightbox) return;
+    
+    lightboxCurrentSlide = index;
+    updateLightboxSlider();
+    updateLightboxDots();
+    
+    // Show lightbox
+    lightbox.classList.remove("hidden");
+    lightbox.classList.add("flex");
+    document.body.style.overflow = "hidden";
+    
+    // Focus trap for accessibility
+    lightbox.focus();
 }
 
 function closeLightbox() {
-  const lightbox = document.getElementById("lightbox");
-  lightbox.classList.add("hidden");
-  document.body.style.overflow = "auto";
+    const lightbox = document.getElementById("lightbox");
+    if (!lightbox) return;
+    
+    lightbox.classList.add("hidden");
+    lightbox.classList.remove("flex");
+    document.body.style.overflow = "auto";
 }
 
 function lightboxPrev() {
-  lightboxCurrentSlide =
-    (lightboxCurrentSlide - 1 + totalSlides) % totalSlides;
-  updateLightboxSlider();
-  updateLightboxDots();
+    lightboxCurrentSlide = (lightboxCurrentSlide - 1 + totalSlides) % totalSlides;
+    updateLightboxSlider();
+    updateLightboxDots();
 }
 
 function lightboxNext() {
-  lightboxCurrentSlide = (lightboxCurrentSlide + 1) % totalSlides;
-  updateLightboxSlider();
-  updateLightboxDots();
+    lightboxCurrentSlide = (lightboxCurrentSlide + 1) % totalSlides;
+    updateLightboxSlider();
+    updateLightboxDots();
 }
 
 function lightboxGoToSlide(index) {
-  lightboxCurrentSlide = index;
-  updateLightboxSlider();
-  updateLightboxDots();
+    if (index < 0 || index >= totalSlides) return;
+    
+    lightboxCurrentSlide = index;
+    updateLightboxSlider();
+    updateLightboxDots();
 }
 
 function updateLightboxSlider() {
-  const offset = -lightboxCurrentSlide * 100;
-  lightboxSlider.style.transform = `translateX(${offset}%)`;
+    const lightboxSlider = document.getElementById("lightbox-slider");
+    if (!lightboxSlider) return;
+    
+    const offset = -lightboxCurrentSlide * 100;
+    lightboxSlider.style.transform = `translateX(${offset}%)`;
 }
 
 function updateLightboxDots() {
-  const dots = document.querySelectorAll("#lightbox-dots button");
-  dots.forEach((dot, index) => {
-    if (index === lightboxCurrentSlide) {
-      dot.classList.remove("bg-gray-300");
-      dot.classList.add("bg-emerald-500", "w-4");
-    } else {
-      dot.classList.add("bg-gray-300");
-      dot.classList.remove("bg-emerald-500", "w-4");
-    }
-  });
-}
-
-// Event listeners
-document
-  .getElementById("book-gallery")
-  .addEventListener("scroll", function () {
-    const gallery = this;
-    const scrollPosition = gallery.scrollLeft;
-    const slideWidth = gallery.children[0].offsetWidth;
-    currentSlide = Math.round(scrollPosition / slideWidth);
-    updateActiveDot();
-  });
-
-document
-  .getElementById("lightbox")
-  .addEventListener("click", function (e) {
-    if (e.target === this) {
-      closeLightbox();
-    }
-  });
-
-document.addEventListener("keydown", function (e) {
-  const lightbox = document.getElementById("lightbox");
-  if (!lightbox.classList.contains("hidden")) {
-    if (e.key === "Escape") {
-      closeLightbox();
-    } else if (e.key === "ArrowLeft") {
-      lightboxPrev();
-    } else if (e.key === "ArrowRight") {
-      lightboxNext();
-    }
-  }
-});
-
-// Touch events for lightbox swipe
-let touchStartX = 0;
-let touchEndX = 0;
-
-lightboxSlider.addEventListener(
-  "touchstart",
-  (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  },
-  { passive: true }
-);
-
-lightboxSlider.addEventListener(
-  "touchend",
-  (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-  },
-  { passive: true }
-);
-
-function handleSwipe() {
-  const threshold = 50;
-  if (touchStartX - touchEndX > threshold) {
-    lightboxNext();
-  } else if (touchEndX - touchStartX > threshold) {
-    lightboxPrev();
-  }
-}
-
-// Initialize
-updateActiveDot();
-
-// Initialize page
-function init() {
-  setupEventListeners();
-  setupScrollEffects();
+    const dots = document.querySelectorAll("#lightbox-dots button");
+    dots.forEach((dot, index) => {
+        const isActive = index === lightboxCurrentSlide;
+        
+        if (isActive) {
+            dot.classList.remove("bg-gray-300");
+            dot.classList.add("bg-emerald-500", "scale-125");
+        } else {
+            dot.classList.add("bg-gray-300");
+            dot.classList.remove("bg-emerald-500", "scale-125");
+        }
+    });
 }
 
 // Setup event listeners
 function setupEventListeners() {
-  // Smooth scrolling
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute("href"));
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
-      }
+    // Gallery scroll listener
+    const gallery = document.getElementById("book-gallery");
+    if (gallery) {
+        gallery.addEventListener("scroll", function() {
+            updateCurrentSlideFromScroll();
+            updateActiveDot();
+        });
+    }
+
+    // Lightbox click outside to close
+    const lightbox = document.getElementById("lightbox");
+    if (lightbox) {
+        lightbox.addEventListener("click", function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+    }
+
+    // Keyboard navigation
+    document.addEventListener("keydown", function(e) {
+        const lightbox = document.getElementById("lightbox");
+        if (!lightbox || lightbox.classList.contains("hidden")) return;
+        
+        switch(e.key) {
+            case "Escape":
+                closeLightbox();
+                break;
+            case "ArrowLeft":
+                e.preventDefault();
+                lightboxPrev();
+                break;
+            case "ArrowRight":
+                e.preventDefault();
+                lightboxNext();
+                break;
+        }
     });
-  });
+
+    // Touch events for lightbox swipe
+    const lightboxSlider = document.getElementById("lightbox-slider");
+    if (lightboxSlider) {
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        lightboxSlider.addEventListener("touchstart", (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        lightboxSlider.addEventListener("touchend", (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const threshold = 50;
+            const swipeDistance = touchStartX - touchEndX;
+            
+            if (Math.abs(swipeDistance) > threshold) {
+                if (swipeDistance > 0) {
+                    lightboxNext();
+                } else {
+                    lightboxPrev();
+                }
+            }
+        }
+    }
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+    });
+
+    // Resize listener
+    window.addEventListener("resize", updateCardSizing);
 }
 
 // Setup scroll effects
 function setupScrollEffects() {
-  // Intersection Observer for animations
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  };
+    // Intersection Observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+    };
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
-      }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    // Observe all fade-in elements
+    document.querySelectorAll(".fade-in-element").forEach((el) => {
+        observer.observe(el);
     });
-  }, observerOptions);
-
-  // Observe all fade-in elements
-  document.querySelectorAll(".fade-in-element").forEach((el) => {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(30px)";
-    el.style.transition =
-      "opacity 0.8s ease-out, transform 0.8s ease-out";
-    observer.observe(el);
-  });
 }
-
-// Initialize when DOM is loaded
-document.addEventListener("DOMContentLoaded", init);
