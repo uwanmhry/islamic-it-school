@@ -31,6 +31,19 @@
       </p>
     </div>
 
+    <!-- Status Update Info -->
+    <div id="statusUpdate" class="bg-yellow-50 border border-yellow-200 p-3 rounded-lg mb-6 hidden">
+      <p class="text-sm text-yellow-700">🔄 Memperbarui status transaksi...</p>
+    </div>
+
+    <div id="statusSuccess" class="bg-green-50 border border-green-200 p-3 rounded-lg mb-6 hidden">
+      <p class="text-sm text-green-700">✅ Status transaksi berhasil diperbarui</p>
+    </div>
+
+    <div id="statusError" class="bg-red-50 border border-red-200 p-3 rounded-lg mb-6 hidden">
+      <p class="text-sm text-red-700">⚠️ Gagal memperbarui status transaksi</p>
+    </div>
+
     <!-- Next Steps -->
     <div class="bg-blue-50 p-4 rounded-lg mb-6 text-left">
       <h3 class="font-semibold text-blue-800 mb-2">Langkah Selanjutnya:</h3>
@@ -67,38 +80,160 @@
     </div>
   </div>
 
+// Fixed success page script
 <script>
   const urlParams = new URLSearchParams(window.location.search);
   const orderId = urlParams.get('order_id');
   
+  // Elements
+  const statusUpdate = document.getElementById('statusUpdate');
+  const statusSuccess = document.getElementById('statusSuccess');
+  const statusError = document.getElementById('statusError');
+  
   if (orderId) {
     document.getElementById('orderId').textContent = orderId;
-
-    // Update status log ke 'beli'
-    fetch(`http://localhost:5000/api/logs/${orderId}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ status: 'beli' })
-    })
-    .then(response => {
-      if (!response.ok) throw new Error('Gagal update status');
-      console.log('Status berhasil diperbarui ke "beli"');
-    })
-    .catch(error => {
-      console.error('Gagal memperbarui status log:', error);
-    });
+    
+    // Extract log_id from order_id format: ORDER-timestamp-log_id
+    const logIdMatch = orderId.match(/ORDER-\d+-(\d+)$/);
+    const logId = logIdMatch ? logIdMatch[1] : null;
+    
+    if (logId) {
+      console.log('Extracted log_id:', logId, 'from order_id:', orderId);
+      
+      // Show loading status
+      statusUpdate.classList.remove('hidden');
+      
+      // Wait a bit before updating to allow webhook to process first
+      setTimeout(() => {
+        updateTransactionStatus(logId, orderId);
+      }, 2000); // 2 second delay
+      
+    } else {
+      console.error('Cannot extract log_id from order_id:', orderId);
+      statusError.classList.remove('hidden');
+      statusError.querySelector('p').textContent = '⚠️ Format Order ID tidak valid';
+    }
   } else {
     document.getElementById('orderId').textContent = 'Tidak tersedia';
+    statusError.classList.remove('hidden');
+    statusError.querySelector('p').textContent = '⚠️ Order ID tidak ditemukan';
   }
 
-  // Auto redirect (opsional)
-  setTimeout(() => {
-    if (confirm('Redirect ke beranda dalam 5 detik. Klik OK untuk redirect sekarang atau Cancel untuk tetap di halaman ini.')) {
-      window.location.href = '/';
+  // Fixed function to update status using log_id
+  async function updateTransactionStatus(logId, orderIdParam) {
+    try {
+      console.log('Updating status for log_id:', logId);
+      
+      // First, check current status to avoid unnecessary updates
+      const checkResponse = await fetch(`http://localhost:5000/api/logs`);
+      if (checkResponse.ok) {
+        const logs = await checkResponse.json();
+        const currentLog = logs.find(log => log.id == logId);
+        
+        if (currentLog && currentLog.status === 'beli') {
+          console.log('Status already updated to "beli" by webhook');
+          statusUpdate.classList.add('hidden');
+          statusSuccess.classList.remove('hidden');
+          statusSuccess.querySelector('p').textContent = '✅ Status transaksi sudah diperbarui (via webhook)';
+          return;
+        }
+      }
+      
+      // Update using log_id (not order_id)
+      const response = await fetch(`http://localhost:5000/api/logs/${logId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+          status: 'beli',
+          order_id: orderIdParam // Also update order_id if not set
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`HTTP ${response.status}: ${errorData.error || 'Unknown error'}`);
+      }
+
+      const result = await response.json();
+      console.log('Status berhasil diperbarui:', result);
+      
+      // Hide loading, show success
+      statusUpdate.classList.add('hidden');
+      statusSuccess.classList.remove('hidden');
+      
+    } catch (error) {
+      console.error('Gagal memperbarui status log:', error);
+      
+      // Hide loading, show error
+      statusUpdate.classList.add('hidden');
+      statusError.classList.remove('hidden');
+      statusError.querySelector('p').textContent = `⚠️ ${error.message}`;
     }
-  }, 25000);
+  }
+
+  // Auto redirect with better UX
+  let redirectTimer;
+  
+  function startRedirectTimer() {
+    let countdown = 15; // Reduced to 15 seconds
+    
+    const redirectInfo = document.createElement('div');
+    redirectInfo.className = 'mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg text-center';
+    redirectInfo.innerHTML = `
+      <p class="text-sm text-blue-700">
+        Akan redirect ke beranda dalam <span id="countdown">${countdown}</span> detik
+        <button onclick="clearRedirect()" class="ml-2 text-blue-800 underline hover:no-underline">
+          Batalkan
+        </button>
+      </p>
+    `;
+    
+    document.querySelector('.max-w-md').appendChild(redirectInfo);
+    
+    const countdownElement = document.getElementById('countdown');
+    
+    const countdownInterval = setInterval(() => {
+      countdown--;
+      if (countdownElement) {
+        countdownElement.textContent = countdown;
+      }
+      
+      if (countdown <= 0) {
+        clearInterval(countdownInterval);
+        window.location.href = '/';
+      }
+    }, 1000);
+
+    // Store interval for cleanup
+    window.redirectInterval = countdownInterval;
+  }
+
+  // Function to clear redirect
+  window.clearRedirect = function() {
+    if (window.redirectInterval) {
+      clearInterval(window.redirectInterval);
+    }
+    const redirectInfo = document.querySelector('.bg-blue-50');
+    if (redirectInfo) {
+      redirectInfo.remove();
+    }
+  };
+
+  // Start redirect timer after status update completes
+  setTimeout(() => {
+    if (!statusError.classList.contains('hidden') || !statusSuccess.classList.contains('hidden')) {
+      startRedirectTimer();
+    }
+  }, 5000); // Wait 5 seconds after page load
+
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', () => {
+    if (window.redirectInterval) {
+      clearInterval(window.redirectInterval);
+    }
+  });
 </script>
 
 </body>
