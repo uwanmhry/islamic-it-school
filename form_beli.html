@@ -312,7 +312,10 @@ document.getElementById('purchaseForm').addEventListener('submit', async (e) => 
     finalPrice = Math.round(originalPrice * 0.95); // Diskon 5%
   }
 
-  const data = {
+
+  // ✅ PERBAIKAN: Data untuk log-click tanpa order_id dulu
+  const logData = {
+
     book_title: formData.get('book_title'),
     referral_code: referralCode,
     is_referral_valid: isValidReferral,
@@ -324,6 +327,7 @@ document.getElementById('purchaseForm').addEventListener('submit', async (e) => 
     harga_asli: originalPrice,
     diskon_amount: originalPrice - finalPrice,
     timestamp: new Date().toISOString()
+
   };
 
   try {
@@ -334,7 +338,9 @@ document.getElementById('purchaseForm').addEventListener('submit', async (e) => 
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify(data)
+
+      body: JSON.stringify(logData)
+
     });
 
     if (!response.ok) {
@@ -344,6 +350,7 @@ document.getElementById('purchaseForm').addEventListener('submit', async (e) => 
     const result = await response.json();
     
     if (result.success !== false) {
+
       // Update referral usage jika valid
       if (isValidReferral && referralCode.trim() !== '' && referralCode !== 'NO_REF') {
         await incrementReferralUsage(referralCode);
@@ -364,8 +371,9 @@ document.getElementById('purchaseForm').addEventListener('submit', async (e) => 
             item_name: formData.get('book_title'),
             referral_code: referralCode,
             customer_email: customerEmail,
-            // Tidak perlu payment_type untuk Snap Preference
-            log_id: result.id // ID dari log yang baru dibuat
+
+            log_id: result.id || result.insertId // ✅ Gunakan ID dari response log
+
           })
         });
 
