@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Form Pembelian Buku</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Midtrans Snap.js -->
-  <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-ZMewLn7labSKJRCZ"></script>
+  <!-- Midtrans Snap.js PRODUCTION -->
+  <script type="text/javascript" src="https://app.midtrans.com/snap/snap.js" data-client-key="Mid-client-YOUR-PRODUCTION-CLIENT-KEY"></script>
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
   <div class="max-w-xl w-full bg-white p-8 rounded-lg shadow-lg">
@@ -43,6 +43,25 @@
       <input type="hidden" id="price" name="price">
       <input type="hidden" id="referral_code" name="referral_code">
       <input type="hidden" id="is_referral_valid" name="is_referral_valid" value="false">
+
+      <!-- Input Kode Referral -->
+      <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+        <label for="input_referral" class="block text-sm font-semibold text-green-800 mb-2">
+          🎁 Kode Referral (Opsional)
+        </label>
+        <div class="flex gap-2">
+          <input type="text" id="input_referral" name="input_referral"
+            placeholder="Masukkan kode referral untuk diskon 5%"
+            class="flex-1 px-4 py-2 border border-green-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 text-sm">
+          <button type="button" id="validateRefBtn"
+            class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition duration-200 text-sm font-medium">
+            Cek
+          </button>
+        </div>
+        <p class="text-xs text-green-600 mt-2">
+          💡 Tip: Dapatkan diskon 5% dengan kode referral yang valid!
+        </p>
+      </div>
 
       <div>
         <label for="nama_pembeli" class="block text-sm font-semibold text-gray-700 mb-2">
@@ -112,6 +131,9 @@
   </div>
 
 <script>
+// PRODUCTION CONFIGURATION
+const API_BASE_URL = 'https://iis.dreamapps.id'; // ⚠️ GANTI DENGAN DOMAIN PRODUCTION ANDA
+
 // Ambil parameter dari URL
 const urlParams = new URLSearchParams(window.location.search);
 const bookTitle = urlParams.get('book_title') || 'Judul Buku Tidak Tersedia';
@@ -121,6 +143,7 @@ const ref = urlParams.get('ref') || '';
 // State untuk validasi referral
 let isReferralValid = false;
 let referralValidated = false;
+let currentReferralCode = ref; // Track kode referral yang sedang aktif
 
 // Validasi parameter
 if (!bookTitle || price <= 0) {
@@ -146,8 +169,9 @@ if (!bookTitle || price <= 0) {
   document.getElementById('hargaAsliDisplay').textContent = price.toLocaleString('id-ID');
   document.getElementById('refDisplay').textContent = (ref && ref !== 'NO_REF') ? ref : '-';
   
-  // Jika ada kode referral, validasi dulu
+  // Set input referral dengan kode dari URL jika ada
   if (ref && ref.trim() !== '' && ref !== 'NO_REF') {
+    document.getElementById('input_referral').value = ref;
     validateReferralCode(ref);
   } else {
     // Tidak ada referral, langsung tampilkan harga normal
@@ -156,19 +180,48 @@ if (!bookTitle || price <= 0) {
   }
 }
 
+// Event listener untuk tombol validasi referral
+document.getElementById('validateRefBtn').addEventListener('click', function() {
+  const inputRef = document.getElementById('input_referral').value.trim();
+  
+  if (!inputRef) {
+    showMessage('Masukkan kode referral terlebih dahulu!', 'warning');
+    return;
+  }
+  
+  // Update kode referral yang aktif
+  currentReferralCode = inputRef;
+  document.getElementById('referral_code').value = inputRef;
+  document.getElementById('refDisplay').textContent = inputRef;
+  
+  // Validasi kode baru
+  validateReferralCode(inputRef);
+});
+
+// Auto-validate saat user mengetik dan menekan Enter
+document.getElementById('input_referral').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    document.getElementById('validateRefBtn').click();
+  }
+});
+
 // Fungsi untuk memvalidasi kode referral dengan database
 async function validateReferralCode(refCode) {
   const loadingElement = document.getElementById('refValidationLoading');
   const diskonInfo = document.getElementById('diskonInfo');
   const refErrorInfo = document.getElementById('refErrorInfo');
+  const validateBtn = document.getElementById('validateRefBtn');
   
   try {
     // Tampilkan loading
     loadingElement.classList.remove('hidden');
     diskonInfo.classList.add('hidden');
     refErrorInfo.classList.add('hidden');
+    validateBtn.disabled = true;
+    validateBtn.textContent = '...';
     
-    const response = await fetch('http://localhost:5000/api/referal', {
+    const response = await fetch(`${API_BASE_URL}/api/referal`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json'
@@ -191,11 +244,13 @@ async function validateReferralCode(refCode) {
       document.getElementById('is_referral_valid').value = 'true';
       diskonInfo.classList.remove('hidden');
       updatePriceDisplay(price, true);
+      showMessage('✅ Kode referral valid! Diskon 5% telah diterapkan.', 'success');
     } else {
       isReferralValid = false;
       document.getElementById('is_referral_valid').value = 'false';
       refErrorInfo.classList.remove('hidden');
       updatePriceDisplay(price, false);
+      showMessage('❌ Kode referral tidak valid. Silakan periksa kembali.', 'error');
     }
     
   } catch (error) {
@@ -209,6 +264,8 @@ async function validateReferralCode(refCode) {
     showMessage('⚠️ Gagal memvalidasi kode referral. Pembelian akan dilanjutkan tanpa diskon.', 'warning');
   } finally {
     loadingElement.classList.add('hidden');
+    validateBtn.disabled = false;
+    validateBtn.textContent = 'Cek';
     referralValidated = true;
   }
 }
@@ -232,7 +289,7 @@ function updatePriceDisplay(originalPrice, hasValidDiscount) {
 // Fungsi untuk menambah usage referral code
 async function incrementReferralUsage(refCode) {
   try {
-    const response = await fetch(`http://localhost:5000/api/referal/use/${refCode}`, {
+    const response = await fetch(`${API_BASE_URL}/api/referal/use/${refCode}`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -257,9 +314,10 @@ async function incrementReferralUsage(refCode) {
 document.getElementById('purchaseForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   
-  // Pastikan validasi referral sudah selesai
-  if (!referralValidated) {
-    showMessage('Menunggu validasi kode referral...', 'warning');
+  // Ambil kode referral terbaru dari input
+  const inputRefCode = document.getElementById('input_referral').value.trim();
+  if (inputRefCode && inputRefCode !== currentReferralCode) {
+    showMessage('Anda telah mengubah kode referral. Silakan klik "Cek" terlebih dahulu untuk memvalidasi.', 'warning');
     return;
   }
   
@@ -276,6 +334,12 @@ document.getElementById('purchaseForm').addEventListener('submit', async (e) => 
 
   const formData = new FormData(e.target);
   
+  // Update referral code dengan yang ada di input
+  if (inputRefCode) {
+    formData.set('referral_code', inputRefCode);
+    currentReferralCode = inputRefCode;
+  }
+
   // Validasi form
   const nama = formData.get('nama_pembeli').trim();
   const alamat = formData.get('alamat').trim();
@@ -313,7 +377,7 @@ document.getElementById('purchaseForm').addEventListener('submit', async (e) => 
   }
 
 
-  // ✅ PERBAIKAN: Data untuk log-click tanpa order_id dulu
+  // Data untuk log-click tanpa order_id dulu
   const logData = {
 
     book_title: formData.get('book_title'),
@@ -332,7 +396,7 @@ document.getElementById('purchaseForm').addEventListener('submit', async (e) => 
 
   try {
     // Log ke database dulu
-    const response = await fetch('http://localhost:5000/api/log-click', {
+    const response = await fetch(`${API_BASE_URL}/api/log-click`, {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
@@ -358,7 +422,7 @@ document.getElementById('purchaseForm').addEventListener('submit', async (e) => 
 
       // Buat transaksi Midtrans menggunakan Snap Preference
       try {
-        const midtransResponse = await fetch('http://localhost:5000/api/midtrans/create-transaction', {
+        const midtransResponse = await fetch(`${API_BASE_URL}/api/midtrans/create-transaction`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -372,7 +436,9 @@ document.getElementById('purchaseForm').addEventListener('submit', async (e) => 
             referral_code: referralCode,
             customer_email: customerEmail,
 
-            log_id: result.id || result.insertId // ✅ Gunakan ID dari response log
+            log_id: result.id || result.insertId
+
+
 
           })
         });
