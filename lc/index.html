@@ -44,64 +44,142 @@
   </head>
   <body class="bg-gray-50 text-gray-900 overflow-x-hidden">
     <!-- Header -->
-    <header
-      class="fixed top-0 w-full z-50 transition-all duration-300 glass-effect"
-      id="header"
-    >
-      <nav class="container mx-auto px-6 py-4">
-        <div class="flex items-center justify-between">
-          <div class="text-2xl font-bold">
-            <span
-              class="bg-gradient-to-r from-emerald-500 to-orange-500 bg-clip-text text-transparent"
-              >Liquid Curriculum</span
-            >
-          </div>
-          <div class="hidden md:flex space-x-8">
-            <a
-              href="#home"
-              class="hover:text-emerald-600 transition-colors duration-300 font-medium"
-              >Home</a
-            >
-            <a
-              href="#about"
-              class="hover:text-emerald-600 transition-colors duration-300 font-medium"
-              >Tantangan</a
-            >
-            <a
-              href="#details"
-              class="hover:text-emerald-600 transition-colors duration-300 font-medium"
-              >Solusi</a
-            >
-            <a
-              href="#specs"
-              class="hover:text-emerald-600 transition-colors duration-300 font-medium"
-              >Detail Buku</a
-            >
-            <a
-              href="#beli"
-              class="hover:text-emerald-600 transition-colors duration-300 font-medium"
-              >Beli Sekarang</a
-            >
-          </div>
-          <button class="md:hidden focus:outline-none" id="mobile-menu-btn">
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              ></path>
-            </svg>
-          </button>
-        </div>
-      </nav>
-    </header>
+<header class="fixed top-0 w-full z-50 transition-all duration-300 glass-effect" id="header">
+  <nav class="container mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <div class="text-2xl font-bold">
+        <span class="bg-gradient-to-r from-emerald-500 to-orange-500 bg-clip-text text-transparent">Liquid Curriculum</span>
+      </div>
+      
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex space-x-8">
+        <a href="#home" class="nav-link" data-section="home">Home</a>
+        <a href="#about" class="nav-link" data-section="about">Tantangan</a>
+        <a href="#details" class="nav-link" data-section="details">Solusi</a>
+        <a href="#specs" class="nav-link" data-section="specs">Detail Buku</a>
+        <a href="#beli" class="nav-link" data-section="beli">Beli Sekarang</a>
+      </div>
+      
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden focus:outline-none" id="mobile-menu-btn" aria-label="Toggle menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Mobile Navigation -->
+    <div class="md:hidden hidden" id="mobile-menu">
+      <div class="pt-4 pb-2 space-y-3 flex flex-col">
+        <a href="#home" class="mobile-nav-link" data-section="home">Home</a>
+        <a href="#about" class="mobile-nav-link" data-section="about">Tantangan</a>
+        <a href="#details" class="mobile-nav-link" data-section="details">Solusi</a>
+        <a href="#specs" class="mobile-nav-link" data-section="specs">Detail Buku</a>
+        <a href="#beli" class="mobile-nav-link" data-section="beli">Beli Sekarang</a>
+      </div>
+    </div>
+  </nav>
+</header>
 
+<style>
+  .nav-link {
+    position: relative;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: currentColor;
+  }
+  
+  .nav-link:hover {
+    color: #059669; /* emerald-600 */
+  }
+  
+  .nav-link.active {
+    color: #059669;
+  }
+  
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, #10b981, #f59e0b);
+    border-radius: 2px;
+  }
+  
+  .mobile-nav-link {
+    display: block;
+    padding: 0.75rem 0;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: currentColor;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .mobile-nav-link:hover {
+    color: #059669;
+    padding-left: 0.5rem;
+  }
+  
+  .mobile-nav-link.active {
+    color: #059669;
+    font-weight: 600;
+    background: rgba(5, 150, 105, 0.1);
+    padding-left: 1rem;
+    border-left: 3px solid #059669;
+  }
+  
+  
+  @media (prefers-color-scheme: dark) {
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.500);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    // Toggle mobile menu
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Handle active links
+    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+    
+    function setActiveLink() {
+      const fromTop = window.scrollY + 100;
+      
+      navLinks.forEach(link => {
+        const section = document.querySelector(link.getAttribute('href'));
+        
+        if (
+          section.offsetTop <= fromTop &&
+          section.offsetTop + section.offsetHeight > fromTop
+        ) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+    
+    // Set active link on load and scroll
+    window.addEventListener('load', setActiveLink);
+    window.addEventListener('scroll', setActiveLink);
+    
+    // Close mobile menu when clicking a link
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  });
+</script>
     <!-- Hero Section -->
     <section
       id="home"
@@ -181,9 +259,7 @@
     <section id="about" class="py-20 bg-white">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16 fade-in-element">
-          <h2
-            class="text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-600 to-orange-600 bg-clip-text text-transparent"
-          >
+          <h2 class="text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-600 to-orange-600 bg-clip-text text-transparent">
             MASALAH BESAR YANG ANDA HADAPI
           </h2>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -192,47 +268,45 @@
         </div>
 
         <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <div
-            class="fade-in-element bg-gray-50 p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow"
-          >
-            <div class="text-emerald-600 text-5xl mb-4">1</div>
-            <h3 class="text-xl font-bold mb-3">Generasi Instant</h3>
-            <p class="text-gray-600">
-              Anak-anak tumbuh dengan mental "microwave" - ingin segala sesuatu
-              instan tanpa proses. Hasilnya? Generasi yang mudah menyerah dan
-              tidak tahan tekanan.
-            </p>
+          <div class="fade-in-element bg-gray-50 p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow relative">
+            <div class="absolute -top-5 -left-5 w-12 h-12 flex items-center justify-center rounded-full bg-emerald-100 text-emerald-600 text-2xl font-bold shadow-sm">1</div>
+            <div class="pt-4">
+              <h3 class="text-xl font-bold mb-3">Generasi Instant</h3>
+              <p class="text-gray-600">
+                Anak-anak tumbuh dengan mental "microwave" - ingin segala sesuatu
+                instan tanpa proses. Hasilnya? Generasi yang mudah menyerah dan
+                tidak tahan tekanan.
+              </p>
+            </div>
           </div>
-          <div
-            class="fade-in-element bg-gray-50 p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow"
-            style="animation-delay: 0.2s"
-          >
-            <div class="text-orange-500 text-5xl mb-4">2</div>
-            <h3 class="text-xl font-bold mb-3">Krisis Akhlak</h3>
-            <p class="text-gray-600">
-              Nilai-nilai agama semakin tergerus, sementara pengaruh negatif
-              teknologi merajalela. Orang tua dan guru kebingungan menghadapi
-              degradasi moral yang terjadi begitu cepat.
-            </p>
+          
+          <div class="fade-in-element bg-gray-50 p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow relative" style="animation-delay: 0.2s">
+            <div class="absolute -top-5 -left-5 w-12 h-12 flex items-center justify-center rounded-full bg-orange-100 text-orange-500 text-2xl font-bold shadow-sm">2</div>
+            <div class="pt-4">
+              <h3 class="text-xl font-bold mb-3">Krisis Akhlak</h3>
+              <p class="text-gray-600">
+                Nilai-nilai agama semakin tergerus, sementara pengaruh negatif
+                teknologi merajalela. Orang tua dan guru kebingungan menghadapi
+                degradasi moral yang terjadi begitu cepat.
+              </p>
+            </div>
           </div>
-          <div
-            class="fade-in-element bg-gray-50 p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow"
-            style="animation-delay: 0.4s"
-          >
-            <div class="text-teal-500 text-5xl mb-4">3</div>
-            <h3 class="text-xl font-bold mb-3">Sistem Pendidikan Gagal</h3>
-            <p class="text-gray-600">
-              Sekolah hanya fokus pada nilai akademik tanpa membangun karakter.
-              Outputnya? Lulusan dengan ijazah mentereng tapi kosong jiwa dan
-              lemah mental.
-            </p>
+          
+          <div class="fade-in-element bg-gray-50 p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow relative" style="animation-delay: 0.4s">
+            <div class="absolute -top-5 -left-5 w-12 h-12 flex items-center justify-center rounded-full bg-teal-100 text-teal-500 text-2xl font-bold shadow-sm">3</div>
+            <div class="pt-4">
+              <h3 class="text-xl font-bold mb-3">Sistem Pendidikan Gagal</h3>
+              <p class="text-gray-600">
+                Sekolah hanya fokus pada nilai akademik tanpa membangun karakter.
+                Outputnya? Lulusan dengan ijazah mentereng tapi kosong jiwa dan
+                lemah mental.
+              </p>
+            </div>
           </div>
         </div>
 
         <div class="mt-16 text-center fade-in-element">
-          <div
-            class="inline-block bg-red-100 border-l-4 border-red-500 text-red-700 p-4"
-          >
+          <div class="inline-block bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
             <p class="font-bold">
               APAKAH ANDA INGIN GENERASI ANDA MENJADI KORBAN SELANJUTNYA?
             </p>
@@ -245,127 +319,82 @@
     <section id="details" class="py-20 bg-gray-100">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16 fade-in-element">
-          <h2
-            class="text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-600 to-orange-600 bg-clip-text text-transparent"
-          >
+          <h2 class="text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-600 to-orange-600 bg-clip-text text-transparent">
             REVOLUSI PENDIDIKAN ISLAMI
           </h2>
           <p class="text-xl text-gray-600">
-            Liquid Curriculum menghadirkan solusi yang belum pernah Anda dengar
-            sebelumnya!
+            Liquid Curriculum menghadirkan solusi yang belum pernah Anda dengar sebelumnya!
           </p>
         </div>
 
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div class="fade-in-element order-last lg:order-first">
-            <div class="space-y-6">
+            <div class="space-y-8">
               <div class="flex items-start">
-                <div
-                  class="flex-shrink-0 bg-emerald-500 rounded-full p-2 text-white mr-4"
-                >
-                  <svg
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path>
+                <div class="flex-shrink-0 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full p-3 text-white mr-4 mt-1">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
                 </div>
                 <div>
-                  <h3 class="text-xl font-bold mb-2">
-                    Formula 3 Pilar Pendidikan
+                  <h3 class="text-xl font-bold mb-2 text-gray-800">
+                    Orientasi Dunia & Akhirat
                   </h3>
                   <p class="text-gray-600">
-                    Mengintegrasikan
-                    <span class="font-semibold"
-                      >moral, mental, dan produktivitas</span
-                    >
-                    dalam satu kurikulum yang menyeluruh. Tidak seperti sistem
-                    konvensional yang terpisah-pisah!
+                    Tidak hanya bertujuan sukses dalam kehidupan dunia saja, tetapi juga mencapai kesuksesan akhirat secara seimbang. Pendidikan holistik yang memadukan keunggulan duniawi dan ukhrawi.
                   </p>
                 </div>
               </div>
+              
               <div class="flex items-start">
-                <div
-                  class="flex-shrink-0 bg-emerald-500 rounded-full p-2 text-white mr-4"
-                >
-                  <svg
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path>
+                <div class="flex-shrink-0 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full p-3 text-white mr-4 mt-1">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
                 </div>
                 <div>
-                  <h3 class="text-xl font-bold mb-2">
-                    Pendidikan Berbasis Fitrah
+                  <h3 class="text-xl font-bold mb-2 text-gray-800">
+                    Integrasi Al-Qur'an & Modernitas
                   </h3>
                   <p class="text-gray-600">
-                    Mengembalikan pendidikan kepada fitrah manusia sesuai
-                    sunnatullah, bukan sekadar mengejar standar pemerintah atau
-                    tuntutan pasar!
+                    Mengintegrasikan Al-Qur'an dengan teknologi, bahasa, dan karakter. Menciptakan generasi yang kuat iman sekaligus menguasai teknologi masa kini.
                   </p>
                 </div>
               </div>
+              
               <div class="flex items-start">
-                <div
-                  class="flex-shrink-0 bg-emerald-500 rounded-full p-2 text-white mr-4"
-                >
-                  <svg
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    ></path>
+                <div class="flex-shrink-0 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full p-3 text-white mr-4 mt-1">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                   </svg>
                 </div>
                 <div>
-                  <h3 class="text-xl font-bold mb-2">Hasil Cepat & Terukur</h3>
+                  <h3 class="text-xl font-bold mb-2 text-gray-800">
+                    Pembangunan 3 Pilar Mental
+                  </h3>
                   <p class="text-gray-600">
-                    Dalam 6 bulan pertama sudah bisa dilihat perubahan
-                    signifikan pada peserta didik. Bukan teori semata, tapi
-                    sudah terbukti di lapangan!
+                    Membangun dan mengasah: <br>
+                    • <span class="font-semibold">ITMI</span> (Islamic Technology Mindset Installation) <br>
+                    • <span class="font-semibold">Mental belajar</span> (metakognitif) <br>
+                    • <span class="font-semibold">K2IAM</span> (kreatif, kompetitif, inovatif, antisipatif, serta mampu memonetisasi)
                   </p>
                 </div>
               </div>
             </div>
 
-            <div
-              class="mt-8 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r fade-in-element"
-            >
-              <p class="text-yellow-700 font-semibold">
-                "Sistem pendidikan konvensional telah GAGAL total. Saatnya
-                mengambil tindakan radikal untuk menyelamatkan generasi!"
+            <div class="mt-12 bg-gradient-to-r from-emerald-50 to-teal-50 border-l-4 border-emerald-500 p-6 rounded-r-lg fade-in-element shadow-sm">
+              <p class="text-emerald-800 font-semibold italic text-lg">
+                "Siapapun yang mendambakan lahirnya generasi impian baik Anda adalah seorang guru maupun orang tua, Liquid Curriculum adalah jawabannya Insya Allah"
               </p>
-              <p class="text-gray-600 mt-2">- Ustadz Purwanto Abdul Ghaffar</p>
+              <p class="text-gray-600 mt-3 font-medium">- Ustadz Purwanto Abdul Ghaffar</p>
             </div>
           </div>
-          <div
-            class="fade-in-element flex justify-center order-first lg:order-last"
-          >
+          
+          <div class="fade-in-element flex justify-center order-first lg:order-last">
             <img
               src="/img/LC/cover.jpg"
               alt="Isi Buku Liquid Curriculum"
-              class="rounded-2xl shadow-2xl w-full max-w-md border-4 border-white"
+              class="rounded-2xl shadow-2xl w-full max-w-md border-4 border-white transform hover:scale-105 transition-transform duration-300"
             />
           </div>
         </div>
@@ -380,112 +409,164 @@
                     DETAIL BUKU
                 </h2>
             </div>
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center fade-in-element">
-                    <p class="text-gray-600 mb-6 text-lg leading-relaxed max-w-3xl mx-auto">
-                        Tujuan pendidikan dari Liquid Curriculum adalah mencapai
-                        stabilisasi moral, mental, dan produktifitas lebih cepat.
+            
+            <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 items-start">
+                <!-- Book Details Card -->
+                <div class="bg-gray-50 rounded-2xl p-8 shadow-lg border border-gray-100 fade-in-element h-full">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Liquid Curriculum</h3>
+                    <p class="text-emerald-600 font-medium mb-6">Ustadz Purwanto Abdul Ghaffar</p>
+                    
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Tujuan pendidikan dari Liquid Curriculum adalah mencapai stabilisasi moral, mental, dan produktifitas lebih cepat. Siapapun yang mendambakan lahirnya generasi impian, baik anda adalah seorang guru maupun orang tua, Liquid Curriculum adalah jawabannya. InsyaAllah
                     </p>
-
-                    <!-- Gallery Section -->
-                    <div class="relative max-w-6xl mx-auto mt-8 px-8">
-                        <div class="overflow-hidden">
-                            <div class="flex gap-4 pb-4 overflow-x-auto snap-x snap-mandatory scroll-smooth gallery-container" id="book-gallery">
-                                <div class="flex-shrink-0 w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-1rem)] snap-center cursor-pointer" onclick="openLightbox(0)">
-                                    <div class="h-80 bg-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow flex items-center justify-center">
-                                        <img src="/img/LC/cover.jpg" alt="Cover Liquid Curriculum" class="h-full w-auto object-contain" loading="lazy">
-                                    </div>
-                                </div>
-                                <div class="flex-shrink-0 w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-1rem)] snap-center cursor-pointer" onclick="openLightbox(1)">
-                                    <div class="h-80 bg-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow flex items-center justify-center">
-                                        <img src="/img/LC/b-cover.jpg" alt="Back Cover Liquid Curriculum" class="h-full w-auto object-contain" loading="lazy">
-                                    </div>
-                                </div>
-                                <div class="flex-shrink-0 w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-1rem)] snap-center cursor-pointer" onclick="openLightbox(2)">
-                                    <div class="h-80 bg-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow flex items-center justify-center">
-                                        <img src="/img/LC/1.jpg" alt="Halaman Dalam Buku" class="h-full w-auto object-contain" loading="lazy">
-                                    </div>
-                                </div>
-                                <div class="flex-shrink-0 w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-1rem)] snap-center cursor-pointer" onclick="openLightbox(3)">
-                                    <div class="h-80 bg-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow flex items-center justify-center">
-                                        <img src="/img/LC/2.jpg" alt="Halaman Dalam Buku" class="h-full w-auto object-contain" loading="lazy">
-                                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-500">Penerbit</h4>
+                                <p class="text-gray-700">Bintang Semesta Media</p>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-500">Kategori</h4>
+                                <div class="flex flex-wrap gap-2 mt-1">
+                                    <span class="bg-emerald-100 text-emerald-800 text-xs px-3 py-1 rounded-full">Pendidikan</span>
+                                    <span class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">Parenting</span>
+                                    <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Islami</span>
                                 </div>
                             </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-500">Bahasa</h4>
+                                <p class="text-gray-700">Indonesia</p>
+                            </div>
                         </div>
-
-                        <!-- Navigation Arrows -->
-                        <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md z-10" onclick="scrollGallery(-1)">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                            </svg>
-                        </button>
-                        <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow-md z-10" onclick="scrollGallery(1)">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                            </svg>
-                        </button>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-500">ISBN</h4>
+                                <p class="text-gray-700">978-623-129-470-8</p>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-500">Dimensi</h4>
+                                <p class="text-gray-700">14 x 20 cm</p>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-500">Halaman</h4>
+                                <p class="text-gray-700">x + 326</p>
+                            </div>
+                        </div>
                     </div>
-
-                    <!-- Dots Indicator -->
-                    <div class="flex justify-center mt-4 space-x-2" id="gallery-dots">
-                        <button class="w-3 h-3 rounded-full bg-emerald-500 transition-all duration-300" data-slide="0" onclick="goToSlide(0)"></button>
-                        <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" data-slide="1" onclick="goToSlide(1)"></button>
-                        <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" data-slide="2" onclick="goToSlide(2)"></button>
-                        <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" data-slide="3" onclick="goToSlide(3)"></button>
+                    
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="https://gsiofficial.xyz/gsiofficial/rYM9yVK" target="_blank"
+                                class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold text-center transition-colors">
+                                Beli Sekarang
+                            </a>
+                            <a href="https://shopee.co.id/Liquid-Curicullum-Kurikulum-untuk-Sekolah-Impian-yang-Akan-Menghasilkan-Generasi-Impian-i.1344216734.28786791996" target="_blank"
+                                class="border border-gray-300 hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold text-center transition-colors">
+                                Beli di Shopee
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Lightbox Modal -->
-                <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center">
-                    <button class="absolute top-4 right-4 text-white hover:text-emerald-400 transition-colors z-50" onclick="closeLightbox()">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
-                    </button>
-
-                    <div class="relative w-full max-w-6xl h-full flex items-center">
-                        <button class="absolute left-4 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full z-10 transition-colors" onclick="lightboxPrev()">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                            </svg>
-                        </button>
-
-                        <div class="w-full h-full flex overflow-hidden">
-                            <div class="flex lightbox-slider" id="lightbox-slider">
-                                <div class="w-full h-full flex-shrink-0 flex items-center justify-center p-4">
-                                    <img src="/img/LC/cover.jpg" alt="Cover Liquid Curriculum" class="max-h-[90vh] max-w-full object-contain">
-                                </div>
-                                <div class="w-full h-full flex-shrink-0 flex items-center justify-center p-4">
-                                    <img src="/img/LC/b-cover.jpg" alt="Back Cover Liquid Curriculum" class="max-h-[90vh] max-w-full object-contain">
-                                </div>
-                                <div class="w-full h-full flex-shrink-0 flex items-center justify-center p-4">
-                                    <img src="/img/LC/1.jpg" alt="Halaman Dalam Buku" class="max-h-[90vh] max-w-full object-contain">
-                                </div>
-                                <div class="w-full h-full flex-shrink-0 flex items-center justify-center p-4">
-                                    <img src="/img/LC/2.jpg" alt="Halaman Dalam Buku" class="max-h-[90vh] max-w-full object-contain">
-                                </div>
-                            </div>
-                        </div>
-
-                        <button class="absolute right-4 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full z-10 transition-colors" onclick="lightboxNext()">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                            </svg>
-                        </button>
+                
+                <!-- Gallery Section -->
+                <div class="relative fade-in-element h-full">
+                    <!-- Main Image -->
+                    <div class="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden shadow-xl mb-4 flex items-center justify-center">
+                        <img id="main-image" src="/img/LC/cover.jpg" alt="Cover Liquid Curriculum" class="h-full w-auto object-contain" loading="lazy">
                     </div>
-
-                    <!-- Lightbox Dots -->
-                    <div class="absolute bottom-8 left-0 right-0 flex justify-center space-x-2" id="lightbox-dots">
-                        <button class="w-3 h-3 rounded-full bg-emerald-500 transition-all duration-300" data-slide="0" onclick="lightboxGoToSlide(0)"></button>
-                        <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" data-slide="1" onclick="lightboxGoToSlide(1)"></button>
-                        <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" data-slide="2" onclick="lightboxGoToSlide(2)"></button>
-                        <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" data-slide="3" onclick="lightboxGoToSlide(3)"></button>
+                    
+                    <!-- Thumbnails - Visible on all devices -->
+                    <div class="flex gap-3 overflow-x-auto py-2 px-1 -mx-1 scrollbar-hide">
+                        <div class="cursor-pointer flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 border-transparent hover:border-emerald-400 transition-all active:border-emerald-400 active:scale-95" 
+                            onclick="changeMainImage('/img/LC/cover.jpg', this)">
+                            <img src="/img/LC/cover.jpg" alt="Thumbnail 1" class="w-full h-full object-cover">
+                        </div>
+                        <div class="cursor-pointer flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 border-transparent hover:border-emerald-400 transition-all active:border-emerald-400 active:scale-95" 
+                            onclick="changeMainImage('/img/LC/b-cover.jpg', this)">
+                            <img src="/img/LC/b-cover.jpg" alt="Thumbnail 2" class="w-full h-full object-cover">
+                        </div>
+                        <div class="cursor-pointer flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 border-transparent hover:border-emerald-400 transition-all active:border-emerald-400 active:scale-95" 
+                            onclick="changeMainImage('/img/LC/1.jpg', this)">
+                            <img src="/img/LC/1.jpg" alt="Thumbnail 3" class="w-full h-full object-cover">
+                        </div>
+                        <div class="cursor-pointer flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 border-transparent hover:border-emerald-400 transition-all active:border-emerald-400 active:scale-95" 
+                            onclick="changeMainImage('/img/LC/2.jpg', this)">
+                            <img src="/img/LC/2.jpg" alt="Thumbnail 4" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile Fullscreen Button -->
+                    <div class="md:hidden text-center mt-3">
+                        <button onclick="openLightboxMobile(0)" class="text-emerald-600 text-sm font-medium flex items-center justify-center mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                            </svg>
+                            Lihat Fullscreen
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Mobile Lightbox -->
+    <div id="mobile-lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4">
+        <button class="absolute top-4 right-4 text-white hover:text-emerald-400 transition-colors z-50" onclick="closeLightboxMobile()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+
+        <div class="relative w-full h-full flex items-center justify-center">
+            <button class="absolute left-4 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full z-10 transition-colors" onclick="lightboxMobilePrev()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </button>
+
+            <div class="w-full h-full overflow-hidden">
+                <div class="flex h-full" id="mobile-lightbox-slider">
+                    <div class="w-full h-full flex-shrink-0 flex items-center justify-center">
+                        <div class="lightbox-img-container">
+                            <img src="/img/LC/cover.jpg" alt="Cover Liquid Curriculum" class="lightbox-img">
+                        </div>
+                    </div>
+                    <div class="w-full h-full flex-shrink-0 flex items-center justify-center">
+                        <div class="lightbox-img-container">
+                            <img src="/img/LC/b-cover.jpg" alt="Back Cover Liquid Curriculum" class="lightbox-img">
+                        </div>
+                    </div>
+                    <div class="w-full h-full flex-shrink-0 flex items-center justify-center">
+                        <div class="lightbox-img-container">
+                            <img src="/img/LC/1.jpg" alt="Halaman Dalam Buku" class="lightbox-img">
+                        </div>
+                    </div>
+                    <div class="w-full h-full flex-shrink-0 flex items-center justify-center">
+                        <div class="lightbox-img-container">
+                            <img src="/img/LC/2.jpg" alt="Halaman Dalam Buku" class="lightbox-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="absolute right-4 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full z-10 transition-colors" onclick="lightboxMobileNext()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Dots Indicator -->
+        <div class="absolute bottom-8 left-0 right-0 flex justify-center space-x-2">
+            <button class="w-3 h-3 rounded-full bg-emerald-500 transition-all duration-300" data-slide="0" onclick="lightboxMobileGoToSlide(0)"></button>
+            <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" data-slide="1" onclick="lightboxMobileGoToSlide(1)"></button>
+            <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" data-slide="2" onclick="lightboxMobileGoToSlide(2)"></button>
+            <button class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300" data-slide="3" onclick="lightboxMobileGoToSlide(3)"></button>
+        </div>
+    </div>
+
     <!-- CTA Section -->
     <section id="beli" class="py-20 gradient-bg relative overflow-hidden">
       <div class="absolute inset-0 bg-black opacity-30"></div>
@@ -499,7 +580,12 @@
             tindakan sekarang untuk menyelamatkan generasi?
           </p>
 
-          <div class="glass-effect rounded-2xl p-8 mb-8 text-left">
+          <div class="glass-effect rounded-2xl p-8 mb-8 text-left relative">
+            <!-- Discount Ribbon -->
+            <div class="absolute -top-3 -right-3 bg-red-500 text-white text-sm font-bold px-4 py-1 rounded-full shadow-lg transform rotate-6 z-10">
+              DISKON 13K!
+            </div>
+            
             <h3 class="text-2xl font-bold mb-4 text-emerald-600">
               LIQUID CURRICULUM
             </h3>
@@ -507,160 +593,75 @@
               <div>
                 <ul class="space-y-3 text-gray-700">
                   <li class="flex items-start">
-                    <svg
-                      class="w-5 h-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
+                    <svg class="w-5 h-5 text-emerald-600 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                     </svg>
-                    <span>Formula pendidikan revolusioner</span>
+                    <span>Integrasi kurikulum Tahfidzul Quran, IT, Bahasa dan Karakter</span>
                   </li>
                   <li class="flex items-start">
-                    <svg
-                      class="w-5 h-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
+                    <svg class="w-5 h-5 text-emerald-600 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                     </svg>
-                    <span>Panduan praktis untuk orang tua & guru</span>
+                    <span>Berisi rumus sukses versi/ala Sekolah Impian</span>
                   </li>
                   <li class="flex items-start">
-                    <svg
-                      class="w-5 h-5 text-emerald-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
+                    <svg class="w-5 h-5 text-emerald-600 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                     </svg>
-                    <span>Hasil nyata dalam waktu singkat</span>
+                    <span>Pendekatan interaktif, efektif, berbasis proyek dan sesuai dengan nilai dan Mindset Islam</span>
                   </li>
                 </ul>
               </div>
-              <div>
-                <div class="bg-emerald-50 p-4 rounded-lg">
-                  <div class="text-sm text-gray-500 mb-1">Harga Normal</div>
-                  <div class="text-3xl font-bold text-emerald-600">
-                    Rp 200.000
+              
+              <!-- Pricing Card -->
+              <div class="relative">
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                  <div class="flex justify-between items-end mb-2">
+                    <span class="text-gray-500 text-sm">Harga Normal</span>
+                    <span class="text-gray-400 text-sm">Hemat Rp 13.000</span>
                   </div>
-                  <div class="text-sm text-gray-500 mt-1">+ Ongkos Kirim</div>
-                </div>
-              </div>
-            </div>
-          </div>
+                  
+                  <div class="flex items-end">
+                    <div class="mr-2">
+                      <span class="text-gray-400 text-xl line-through">Rp200.000</span>
+                    </div>
+                    <div>
+                      <span class="text-4xl font-bold text-orange-600">Rp187.000</span>
+                    </div>
+                  </div>
+                  
+                  <div class="mt-4 pt-4 border-t border-gray-200">
+                    <span class="text-sm text-gray-500">+ Ongkos Kirim</span>
 
-          <div class="glass-effect rounded-2xl p-8 mb-8 text-left">
-            <h3 class="text-2xl font-bold mb-4 text-orange-500">
-              PROMO BULAN INI SAJA!
-            </h3>
-            <div class="grid md:grid-cols-2 gap-6">
-              <div>
-                <ul class="space-y-3 text-gray-700">
-                  <li class="flex items-start">
-                    <svg
-                      class="w-5 h-5 text-orange-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
-                    </svg>
-                    <span
-                      ><span class="font-bold">Diskon 25%</span> untuk pembelian
-                      bulan ini</span
-                    >
-                  </li>
-                  <li class="flex items-start">
-                    <svg
-                      class="w-5 h-5 text-orange-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
-                    </svg>
-                    <span
-                      >Bonus
-                      <span class="font-bold">E-book panduan</span> khusus orang
-                      tua</span
-                    >
-                  </li>
-                  <li class="flex items-start">
-                    <svg
-                      class="w-5 h-5 text-orange-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
-                    </svg>
-                    <span
-                      >Garansi
-                      <span class="font-bold">100% uang kembali</span> jika
-                      tidak puas</span
-                    >
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <div class="bg-orange-50 p-4 rounded-lg">
-                  <div class="text-sm text-gray-500 mb-1">Harga Promo</div>
-                  <div class="text-4xl font-bold text-orange-600">
-                    Rp 187.000
+                    <!-- <div class="flex items-center text-sm text-gray-500">
+                      <svg class="w-4 h-4 mr-1 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                      <span>+ Ongkos Kirim</span>
+                    </div> -->
+                    <!-- <div class="flex items-center text-sm text-gray-500 mt-1">
+                      <svg class="w-4 h-4 mr-1 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                      <span>Garansi 100% Uang Kembali</span>
+                    </div> -->
                   </div>
-                  <div class="text-sm text-gray-500 mt-1">+ Ongkos Kirim</div>
                 </div>
+                
+                <!-- Decorative Elements -->
+                <div class="absolute -bottom-2 -right-2 w-16 h-16 bg-emerald-500 rounded-full opacity-10"></div>
+                <div class="absolute -top-2 -left-2 w-12 h-12 bg-orange-500 rounded-full opacity-10"></div>
               </div>
             </div>
           </div>
 
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://gsiofficial.xyz/gsiofficial/rYM9yVK"
-              target="_blank"
-              class="bg-white text-emerald-600 hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white text-center"
-            >
+            <a href="https://gsiofficial.xyz/gsiofficial/rYM9yVK" target="_blank"
+              class="bg-white text-emerald-600 hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white text-center">
               PESAN SEKARANG - Rp 187.000
             </a>
-            <a
-              href="https://shopee.co.id/Liquid-Curicullum-Kurikulum-untuk-Sekolah-Impian-yang-Akan-Menghasilkan-Generasi-Impian-i.1344216734.28786791996"
-              target="_blank"
-              class="glass-effect px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:bg-opacity-20 transition-all duration-300 text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 text-center"
-            >
+            <a href="https://shopee.co.id/Liquid-Curicullum-Kurikulum-untuk-Sekolah-Impian-yang-Akan-Menghasilkan-Generasi-Impian-i.1344216734.28786791996" target="_blank"
+              class="glass-effect px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:bg-opacity-20 transition-all duration-300 text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 text-center">
               BELI DI SHOPEE
             </a>
           </div>

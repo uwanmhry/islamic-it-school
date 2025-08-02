@@ -75,8 +75,9 @@
   transition: max-height 0.3s ease, padding 0.3s ease;
 }
 .faq-answer.active {
-  max-height: 200px;
+  max-height: 999px;
   padding-top: 12px;
+  padding-bottom: 12px;
 }
 .chevron {
   transition: transform 0.3s ease;

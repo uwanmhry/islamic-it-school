@@ -1,6 +1,6 @@
 // Admin Panel JavaScript - Enhanced Version
 // API Configuration
-const API_BASE = 'http://iis.dreamapps.id/api';
+const API_BASE = 'https://iis.dreamapps.id/api';
 const PAGE_SIZE = 10;
 
 // Global state
