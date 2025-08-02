@@ -221,86 +221,153 @@
     <div class="shape w-28 h-28 bg-gradient-to-r from-green-400 to-blue-400 rounded-full"></div>
   </div>
 
-  <header class="relative z-50 py-5 bg-white/95 glass">
-    <div class="max-w-7xl mx-auto px-4 md:px-6">
-      <nav class="flex justify-between items-center">
-        <div class="flex items-center text-2xl font-bold text-gray-900">
-          <a href="index.html">
-            <img class="w-[70px] h-[70px] object-contain" src="./img/Logo-Sekolah-Impian.png" alt="Sekolah Impian" />
-          </a>
-        </div>
+    <!-- Header -->
+    <header class="relative z-50 py-5 bg-white/95 glass">
+      <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <nav class="flex justify-between items-center">
+          <div class="flex items-center text-2xl font-bold text-gray-900">
+            <a href="index.html">
+              <img
+                class="w-[70px] h-[70px] object-contain"
+                src="./img/Logo-Sekolah-Impian.png"
+                alt="Sekolah Impian"
+              />
+            </a>
+          </div>
 
-        <!-- Desktop Menu -->
-        <ul class="hidden md:flex items-center space-x-8">
-          <li>
-            <a href="index.html"
-              class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Home</a>
-          </li>
-          <li>
-            <a href="https://sekolahimpian.com/"
-              class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"> Sekolah</a>
-          </li>
-          <li>
-            <a href="buku.html"
-              class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Buku </a>
-          </li>
-          <li>
-            <a href="pelatihan.html"
-              class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">Pelatihan</a>
-          </li>
-          <li>
-            <a href="webinar.html" class="text-gray-600 hover:text-gray-900 font-medium">Webinar</a>
-          </li>
-          <li>
-            <a href="channel.html" class="text-orange-500 font-semibold transition-colors duration-200">Channel</a>
-          </li>
-        </ul>
+          <!-- Desktop Menu -->
+          <ul class="hidden md:flex items-center space-x-8">
+            <li>
+              <a
+                href="index.html"
+                class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://sekolahimpian.com/" target="_blank"
+                class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
+              >
+                Sekolah</a
+              >
+            </li>
+            <li>
+              <a
+                href="buku.html"
+                class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
+                >Buku
+              </a>
+            </li>
+            <li>
+              <a
+                href="pelatihan.html"
+                class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
+                >Pelatihan</a
+              >
+            </li>
+            <li>
+              <a
+                href="kursus.html"
+                class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
+                >Kursus</a
+              >
+            </li>
+            <li>
+              <a
+                href="webinar.html"
+                class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
+                >Webinar</a
+              >
+            </li>
+            <li>
+              <a
+                href="channel.html"
+                class="text-orange-500 font-semibold transition-colors duration-200"
+                >Channel</a
+              >
+            </li>
+          </ul>
 
-        <!-- Desktop Right Side -->
-        <div class="hidden md:flex items-center gap-3">
-          <a href="https://wa.me/6285161231559"
-            class="bg-gray-900 text-white px-5 py-2.5 rounded-lg font-semibold hover:-translate-y-1 hover:bg-gray-600 transition-transform">
+          <!-- Desktop Right Side -->
+          <div class="hidden md:flex items-center gap-3">
+            <a
+            href="https://wa.me/6285161231559"
+            class="block bg-gradient-to-r from-orange-500 to-teal-600 text-white px-5 py-2.5 rounded-xl font-semibold transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:brightness-110"
+          >
             Kontak
           </a>
-        </div>
+          </div>
 
-        <!-- Mobile Menu Button -->
-        <div class="md:hidden flex items-center">
-          <button id="mobile-menu-button" class="p-2 text-gray-700 hover:text-orange-500 transition-colors">
-            <i class="bx bx-menu text-2xl"></i>
-          </button>
-        </div>
-      </nav>
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button
+              id="mobile-menu-button"
+              class="p-2 text-gray-700 hover:text-orange-500 transition-colors"
+            >
+              <i class="bx bx-menu text-2xl"></i>
+            </button>
+          </div>
+        </nav>
 
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="hidden md:hidden transition-all duration-300 ease-in-out">
+        <!-- Mobile Menu -->
         <div
-          class="px-2 pt-2 pb-3 space-y-1 bg-white/90 backdrop-blur-lg rounded-lg mt-4 shadow-lg border border-white/20">
-          <a href="index.html"
-            class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">Home</a>
-          <a href="https://sekolahimpian.com/"
-            class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">
-            Sekolah</a>
-          <a href="buku.html"
-            class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">Buku
+          id="mobile-menu"
+          class="hidden md:hidden transition-all duration-300 ease-in-out"
+        >
+          <div
+            class="px-2 pt-2 pb-3 space-y-1 bg-white/90 backdrop-blur-lg rounded-lg mt-4 shadow-lg border border-white/20"
+          >
+            <a
+              href="index.html"
+              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
+              >Home</a
+            >
+            <a
+              href="https://sekolahimpian.com/" target="_blank"
+              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
+            >
+              Sekolah</a
+            >
+            <a
+              href="buku.html"
+              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
+              >Buku
             </a>
-          <a href="pelatihan.html"
-            class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">Pelatihan</a>
-          <a href="webinar.html"
-            class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all">Webinar</a>
-          <a href="channel.html"
-            class="block px-3 py-2 text-orange-500 hover:text-orange-500 bg-orange-50 rounded-md font-semibold transition-all">Channel</a>
+            <a
+              href="pelatihan.html"
+              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
+              >Pelatihan</a
+            >
+            <a
+              href="kursus.html"
+              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
+              >Kursus</a
+            >
+            <a
+              href="webinar.html"
+              class="block px-3 py-2 text-gray-600 hover:text-orange-500 hover:bg-orange-50 rounded-md font-medium transition-all"
+              >Webinar</a
+            >
+            <a
+              href="channel.html"
+              class="block px-3 py-2 text-orange-500 bg-orange-50 rounded-md font-semibold transition-all"
+              >Channel</a
+            >
 
-          <div class="border-t border-gray-200 pt-4 mt-4">
-            <a href="https://wa.me/6285161231559"
-              class="block bg-gradient-to-r from-orange-500 to-teal-600 text-white px-5 py-2.5 rounded-lg font-semibold text-center hover:from-orange-600 hover:to-teal-700 transition-all">
-              <i class="bx bxl-whatsapp mr-2"></i>Kontak
-            </a>
+            <div class="border-t border-gray-200 pt-4 mt-4">
+              <a
+                href="https://wa.me/6285161231559"
+                class="block bg-gradient-to-r from-orange-500 to-teal-600 text-white px-5 py-2.5 rounded-lg font-semibold text-center hover:from-orange-600 hover:to-teal-700 transition-all"
+              >
+                <i class="bx bxl-whatsapp mr-2"></i>Kontak
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
+    <!-- End Header -->
 
   <!-- Hero Section -->
   <section class="relative py-20 px-4 overflow-hidden">
