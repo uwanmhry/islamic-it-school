@@ -1,6 +1,6 @@
-// Admin Panel JavaScript
+// Admin Panel JavaScript - Enhanced Version
 // API Configuration
-const API_BASE = 'https://iis.dreamapps.id/api';
+const API_BASE = 'http://iis.dreamapps.id/api';
 const PAGE_SIZE = 10;
 
 // Global state
@@ -8,8 +8,11 @@ let allLogs = [];
 let filteredLogs = [];
 let allCodes = [];
 let filteredCodes = [];
+let rekapData = [];
+let filteredRekapData = [];
 let currentLogsPage = 1;
 let currentCodesPage = 1;
+let currentRekapPage = 1;
 let currentTab = 'logs';
 let deleteTargetId = null;
 let allData = [];
@@ -64,6 +67,10 @@ function setupEventListeners() {
   document.getElementById('edit-form').addEventListener('submit', handleEditSubmit);
   document.getElementById('add-code-form').addEventListener('submit', handleAddCode);
   
+  // Date filters for rekap
+  document.getElementById('date-from').addEventListener('change', applyDateFilter);
+  document.getElementById('date-to').addEventListener('change', applyDateFilter);
+  
   // Keyboard shortcuts
   document.addEventListener('keydown', handleKeyboardShortcuts);
   
@@ -101,6 +108,8 @@ function switchTab(tabName) {
     loadLogs();
   } else if (tabName === 'codes' && allCodes.length === 0) {
     loadReferralCodes();
+  } else if (tabName === 'rekap') {
+    loadRekapData();
   }
 }
 
@@ -159,7 +168,7 @@ function renderLogsTable() {
     const timeText = createdAt ? createdAt.toLocaleTimeString('id-ID') : '-';
 
     return `
-      <tr class="table-row">
+      <tr class="table-row slide-in">
         <td class="px-6 py-4 whitespace-nowrap">
           <span class="text-sm font-mono text-gray-800">#${log.id}</span>
         </td>
@@ -175,7 +184,7 @@ function renderLogsTable() {
           </div>
         </td>
         <td class="px-6 py-4 whitespace-nowrap">
-          <span class="text-sm text-gray-800">${log.harga || '-'}</span>
+          <span class="text-sm text-gray-800">${log.harga ? formatCurrency(log.harga) : '-'}</span>
         </td>
         <td class="px-6 py-4 whitespace-nowrap">
           <span class="status-badge px-3 py-1 text-xs font-semibold rounded-full ${log.status === 'beli' ? 'status-beli' : 'status-belum'}">
@@ -208,13 +217,13 @@ function renderLogsPagination() {
   }
 
   let buttons = '';
-  buttons += `<button onclick="changeLogsPage(${currentLogsPage - 1})" class="px-3 py-1 rounded ${currentLogsPage === 1 ? 'text-gray-400' : 'text-teal-600 hover:bg-gray-100'}" ${currentLogsPage === 1 ? 'disabled' : ''}>Prev</button>`;
+  buttons += `<button onclick="changeLogsPage(${currentLogsPage - 1})" class="pagination-btn ${currentLogsPage === 1 ? 'text-gray-400' : 'text-teal-600 hover:bg-gray-100'}" ${currentLogsPage === 1 ? 'disabled' : ''}>Prev</button>`;
 
   for (let i = 1; i <= totalPages; i++) {
-    buttons += `<button onclick="changeLogsPage(${i})" class="px-3 py-1 mx-1 rounded ${i === currentLogsPage ? 'bg-teal-500 text-white' : 'text-teal-600 hover:bg-gray-100'}">${i}</button>`;
+    buttons += `<button onclick="changeLogsPage(${i})" class="pagination-btn ${i === currentLogsPage ? 'bg-teal-500 text-white' : 'text-teal-600 hover:bg-gray-100'}">${i}</button>`;
   }
 
-  buttons += `<button onclick="changeLogsPage(${currentLogsPage + 1})" class="px-3 py-1 rounded ${currentLogsPage === totalPages ? 'text-gray-400' : 'text-teal-600 hover:bg-gray-100'}" ${currentLogsPage === totalPages ? 'disabled' : ''}>Next</button>`;
+  buttons += `<button onclick="changeLogsPage(${currentLogsPage + 1})" class="pagination-btn ${currentLogsPage === totalPages ? 'text-gray-400' : 'text-teal-600 hover:bg-gray-100'}" ${currentLogsPage === totalPages ? 'disabled' : ''}>Next</button>`;
 
   paginationEl.innerHTML = `<div class="flex justify-center items-center py-4">${buttons}</div>`;
 }
@@ -278,9 +287,6 @@ async function loadReferralCodes() {
     if (!response.ok) throw new Error('Failed to fetch referral codes');
     
     const codes = await response.json();
-    
-    // The API should now provide usage_count directly
-    // No need to calculate locally anymore
     allCodes = codes;
     allData = codes;
     filteredCodes = [...allCodes];
@@ -315,45 +321,39 @@ function renderCodesTable() {
     return;
   }
 
-// Hitung total pemakaian dari seluruh data
-const referralCounts = allData.reduce((acc, item) => {
-  acc[item.kode_referal] = (acc[item.kode_referal] || 0) + 1;
-  return acc;
-}, {});
+  tbody.innerHTML = pageData.map(code => {
+    const createdAt = code.created_at ? new Date(code.created_at) : null;
+    const dateText = createdAt ? createdAt.toLocaleDateString('id-ID') : '-';
+    const timeText = createdAt ? createdAt.toLocaleTimeString('id-ID') : '-';
 
-tbody.innerHTML = pageData.map(code => {
-  const createdAt = code.created_at ? new Date(code.created_at) : null;
-  const dateText = createdAt ? createdAt.toLocaleDateString('id-ID') : '-';
-  const timeText = createdAt ? createdAt.toLocaleTimeString('id-ID') : '-';
-
-  return `
-    <tr class="table-row">
-      <td class="px-6 py-4 whitespace-nowrap">
-        <span class="text-sm font-mono text-gray-800">#${code.id}</span>
-      </td>
-      <td class="px-6 py-4 whitespace-nowrap">
-        <span class="text-sm font-mono font-semibold text-gray-800">${code.kode_referal}</span>
-      </td>
-      <td class="px-6 py-4 whitespace-nowrap">
-        <span class="text-sm text-gray-800">${code.username}</span>
-      </td>
-      <td class="px-6 py-4 whitespace-nowrap">
-        <div class="text-sm text-gray-800">${dateText}</div>
-        <div class="text-xs text-gray-500">${timeText}</div>
-      </td>
-      <td class="px-6 py-4 whitespace-nowrap">
-        <span class="px-3 py-1 text-xs font-semibold rounded-full bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800">
-          ${code.usage} kali
-        </span>
-      </td>
-      <td class="px-6 py-4 whitespace-nowrap">
-        <button onclick="openDeleteModal(${code.id}, '${code.kode_referal}')" class="btn-danger px-3 py-1.5 text-white rounded-lg text-xs font-medium hover:shadow-lg transition-all flex items-center space-x-1">
-          <i class='bx bx-trash text-xs'></i><span>Hapus</span>
-        </button>
-      </td>
-    </tr>
-  `;
-}).join('')
+    return `
+      <tr class="table-row slide-in">
+        <td class="px-6 py-4 whitespace-nowrap">
+          <span class="text-sm font-mono text-gray-800">#${code.id}</span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <span class="text-sm font-mono font-semibold text-gray-800">${code.kode_referal}</span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <span class="text-sm text-gray-800">${code.username}</span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <div class="text-sm text-gray-800">${dateText}</div>
+          <div class="text-xs text-gray-500">${timeText}</div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <span class="px-3 py-1 text-xs font-semibold rounded-full bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800">
+            ${code.usage || 0} kali
+          </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <button onclick="openDeleteModal(${code.id}, '${code.kode_referal}')" class="btn-danger px-3 py-1.5 text-white rounded-lg text-xs font-medium hover:shadow-lg transition-all flex items-center space-x-1">
+            <i class='bx bx-trash text-xs'></i><span>Hapus</span>
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
 
   renderCodesPagination();
 }
@@ -368,13 +368,13 @@ function renderCodesPagination() {
   }
 
   let buttons = '';
-  buttons += `<button onclick="changeCodesPage(${currentCodesPage - 1})" class="px-3 py-1 rounded ${currentCodesPage === 1 ? 'text-gray-400' : 'text-teal-600 hover:bg-gray-100'}" ${currentCodesPage === 1 ? 'disabled' : ''}>Prev</button>`;
+  buttons += `<button onclick="changeCodesPage(${currentCodesPage - 1})" class="pagination-btn ${currentCodesPage === 1 ? 'text-gray-400' : 'text-teal-600 hover:bg-gray-100'}" ${currentCodesPage === 1 ? 'disabled' : ''}>Prev</button>`;
 
   for (let i = 1; i <= totalPages; i++) {
-    buttons += `<button onclick="changeCodesPage(${i})" class="px-3 py-1 mx-1 rounded ${i === currentCodesPage ? 'bg-teal-500 text-white' : 'text-teal-600 hover:bg-gray-100'}">${i}</button>`;
+    buttons += `<button onclick="changeCodesPage(${i})" class="pagination-btn ${i === currentCodesPage ? 'bg-teal-500 text-white' : 'text-teal-600 hover:bg-gray-100'}">${i}</button>`;
   }
 
-  buttons += `<button onclick="changeCodesPage(${currentCodesPage + 1})" class="px-3 py-1 rounded ${currentCodesPage === totalPages ? 'text-gray-400' : 'text-teal-600 hover:bg-gray-100'}" ${currentCodesPage === totalPages ? 'disabled' : ''}>Next</button>`;
+  buttons += `<button onclick="changeCodesPage(${currentCodesPage + 1})" class="pagination-btn ${currentCodesPage === totalPages ? 'text-gray-400' : 'text-teal-600 hover:bg-gray-100'}" ${currentCodesPage === totalPages ? 'disabled' : ''}>Next</button>`;
 
   paginationEl.innerHTML = `<div class="flex justify-center items-center py-4">${buttons}</div>`;
 }
@@ -454,6 +454,302 @@ async function handleAddCode(e) {
   }
 }
 
+// Rekap Data Management
+async function loadRekapData() {
+  try {
+    showRekapLoading();
+    
+    // Load both logs and codes if not already loaded
+    if (allLogs.length === 0) {
+      await loadLogs();
+    }
+    if (allCodes.length === 0) {
+      await loadReferralCodes();
+    }
+    
+    // Process rekap data
+    processRekapData();
+    updateRekapStats();
+    renderRekapTable();
+  } catch (error) {
+    console.error('Error loading rekap data:', error);
+    showToast('error', 'Error', 'Gagal memuat data rekap');
+    renderRekapError();
+  }
+}
+
+function processRekapData() {
+  // Filter only 'beli' status logs
+  const beliLogs = allLogs.filter(log => log.status === 'beli');
+  
+  // Group by referral code
+  const groupedData = {};
+  
+  beliLogs.forEach(log => {
+    const code = log.referral_code;
+    if (!code) return;
+    
+    if (!groupedData[code]) {
+      groupedData[code] = {
+        kode_referal: code,
+        username: '',
+        total_penjualan: 0,
+        total_pendapatan: 0,
+        transactions: [],
+        last_transaction: null
+      };
+    }
+    
+    groupedData[code].total_penjualan += 1;
+    
+    // Parse harga (remove currency formatting if any)
+    const harga = parseFloat(log.harga?.toString().replace(/[^\d.-]/g, '')) || 0;
+    groupedData[code].total_pendapatan += harga;
+    
+    groupedData[code].transactions.push(log);
+    
+    // Update last transaction
+    const logDate = new Date(log.created_at);
+    if (!groupedData[code].last_transaction || logDate > new Date(groupedData[code].last_transaction)) {
+      groupedData[code].last_transaction = log.created_at;
+    }
+  });
+  
+  // Add username from codes data
+  Object.keys(groupedData).forEach(code => {
+    const codeData = allCodes.find(c => c.kode_referal === code);
+    if (codeData) {
+      groupedData[code].username = codeData.username;
+    }
+  });
+  
+  // Convert to array and calculate averages
+  rekapData = Object.values(groupedData).map(item => ({
+    ...item,
+    rata_harga: item.total_penjualan > 0 ? item.total_pendapatan / item.total_penjualan : 0
+  }));
+  
+  filteredRekapData = [...rekapData];
+}
+
+function updateRekapStats() {
+  const totalBeli = rekapData.reduce((sum, item) => sum + item.total_penjualan, 0);
+  const totalPendapatan = rekapData.reduce((sum, item) => sum + item.total_pendapatan, 0);
+  const kodeAktif = rekapData.filter(item => item.total_penjualan > 0).length;
+  const rataHarga = totalBeli > 0 ? totalPendapatan / totalBeli : 0;
+  
+  document.getElementById('rekap-total-beli').textContent = totalBeli;
+  document.getElementById('rekap-total-pendapatan').textContent = formatCurrency(totalPendapatan);
+  document.getElementById('rekap-kode-aktif').textContent = kodeAktif;
+  document.getElementById('rekap-rata-harga').textContent = formatCurrency(rataHarga);
+}
+
+function renderRekapTable() {
+  const tbody = document.getElementById('rekap-tbody');
+  const start = (currentRekapPage - 1) * PAGE_SIZE;
+  const end = start + PAGE_SIZE;
+  const pageData = filteredRekapData.slice(start, end);
+
+  if (filteredRekapData.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="6" class="px-6 py-12 text-center">
+          <div class="flex flex-col items-center space-y-4">
+            <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+              <i class='bx bx-search text-gray-400 text-xl'></i>
+            </div>
+            <p class="text-gray-600">Tidak ada data rekap yang ditemukan</p>
+          </div>
+        </td>
+      </tr>
+    `;
+    document.getElementById('rekap-pagination').innerHTML = '';
+    return;
+  }
+
+  tbody.innerHTML = pageData.map(item => {
+    const lastTransaction = item.last_transaction ? new Date(item.last_transaction) : null;
+    const lastTransactionText = lastTransaction ? lastTransaction.toLocaleDateString('id-ID') : '-';
+
+    return `
+      <tr class="table-row slide-in">
+        <td class="px-6 py-4 whitespace-nowrap">
+          <span class="text-sm font-mono font-semibold text-gray-800">${item.kode_referal}</span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <span class="text-sm text-gray-800">${item.username || '-'}</span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <span class="px-3 py-1 text-xs font-semibold rounded-full bg-gradient-to-r from-green-100 to-green-200 text-green-800">
+            ${item.total_penjualan} transaksi
+          </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <span class="text-sm font-semibold text-gray-800">${formatCurrency(item.total_pendapatan)}</span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <span class="text-sm text-gray-800">${formatCurrency(item.rata_harga)}</span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <span class="text-sm text-gray-800">${lastTransactionText}</span>
+        </td>
+      </tr>
+    `;
+  }).join('');
+
+  renderRekapPagination();
+}
+
+function renderRekapPagination() {
+  const paginationEl = document.getElementById('rekap-pagination');
+  const totalPages = Math.ceil(filteredRekapData.length / PAGE_SIZE);
+
+  if (totalPages <= 1) {
+    paginationEl.innerHTML = '';
+    return;
+  }
+
+  let buttons = '';
+  buttons += `<button onclick="changeRekapPage(${currentRekapPage - 1})" class="pagination-btn ${currentRekapPage === 1 ? 'text-gray-400' : 'text-teal-600 hover:bg-gray-100'}" ${currentRekapPage === 1 ? 'disabled' : ''}>Prev</button>`;
+
+  for (let i = 1; i <= totalPages; i++) {
+    buttons += `<button onclick="changeRekapPage(${i})" class="pagination-btn ${i === currentRekapPage ? 'bg-teal-500 text-white' : 'text-teal-600 hover:bg-gray-100'}">${i}</button>`;
+  }
+
+  buttons += `<button onclick="changeRekapPage(${currentRekapPage + 1})" class="pagination-btn ${currentRekapPage === totalPages ? 'text-gray-400' : 'text-teal-600 hover:bg-gray-100'}" ${currentRekapPage === totalPages ? 'disabled' : ''}>Next</button>`;
+
+  paginationEl.innerHTML = `<div class="flex justify-center items-center py-4">${buttons}</div>`;
+}
+
+function changeRekapPage(page) {
+  const totalPages = Math.ceil(filteredRekapData.length / PAGE_SIZE);
+  if (page < 1 || page > totalPages) return;
+  currentRekapPage = page;
+  renderRekapTable();
+}
+
+function showRekapLoading() {
+  document.getElementById('rekap-tbody').innerHTML = `
+    <tr>
+      <td colspan="6" class="px-6 py-12 text-center">
+        <div class="flex flex-col items-center space-y-4">
+          <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-teal-500 rounded-full flex items-center justify-center loading">
+            <i class='bx bx-loader-alt text-white text-xl'></i>
+          </div>
+          <p class="text-gray-600">Memuat data rekap...</p>
+        </div>
+      </td>
+    </tr>
+  `;
+}
+
+function renderRekapError() {
+  document.getElementById('rekap-tbody').innerHTML = `
+    <tr>
+      <td colspan="6" class="px-6 py-12 text-center">
+        <div class="flex flex-col items-center space-y-4">
+          <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+            <i class='bx bx-error text-red-500 text-xl'></i>
+          </div>
+          <p class="text-gray-600">Gagal memuat data rekap</p>
+          <button onclick="loadRekapData()" class="btn-primary px-4 py-2 text-white rounded-lg text-sm">
+            Coba Lagi
+          </button>
+        </div>
+      </td>
+    </tr>
+  `;
+}
+
+// Date filtering for rekap
+function applyDateFilter() {
+  const dateFrom = document.getElementById('date-from').value;
+  const dateTo = document.getElementById('date-to').value;
+  
+  if (!dateFrom && !dateTo) {
+    filteredRekapData = [...rekapData];
+  } else {
+    filteredRekapData = rekapData.filter(item => {
+      if (!item.last_transaction) return false;
+      
+      const transactionDate = new Date(item.last_transaction);
+      const fromDate = dateFrom ? new Date(dateFrom) : new Date('1900-01-01');
+      const toDate = dateTo ? new Date(dateTo) : new Date('2100-12-31');
+      
+      return transactionDate >= fromDate && transactionDate <= toDate;
+    });
+  }
+  
+  currentRekapPage = 1;
+  updateRekapStats();
+  renderRekapTable();
+}
+
+function filterRekapData() {
+  applyDateFilter();
+  showToast('info', 'Filter Applied', 'Data rekap telah difilter sesuai tanggal');
+}
+
+// Export functionality
+function exportRekapData() {
+  try {
+    const dataToExport = filteredRekapData.map(item => ({
+      'Kode Referral': item.kode_referal,
+      'Username': item.username || '-',
+      'Total Penjualan': item.total_penjualan,
+      'Total Pendapatan': item.total_pendapatan,
+      'Rata-rata Harga': item.rata_harga,
+      'Transaksi Terakhir': item.last_transaction ? new Date(item.last_transaction).toLocaleDateString('id-ID') : '-'
+    }));
+    
+    exportToCSV(dataToExport, 'rekap-data-pembelian');
+    showToast('success', 'Export Berhasil', 'Data rekap berhasil diekspor ke CSV');
+  } catch (error) {
+    console.error('Error exporting data:', error);
+    showToast('error', 'Export Gagal', 'Gagal mengekspor data rekap');
+  }
+}
+
+function exportToCSV(data, filename) {
+  const csvContent = convertToCSV(data);
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  
+  if (link.download !== undefined) {
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `${filename}-${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+}
+
+function convertToCSV(data) {
+  if (data.length === 0) return '';
+  
+  const headers = Object.keys(data[0]);
+  const csvRows = [];
+  
+  // Add headers
+  csvRows.push(headers.join(','));
+  
+  // Add data rows
+  data.forEach(row => {
+    const values = headers.map(header => {
+      const value = row[header];
+      // Escape values that contain commas or quotes
+      return typeof value === 'string' && (value.includes(',') || value.includes('"')) 
+        ? `"${value.replace(/"/g, '""')}"` 
+        : value;
+    });
+    csvRows.push(values.join(','));
+  });
+  
+  return csvRows.join('\n');
+}
+
 // Modal Management
 function openEditModal(id, referralCode, status) {
   document.getElementById('edit-id').value = id;
@@ -497,6 +793,11 @@ async function handleEditSubmit(e) {
     showToast('success', 'Berhasil', 'Status berhasil diperbarui');
     closeModal();
     loadLogs();
+    
+    // Refresh rekap data if on rekap tab
+    if (currentTab === 'rekap') {
+      loadRekapData();
+    }
   } catch (error) {
     console.error('Error updating status:', error);
     showToast('error', 'Error', 'Gagal memperbarui status');
@@ -516,6 +817,11 @@ async function confirmDelete() {
     showToast('success', 'Berhasil', 'Kode referral berhasil dihapus');
     closeDeleteModal();
     loadReferralCodes();
+    
+    // Refresh rekap data if on rekap tab
+    if (currentTab === 'rekap') {
+      loadRekapData();
+    }
   } catch (error) {
     console.error('Error deleting referral code:', error);
     showToast('error', 'Error', 'Gagal menghapus kode referral');
@@ -527,10 +833,23 @@ function refreshData() {
   if (currentTab === 'logs') {
     loadLogs();
     showToast('info', 'Refresh', 'Data logs sedang dimuat ulang...');
-  } else {
+  } else if (currentTab === 'codes') {
     loadReferralCodes();
     showToast('info', 'Refresh', 'Data kode referral sedang dimuat ulang...');
+  } else if (currentTab === 'rekap') {
+    loadRekapData();
+    showToast('info', 'Refresh', 'Data rekap sedang dimuat ulang...');
   }
+}
+
+function formatCurrency(amount) {
+  if (isNaN(amount) || amount === null || amount === undefined) return 'Rp 0';
+  return new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  }).format(amount);
 }
 
 function showToast(type, title, message) {
@@ -573,5 +892,11 @@ function handleKeyboardShortcuts(e) {
   if (e.key === 'F5' || (e.ctrlKey && e.key === 'r')) {
     e.preventDefault();
     refreshData();
+  }
+  if (e.ctrlKey && e.key === 'e') {
+    e.preventDefault();
+    if (currentTab === 'rekap') {
+      exportRekapData();
+    }
   }
 }

@@ -127,7 +127,7 @@
       console.log('Updating status for log_id:', logId);
       
       // First, check current status to avoid unnecessary updates
-      const checkResponse = await fetch(`http://localhost:5000/api/logs`);
+      const checkResponse = await fetch(`http://iis.dreamapps.id/api/logs`);
       if (checkResponse.ok) {
         const logs = await checkResponse.json();
         const currentLog = logs.find(log => log.id == logId);
@@ -142,7 +142,7 @@
       }
       
       // Update using log_id (not order_id)
-      const response = await fetch(`http://localhost:5000/api/logs/${logId}`, {
+      const response = await fetch(`http://iis.dreamapps.id/api/logs/${logId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
