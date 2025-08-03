@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sejarah Teknologi - Seri Teknologi Islami</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/png" href="/img/ST/cover.jpg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/script.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            animation: {
+              "fade-in-up": "fadeInUp 0.8s ease-out",
+              "fade-in-left": "fadeInLeft 0.8s ease-out",
+              "fade-in-right": "fadeInRight 0.8s ease-out",
+              "pulse-slow": "pulse 3s infinite",
+              float: "float 3s ease-in-out infinite",
+            },
+            keyframes: {
+              fadeInUp: {
+                "0%": { opacity: "0", transform: "translateY(30px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+              fadeInLeft: {
+                "0%": { opacity: "0", transform: "translateX(-30px)" },
+                "100%": { opacity: "1", transform: "translateX(0)" },
+              },
+              fadeInRight: {
+                "0%": { opacity: "0", transform: "translateX(30px)" },
+                "100%": { opacity: "1", transform: "translateX(0)" },
+              },
+              float: {
+                "0%, 100%": { transform: "translateY(0px)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50 text-gray-900 overflow-x-hidden">
+    <!-- Header -->
+    <header
+      class="fixed top-0 w-full z-50 transition-all duration-300 glass-effect"
+      id="header"
+    >
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div class="text-2xl font-bold">
+            <span
+              class="bg-gradient-to-r from-emerald-500 to-orange-500 bg-clip-text text-transparent"
+              >Sejarah Teknologi</span
+            >
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex space-x-8">
+            <a href="#home" class="nav-link" data-section="home">Home</a>
+            <a href="#about" class="nav-link" data-section="about">Tantangan</a>
+            <a href="#details" class="nav-link" data-section="details"
+              >Isi Buku</a
+            >
+            <a href="#specs" class="nav-link" data-section="specs"
+              >Detail Buku</a
+            >
+            <a href="#beli" class="nav-link" data-section="beli"
+              >Beli Sekarang</a
+            >
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button
+            class="md:hidden focus:outline-none"
+            id="mobile-menu-btn"
+            aria-label="Toggle menu"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="md:hidden hidden" id="mobile-menu">
+          <div class="pt-4 pb-2 space-y-3 flex flex-col">
+            <a href="#home" class="mobile-nav-link" data-section="home">Home</a>
+            <a href="#about" class="mobile-nav-link" data-section="about"
+              >Tantangan</a
+            >
+            <a href="#details" class="mobile-nav-link" data-section="details"
+              >Isi Buku</a
+            >
+            <a href="#specs" class="mobile-nav-link" data-section="specs"
+              >Detail Buku</a
+            >
+            <a href="#beli" class="mobile-nav-link" data-section="beli"
+              >Beli Sekarang</a
+            >
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <style>
+      .nav-link {
+        position: relative;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        color: currentColor;
+      }
+
+      .nav-link:hover {
+        color: #059669; /* emerald-600 */
+      }
+
+      .nav-link.active {
+        color: #059669;
+      }
+
+      .nav-link.active::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(to right, #10b981, #f59e0b);
+        border-radius: 2px;
+      }
+
+      .mobile-nav-link {
+        display: block;
+        padding: 0.75rem 0;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        color: currentColor;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .mobile-nav-link:hover {
+        color: #059669;
+        padding-left: 0.5rem;
+      }
+
+      .mobile-nav-link.active {
+        color: #059669;
+        font-weight: 600;
+        background: rgba(5, 150, 105, 0.1);
+        padding-left: 1rem;
+        border-left: 3px solid #059669;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .glass-effect {
+          background: rgba(255, 255, 255, 0.5);
+        }
+      }
+    </style>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        // Toggle mobile menu
+        mobileMenuBtn.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+        });
+
+        // Handle active links
+        const navLinks = document.querySelectorAll(
+          ".nav-link, .mobile-nav-link"
+        );
+
+        function setActiveLink() {
+          const fromTop = window.scrollY + 100;
+
+          navLinks.forEach((link) => {
+            const section = document.querySelector(link.getAttribute("href"));
+
+            if (
+              section.offsetTop <= fromTop &&
+              section.offsetTop + section.offsetHeight > fromTop
+            ) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          });
+        }
+
+        // Set active link on load and scroll
+        window.addEventListener("load", setActiveLink);
+        window.addEventListener("scroll", setActiveLink);
+
+        // Close mobile menu when clicking a link
+        navLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+          });
+        });
+      });
+    </script>
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="min-h-screen gradient-bg flex items-center relative overflow-hidden pt-20"
+    >
+      <div class="absolute inset-0 bg-white opacity-10"></div>
+      <div class="container mx-auto px-6 relative z-10 py-12">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="animate-fade-in-left">
+            <h1
+              class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white"
+            >
+              <span class="block">SEJARAH TEKNOLOGI</span>
+              <span
+                class="block bg-gradient-to-r from-yellow-300 to-white bg-clip-text text-transparent"
+                >Dari Perspektif Kaum Muslim</span
+              >
+            </h1>
+            <p class="text-lg lg:text-xl mb-8 text-gray-100 leading-relaxed">
+              Buku ini mengungkap sejarah jujur tentang bagaimana kaum muslimin 
+              <span class="font-bold text-yellow-300">memelopori kebangkitan teknologi</span>
+              dunia dengan berpandu pada Al-Quran, serta bagaimana khazanah keilmuan ini 
+              berpindah ke Barat dan apa yang harus kita lakukan sekarang.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                href="#beli"
+                class="bg-gradient-to-r from-emerald-500 to-orange-500 hover:from-emerald-600 hover:to-orange-600 px-6 py-3 rounded-full text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 text-center"
+              >
+                BUKU SEKARANG!
+              </a>
+              <a
+                href="https://shopee.co.id/Seri-Teknologi-Islami-Sejarah-Teknologi-dari-Perspektif-Kaum-Muslim-i.1344216734.40751654113"
+                target="_blank"
+                class="glass-effect text-gray-700 px-6 py-3 rounded-full text-lg font-semibold hover:bg-white hover:bg-opacity-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 text-center"
+              >
+                Beli di Shopee
+              </a>
+            </div>
+            <p class="mt-4 text-white text-sm animate-pulse">
+              ⚠️ PERINGATAN: Buku ini akan mengubah pandangan Anda tentang sejarah teknologi!
+            </p>
+          </div>
+          <div class="animate-fade-in-right flex justify-center">
+            <div class="relative max-w-md">
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-emerald-500 to-orange-500 rounded-3xl blur-3xl opacity-30 animate-pulse-slow"
+              ></div>
+              <img
+                src="/img/ST/mockup-ST.png"
+                alt="Cover Sejarah Teknologi"
+                class="relative z-10 w-full rounded-3xl shadow-2xl animate-float hover:scale-105 transition-transform duration-500 border-4 border-white"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Floating elements -->
+      <div
+        class="absolute top-20 left-10 w-20 h-20 bg-white bg-opacity-30 rounded-full animate-float"
+      ></div>
+      <div
+        class="absolute bottom-20 right-10 w-16 h-16 bg-white bg-opacity-20 rounded-full animate-float"
+        style="animation-delay: 1s"
+      ></div>
+      <div
+        class="absolute top-1/2 left-1/4 w-12 h-12 bg-white bg-opacity-25 rounded-full animate-float"
+        style="animation-delay: 2s"
+      ></div>
+    </section>
+
+    <!-- About Section - Tantangan -->
+    <section id="about" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16 fade-in-element">
+          <h2
+            class="text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-600 to-orange-600 bg-clip-text text-transparent"
+          >
+            MASALAH YANG KITA HADAPI
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Generasi muslim hari ini tidak menyadari warisan teknologi mereka yang gemilang!
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div
+            class="fade-in-element bg-gray-50 p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow relative"
+          >
+            <div
+              class="absolute -top-5 -left-5 w-12 h-12 flex items-center justify-center rounded-full bg-emerald-100 text-emerald-600 text-2xl font-bold shadow-sm"
+            >
+              1
+            </div>
+            <div class="pt-4">
+              <h3 class="text-xl font-bold mb-3">Sejarah yang Terdistorsi</h3>
+              <p class="text-gray-600">
+                Sejarah teknologi sering ditulis dari perspektif Barat yang mengabaikan kontribusi besar ilmuwan muslim. Banyak penemuan penting yang sebenarnya berasal dari dunia Islam.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="fade-in-element bg-gray-50 p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow relative"
+            style="animation-delay: 0.2s"
+          >
+            <div
+              class="absolute -top-5 -left-5 w-12 h-12 flex items-center justify-center rounded-full bg-orange-100 text-orange-500 text-2xl font-bold shadow-sm"
+            >
+              2
+            </div>
+            <div class="pt-4">
+              <h3 class="text-xl font-bold mb-3">Hilangnya Identitas</h3>
+              <p class="text-gray-600">
+                Generasi muda muslim tidak lagi bangga dengan warisan keilmuan mereka sendiri. Mereka lebih mengenal ilmuwan Barat daripada ilmuwan muslim seperti Al-Khwarizmi, Ibnu Sina, atau Al-Jazari.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="fade-in-element bg-gray-50 p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow relative"
+            style="animation-delay: 0.4s"
+          >
+            <div
+              class="absolute -top-5 -left-5 w-12 h-12 flex items-center justify-center rounded-full bg-teal-100 text-teal-500 text-2xl font-bold shadow-sm"
+            >
+              3
+            </div>
+            <div class="pt-4">
+              <h3 class="text-xl font-bold mb-3">Krisis Motivasi</h3>
+              <p class="text-gray-600">
+                Tanpa pengetahuan tentang kontribusi sejarah mereka, generasi muslim kehilangan motivasi untuk kembali unggul dalam bidang teknologi dan sains.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-16 text-center fade-in-element">
+          <div
+            class="inline-block bg-red-100 border-l-4 border-red-500 text-red-700 p-4"
+          >
+            <p class="font-bold">
+              APAKAH KITA AKAN TERUS MENJADI PENONTON DALAM PERKEMBANGAN TEKNOLOGI?
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- Details Section - Isi Buku -->
+<section id="details" class="py-20 bg-gray-100">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16 fade-in-element">
+      <h2
+        class="text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-600 to-orange-600 bg-clip-text text-transparent"
+      >
+        APA YANG ANDA TEMUKAN DALAM BUKU INI?
+      </h2>
+      <p class="text-xl text-gray-600">
+        Panduan revolusioner pengajaran IT berbasis nilai Islam
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="fade-in-element order-last lg:order-first">
+        <div class="space-y-8">
+          <div class="flex items-start">
+            <div
+              class="flex-shrink-0 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full p-3 text-white mr-4 mt-1"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2 text-gray-800">
+                Prolog Mengajar IT Islami
+              </h3>
+              <p class="text-gray-600">
+                Dimulai dari pengalaman mengajar mata pelajaran Teknologi Informasi di Sekolah Impian, buku ini membongkar paradigma pengajaran IT konvensional dan menggantinya dengan pendekatan berbasis nilai-nilai Islam yang holistik.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <div
+              class="flex-shrink-0 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full p-3 text-white mr-4 mt-1"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2 text-gray-800">
+                Integrasi Al-Qur'an & Teknologi
+              </h3>
+              <p class="text-gray-600">
+                Metode unik mengintegrasikan Al-Qur'an dengan pembelajaran teknologi modern. Bagaimana menjadikan ayat-ayat kauniyah sebagai landasan pengembangan teknologi sekaligus filter terhadap dampak negatif kemajuan digital.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <div
+              class="flex-shrink-0 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full p-3 text-white mr-4 mt-1"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2 text-gray-800">
+                Sejarah Teknologi Islami
+              </h3>
+              <p class="text-gray-600">
+                Dokumentasi komprehensif tentang kontribusi masif ilmuwan muslim dalam perkembangan teknologi dunia - dari Al-Jazari (bapak robotika), Al-Khawarizmi (algoritma), hingga Ibnu Firnas (penerbangan). Membongkar distorsi sejarah yang selama ini terjadi.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-12 bg-gradient-to-r from-emerald-50 to-teal-50 border-l-4 border-emerald-500 p-6 rounded-r-lg fade-in-element shadow-sm"
+        >
+          <p class="text-emerald-800 font-semibold italic text-lg">
+            "Buku ini bukan sekadar teori, tapi panduan praktis bagaimana mencetak generasi yang menguasai teknologi tanpa tercerabut dari akar keislamannya"
+          </p>
+          <p class="text-gray-600 mt-3 font-medium">
+            - Ustadz Purwanto Abdul Ghaffar
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="fade-in-element flex justify-center order-first lg:order-last"
+      >
+        <img
+          src="/img/ST/cover.jpg"
+          alt="Isi Buku Sejarah Teknologi"
+          class="rounded-2xl shadow-2xl w-full max-w-md border-4 border-white transform hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Book Specifications Section -->
+    <section id="specs" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-4 fade-in-element">
+          <h2
+            class="text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-emerald-600 to-orange-600 bg-clip-text text-transparent"
+          >
+            DETAIL BUKU
+          </h2>
+        </div>
+
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 items-start">
+          <!-- Book Details Card -->
+          <div
+            class="bg-gray-50 rounded-2xl p-8 shadow-lg border border-gray-100 fade-in-element h-full"
+          >
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">
+              Sejarah Teknologi
+            </h3>
+            <p class="text-emerald-600 font-medium mb-6">
+              Ustadz Purwanto Abdul Ghaffar
+            </p>
+
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              Buku ini mengungkap sejarah jujur tentang keterlibatan kaum muslimin dalam mempelopori kebangkitan teknologi, bagaimana mereka menjaga khazanah keilmuan peradaban masa lalu, dan bagaimana semangat ini bisa kita hidupkan kembali.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="space-y-4">
+                <div>
+                  <h4 class="text-sm font-semibold text-gray-500">Penerbit</h4>
+                  <p class="text-gray-700">Bintang Semesta Media</p>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-gray-500">Kategori</h4>
+                  <div class="flex flex-wrap gap-2 mt-1">
+                    <span
+                      class="bg-emerald-100 text-emerald-800 text-xs px-3 py-1 rounded-full"
+                      >Agama Islam</span
+                    >
+                    <span
+                      class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full"
+                      >Sejarah</span
+                    >
+                    <span
+                      class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full"
+                      >Teknologi</span
+                    >
+                  </div>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-gray-500">Bahasa</h4>
+                  <p class="text-gray-700">Indonesia</p>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <div>
+                  <h4 class="text-sm font-semibold text-gray-500">ISBN</h4>
+                  <p class="text-gray-700">978-623-129-466-1</p>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-gray-500">Dimensi</h4>
+                  <p class="text-gray-700">14 x 20 cm</p>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-gray-500">Halaman</h4>
+                  <p class="text-gray-700">x + 156</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-gray-200">
+              <div class="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="https://gsiofficial.xyz/gsiofficial/glPZKz9"
+                  target="_blank"
+                  class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-semibold text-center transition-colors"
+                >
+                  Beli Sekarang
+                </a>
+                <a
+                  href="https://shopee.co.id/Seri-Teknologi-Islami-Sejarah-Teknologi-dari-Perspektif-Kaum-Muslim-i.1344216734.40751654113"
+                  target="_blank"
+                  class="border border-gray-300 hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold text-center transition-colors"
+                >
+                  Beli di Shopee
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gallery Section -->
+          <div class="relative fade-in-element h-full">
+            <!-- Main Image -->
+            <div
+              class="aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden shadow-xl mb-4 flex items-center justify-center"
+            >
+              <img
+                id="main-image"
+                src="/img/ST/cover.jpg"
+                alt="Cover Sejarah Teknologi"
+                class="h-full w-auto object-contain"
+                loading="lazy"
+              />
+            </div>
+
+            <!-- Thumbnails - Visible on all devices -->
+            <div
+              class="flex gap-3 overflow-x-auto py-2 px-1 -mx-1 scrollbar-hide"
+            >
+              <div
+                class="cursor-pointer flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 border-transparent hover:border-emerald-400 transition-all active:border-emerald-400 active:scale-95"
+                onclick="changeMainImage('/img/ST/cover.jpg', this)"
+              >
+                <img
+                  src="/img/ST/cover.jpg"
+                  alt="Thumbnail 1"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div
+                class="cursor-pointer flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 border-transparent hover:border-emerald-400 transition-all active:border-emerald-400 active:scale-95"
+                onclick="changeMainImage('/img/ST/b-cover.jpg', this)"
+              >
+                <img
+                  src="/img/ST/b-cover.jpg"
+                  alt="Thumbnail 2"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div
+                class="cursor-pointer flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 border-transparent hover:border-emerald-400 transition-all active:border-emerald-400 active:scale-95"
+                onclick="changeMainImage('/img/ST/1.jpg', this)"
+              >
+                <img
+                  src="/img/ST/1.jpg"
+                  alt="Thumbnail 3"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div
+                class="cursor-pointer flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 border-transparent hover:border-emerald-400 transition-all active:border-emerald-400 active:scale-95"
+                onclick="changeMainImage('/img/ST/2.jpg', this)"
+              >
+                <img
+                  src="/img/ST/2.jpg"
+                  alt="Thumbnail 4"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div
+                class="cursor-pointer flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 border-transparent hover:border-emerald-400 transition-all active:border-emerald-400 active:scale-95"
+                onclick="changeMainImage('/img/ST/3.jpg', this)"
+              >
+                <img
+                  src="/img/ST/3.jpg"
+                  alt="Thumbnail 5"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div
+                class="cursor-pointer flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 border-transparent hover:border-emerald-400 transition-all active:border-emerald-400 active:scale-95"
+                onclick="changeMainImage('/img/ST/4.jpg', this)"
+              >
+                <img
+                  src="/img/ST/4.jpg"
+                  alt="Thumbnail 6"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+
+            <!-- Mobile Fullscreen Button -->
+            <div class="md:hidden text-center mt-3">
+              <button
+                onclick="openLightboxMobile(0)"
+                class="text-emerald-600 text-sm font-medium flex items-center justify-center mx-auto"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 mr-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+                  />
+                </svg>
+                Lihat Fullscreen
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobile Lightbox -->
+    <div
+      id="mobile-lightbox"
+      class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4"
+    >
+      <button
+        class="absolute top-4 right-4 text-white hover:text-emerald-400 transition-colors z-50"
+        onclick="closeLightboxMobile()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-10 w-10"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+
+      <div class="relative w-full h-full flex items-center justify-center">
+        <button
+          class="absolute left-4 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full z-10 transition-colors"
+          onclick="lightboxMobilePrev()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+
+        <div class="w-full h-full overflow-hidden">
+          <div class="flex h-full" id="mobile-lightbox-slider">
+            <div
+              class="w-full h-full flex-shrink-0 flex items-center justify-center"
+            >
+              <div class="lightbox-img-container">
+                <img
+                  src="/img/ST/cover.jpg"
+                  alt="Cover Sejarah Teknologi"
+                  class="lightbox-img"
+                />
+              </div>
+            </div>
+            <div
+              class="w-full h-full flex-shrink-0 flex items-center justify-center"
+            >
+              <div class="lightbox-img-container">
+                <img
+                  src="/img/ST/b-cover.jpg"
+                  alt="Back Cover Sejarah Teknologi"
+                  class="lightbox-img"
+                />
+              </div>
+            </div>
+            <div
+              class="w-full h-full flex-shrink-0 flex items-center justify-center"
+            >
+              <div class="lightbox-img-container">
+                <img
+                  src="/img/ST/1.jpg"
+                  alt="Halaman Dalam Buku"
+                  class="lightbox-img"
+                />
+              </div>
+            </div>
+            <div
+              class="w-full h-full flex-shrink-0 flex items-center justify-center"
+            >
+              <div class="lightbox-img-container">
+                <img
+                  src="/img/ST/2.jpg"
+                  alt="Halaman Dalam Buku"
+                  class="lightbox-img"
+                />
+              </div>
+            </div>
+            <div
+              class="w-full h-full flex-shrink-0 flex items-center justify-center"
+            >
+              <div class="lightbox-img-container">
+                <img
+                  src="/img/ST/3.jpg"
+                  alt="Halaman Dalam Buku"
+                  class="lightbox-img"
+                />
+              </div>
+            </div>
+            <div
+              class="w-full h-full flex-shrink-0 flex items-center justify-center"
+            >
+              <div class="lightbox-img-container">
+                <img
+                  src="/img/ST/4.jpg"
+                  alt="Halaman Dalam Buku"
+                  class="lightbox-img"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="absolute right-4 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full z-10 transition-colors"
+          onclick="lightboxMobileNext()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Dots Indicator -->
+      <div
+        class="absolute bottom-8 left-0 right-0 flex justify-center space-x-2"
+      >
+        <button
+          class="w-3 h-3 rounded-full bg-emerald-500 transition-all duration-300"
+          data-slide="0"
+          onclick="lightboxMobileGoToSlide(0)"
+        ></button>
+        <button
+          class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300"
+          data-slide="1"
+          onclick="lightboxMobileGoToSlide(1)"
+        ></button>
+        <button
+          class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300"
+          data-slide="2"
+          onclick="lightboxMobileGoToSlide(2)"
+        ></button>
+        <button
+          class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300"
+          data-slide="3"
+          onclick="lightboxMobileGoToSlide(3)"
+        ></button>
+        <button
+          class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300"
+          data-slide="4"
+          onclick="lightboxMobileGoToSlide(4)"
+        ></button>
+        <button
+          class="w-3 h-3 rounded-full bg-gray-300 transition-all duration-300"
+          data-slide="5"
+          onclick="lightboxMobileGoToSlide(5)"
+        ></button>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <section
+      id="beli"
+      class="py-12 md:py-20 gradient-bg relative overflow-hidden"
+    >
+      <div class="absolute inset-0 bg-black opacity-30"></div>
+      <div class="container mx-auto px-4 sm:px-6 relative z-10">
+        <div class="text-center fade-in-element max-w-3xl mx-auto">
+          <h2
+            class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-white"
+          >
+            BANGKITKAN SEMANGAT TEKNOLOGI ISLAMI
+          </h2>
+          <p class="text-lg md:text-xl mb-6 md:mb-8 text-gray-200">
+            Miliki buku ini sekarang dan temukan bagaimana kaum muslimin bisa kembali memimpin di bidang teknologi!
+          </p>
+
+          <div
+            class="glass-effect rounded-xl md:rounded-2xl p-6 md:p-8 mb-6 md:mb-8 text-left relative"
+          >
+            <h3
+              class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-emerald-600"
+            >
+              SEJARAH TEKNOLOGI
+            </h3>
+            <div class="flex flex-col md:grid md:grid-cols-2 gap-4 md:gap-6">
+              <div>
+                <ul class="space-y-2 md:space-y-3 text-gray-700">
+                  <li class="flex items-start">
+                    <svg
+                      class="w-5 h-5 text-emerald-600 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    <span
+                      >Mengungkap kontribusi nyata ilmuwan muslim dalam perkembangan teknologi dunia</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <svg
+                      class="w-5 h-5 text-emerald-600 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    <span>Menjelaskan metode penelitian islami yang menghasilkan penemuan-penemuan penting</span>
+                  </li>
+                  <li class="flex items-start">
+                    <svg
+                      class="w-5 h-5 text-emerald-600 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    <span
+                      >Memberikan panduan bagaimana generasi muslim bisa kembali unggul di bidang teknologi</span
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Pricing Card - Adjusted for mobile -->
+              <div class="relative mt-4 md:mt-0">
+                <div
+                  class="bg-white p-4 md:p-6 rounded-lg shadow-md border border-gray-200"
+                >
+                  <div class="flex justify-between items-end mb-2">
+                    <span class="text-gray-500 text-sm">Harga Normal</span>
+                  </div>
+
+                  <div class="flex items-end justify-between md:justify-start">
+                    <div class="mr-2">
+                      <span
+                        class="text-gray-400 text-lg md:text-xl line-through"
+                        >Rp150.000</span
+                      >
+                    </div>
+                    <div>
+                      <span
+                        class="text-2xl md:text-4xl font-bold text-orange-600"
+                        >Rp121.000</span
+                      >
+                    </div>
+                  </div>
+
+                  <div
+                    class="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-200"
+                  >
+                    <span class="text-xs md:text-sm text-gray-500"
+                      >+ Ongkos Kirim</span
+                    >
+                  </div>
+                </div>
+
+                <!-- Decorative Elements -->
+                <div
+                  class="absolute -bottom-2 -right-2 w-12 md:w-16 h-12 md:h-16 bg-emerald-500 rounded-full opacity-10"
+                ></div>
+                <div
+                  class="absolute -top-2 -left-2 w-8 md:w-12 h-8 md:h-12 bg-orange-500 rounded-full opacity-10"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+            <a
+              href="https://gsiofficial.xyz/gsiofficial/glPZKz9"
+              target="_blank"
+              class="bg-white text-emerald-600 hover:bg-gray-100 px-6 py-3 md:px-8 md:py-4 rounded-full text-base md:text-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white text-center"
+            >
+              PESAN SEKARANG - Rp 121.000
+            </a>
+            <a
+              href="https://shopee.co.id/Seri-Teknologi-Islami-Sejarah-Teknologi-dari-Perspektif-Kaum-Muslim-i.1344216734.40751654113"
+              target="_blank"
+              class="glass-effect px-6 py-3 md:px-8 md:py-4 rounded-full text-base md:text-lg font-semibold hover:bg-white hover:bg-opacity-20 transition-all duration-300 text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 text-center"
+            >
+              BELI DI SHOPEE
+            </a>
+          </div>
+
+          <p class="mt-4 md:mt-6 text-white text-xs md:text-sm animate-pulse">
+            ⏳ PROMO TERBATAS! Hanya untuk 50 pembeli pertama bulan ini
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-8">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <div class="text-2xl font-bold mb-4">
+            <span
+              class="bg-gradient-to-r from-emerald-400 to-orange-500 bg-clip-text text-transparent"
+              >Sejarah Teknologi</span
+            >
+          </div>
+          <p class="text-gray-400 mb-4">
+            © 2025 Islamic IT School. Semua hak cipta dilindungi.
+          </p>
+          <div class="flex justify-center space-x-6 text-gray-400">
+            <a href="#" class="hover:text-emerald-400 transition-colors"
+              >Kebijakan Privasi</a
+            >
+            <a href="#" class="hover:text-emerald-400 transition-colors"
+              >Syarat & Ketentuan</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

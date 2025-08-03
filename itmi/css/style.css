@@ -1,0 +1,54 @@
+.gradient-bg {
+  background: linear-gradient(
+    135deg,
+    #10b981 0%,
+    #0d9488 50%,
+    #f97316 100%
+  );
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Improved gallery layout */
+#book-gallery {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+#book-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.snap-x {
+  scroll-snap-type: x mandatory;
+}
+
+.snap-center {
+  scroll-snap-align: center;
+}
+
+/* Smooth transitions */
+#gallery-dots button {
+  transition: all 0.3s ease;
+}
+
+/* Hide scrollbar but keep functionality */
+#book-gallery::-webkit-scrollbar {
+  display: none;
+}
+#book-gallery {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Snap scrolling behavior */
+.snap-x {
+  scroll-snap-type: x mandatory;
+}
+.snap-center {
+  scroll-snap-align: center;
+}
