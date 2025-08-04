@@ -417,3 +417,33 @@ function setupScrollEffects() {
         observer.observe(el);
     });
 }
+
+document.addEventListener(
+"DOMContentLoaded",
+function () {
+    const urlParams = new URLSearchParams(
+    window.location.search
+    );
+    const ref = urlParams.get("ref");
+    const button = document.getElementById("pesanButton");
+
+    if (ref) {
+    button.href += "&ref=" + encodeURIComponent(ref);
+    }
+}
+);
+
+// Check for ref parameter on page load
+document.addEventListener("DOMContentLoaded", function () {
+const urlParams = new URLSearchParams(
+    window.location.search
+);
+if (urlParams.has("ref")) {
+    // Hide all elements with the hidden-ref-button class
+    document
+    .querySelectorAll(".hidden-ref-button")
+    .forEach((button) => {
+        button.classList.add("hidden");
+    });
+}
+});
