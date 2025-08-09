@@ -3,10 +3,10 @@ const books = [
     id: "book-1",
     title: "Liquid Curriculum", // Fixed typo: "Curicullum" -> "Curriculum"
     description: `Tujuan pendidikan dari Liquid Curriculum adalah mencapai stabilisasi
-moral, mental, dan produktifitas lebih cepat.
-Siapapun yang mendambakan lahirnya generasi impian, baik anda
-adalah seorang guru maupun orang tua, Liquid Curriculum adalah
-jawabannya. InsyaAllah`,
+      moral, mental, dan produktifitas lebih cepat.
+      Siapapun yang mendambakan lahirnya generasi impian, baik anda
+      adalah seorang guru maupun orang tua, Liquid Curriculum adalah
+      jawabannya. InsyaAllah`,
     author: "Ustadz Purwanto Abdul Ghaffar",
     publisher: "Bintang Semesta Media",
     categories: ["Pendidikan", "Parenting", "Islami"],
@@ -24,14 +24,14 @@ jawabannya. InsyaAllah`,
     id: "book-2",
     title: "Islamic Technology Mindset Installation",
     description: `ITMI adalah bagian
-dari Liquid Curriculum yang memiliki dua fungsi utama.
+      dari Liquid Curriculum yang memiliki dua fungsi utama.
 
-Fungsi ITMI yang pertama adalah sebagai metode preventif & kuratif
-untuk mudhorotnya teknologi, seperti nomophobia, narkolema, game
-addiction, dsb.
+      Fungsi ITMI yang pertama adalah sebagai metode preventif & kuratif
+      untuk mudhorotnya teknologi, seperti nomophobia, narkolema, game
+      addiction, dsb.
 
-Fungsi kedua dari ITMI adalah sebagai metode belajar mapel IT yang
-efektif, lebih cepat, sebab menggunakan strategi ajar yang unik`,
+      Fungsi kedua dari ITMI adalah sebagai metode belajar mapel IT yang
+      efektif, lebih cepat, sebab menggunakan strategi ajar yang unik`,
     author: "Ustadz Purwanto Abdul Ghaffar",
     publisher: "Bintang Semesta Media",
     categories: ["Agama Islam", "Teknologi"],
@@ -49,19 +49,19 @@ efektif, lebih cepat, sebab menggunakan strategi ajar yang unik`,
     id: "book-3",
     title: "Sejarah Teknologi",
     description: `Buku ini adalah buku tentang sejarah teknologi yang jujur, di dalam buku ini
-dijabarkan tentang keterlibatan kaum muslimin dalam mempelopori
-kebangkitan teknologi.
+      dijabarkan tentang keterlibatan kaum muslimin dalam mempelopori
+      kebangkitan teknologi.
 
-Bagaimana ilmuwan muslim menjaga dan memelihara khazanah keilmuan
-peradaban peradaban hebat di masa lalu, seperti Yunani, Persia, bahkan
-China. Bagaimana ilmuwan muslim meneruskan penelitian mereka dengan
-berpandu dengan Al-Quran yang hasilnya adalah penemuan-penemuan
-yang orisinil.
+      Bagaimana ilmuwan muslim menjaga dan memelihara khazanah keilmuan
+      peradaban peradaban hebat di masa lalu, seperti Yunani, Persia, bahkan
+      China. Bagaimana ilmuwan muslim meneruskan penelitian mereka dengan
+      berpandu dengan Al-Quran yang hasilnya adalah penemuan-penemuan
+      yang orisinil.
 
-Buku ini juga menjelaskan bagaimana peradaban keilmuan itu bisa runtuh
-dan berpindah ke barat. Semua isi buku ini insya Allah akan membangkitkan
-semangat dan gairah pemuda muslim untuk kembali bangkit dan kembali
-mendekati teknologi`,
+      Buku ini juga menjelaskan bagaimana peradaban keilmuan itu bisa runtuh
+      dan berpindah ke barat. Semua isi buku ini insya Allah akan membangkitkan
+      semangat dan gairah pemuda muslim untuk kembali bangkit dan kembali
+      mendekati teknologi`,
     author: "Ustadz Purwanto Abdul Ghaffar",
     publisher: "Bintang Semesta Media",
     categories: ["Agama Islam", "Sejarah", "Teknologi"],
@@ -79,17 +79,17 @@ mendekati teknologi`,
     id: "book-4",
     title: "Mental Belajar Teknologi",
     description: `Teknologi bagaikan kotak pandora, di dalamnya terdapat keburukan dan
-manfaat.
+      manfaat.
 
-Menghindari teknologi sudah tak mungkin! Yang logis adalah menyiapkan
-anak dan siswa kita agar dia punya mental yang tangguh untuk mampu
-menjauhi keburukan teknologi dan punya mental yang tangguh untuk
-hanya fokus kepada manfaatnya serta punya mental yang produktif
-bahkan monetitatif dalam berteknologi.
+      Menghindari teknologi sudah tak mungkin! Yang logis adalah menyiapkan
+      anak dan siswa kita agar dia punya mental yang tangguh untuk mampu
+      menjauhi keburukan teknologi dan punya mental yang tangguh untuk
+      hanya fokus kepada manfaatnya serta punya mental yang produktif
+      bahkan monetitatif dalam berteknologi.
 
-Buku ini menjadi penting bagi pendidik (orang tua dan guru) karena di
-dalamnya terdapat langkah demi langkah untuk membangun "mental-
-mental berteknologi" tersebut.`,
+      Buku ini menjadi penting bagi pendidik (orang tua dan guru) karena di
+      dalamnya terdapat langkah demi langkah untuk membangun "mental-
+      mental berteknologi" tersebut.`,
     author: "Ustadz Purwanto Abdul Ghaffar",
     publisher: "Bintang Semesta Media",
     categories: ["Agama Islam", "Teknologi"],
@@ -107,16 +107,16 @@ mental berteknologi" tersebut.`,
     id: "book-5",
     title: "IT DENGAN PROYEK FESTIVAL",
     description: `Efektivitas pembelajaran IT tidak akan sempurna tanpa jam dan strategi
-praktik yang baik.
+      praktik yang baik.
 
-Pembelajaran yang disertai dengan praktik lebih efektif dengan
-persentase keberhasilan yang lebih tinggi (85%) dibandingkan dengan
-pembelajaran melalui teori saja (55%).
+      Pembelajaran yang disertai dengan praktik lebih efektif dengan
+      persentase keberhasilan yang lebih tinggi (85%) dibandingkan dengan
+      pembelajaran melalui teori saja (55%).
 
-Buku ini membahas tentang bagaimana menjalankan strategi
-pembelajaran berbasis project. Buku ini juga membahas tentang
-peningkatan kualitas guru agar mampu menciptakan dan mengawal
-proyek-proyek di mapel IT`,
+      Buku ini membahas tentang bagaimana menjalankan strategi
+      pembelajaran berbasis project. Buku ini juga membahas tentang
+      peningkatan kualitas guru agar mampu menciptakan dan mengawal
+      proyek-proyek di mapel IT`,
     author: "Ustadz Purwanto Abdul Ghaffar",
     publisher: "Bintang Semesta Media",
     categories: ["Agama Islam", "Teknologi"],
@@ -134,21 +134,21 @@ proyek-proyek di mapel IT`,
     id: "book-6",
     title: "IT BERORIENTASI PRODUKTIF",
     description: `Jaman sudah berubah, portofolio menjadi 
-lebih penting daripada ijazah.
+      lebih penting daripada ijazah.
 
-Perusahaan zaman sekarang lebih sering 
-bertanya, "Berapa perangkat lunak yang 
-pernah Anda buat?", "Anda sudah terlibat 
-dalam berapa proyek?" 
+      Perusahaan zaman sekarang lebih sering 
+      bertanya, "Berapa perangkat lunak yang 
+      pernah Anda buat?", "Anda sudah terlibat 
+      dalam berapa proyek?" 
 
-Oleh karena itu, mari kita dorong anak dan 
-siswa kita untuk mencari ide, untuk 
-mengerjakan proyek dan menciptakan atau 
-membuat produk.
+      Oleh karena itu, mari kita dorong anak dan 
+      siswa kita untuk mencari ide, untuk 
+      mengerjakan proyek dan menciptakan atau 
+      membuat produk.
 
-Buku ini memandu guru dan orangtua untuk 
-menuntun tahap demi tahap agar anak dan 
-siswa kita belajar IT secara produktif.`,
+      Buku ini memandu guru dan orangtua untuk 
+      menuntun tahap demi tahap agar anak dan 
+      siswa kita belajar IT secara produktif.`,
     author: "Ustadz Purwanto Abdul Ghaffar",
     publisher: "Bintang Semesta Media",
     categories: ["Agama Islam", "Teknologi"],
@@ -166,19 +166,19 @@ siswa kita belajar IT secara produktif.`,
     id: "book-7",
     title: "IT BERORIENTASI MONETITATIF",
     description: `Keahlian teknologi menjadi salah satu kunci 
-utama untuk meraih kesuksesan finansial.
+      utama untuk meraih kesuksesan finansial.
 
-Monetisasi harus menjadi target 
-pembelajaran, sehingga pelajar di bidang IT 
-selalu berpikir tentang bagaimana cara 
-menghasilkan pendapatan dari teknologi.
+      Monetisasi harus menjadi target 
+      pembelajaran, sehingga pelajar di bidang IT 
+      selalu berpikir tentang bagaimana cara 
+      menghasilkan pendapatan dari teknologi.
 
-Buku ini mengarahkan anak dan siswa kita 
-untuk bercita-cita menjadi seorang 
-technopreneur, yaitu wirausaha berbasis 
-teknologi, dengan cara mencipta dan 
-membuat suatu produk dan berlatih untuk 
-memonetisasinya.`,
+      Buku ini mengarahkan anak dan siswa kita 
+      untuk bercita-cita menjadi seorang 
+      technopreneur, yaitu wirausaha berbasis 
+      teknologi, dengan cara mencipta dan 
+      membuat suatu produk dan berlatih untuk 
+      memonetisasinya.`,
     author: "Ustadz Purwanto Abdul Ghaffar",
     publisher: "Bintang Semesta Media",
     categories: ["Agama Islam", "Teknologi"],
@@ -191,6 +191,49 @@ memonetisasinya.`,
     linkid: "https://gsiofficial.xyz/gsiofficial/xQAKrGZ",
     linkshopee: "https://shopee.co.id/Seri-Teknologi-Islami-IT-Berorientasi-Monetitatif-i.1344216734.43551675445",
     harga: 117000
+  },
+  {
+    id: "book-8",
+    title: "Paket 1",
+    description: `Paket komplit berisi 7 buku + Akses Video Tutorial:
+      1. Liquid Curicullum
+      2. Islamic Technology Mindset Installation (ITMI)
+      3. Sejarah Teknologi dari Perspektif Kaum Muslimin
+      4. Mental Belajar Teknologi
+      5. IT dengan Proyek Festival
+      6. IT Berorientasi Produktif
+      7. IT Berorientasi Monetitatif
+      
+      Plus: Akses eksklusif video tutorial pendamping
+      
+      Paket ini cocok untuk:
+      - Lembaga pendidikan/pesantren
+      - Guru/dosen teknologi
+      - Keluarga muslim yang ingin membangun mindset teknologi Islami
+      - Praktisi teknologi muslim`,
+    author: "Ustadz Purwanto Abdul Ghaffar",
+    publisher: "Bintang Semesta Media",
+    categories: ["Paket", "Teknologi Islam", "Bundle", "Kitab"],
+    pageCount: "Complete Set",
+    language: "Bahasa Indonesia",
+    dimensions: "Paket Lengkap",
+    isbn: "-",
+    series: "Seri Teknologi Islami (Complete Bundle)",
+    images: ["img/paket1.png"],
+    linkid: "https://gsiofficial.xyz/gsiofficial/67ejrz6xdwgp",
+    linkshopee: "https://shopee.co.id/Paket-Lengkap-7-Buku-Teknologi-Islami",
+    harga: 914000, // Harga khusus paket (lebih hemat dari beli satuan)
+    isBundle: true,
+    bundleContents: [
+      "book-1",
+      "book-2", 
+      "book-3",
+      "book-4",
+      "book-5",
+      "book-6",
+      "book-7"
+    ],
+    bonus: "Akses Video Tutorial Eksklusif"
   }
 ];
 
