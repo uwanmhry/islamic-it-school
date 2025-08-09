@@ -299,7 +299,7 @@
     >
       <!-- Background Decorations -->
       <div class="max-w-7xl mx-auto px-5 relative z-10 space-y-6">
-        <div class="grid lg:grid-cols-2 gap-15 items-center">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
           <!-- Hero Text -->
           <div class="max-w-lg">
             <h1
@@ -316,14 +316,6 @@
               bidang Teknologi Informasi (IT).
             </p>
 
-            <!-- App Download Buttons -->
-            <!-- <div class="flex flex-wrap gap-4">
-              <p class="text-lg text-gray-500 font-bold mb-8 leading-relaxed">
-                Sudah diterapkan di sekolah-sekolah dan terbukti berpengalaman
-                selama 8 tahun melahirkan generasi yang saleh dan canggih.
-              </p>
-            </div> -->
-
             <div class="flex flex-wrap gap-4">
               <a
                 href="#daftar-sekolah"
@@ -333,23 +325,35 @@
               </a>
             </div>
           </div>
-          <div
-            class="relative w-full h-96 lg:h-[500px] order-first lg:order-last mb-10"
-          >
-            <img
-              src="./img/bukuItmi.png"
-              alt="Hero Visual"
-              class="hidden md:block h-full object-cover rounded-3xl animate-bounceY"
-            />
-            <img
-              src="./img/bukuItmi.png"
-              alt="Hero Visual"
-              class="block md:hidden w-full h-full object-cover rounded-3xl"
-            />
+          <div class="relative w-full h-[600px] lg:h-[800px] order-first lg:order-last mb-10 perspective-1000">
+            <!-- Flip Container -->
+            <div 
+              id="flip-container"
+              class="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d"
+            >
+              <!-- Front Side -->
+              <div class="absolute inset-0 backface-hidden">
+                <img
+                  src="./img/7buku-seri-teknologi(2).png"
+                  alt="Seri Teknologi Islami"
+                  class="w-full h-full object-contain cursor-pointer filter drop-shadow-[0_25px_25px_rgba(0,0,0,0.3)]"
+                />
+              </div>
+              
+              <!-- Back Side -->
+              <div class="absolute inset-0 backface-hidden transform-rotate-y-180 rounded-3xl overflow-hidden">
+                <img
+                  src="./img/7buku-seri-teknologi.png"
+                  alt="Detail Buku"
+                  class="w-full h-full object-contain p-4 filter drop-shadow-[0_15px_15px_rgba(0,0,0,0.2)]"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
+
     <section
       id="daftar-sekolah"
       class="relative bg-white overflow-hidden flex items-center mt-10 py-5 md:py-10 px-3 md:px-[100px] bg-hero"
@@ -910,6 +914,38 @@
         }s, transform 0.6s ease ${index * 0.1}s`;
         observer.observe(item);
       });
+
+      const flipContainer = document.getElementById('flip-container');
+      let isFlipped = false;
+      let flipInterval;
+      
+      // Function to handle flipping
+      function toggleFlip() {
+        isFlipped = !isFlipped;
+        flipContainer.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+      }
+      
+      // Auto-flip every 3 seconds
+      function startAutoFlip() {
+        flipInterval = setInterval(toggleFlip, 3000);
+      }
+      
+      // Manual click interaction
+      flipContainer.addEventListener('click', function(e) {
+        e.stopPropagation();
+        clearInterval(flipInterval); // Pause auto-flip
+        toggleFlip(); // Immediate flip
+        setTimeout(startAutoFlip, 3000); // Resume after 3 seconds
+      });
+      
+      // Start auto-flip on page load
+      startAutoFlip();
+      
+      // Cleanup on page unload
+      window.addEventListener('beforeunload', function() {
+        clearInterval(flipInterval);
+      });
+
     </script>
 
     <script src="js/ref.js"></script>
