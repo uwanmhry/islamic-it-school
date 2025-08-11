@@ -732,7 +732,7 @@
           id="openRegModalFooter"
           class="btn-primary inline-block bg-white text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-gray-100 transition"
         >
-          <i class="bx bxl-whatsapp mr-2"></i>
+            <i class="bx bx-edit-alt mr-2"></i>
           Daftar Sekarang
         </button>
       </div>
@@ -752,6 +752,7 @@
           <button
             class="option-btn w-full bg-gray-100 hover:bg-orange-50 border border-gray-200 rounded-lg px-6 py-4 text-left transition"
             data-option="Orang Tua"
+            data-price="250000"
           >
             <i class="bx bx-home-heart mr-2 text-orange-500"></i>
             Untuk Orang Tua
@@ -760,6 +761,7 @@
           <button
             class="option-btn w-full bg-gray-100 hover:bg-teal-50 border border-gray-200 rounded-lg px-6 py-4 text-left transition"
             data-option="Guru"
+            data-price="350000"
           >
             <i class="bx bx-chalkboard mr-2 text-teal-500"></i>
             Untuk Guru
@@ -768,6 +770,7 @@
           <button
             class="option-btn w-full bg-gray-100 hover:bg-blue-50 border border-gray-200 rounded-lg px-6 py-4 text-left transition"
             data-option="Orang Tua & Guru"
+            data-price="500000"
           >
             <i class="bx bx-group mr-2 text-blue-500"></i>
             Untuk Orang Tua & Guru
@@ -779,7 +782,7 @@
           class="w-full btn-primary bg-gradient-to-r from-green-600 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
           disabled
         >
-          Lanjut ke WhatsApp
+          Lanjut ke Pendaftaran
         </button>
       </div>
     </div>
@@ -878,15 +881,58 @@
       });
 
       // Confirm and open WhatsApp
-      document
-        .getElementById("confirmBtn")
-        .addEventListener("click", function () {
-          if (selectedOption) {
-            const waText = `Saya mau daftar pelatihan Islamic IT Course untuk ${selectedOption}`;
-            const encodedText = encodeURIComponent(waText);
-            window.location.href = `https://wa.me/6285161231559?text=${encodedText}`;
+      let selectedPrice = 0;
+
+      // Event listeners for option buttons
+      document.querySelectorAll('.option-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          // Remove active class from all buttons
+          document.querySelectorAll('.option-btn').forEach(b => {
+            b.classList.remove('border-orange-400', 'border-teal-400', 'border-blue-400');
+            b.classList.remove('bg-orange-50', 'bg-teal-50', 'bg-blue-50');
+          });
+
+          // Add active class to clicked button
+          const option = this.getAttribute('data-option');
+          if (option === 'Orang Tua') {
+            this.classList.add('border-orange-400', 'bg-orange-50');
+          } else if (option === 'Guru') {
+            this.classList.add('border-teal-400', 'bg-teal-50');
+          } else {
+            this.classList.add('border-blue-400', 'bg-blue-50');
           }
+
+          selectedOption = option;
+          selectedPrice = parseInt(this.getAttribute('data-price'));
+          
+          // Enable confirm button
+          document.getElementById('confirmBtn').disabled = false;
         });
+      });
+
+      // Confirm and redirect to webinar form
+      document.getElementById('confirmBtn').addEventListener('click', function() {
+        if (selectedOption) {
+          // Format webinar title based on selection
+          const webinarTitle = `Pelatihan Islamic IT Course - ${selectedOption}`;
+          
+          // Redirect to webinar form with parameters
+          const params = new URLSearchParams();
+          params.append('webinar_title', webinarTitle);
+          params.append('price', selectedPrice);
+          params.append('date', '15 September 2024'); // Example date
+          params.append('time', '13:00 - 15:00 WIB'); // Example time
+          
+          // If you want to pass referral code from URL
+          const urlParams = new URLSearchParams(window.location.search);
+          const ref = urlParams.get('ref') || '';
+          if (ref) {
+            params.append('ref', ref);
+          }
+          
+          window.location.href = `form_webinar.html?${params.toString()}`;
+        }
+      });
 
       // Close modal when clicking outside
       document
