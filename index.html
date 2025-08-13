@@ -144,7 +144,7 @@
 
   <body class="font-sans overflow-x-hidden">
     <!-- Header -->
-    <header class="relative z-50 py-5 bg-white/95 glass">
+    <header class="relative z-50 py-3 bg-white/95 glass">
       <div class="max-w-7xl mx-auto px-4 md:px-6">
         <nav class="flex justify-between items-center">
           <div class="flex items-center text-2xl font-bold text-gray-900">
@@ -218,7 +218,6 @@
           >
             Kontak
           </a>
-          
           </div>
 
           <!-- Mobile Menu Button -->
@@ -292,67 +291,290 @@
     <!-- End Header -->
 
     <!-- Hero Section -->
-    <!-- style="background: linear-gradient(to right, #280594, #F8A39B);"> -->
-    <section
-      id="home"
-      class="relative min-h-screen bg-white overflow-hidden flex items-center px-3 py-5 md:px-20 md:py-5 bg-hero"
-    >
-      <!-- Background Decorations -->
-      <div class="max-w-7xl mx-auto px-5 relative z-10 space-y-6">
-        <div class="grid lg:grid-cols-2 gap-20 items-center">
-          <!-- Hero Text -->
-          <div class="max-w-lg">
-            <h1
-              class="text-5xl lg:text-6xl font-black text-gray-900 leading-tight mb-10"
-            >
-              Buku Seri Teknologi Islami<br />
-              <!-- <span class="text-white">mindful money</span> -->
-            </h1>
+<section id="home" class="relative bg-white flex items-start lg:items-center px-4 md:px-8 pt-10 pb-32 overflow-visible">
+  <div class="max-w-7xl mx-auto w-full">
+    <div class="grid lg:grid-cols-2 gap-8 items-center">
+      <!-- Hero Text -->
+      <div class="max-w-lg">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 leading-tight mb-4">
+          Buku Seri Teknologi Islami
+        </h1>
+        <p class="text-gray-600 font-medium mb-6 leading-relaxed">
+          Buku Seri Teknologi Islami, adalah buku yang berisi strategi ajar bidang Teknologi Informasi (IT).
+        </p>
+        <div>
+          <a href="#daftar-sekolah" class="inline-block bg-gray-900 text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-gray-700 transition-colors">
+            Selengkapnya
+          </a>
+        </div>
+      </div>
 
-            <p
-              class="text-lg text-gray-500 font-bold mb-6 md:mb-8 leading-relaxed"
-            >
-              Buku Seri Teknologi Islami, adalah buku yang berisi strategi ajar
-              bidang Teknologi Informasi (IT).
-            </p>
+      <!-- Main Book Image -->
+      <div class="relative w-full h-[350px] md:h-[450px] lg:h-[500px] order-first lg:order-last">
+        <div id="flip-container" class="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d">
+          <!-- Front Side -->
+          <div class="absolute inset-0 backface-hidden">
+            <img id="main-book-front" src="./img/7buku-seri-teknologi(2).png" alt="Seri Teknologi Islami" 
+              class="w-full h-full object-contain cursor-pointer drop-shadow-lg">
+          </div>
+          <!-- Back Side -->
+          <div class="absolute inset-0 backface-hidden transform-rotate-y-180 rounded-3xl overflow-hidden">
+            <img id="main-book-back" src="./img/7buku-seri-teknologi.png" alt="Detail Buku" 
+              class="w-full h-full object-contain p-4 drop-shadow-md">
+          </div>
+        </div>
 
-            <div class="flex flex-wrap gap-4">
-              <a
-                href="#daftar-sekolah"
-                class="bg-gray-900 text-white px-5 py-2.5 rounded-xl font-semibold hover:-translate-y-1 hover:bg-gray-600 transition-transform w-auto"
+        <!-- Book Thumbnails Slider -->
+        <div class="mt-6 relative">
+          <div class="swiper book-thumbnails">
+            <div class="swiper-wrapper">
+              <!-- Buku 1 (Flipable) -->
+              <div class="swiper-slide">
+                <div class="thumb-box" onclick="flipMainBook()">
+                  <img src="./img/7buku-seri-teknologi(2).png" alt="Buku 1">
+                </div>
+              </div>
+              <!-- Buku 2-8 -->
+              <div class="swiper-slide">
+                <div class="thumb-box" onclick="changeMainBook('./img/LC/mockup-lc.png', './img/LC/mockup-lc.png')">
+                  <img src="./img/LC/mockup-lc.png" alt="Buku 2">
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="thumb-box" onclick="changeMainBook('./img/ITMI/mockup-itmi.png', './img/ITMI/mockup-itmi.png')">
+                  <img src="./img/ITMI/mockup-itmi.png" alt="Buku 3">
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="thumb-box" onclick="changeMainBook('./img/ST/mockup-st.png', './img/ST/mockup-st.png')">
+                  <img src="./img/ST/mockup-st.png" alt="Buku 4">
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="thumb-box" onclick="changeMainBook('./img/BT/mockup-bt.png', './img/BT/mockup-bt.png')">
+                  <img src="./img/BT/mockup-bt.png" alt="Buku 5">
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="thumb-box" onclick="changeMainBook('./img/IT-PF/mockup-it-pf.png', './img/IT-PF/mockup-it-pf.png')">
+                  <img src="./img/IT-PF/mockup-it-pf.png" alt="Buku 6">
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="thumb-box" onclick="changeMainBook('./img/IT-BP/mockup-it-bp.png', './img/IT-BP/mockup-it-bp.png')">
+                  <img src="./img/IT-BP/mockup-it-bp.png" alt="Buku 7">
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="thumb-box" onclick="changeMainBook('./img/IT-BM/mockup-it-bm.png', './img/IT-BM/mockup-it-bm.png')">
+                  <img src="./img/IT-BM/mockup-it-bm.png" alt="Buku 8">
+                </div>
+              </div>
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Swiper JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<style>
+  .transform-style-preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .transform-rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+
+  /* Thumbnail Container */
+  .thumb-box {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 8px;
+    padding: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    cursor: pointer;
+  }
+  .thumb-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .thumb-box:hover {
+    transform: scale(1.05);
+  }
+
+  /* Swiper Styles */
+  .book-thumbnails {
+    padding: 0 40px;
+  }
+  .book-thumbnails .swiper-slide {
+    width: 90px;
+    flex-shrink: 0;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  .book-thumbnails .swiper-slide:hover,
+  .book-thumbnails .swiper-slide-active {
+    opacity: 1;
+  }
+  .book-thumbnails .swiper-button-prev,
+  .book-thumbnails .swiper-button-next {
+    background: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    color: #4b5563;
+    --swiper-navigation-size: 16px;
+  }
+  .book-thumbnails .swiper-button-prev::after,
+  .book-thumbnails .swiper-button-next::after {
+    font-size: 16px;
+    font-weight: bold;
+  }
+</style>
+
+<script>
+  // Initialize Swiper
+  const bookThumbnails = new Swiper('.book-thumbnails', {
+    slidesPerView: 'auto',
+    spaceBetween: 12,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    freeMode: true,
+    mousewheel: true,
+    grabCursor: true
+  });
+
+  // Flip main book
+  function flipMainBook() {
+    const flipContainer = document.getElementById('flip-container');
+    flipContainer.style.transform = flipContainer.style.transform === 'rotateY(180deg)' ? 'rotateY(0deg)' : 'rotateY(180deg)';
+  }
+
+  // Change main book image
+  function changeMainBook(frontSrc, backSrc) {
+    document.getElementById('main-book-front').src = frontSrc;
+    document.getElementById('main-book-back').src = backSrc;
+    document.getElementById('flip-container').style.transform = 'rotateY(0deg)';
+  }
+
+  // Add click event to main book for flipping
+  document.getElementById('flip-container').addEventListener('click', flipMainBook);
+</script>
+
+    <section class="relative bg-white overflow-hidden py-10 px-3 md:px-20">
+      <div class="max-w-7xl mx-auto px-5 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-8 items-center">
+          <!-- Video Container (Kiri) -->
+          <div class="relative order-first lg:order-first flex justify-center">
+            <div class="w-full max-w-[500px] mx-auto bg-gray-100 rounded-xl overflow-hidden shadow-lg video-container">
+              <video 
+                autoplay
+                loop
+                muted
+                playsinline
+                controls
+                class="w-full h-auto max-h-[80vh] object-contain"
+                onloadedmetadata="setAspectRatio(this)"
               >
-                Selengkapnya
-              </a>
+                <source src="vid/Video Iklan Buku All Revisi.mp4" type="video/mp4">
+                Browser Anda tidak mendukung tag video.
+              </video>
             </div>
           </div>
-          <div class="relative w-full h-[600px] lg:h-[800px] order-first lg:order-last mb-10 perspective-1000">
-            <!-- Flip Container -->
-            <div 
-              id="flip-container"
-              class="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d"
-            >
-              <!-- Front Side -->
-              <div class="absolute inset-0 backface-hidden">
-                <img
-                  src="./img/7buku-seri-teknologi(2).png"
-                  alt="Seri Teknologi Islami"
-                  class="w-full h-full object-contain cursor-pointer filter drop-shadow-[0_25px_25px_rgba(0,0,0,0.3)]"
-                />
-              </div>
-              
-              <!-- Back Side -->
-              <div class="absolute inset-0 backface-hidden transform-rotate-y-180 rounded-3xl overflow-hidden">
-                <img
-                  src="./img/7buku-seri-teknologi.png"
-                  alt="Detail Buku"
-                  class="w-full h-full object-contain p-4 filter drop-shadow-[0_15px_15px_rgba(0,0,0,0.2)]"
-                />
-              </div>
+          
+          <!-- Teks Penjelasan (Kanan) -->
+          <div class="space-y-4 order-last lg:order-last">
+            <h2 class="text-3xl font-black text-gray-900 leading-tight">
+              Kenali Lebih Dekat Buku Seri Teknologi Islami
+            </h2>
+            
+            <p class="text-gray-500 leading-relaxed">
+              Negara paling maju di dunia adalah yang paling menguasai teknologi. Sedangkan negara yang paling tertinggal adalah negara yang akses teknologinya paling terbatas. Begitu juga dengan manusia, yang akan menguasai zaman adalah mereka yang menguasai teknologi.
+            </p>
+            
+            <p class="text-gray-500 leading-relaxed">
+              Untuk menyiapkan generasi yang siap menguasai zaman, kita butuh modul ajar teknologi yang efektif dan proven. Sehingga mereka mampu bersaing di ranah global
+            </p>
+            
+            <p class="text-gray-500 font-bold leading-relaxed">
+              Dapatkan Paket Seri Teknologi Islami dan mari siapkan ananda untuk bersaing di era teknologi
+            </p>
+            
+            <div class="flex flex-wrap gap-4 pt-2">
+              <a href="buku.html" class="bg-gray-900 text-white px-5 py-2.5 rounded-xl font-semibold hover:-translate-y-1 hover:bg-gray-600 transition-transform inline-block">
+                Dapatkan Sekarang
+              </a>
+              <a href="https://www.instagram.com/reel/DMZ9zeYRe4Z/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="border border-gray-300 text-gray-700 px-5 py-2.5 rounded-xl font-semibold hover:-translate-y-1 transition-transform inline-block flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.92 3.92 0 0 0-1.417.923A3.92 3.92 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.92 3.92 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.92 3.92 0 0 0-.923-1.417A3.92 3.92 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+                </svg>
+                Lihat di Instagram
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <style>
+      .video-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      video {
+        background-color: #f3f4f6;
+      }
+      
+      video::-webkit-media-controls {
+        overflow: hidden !important;
+      }
+      video::-webkit-media-controls-enclosure {
+        width: calc(100% + 30px);
+      }
+      
+      video:fullscreen {
+        object-fit: contain;
+        background-color: black;
+      }
+    </style>
+
+    <script>
+      function setAspectRatio(video) {
+        const container = video.parentElement;
+        const aspectRatio = video.videoWidth / video.videoHeight;
+        
+        if (aspectRatio > 1) {
+          container.classList.add('max-w-[600px]');
+          container.classList.remove('max-w-[500px]');
+        } else {
+          container.classList.add('max-w-[400px]');
+          container.classList.remove('max-w-[500px]');
+        }
+      }
+    </script>
 
     <section
       id="daftar-sekolah"
