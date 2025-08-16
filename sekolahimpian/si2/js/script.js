@@ -1,3 +1,9 @@
+// Mobile menu toggle
+document.getElementById('mobile-menu-button').addEventListener('click', function() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+});
+
 // Modal Functions
 function openModal(modalId) {
     document.getElementById(modalId).style.display = 'block';
