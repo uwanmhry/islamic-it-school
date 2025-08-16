@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekolah Impian</title>
+    <link rel="icon" href="img/logo-si.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cursor.css">
+    <!-- Add AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body class="min-h-screen relative">
+    <!-- Neon Cursor -->
+    <div class="cursor-neon"></div>
+    
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Main Content -->
+    <div class="relative z-10">
+        <!-- Futuristic Navbar -->
+        <nav class="glass border-b border-orange-500/20 px-6 py-4">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+              <div class="flex items-center">
+                  <img src="img/logo-si.png" alt="Logo" class="w-10 h-10 rounded-full">
+              </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-orange-500 font-bold">Home</a>
+                    <a href="alquran.html" class="hover:text-orange-500 transition-all">Al-Quran</a>
+                    <a href="it.html" class="hover:text-orange-500 transition-all">IT</a>
+                    <a href="bahasa.html" class="hover:text-orange-500 transition-all">Bahasa</a>
+                    <a href="karakter.html" class="hover:text-orange-500 transition-all">Karakter</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-orange-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden glass mt-4 py-4 rounded-lg">
+                <a href="index.html" class="block px-4 py-2 text-orange-500">Home</a>
+                <a href="alquran.html" class="block px-4 py-2 hover:text-orange-500">Al-Quran</a>
+                <a href="it.html" class="block px-4 py-2 hover:text-orange-500">IT</a>
+                <a href="bahasa.html" class="block px-4 py-2 hover:text-orange-500">Bahasa</a>
+                <a href="karakter.html" class="block px-4 py-2 hover:text-orange-500">Karakter</a>
+            </div>
+        </nav>
+        
+        <!-- Hero Section -->
+        <section class="py-20 px-6 text-center">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 cyber-glow" data-aos="fade-down">
+                  The <span class="text-orange-500">Best School</span> on This Planet!
+                </h1>
+                <p class="text-lg md:text-xl mb-10 opacity-90" data-aos="fade-up" data-aos-delay="200">
+                  Belajar Al-Qur'an, teknologi, bahasa, dan karakter — dengan cara yang modern, cerdas, dan mempersiapkan masa depan.
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <a href="alquran.html" class="menu-item glass p-6 rounded-xl hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="text-4xl mb-3">📖</div>
+                        <h3 class="font-bold">Al-Quran</h3>
+                    </a>
+                    <a href="#" class="menu-item glass p-6 rounded-xl hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="text-4xl mb-3">💻</div>
+                        <h3 class="font-bold">IT</h3>
+                    </a>
+                    <a href="#" class="menu-item glass p-6 rounded-xl hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="text-4xl mb-3">🌐</div>
+                        <h3 class="font-bold">Bahasa</h3>
+                    </a>
+                    <a href="#" class="menu-item glass p-6 rounded-xl hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="text-4xl mb-3">🧠</div>
+                        <h3 class="font-bold">Karakter</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section class="py-16 px-6 bg-gradient-to-b from-orange-500/10 to-transparent">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center cyber-glow" data-aos="fade-up">
+                    Pendekatan <span class="text-orange-500">Canggih</span> Kami
+                </h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass p-6 rounded-xl hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-orange-500 text-3xl mb-4">⚡</div>
+                        <h3 class="font-bold text-xl mb-3">Pembelajaran Interaktif</h3>
+                        <p class="opacity-90">Terlibat dengan konten dinamis yang merespons kemajuan Anda dan menyesuaikan dengan gaya belajar Anda.</p>
+                    </div>
+                    <div class="glass p-6 rounded-xl hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-orange-500 text-3xl mb-4">🔮</div>
+                        <h3 class="font-bold text-xl mb-3">Analisis Berbasis AI</h3>
+                        <p class="opacity-90">Sistem kami melacak performa Anda dan memberikan rekomendasi pribadi untuk peningkatan.</p>
+                    </div>
+                    <div class="glass p-6 rounded-xl hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                        <div class="text-orange-500 text-3xl mb-4">🌌</div>
+                        <h3 class="font-bold text-xl mb-3">Pengalaman Imersif</h3>
+                        <p class="opacity-90">Antarmuka futuristik yang dirancang untuk membuat Anda tetap termotivasi dan fokus pada perjalanan belajar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Add AOS JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-out-quad'
+        });
+    </script>
+    <script src="js/script.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/background.js"></script>
+</body>
+</html>
