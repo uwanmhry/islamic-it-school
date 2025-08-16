@@ -1,0 +1,147 @@
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+.transform-rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Thumbnail Container */
+.thumb-box {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 8px;
+  padding: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.thumb-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.thumb-box:hover {
+  transform: scale(1.05);
+}
+
+/* Active Thumbnail Style */
+.swiper-slide.active .thumb-box {
+  border: 2px solid #3B82F6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Swiper Styles */
+.book-thumbnails {
+  padding: 0 10px;
+}
+
+/* Mobile (default) */
+.book-thumbnails .swiper-slide {
+  width: 25%;
+  flex-shrink: 0;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+
+/* Perbaikan Spacing untuk Mobile */
+@media (max-width: 639px) {
+  .max-w-lg.order-last {
+    margin-top: 2rem !important;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  .relative.w-full {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .book-thumbnails {
+    margin-top: 1rem !important;
+  }
+}
+
+/* Tablet (640px - 1023px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  /* Style Thumbnail */
+  .book-thumbnails {
+    padding: 0 20px;
+  }
+  .thumb-box {
+    height: 100px;
+  }
+  .book-thumbnails .swiper-slide {
+    width: 20%;
+  }
+  
+  /* Navigation */
+  .swiper-pagination {
+    display: none !important;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: flex !important;
+    width: 32px;
+    height: 32px;
+    --swiper-navigation-size: 16px;
+  }
+  
+  /* Spacing Khusus Tablet */
+  .max-w-lg.order-last {
+    margin-top: 2.5rem !important;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .relative.w-full {
+    margin-bottom: 2rem !important;
+  }
+}
+
+/* Desktop (1024px ke atas) */
+@media (min-width: 1024px) {
+  .book-thumbnails {
+    padding: 0 40px;
+  }
+  .thumb-box {
+    height: 120px;
+  }
+  .book-thumbnails .swiper-slide {
+    width: 90px;
+  }
+}
+
+/* Navigation buttons */
+.book-thumbnails .swiper-button-prev,
+.book-thumbnails .swiper-button-next {
+  background: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  color: #4b5563;
+  --swiper-navigation-size: 14px;
+  display: none;
+}
+
+/* Pagination */
+.book-thumbnails .swiper-pagination {
+  position: relative !important;
+  margin-top: 1rem !important;
+}
+.book-thumbnails .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #d1d5db;
+  opacity: 1;
+}
+.book-thumbnails .swiper-pagination-bullet-active {
+  background: #4b5563;
+}

@@ -86,7 +86,10 @@
   transform: rotate(180deg);
 }
 .gradient-bg {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f97316 0%, #0d9488 100%);
+}
+.gradient-bg-kursus {
+  background: linear-gradient(135deg, #f97316 0%, #0d9488 50%, #6366f1 100%);
 }
 .icon-bounce {
   animation: bounce 2s infinite;
