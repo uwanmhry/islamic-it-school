@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemeliharaan Server - Sekolah Implan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+        
+        .maintenance-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            background: #e2e8f0;
+            border-radius: 100px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0ea5e9 0%, #0284c7 100%);
+            border-radius: 100px;
+            width: 45%;
+            transition: width 0.5s ease;
+        }
+        
+        .server-status {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .status-online {
+            background: #f0fdf4;
+            color: #16a34a;
+        }
+        
+        .status-maintenance {
+            background: #fffbeb;
+            color: #d97706;
+        }
+        
+        .status-offline {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+        
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        
+        .pulse-online {
+            background: #16a34a;
+            box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
+            animation: pulse-green 2s infinite;
+        }
+        
+        .pulse-maintenance {
+            background: #d97706;
+            box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.7);
+            animation: pulse-yellow 2s infinite;
+        }
+        
+        @keyframes pulse-green {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
+            }
+            
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 6px rgba(22, 163, 74, 0);
+            }
+            
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
+            }
+        }
+        
+        @keyframes pulse-yellow {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.7);
+            }
+            
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 6px rgba(217, 119, 6, 0);
+            }
+            
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(217, 119, 6, 0);
+            }
+        }
+        
+        .quick-access input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #cbd5e1;
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            margin-right: 8px;
+        }
+        
+        .quick-access input[type="checkbox"]:checked {
+            background-color: #0ea5e9;
+            border-color: #0ea5e9;
+        }
+        
+        .quick-access input[type="checkbox"]:checked::before {
+            content: "✓";
+            position: absolute;
+            color: white;
+            font-size: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .maintenance-schedule {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            border-radius: 12px;
+        }
+        
+        .time-box {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4 md:p-8">
+    <div class="maintenance-card w-full max-w-4xl p-6 md:p-8">
+        <div class="text-center mb-8">
+            <div class="flex justify-center mb-6">
+                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-primary-100 to-primary-200 p-1">
+                    <div class="w-full h-full rounded-full bg-white flex items-center justify-center">
+                        <i class="fas fa-server text-3xl text-primary-600"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <h1 class="text-2xl md:text-3xl font-bold text-secondary-800 mb-2">Server Dalam Pemeliharaan</h1>
+            <p class="text-secondary-600 max-w-2xl mx-auto">Kami sedang melakukan migrasi server database dan backend. Layanan akan kembali normal setelah proses migrasi selesai.</p>
+        </div>
+        
+        <!-- Maintenance Schedule -->
+        <div class="maintenance-schedule text-white p-6 mb-8 rounded-xl">
+            <h2 class="text-lg font-semibold mb-4 text-center"><i class="fas fa-calendar-alt mr-2"></i>Jadwal Pemeliharaan</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="time-box">
+                    <div class="text-sm opacity-80">Mulai</div>
+                    <div class="text-xl font-bold">Jumat, 20:00 WIB</div>
+                </div>
+                <div class="time-box">
+                    <div class="text-sm opacity-80">Perkiraan Selesai</div>
+                    <div class="text-xl font-bold">Sabtu, 06:00 WIB</div>
+                </div>
+            </div>
+            
+            <div class="mt-4 text-center text-sm opacity-80">
+                <i class="fas fa-info-circle mr-1"></i> Total perkiraan waktu: 10 jam
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <!-- Progress section -->
+            <div class="bg-secondary-50 rounded-xl p-6">
+                <h2 class="text-lg font-semibold text-secondary-800 mb-4 flex items-center">
+                    <span class="pulse-dot pulse-maintenance mr-2"></span>
+                    <span>Progress Pemeliharaan</span>
+                </h2>
+                
+                <div class="mb-4">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="text-secondary-600">Migrasi Database</span>
+                        <span class="font-medium text-primary-700" id="progressPercent">45%</span>
+                    </div>
+                    <div class="progress-bar h-2.5 mb-6">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <div class="flex items-center text-secondary-700">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span class="text-sm">Backup data lengkap</span>
+                    </div>
+                    <div class="flex items-center text-secondary-700">
+                        <i class="fas fa-sync-alt text-yellow-500 mr-2"></i>
+                        <span class="text-sm">Transfer data ke server baru</span>
+                    </div>
+                    <div class="flex items-center text-secondary-700">
+                        <i class="fas fa-clock text-gray-400 mr-2"></i>
+                        <span class="text-sm">Konfigurasi server baru</span>
+                    </div>
+                    <div class="flex items-center text-secondary-700">
+                        <i class="fas fa-clock text-gray-400 mr-2"></i>
+                        <span class="text-sm">Testing dan validasi</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Server status -->
+            <div class="bg-secondary-50 rounded-xl p-6">
+                <h2 class="text-lg font-semibold text-secondary-800 mb-4">
+                    <i class="fas fa-server mr-2"></i>Status Layanan
+                </h2>
+                
+                <div class="space-y-4">
+                    <div class="server-status p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-medium text-secondary-800">Frontend Website</span>
+                            <span class="status-badge status-online">
+                                <span class="pulse-dot pulse-online"></span>
+                                Online
+                            </span>
+                        </div>
+                        <p class="text-sm text-secondary-600">Halaman website dapat diakses dengan normal</p>
+                    </div>
+                    
+                    <div class="server-status p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-medium text-secondary-800">Backend API</span>
+                            <span class="status-badge status-offline">
+                                <span class="pulse-dot" style="background-color: #dc2626;"></span>
+                                Offline
+                            </span>
+                        </div>
+                        <p class="text-sm text-secondary-600">Sedang dalam proses migrasi server</p>
+                    </div>
+                    
+                    <div class="server-status p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-medium text-secondary-800">Database Server</span>
+                            <span class="status-badge status-maintenance">
+                                <span class="pulse-dot pulse-maintenance"></span>
+                                Migrasi
+                            </span>
+                        </div>
+                        <p class="text-sm text-secondary-600">Proses transfer data sedang berjalan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quick Access -->
+        <div class="quick-access bg-secondary-50 rounded-xl p-6 mb-8">
+            <h2 class="text-lg font-semibold text-secondary-800 mb-4">
+                <i class="fas fa-bolt mr-2"></i>Akses Cepat
+            </h2>
+            
+            <div class="flex flex-wrap gap-4">
+                <label class="flex items-center text-secondary-700">
+                    <input type="checkbox" checked disabled>
+                    <span class="text-sm">Resmada</span>
+                </label>
+                <label class="flex items-center text-secondary-700">
+                    <input type="checkbox" disabled>
+                    <span class="text-sm">Rekite</span>
+                </label>
+                <label class="flex items-center text-secondary-700">
+                    <input type="checkbox" checked disabled>
+                    <span class="text-sm">Geklarda</span>
+                </label>
+            </div>
+            <p class="text-sm text-secondary-500 mt-2"><i class="fas fa-info-circle mr-1"></i> Beberapa fitur tidak tersedia selama pemeliharaan</p>
+        </div>
+        
+        <!-- Countdown & Contact -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-primary-50 rounded-xl p-6">
+                <h2 class="text-lg font-semibold text-primary-800 mb-4">
+                    <i class="fas fa-clock mr-2"></i>Status Pemeliharaan
+                </h2>
+                <div class="text-center py-2">
+                    <div class="text-xl font-bold text-primary-700 mb-2">Server Database & Backend</div>
+                    <div class="text-lg font-medium text-primary-600 mb-2">Dalam Proses Migrasi</div>
+                    <p class="text-sm text-primary-600">Proses mungkin memakan waktu beberapa jam</p>
+                </div>
+            </div>
+            
+            <div class="bg-secondary-50 rounded-xl p-6">
+                <h2 class="text-lg font-semibold text-secondary-800 mb-4">
+                    <i class="fas fa-headset mr-2"></i>Bantuan Darurat
+                </h2>
+                <p class="text-sm text-secondary-600 mb-3">Untuk keadaan darurat teknis selama pemeliharaan</p>
+                <div class="space-y-2">
+                    <a href="#" class="flex items-center text-sm text-primary-700">
+                        <i class="fas fa-envelope mr-2"></i> emergency@sekolahimplan.com
+                    </a>
+                    <a href="#" class="flex items-center text-sm text-primary-700">
+                        <i class="fas fa-phone-alt mr-2"></i> +62 21 7654 3210
+                    </a>
+                    <a href="#" class="flex items-center text-sm text-primary-700">
+                        <i class="fas fa-comment-alt mr-2"></i> Live Chat Support
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="text-center mt-8 pt-6 border-t border-secondary-200">
+            <p class="text-sm text-secondary-600">© 2024 Sekolah Implan. Dilindungi hak cipta.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Progress animation
+            let progress = 45;
+            const progressFill = document.querySelector('.progress-fill');
+            const progressPercent = document.getElementById('progressPercent');
+            
+            // Simulate progress increasing slowly
+            const progressInterval = setInterval(() => {
+                if (progress < 90) {
+                    progress += Math.floor(Math.random() * 2);
+                    progressFill.style.width = progress + '%';
+                    progressPercent.textContent = progress + '%';
+                    
+                    if (progress >= 90) {
+                        clearInterval(progressInterval);
+                    }
+                }
+            }, 5000);
+            
+            // Quick access checkbox functionality
+            const checkboxes = document.querySelectorAll('.quick-access input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        this.parentElement.classList.add('text-primary-700');
+                    } else {
+                        this.parentElement.classList.remove('text-primary-700');
+                    }
+                });
+            });
+            
+            // Update status message
+            const statusMessages = [
+                "Memindahkan data pengguna...",
+                "Mengoptimasi tabel database...",
+                "Mentransfer data log...",
+                "Mengkonfigurasi server baru...",
+                "Memverifikasi integritas data..."
+            ];
+            
+            let currentMessage = 0;
+            const statusElement = document.querySelector('.text-lg.font-medium.text-primary-600');
+            
+            setInterval(() => {
+                currentMessage = (currentMessage + 1) % statusMessages.length;
+                statusElement.textContent = statusMessages[currentMessage];
+            }, 6000);
+        });
+    </script>
+</body>
+</html>

@@ -527,7 +527,8 @@ const EventHandlers = {
         params.set('ref', ref);
       }
 
-      window.location.href = `form_beli.html?${params.toString()}`;
+      // window.location.href = `form_beli.html?${params.toString()}`;
+      window.location.href = `server.html`;
     });
   });
 }
