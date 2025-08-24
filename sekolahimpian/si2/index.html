@@ -1,131 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sekolah Impian</title>
-    <link rel="icon" href="img/logo-si.png" type="image/png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/cursor.css">
-    <!-- Add AOS CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Sekolah Impian</title>
+  <link rel="icon" href="img/logo-si.png" type="image/png">
+  <!-- Library AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Boxicons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="min-h-screen relative">
-    <!-- Neon Cursor -->
-    <div class="cursor-neon"></div>
-    
-    <!-- Particle Background -->
-    <div id="particles-js"></div>
-    
-    <!-- Main Content -->
-    <div class="relative z-10">
-        <!-- Futuristic Navbar -->
-        <nav class="glass border-b border-orange-500/20 px-6 py-4">
-            <div class="max-w-7xl mx-auto flex justify-between items-center">
-              <div class="flex items-center">
-                  <img src="img/logo-si.png" alt="Logo" class="w-10 h-10 rounded-full">
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  
+  <!-- Navigation Dots -->
+  <div class="navigation-dots" id="navDots"></div>
+  
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator" id="scrollIndicator">Scroll ke bawah</div>
+  
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" id="scrollToTop">↑</button>
+  
+  <!-- Button Pendaftaran -->
+  <a href="https://psb.sekolahimpian.com/daftar/" class="daftar-button" id="daftarButton">Daftar Sekarang</a>
+  
+  <div class="mobile-container">
+    <!-- Stack Pertama -->
+    <div class="image-stack first-stack" id="stack1">
+      <div class="image-wrapper">
+        <img src="img/page-1/simple/background.png" loading="eager">
+        <img src="img/page-1/simple/judul.png" class="overlay-img" style="object-position: center top;" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500" loading="eager">
+        <img src="img/page-1/simple/akhwat.png" class="overlay-img" style="object-position: left bottom;" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="700" loading="eager">
+        <img src="img/page-1/simple/ikhwan.png" class="overlay-img" style="object-position: right bottom;" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="900" loading="eager">
+        <img src="img/page-1/Light-depen.png" class="overlay-img" style="object-position: center center;" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="1350" loading="eager">
+
+        <!-- Sosmed -->
+        <div class="sosmed-container" 
+             data-aos="fade-up" 
+             data-aos-duration="500" 
+             data-aos-delay="1400">
+          <div class="sosmed-bar">
+            <a href="https://www.sekolahimpian.com" target="_blank" class="sosmed-item">
+              <div class="sosmed-icon">
+                <i class='bx bx-globe'></i>
+                <span class="sosmed-text">www.sekolahimpian.com</span>
               </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-orange-500 font-bold">Home</a>
-                    <a href="alquran.html" class="hover:text-orange-500 transition-all">Al-Quran</a>
-                    <a href="it.html" class="hover:text-orange-500 transition-all">IT</a>
-                    <a href="bahasa.html" class="hover:text-orange-500 transition-all">Bahasa</a>
-                    <a href="karakter.html" class="hover:text-orange-500 transition-all">Karakter</a>
-                </div>
-                
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="md:hidden text-orange-500">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
+            </a>
             
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden glass mt-4 py-4 rounded-lg">
-                <a href="index.html" class="block px-4 py-2 text-orange-500">Home</a>
-                <a href="alquran.html" class="block px-4 py-2 hover:text-orange-500">Al-Quran</a>
-                <a href="it.html" class="block px-4 py-2 hover:text-orange-500">IT</a>
-                <a href="bahasa.html" class="block px-4 py-2 hover:text-orange-500">Bahasa</a>
-                <a href="karakter.html" class="block px-4 py-2 hover:text-orange-500">Karakter</a>
-            </div>
-        </nav>
-        
-        <!-- Hero Section -->
-        <section class="py-20 px-6 text-center">
-            <div class="max-w-4xl mx-auto">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 cyber-glow" data-aos="fade-down">
-                  The <span class="text-orange-500">Best School</span> on This Planet!
-                </h1>
-                <p class="text-lg md:text-xl mb-10 opacity-90" data-aos="fade-up" data-aos-delay="200">
-                  Belajar Al-Qur'an, teknologi, bahasa, dan karakter — dengan cara yang modern, cerdas, dan mempersiapkan masa depan.
-                </p>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <a href="alquran.html" class="menu-item glass p-6 rounded-xl hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="text-4xl mb-3">📖</div>
-                        <h3 class="font-bold">Al-Quran</h3>
-                    </a>
-                    <a href="it.html" class="menu-item glass p-6 rounded-xl hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="text-4xl mb-3">💻</div>
-                        <h3 class="font-bold">IT</h3>
-                    </a>
-                    <a href="bahasa.html" class="menu-item glass p-6 rounded-xl hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="text-4xl mb-3">🌐</div>
-                        <h3 class="font-bold">Bahasa</h3>
-                    </a>
-                    <a href="karakter.html" class="menu-item glass p-6 rounded-xl hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300" data-aos="zoom-in" data-aos-delay="400">
-                        <div class="text-4xl mb-3">🧠</div>
-                        <h3 class="font-bold">Karakter</h3>
-                    </a>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Features Section -->
-        <section class="py-16 px-6 bg-gradient-to-b from-orange-500/10 to-transparent">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center cyber-glow" data-aos="fade-up">
-                    Pendekatan <span class="text-orange-500">Canggih</span> Kami
-                </h2>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="glass p-6 rounded-xl hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
-                        <div class="text-orange-500 text-3xl mb-4">⚡</div>
-                        <h3 class="font-bold text-xl mb-3">Pembelajaran Interaktif</h3>
-                        <p class="opacity-90">Terlibat dengan konten dinamis yang merespons kemajuan Anda dan menyesuaikan dengan gaya belajar Anda.</p>
-                    </div>
-                    <div class="glass p-6 rounded-xl hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
-                        <div class="text-orange-500 text-3xl mb-4">🔮</div>
-                        <h3 class="font-bold text-xl mb-3">Analisis Berbasis AI</h3>
-                        <p class="opacity-90">Sistem kami melacak performa Anda dan memberikan rekomendasi pribadi untuk peningkatan.</p>
-                    </div>
-                    <div class="glass p-6 rounded-xl hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
-                        <div class="text-orange-500 text-3xl mb-4">🌌</div>
-                        <h3 class="font-bold text-xl mb-3">Pengalaman Imersif</h3>
-                        <p class="opacity-90">Antarmuka futuristik yang dirancang untuk membuat Anda tetap termotivasi dan fokus pada perjalanan belajar.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <a href="https://www.youtube.com/@sekolahimpianku" target="_blank" class="sosmed-item">
+              <div class="sosmed-icon">
+                <i class='bx bxl-youtube'></i>
+                <span class="sosmed-text">GSI Channel</span>
+              </div>
+            </a>
+            
+            <a href="https://www.instagram.com/sekolahimpianofficial" target="_blank" class="sosmed-item">
+              <div class="sosmed-icon">
+                <i class='bx bxl-instagram'></i>
+                <span class="sosmed-text">sekolahimpianofficial</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     
-    <!-- Add AOS JS -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true,
-            easing: 'ease-out-quad'
-        });
-    </script>
-    <script src="js/script.js"></script>
-    <script src="js/cursor.js"></script>
-    <script src="js/background.js"></script>
+    <!-- Stack Kedua -->
+    <div class="image-stack second-stack" id="stack2">
+      <div class="image-wrapper">
+        <img src="img/page-2/shape-bawah.png" loading="eager">
+        <img src="img/page-2/shape-alquran.png" class="overlay-img" style="object-position: left center;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="200" loading="lazy">
+        <img src="img/page-2/shape-teknologi.png" class="overlay-img" style="object-position: right center;" data-aos="fade-left" data-aos-duration="600" data-aos-delay="400" loading="lazy">
+        <img src="img/page-2/shape-bahasa.png" class="overlay-img" style="object-position: left center;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="600" loading="lazy">
+        <img src="img/page-2/shape-karakter.png" class="overlay-img" style="object-position: right center;" data-aos="fade-left" data-aos-duration="600" data-aos-delay="800" loading="lazy">
+        <img src="img/page-2/SekolahImpian-Tengah.png" class="overlay-img" style="object-position: center center;" data-aos="zoom-in" data-aos-duration="600" loading="lazy">
+        <img src="img/page-2/kata-kata.png" class="overlay-img" style="object-position: center bottom;" data-aos="fade" data-aos-duration="1000" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Stack Ketiga -->
+    <div class="image-stack third-stack" id="stack3">
+      <div class="image-wrapper">
+        <img src="img/page-3/Background.png" loading="lazy">
+        <img src="img/page-3/shapeBawah.png" class="overlay-img" style="object-position: center bottom;" data-aos="fade" data-aos-duration="1000" data-aos-delay="100" loading="lazy">
+        <img src="img/page-3/Awan-kiri.png" class="overlay-img" style="object-position: left top;" data-aos="fade-right" data-aos-duration="500" data-aos-delay="200" loading="lazy">
+        <img src="img/page-3/Awan-kanan.png" class="overlay-img" style="object-position: right top;" data-aos="fade-left" data-aos-duration="500" data-aos-delay="200" loading="lazy">
+        <img src="img/page-3/Burung-kanan.png" class="overlay-img" style="object-position: right center;" data-aos="fade-left" data-aos-duration="500" data-aos-delay="450" loading="lazy">
+        <img src="img/page-3/ShapeTengah.png" class="overlay-img" style="object-position: center center;" data-aos="fade" data-aos-duration="500" data-aos-delay="100" loading="lazy">
+        <img src="img/page-3/Light.png" class="overlay-img" style="object-position: center center;" data-aos="fade" data-aos-duration="1200" data-aos-delay="400" loading="lazy">
+        <img src="img/page-3/simple/kiri-atas.png" class="overlay-img" style="object-position: left top;" data-aos="fade-right" data-aos-duration="500" data-aos-delay="400" loading="lazy">
+        <img src="img/page-3/simple/kanan-atas.png" class="overlay-img" style="object-position: right top;" data-aos="fade-left" data-aos-duration="500" data-aos-delay="600" loading="lazy">
+        <img src="img/page-3/simple/kanan-bawah.png" class="overlay-img" style="object-position: right bottom;" data-aos="fade-left" data-aos-duration="500" data-aos-delay="1000" loading="lazy">
+        <img src="img/page-3/TalentTengah.png" class="overlay-img" style="object-position: center center;" data-aos="fade" data-aos-duration="500" data-aos-delay="300" loading="lazy">
+        <img src="img/page-3/simple/kiri-bawah.png" class="overlay-img" style="object-position: left bottom;" data-aos="fade-right" data-aos-duration="500" data-aos-delay="800" loading="lazy">
+        <img src="img/page-3/BurungAtas.png" class="overlay-img" style="object-position: left top;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="200" loading="lazy">
+        <img src="img/page-3/BurungBawah.png" class="overlay-img" style="object-position: left bottom;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="200" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Stack Keempat -->
+    <div class="image-stack fourth-stack" id="stack4">
+      <div class="image-wrapper">
+        <img src="img/page-4/simple/background.png" loading="lazy">
+        <img src="img/page-4/simple/kiri-atas-banget.png" class="overlay-img" style="object-position: left top;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="200" loading="lazy">
+        <img src="img/page-4/simple/kanan-atas-banget.png" class="overlay-img" style="object-position: right top;" data-aos="fade-left" data-aos-duration="600" data-aos-delay="400" loading="lazy">
+        <img src="img/page-4/simple/kiri-atas.png" class="overlay-img" style="object-position: left top;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="600" loading="lazy">
+        <img src="img/page-4/simple/kanan-atas.png" class="overlay-img" style="object-position: right top;" data-aos="fade-left" data-aos-duration="600" data-aos-delay="800" loading="lazy">
+        <img src="img/page-4/simple/kiri-bawah.png" class="overlay-img" style="object-position: left bottom;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="1000" loading="lazy">
+        <img src="img/page-4/simple/kiri-bawah-banget.png" class="overlay-img" style="object-position: left bottom;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="1200" loading="lazy">
+        <img src="img/page-4/akhwat.png" class="overlay-img" style="object-position: left center;" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="100" loading="lazy">
+        <img src="img/page-4/ikhwan.png" class="overlay-img" style="object-position: right center;" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Stack Kelima -->
+    <div class="image-stack fifth-stack" id="stack5">
+      <div class="image-wrapper">
+        <img src="img/page-5/simple/background.png" loading="lazy">
+        <img src="img/page-5/simple/kiri.png" class="overlay-img" style="object-position: left center;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="200" loading="lazy">
+        <img src="img/page-5/simple/tengah.png" class="overlay-img" style="object-position: center center;" data-aos="fade-left" data-aos-duration="600" data-aos-delay="500" loading="lazy">
+        <img src="img/page-5/simple/bawah.png" class="overlay-img" style="object-position: center bottom;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="800" loading="lazy">
+        <img src="img/page-5/ikhwan1.png" class="overlay-img" style="object-position: left center;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="1000" loading="lazy">
+        <img src="img/page-5/ikhwan2.png" class="overlay-img" style="object-position: right center;" data-aos="fade-left" data-aos-duration="600" data-aos-delay="1200" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Stack Keenam -->
+    <div class="image-stack sixth-stack" id="stack6">
+      <div class="image-wrapper">
+        <img src="img/page-6/background-1.png" loading="lazy">
+        <img src="img/page-6/awan-atas.png" class="overlay-img" style="object-position: center top;" data-aos="fade" data-aos-duration="1200" data-aos-delay="100" loading="lazy">
+        <img src="img/page-6/teks-atas.png" class="overlay-img" style="object-position: center top;" data-aos="fade-down" data-aos-duration="500" data-aos-delay="200" loading="lazy">
+        <img src="img/page-6/img-atas.png" class="overlay-img" style="object-position: center top;" data-aos="fade-down" data-aos-duration="500" data-aos-delay="500" loading="lazy">
+        <img src="img/page-6/img-kiri.png" class="overlay-img" style="object-position: left center;" data-aos="fade-right" data-aos-duration="500" data-aos-delay="800" loading="lazy">
+        <img src="img/page-6/img-kanan.png" class="overlay-img" style="object-position: right center;" data-aos="fade-left" data-aos-duration="500" data-aos-delay="1000" loading="lazy">
+        <img src="img/page-6/img-bawah.png" class="overlay-img" style="object-position: center bottom;" data-aos="fade-up" data-aos-duration="500" data-aos-delay="1200" loading="lazy">
+        <img src="img/page-6/teks-kiri.png" class="overlay-img" style="object-position: left center;" data-aos="fade-right" data-aos-duration="500" data-aos-delay="1400" loading="lazy">
+        <img src="img/page-6/teks-kanan.png" class="overlay-img" style="object-position: right center;" data-aos="fade-left" data-aos-duration="500" data-aos-delay="1600" loading="lazy">
+        <img src="img/page-6/teks-bawah.png" class="overlay-img" style="object-position: center bottom;" data-aos="fade-up" data-aos-duration="500" data-aos-delay="1800" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Stack Ketujuh - DIPERBAIKI -->
+    <div class="image-stack seventh-stack" id="stack7">
+      <div class="image-wrapper">
+        <img src="img/page-7/simple/background.png" loading="lazy">
+        <img src="img/page-7/simple/judul.png" class="overlay-img" 
+            style="object-position: center top;" 
+            data-aos="fade-down" 
+            data-aos-duration="500" 
+            data-aos-delay="500" 
+            loading="lazy">
+        <img src="img/page-7/simple/ikhwan-akhwat.png" class="overlay-img" 
+            style="object-position: center center;" 
+            data-aos="fade-up" 
+            data-aos-duration="500" 
+            data-aos-delay="900" 
+            loading="lazy">
+
+        <!-- Sosmed -->
+        <div class="sosmed-container" 
+             data-aos="fade-up" 
+             data-aos-duration="500" 
+             data-aos-delay="1400">
+          <div class="sosmed-bar">
+            <a href="https://www.sekolahimpian.com" target="_blank" class="sosmed-item">
+              <div class="sosmed-icon">
+                <i class='bx bx-globe'></i>
+                <span class="sosmed-text">www.sekolahimpian.com</span>
+              </div>
+            </a>
+            
+            <a href="https://www.youtube.com/@sekolahimpianku" target="_blank" class="sosmed-item">
+              <div class="sosmed-icon">
+                <i class='bx bxl-youtube'></i>
+                <span class="sosmed-text">GSI Channel</span>
+              </div>
+            </a>
+            
+            <a href="https://www.instagram.com/sekolahimpianofficial" target="_blank" class="sosmed-item">
+              <div class="sosmed-icon">
+                <i class='bx bxl-instagram'></i>
+                <span class="sosmed-text">sekolahimpianofficial</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- Custom JS -->
+  <script src="js/script.js"></script>
 </body>
 </html>
