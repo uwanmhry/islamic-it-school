@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bidang Al-Quran | Sekolah Impian</title>
+    <link rel="icon" href="img/logo-si.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cursor.css">
+</head>
+<body class="min-h-screen relative">
+    <!-- Neon Cursor -->
+    <div class="cursor-neon"></div>
+
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Main Content -->
+    <div class="relative z-10">
+        <!-- Futuristic Navbar -->
+        <nav class="glass border-b border-orange-500/20 px-6 py-4">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+              <div class="flex items-center">
+                  <img src="img/logo-si.png" alt="Logo" class="w-10 h-10 rounded-full">
+              </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="hover:text-orange-500 transition-all">Home</a>
+                    <a href="alquran.html" class="text-orange-500 font-bold">Al-Quran</a>
+                    <a href="it.html" class="hover:text-orange-500 transition-all">IT</a>
+                    <a href="bahasa.html" class="hover:text-orange-500 transition-all">Bahasa</a>
+                    <a href="karakter.html" class="hover:text-orange-500 transition-all">Karakter</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-orange-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden glass mt-4 py-4 rounded-lg">
+                <a href="index.html" class="block px-4 py-2 hover:text-orange-500">Home</a>
+                <a href="alquran.html" class="block px-4 py-2 text-orange-500">Al-Quran</a>
+                <a href="it.html" class="block px-4 py-2 hover:text-orange-500">IT</a>
+                <a href="bahasa.html" class="block px-4 py-2 hover:text-orange-500">Bahasa</a>
+                <a href="karakter.html" class="block px-4 py-2 hover:text-orange-500">Karakter</a>
+            </div>
+        </nav>
+        
+        <!-- Hero Section -->
+        <section class="py-16 px-6 text-center bg-gradient-to-b from-orange-900/20 to-transparent">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 cyber-glow" data-aos="fade-down" data-aos-duration="800">
+                    <span class="text-orange-500">Al-Quran</span> Learning Path
+                </h1>
+                <p class="text-lg md:text-xl mb-10 opacity-90" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    Master the Book of Allah with our futuristic, interactive learning system
+                </p>
+                <div class="arabic text-3xl mb-8 py-4 px-6 glass rounded-lg inline-block" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
+                    ﴾ وَقَالَ ٱلرَّسُولُ يَـٰرَبِّ إِنَّ قَوْمِى ٱتَّخَذُوا۟ هَـٰذَا ٱلْقُرْءَانَ مَهْجُورًۭا ﴿
+                </div>
+            </div>
+        </section>
+        
+        <!-- Roadmap Section -->
+        <section class="py-12 px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center cyber-glow" data-aos="fade-up">
+                    Roadmap <span class="text-orange-500">Mastery Quran</span>
+                </h2>
+                
+                <!-- Futuristic Roadmap Timeline -->
+                <div class="relative">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-4 md:left-1/2 h-full w-1 bg-orange-500/30 transform -translate-x-1/2"></div>
+                    
+                    <!-- Roadmap Items -->
+                    <div class="space-y-8">
+                        <!-- RBQ Item -->
+                        <div class="relative roadmap-item glass p-6 rounded-xl w-full md:w-1/2 ml-auto border-l-4 border-orange-500 hover:border-orange-300 transition-all"
+                             data-aos="fade-right">
+                            <div class="absolute -left-4 md:-left-2 w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center">
+                                <span class="text-white font-bold">1</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-orange-400 mb-2">RBQ</h3>
+                            <p class="opacity-90 mb-3">Reflek Baca Quran</p>
+                            <p class="text-sm mb-4 opacity-80">
+                                Yang tidak bisa baca Quran menjadi jago membaca Quran
+                            </p>
+                            <div class="arabic text-sm mb-4 opacity-80">
+                                وَٱقْرَءُوا۟ مَا تَيَسَّرَ مِنَ ٱلْقُرْءَانِ
+                            </div>
+                            <button onclick="openModal('rbq-modal')" class="text-xs text-orange-400 hover:text-orange-300">Pelajari lebih lanjut →</button>
+                        </div>
+                        
+                        <!-- RTQ Item -->
+                        <div class="relative roadmap-item glass p-6 rounded-xl w-full md:w-1/2 border-r-4 border-orange-500 hover:border-orange-300 transition-all"
+                             data-aos="fade-left" data-aos-delay="200">
+                            <div class="absolute -right-4 md:-right-2 w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center">
+                                <span class="text-white font-bold">2</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-orange-400 mb-2">RTQ</h3>
+                            <p class="opacity-90 mb-3">Reflek Tajwid Quran</p>
+                            <p class="text-sm mb-4 opacity-80">
+                                Yang tajwidnya belepotan menjadi indah dan benar
+                            </p>
+                            <div class="arabic text-sm mb-4 opacity-80">
+                                وَرَتِّلِ ٱلْقُرْءَانَ تَرْتِيلًا
+                            </div>
+                            <button onclick="openModal('rtq-modal')" class="text-xs text-orange-400 hover:text-orange-300">Pelajari lebih lanjut →</button>
+                        </div>
+                        
+                        <!-- RHQ Item -->
+                        <div class="relative roadmap-item glass p-6 rounded-xl w-full md:w-1/2 ml-auto border-l-4 border-orange-500 hover:border-orange-300 transition-all"
+                             data-aos="fade-right" data-aos-delay="400">
+                            <div class="absolute -left-4 md:-left-2 w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center">
+                                <span class="text-white font-bold">3</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-orange-400 mb-2">RHQ</h3>
+                            <p class="opacity-90 mb-3">Reflek Hafal Quran</p>
+                            <p class="text-sm mb-4 opacity-80">
+                                Yang tidak bisa menghafal menjadi penghafal Quran
+                            </p>
+                            <div class="arabic text-sm mb-4 opacity-80">
+                                بَلْ هُوَ ءَايَـٰتٌۢ بَيِّنَـٰتٌۭ فِى صُدُورِ ٱلَّذِينَ أُوتُوا۟ ٱلْعِلْمَ
+                            </div>
+                            <button onclick="openModal('rhq-modal')" class="text-xs text-orange-400 hover:text-orange-300">Pelajari lebih lanjut →</button>
+                        </div>
+                        
+                        <!-- RAQ Item -->
+                        <div class="relative roadmap-item glass p-6 rounded-xl w-full md:w-1/2 border-r-4 border-orange-500 hover:border-orange-300 transition-all"
+                             data-aos="fade-left" data-aos-delay="600">
+                            <div class="absolute -right-4 md:-right-2 w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center">
+                                <span class="text-white font-bold">4</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-orange-400 mb-2">RAQ</h3>
+                            <p class="opacity-90 mb-3">Reflek Analitik Quran</p>
+                            <p class="text-sm mb-4 opacity-80">
+                                Yang tidak paham makna Quran menjadi paham dan mengamalkan
+                            </p>
+                            <div class="arabic text-sm mb-4 opacity-80">
+                                كِتَـٰبٌ أَنزَلْنَـٰهُ إِلَيْكَ مُبَـٰرَكٌۭ لِّيَدَّبَّرُوٓا۟ ءَايَـٰتِهِۦ وَلِيَتَذَكَّرَ أُو۟لُوا۟ ٱلْأَلْبَـٰبِ
+                            </div>
+                            <button onclick="openModal('raq-modal')" class="text-xs text-orange-400 hover:text-orange-300">Pelajari lebih lanjut →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modals -->
+        <!-- RBQ Modal -->
+        <div id="rbq-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('rbq-modal')">&times;</span>
+                <h2 class="text-2xl font-bold mb-4 text-orange-400">RBQ - Reflek Baca Quran</h2>
+                <div class="arabic text-xl mb-4">
+                    وَٱقْرَءُوا۟ مَا تَيَسَّرَ مِنَ ٱلْقُرْءَانِ
+                </div>
+                <p class="mb-4">"Dan bacalah Al-Qur'an apa yang mudah bagimu" (Al-Muzzammil 73:20)</p>
+                
+                <div class="glass p-4 rounded-lg mb-4">
+                    <h3 class="font-bold text-lg mb-2">Fitur Program:</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Belajar mengenal huruf Hijaiyah</li>
+                        <li>Latihan membaca kata dasar Quran</li>
+                        <li>Pembelajaran harakat dan tanwin</li>
+                        <li>Teknik membaca sambung (wasal)</li>
+                        <li>Evaluasi bacaan dengan AI</li>
+                    </ul>
+                </div>
+                
+                <div class="glass p-4 rounded-lg">
+                    <h3 class="font-bold text-lg mb-2">Tahapan Belajar:</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">1</div>
+                            <div>Pengenalan huruf dan bunyi dasar</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">2</div>
+                            <div>Kombinasi huruf dengan harakat</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">3</div>
+                            <div>Membaca kata dan ayat pendek</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">4</div>
+                            <div>Membaca ayat panjang dengan lancar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RTQ Modal -->
+        <div id="rtq-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('rtq-modal')">&times;</span>
+                <h2 class="text-2xl font-bold mb-4 text-orange-400">RTQ - Reflek Tajwid Quran</h2>
+                <div class="arabic text-xl mb-4">
+                    وَرَتِّلِ ٱلْقُرْءَانَ تَرْتِيلًا
+                </div>
+                <p class="mb-4">"Dan bacalah Al-Qur'an dengan tartil" (Al-Muzzammil 73:4)</p>
+                
+                <div class="glass p-4 rounded-lg mb-4">
+                    <h3 class="font-bold text-lg mb-2">Fitur Program:</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Pelajaran hukum nun mati dan tanwin</li>
+                        <li>Pelajaran hukum mim mati</li>
+                        <li>Makhorijul huruf yang tepat</li>
+                        <li>Sifat-sifat huruf</li>
+                        <li>Praktik dengan ayat-ayat pilihan</li>
+                    </ul>
+                </div>
+                
+                <div class="glass p-4 rounded-lg">
+                    <h3 class="font-bold text-lg mb-2">Tahapan Belajar:</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">1</div>
+                            <div>Dasar-dasar tajwid (izhar, idgham, ikhfa)</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">2</div>
+                            <div>Hukum mad dan qalqalah</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">3</div>
+                            <div>Praktik makhorijul huruf</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">4</div>
+                            <div>Penerapan tajwid dalam surat panjang</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RHQ Modal -->
+        <div id="rhq-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('rhq-modal')">&times;</span>
+                <h2 class="text-2xl font-bold mb-4 text-orange-400">RHQ - Reflek Hafal Quran</h2>
+                <div class="arabic text-xl mb-4">
+                    بَلْ هُوَ ءَايَـٰتٌۢ بَيِّنَـٰتٌۭ فِى صُدُورِ ٱلَّذِينَ أُوتُوا۟ ٱلْعِلْمَ
+                </div>
+                <p class="mb-4">"Bahkan ia adalah ayat-ayat yang jelas di dalam dada orang-orang yang diberi ilmu" (Al-Ankabut 29:49)</p>
+                
+                <div class="glass p-4 rounded-lg mb-4">
+                    <h3 class="font-bold text-lg mb-2">Fitur Program:</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Metode menghafal efektif</li>
+                        <li>Sistem pengulangan otomatis</li>
+                        <li>Target harian yang terukur</li>
+                        <li>Muraja'ah terpandu</li>
+                        <li>Komunitas penghafal</li>
+                    </ul>
+                </div>
+                
+                <div class="glass p-4 rounded-lg">
+                    <h3 class="font-bold text-lg mb-2">Tahapan Belajar:</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">1</div>
+                            <div>Menghafal juz 30 (Juz Amma)</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">2</div>
+                            <div>Menghafal surat-surat pilihan</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">3</div>
+                            <div>Menghafal per juz dengan sistem setoran</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">4</div>
+                            <div>Penyempurnaan hafalan dengan muraja'ah</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RAQ Modal -->
+        <div id="raq-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('raq-modal')">&times;</span>
+                <h2 class="text-2xl font-bold mb-4 text-orange-400">RAQ - Reflek Analitik Quran</h2>
+                <div class="arabic text-xl mb-4">
+                    كِتَـٰبٌ أَنزَلْنَـٰهُ إِلَيْكَ مُبَـٰرَكٌۭ لِّيَدَّبَّرُوٓا۟ ءَايَـٰتِهِۦ وَلِيَتَذَكَّرَ أُو۟لُوا۟ ٱلْأَلْبَـٰبِ
+                </div>
+                <p class="mb-4">"Kitab yang Kami turunkan kepadamu penuh berkah agar mereka menghayati ayat-ayatnya" (Sad 38:29)</p>
+                
+                <div class="glass p-4 rounded-lg mb-4">
+                    <h3 class="font-bold text-lg mb-2">Fitur Program:</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Kajian tafsir tematik</li>
+                        <li>Analisis kata per kata</li>
+                        <li>Studi asbabun nuzul</li>
+                        <li>Koneksi antar ayat</li>
+                        <li>Aplikasi dalam kehidupan</li>
+                    </ul>
+                </div>
+                
+                <div class="glass p-4 rounded-lg">
+                    <h3 class="font-bold text-lg mb-2">Tahapan Belajar:</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">1</div>
+                            <div>Memahami kosakata dasar Quran</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">2</div>
+                            <div>Kajian surat-surat pendek</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">3</div>
+                            <div>Studi tematik (Tauhid, Akhlak, dll)</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">4</div>
+                            <div>Analisis balaghah dan i'jaz Quran</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Ayat -->
+        <section class="py-16 px-6 bg-gradient-to-b from-orange-900/30 to-transparent">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-8 cyber-glow" data-aos="fade-up">
+                    <span class="text-orange-500">Today's</span> Reflection
+                </h2>
+                <div class="glass p-8 rounded-xl mb-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="arabic text-2xl leading-loose mb-6">
+                        إِنَّ هَـٰذَا ٱلْقُرْءَانَ يَهْدِى لِلَّتِى هِىَ أَقْوَمُ وَيُبَشِّرُ ٱلْمُؤْمِنِينَ ٱلَّذِينَ يَعْمَلُونَ ٱلصَّـٰلِحَـٰتِ أَنَّ لَهُمْ أَجْرًۭا كَبِيرًۭا
+                    </div>
+                    <p class="text-lg opacity-90 mb-4">
+                    "Sesungguhnya Al-Qur'an ini memberi petunjuk kepada (jalan) yang paling lurus dan memberi kabar gembira kepada orang-orang beriman yang mengerjakan amal saleh bahwa mereka akan memperoleh pahala yang besar."
+                    </p>
+                    <p class="text-orange-400">Surah Al-Isra (17:9)</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-out-quad'
+        });
+    </script>
+    <script src="js/script.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/background.js"></script>
+</body>
+</html>

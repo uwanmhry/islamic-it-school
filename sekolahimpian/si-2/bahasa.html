@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bidang Bahasa | Sekolah Impian</title>
+    <link rel="icon" href="img/logo-si.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cursor.css">
+</head>
+<body class="min-h-screen relative">
+    <!-- Neon Cursor -->
+    <div class="cursor-neon"></div>
+
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Main Content -->
+    <div class="relative z-10">
+        <!-- Futuristic Navbar -->
+        <nav class="glass border-b border-orange-500/20 px-6 py-4">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+              <div class="flex items-center">
+                  <img src="img/logo-si.png" alt="Logo" class="w-10 h-10 rounded-full">
+              </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="hover:text-orange-500 transition-all">Home</a>
+                    <a href="alquran.html" class="hover:text-orange-500 transition-all">Al-Quran</a>
+                    <a href="it.html" class="hover:text-orange-500 transition-all">IT</a>
+                    <a href="bahasa.html" class="text-orange-500 font-bold">Bahasa</a>
+                    <a href="karakter.html" class="hover:text-orange-500 transition-all">Karakter</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-orange-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden glass mt-4 py-4 rounded-lg">
+                <a href="index.html" class="block px-4 py-2 hover:text-orange-500">Home</a>
+                <a href="alquran.html" class="block px-4 py-2 hover:text-orange-500">Al-Quran</a>
+                <a href="it.html" class="block px-4 py-2 hover:text-orange-500">IT</a>
+                <a href="bahasa.html" class="block px-4 py-2 text-orange-500">Bahasa</a>
+                <a href="karakter.html" class="block px-4 py-2 hover:text-orange-500">Karakter</a>
+            </div>
+        </nav>
+        
+        <!-- Hero Section -->
+        <section class="py-16 px-6 text-center bg-gradient-to-b from-orange-900/20 to-transparent">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 cyber-glow" data-aos="fade-down" data-aos-duration="800">
+                    <span class="text-orange-500">Bahasa</span> Learning Path
+                </h1>
+                <p class="text-lg md:text-xl mb-10 opacity-90" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    Master languages with our futuristic, interactive learning system
+                </p>
+                <div class="arabic text-3xl mb-8 py-4 px-6 glass rounded-lg inline-block" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
+                    ﴾ وَمِنْ ءَايَـٰتِهِۦ خَلْقُ ٱلسَّمَـٰوَٰتِ وَٱلْأَرْضِ وَٱخْتِلَـٰفُ أَلْسِنَتِكُمْ وَأَلْوَٰنِكُمْ ﴿
+                </div>
+            </div>
+        </section>
+        
+        <!-- Roadmap Section -->
+        <section class="py-12 px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center cyber-glow" data-aos="fade-up">
+                    Roadmap <span class="text-orange-500">Language Mastery</span>
+                </h2>
+                
+                <!-- Futuristic Roadmap Timeline -->
+                <div class="relative">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-4 md:left-1/2 h-full w-1 bg-orange-500/30 transform -translate-x-1/2"></div>
+                    
+                    <!-- Roadmap Items -->
+                    <div class="space-y-8">
+                        <!-- PKDI Item -->
+                        <div class="relative roadmap-item glass p-6 rounded-xl w-full md:w-1/2 ml-auto border-l-4 border-orange-500 hover:border-orange-300 transition-all"
+                             data-aos="fade-right">
+                            <div class="absolute -left-4 md:-left-2 w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center">
+                                <span class="text-white font-bold">1</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-orange-400 mb-2">PKDI</h3>
+                            <p class="opacity-90 mb-3">Public Speaking & Communication</p>
+                            <p class="text-sm mb-4 opacity-80">
+                                Yang gak pinter omong bisa Publik Speaking
+                            </p>
+                            <div class="text-sm mb-4 opacity-80">
+                                Master the art of effective communication
+                            </div>
+                            <button onclick="openModal('pkdi-modal')" class="text-xs text-orange-400 hover:text-orange-300">Pelajari lebih lanjut →</button>
+                        </div>
+                        
+                        <!-- Arabic 1 Item -->
+                        <div class="relative roadmap-item glass p-6 rounded-xl w-full md:w-1/2 border-r-4 border-orange-500 hover:border-orange-300 transition-all"
+                             data-aos="fade-left" data-aos-delay="200">
+                            <div class="absolute -right-4 md:-right-2 w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center">
+                                <span class="text-white font-bold">2</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-orange-400 mb-2">Muadalah Al-Azhar</h3>
+                            <p class="opacity-90 mb-3">Arabic Language Program</p>
+                            <p class="text-sm mb-4 opacity-80">
+                                Yang pengen kuliah di Timur Tengah bisa dapat beasiswa dan fasih bahasa Arabnya
+                            </p>
+                            <div class="arabic text-sm mb-4 opacity-80">
+                                اللغة العربية
+                            </div>
+                            <button onclick="openModal('arabic1-modal')" class="text-xs text-orange-400 hover:text-orange-300">Pelajari lebih lanjut →</button>
+                        </div>
+                        
+                        <!-- Arabic 2 Item -->
+                        <div class="relative roadmap-item glass p-6 rounded-xl w-full md:w-1/2 ml-auto border-l-4 border-orange-500 hover:border-orange-300 transition-all"
+                             data-aos="fade-right" data-aos-delay="400">
+                            <div class="absolute -left-4 md:-left-2 w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center">
+                                <span class="text-white font-bold">3</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-orange-400 mb-2">Program Makkah Madinah</h3>
+                            <p class="opacity-90 mb-3">Advanced Arabic Studies</p>
+                            <p class="text-sm mb-4 opacity-80">
+                                Persiapan kuliah di universitas ternama Timur Tengah
+                            </p>
+                            <div class="arabic text-sm mb-4 opacity-80">
+                                جامعة المدينة المنورة
+                            </div>
+                            <button onclick="openModal('arabic2-modal')" class="text-xs text-orange-400 hover:text-orange-300">Pelajari lebih lanjut →</button>
+                        </div>
+                        
+                        <!-- TOEFL Item -->
+                        <div class="relative roadmap-item glass p-6 rounded-xl w-full md:w-1/2 border-r-4 border-orange-500 hover:border-orange-300 transition-all"
+                             data-aos="fade-left" data-aos-delay="600">
+                            <div class="absolute -right-4 md:-right-2 w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center">
+                                <span class="text-white font-bold">4</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-orange-400 mb-2">TOEFL Mastery</h3>
+                            <p class="opacity-90 mb-3">English Proficiency Program</p>
+                            <p class="text-sm mb-4 opacity-80">
+                                Yang pengen kuliah ke Barat jadi jago TOEFL-nya
+                            </p>
+                            <div class="text-sm mb-4 opacity-80">
+                                Score 600+ guaranteed
+                            </div>
+                            <button onclick="openModal('toefl-modal')" class="text-xs text-orange-400 hover:text-orange-300">Pelajari lebih lanjut →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modals -->
+        <!-- PKDI Modal -->
+        <div id="pkdi-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('pkdi-modal')">&times;</span>
+                <h2 class="text-2xl font-bold mb-4 text-orange-400">PKDI - Public Speaking & Communication</h2>
+                <div class="arabic text-xl mb-4">
+                    وَقُل لِّعِبَادِى يَقُولُوا۟ ٱلَّتِى هِىَ أَحْسَنُ
+                </div>
+                <p class="mb-4">"Dan katakanlah kepada hamba-hamba-Ku: Hendaklah mereka mengucapkan perkataan yang lebih baik" (Al-Isra 17:53)</p>
+                
+                <div class="glass p-4 rounded-lg mb-4">
+                    <h3 class="font-bold text-lg mb-2">Fitur Program:</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Teknik public speaking dasar</li>
+                        <li>Penguasaan panggung dan audiens</li>
+                        <li>Struktur pidato yang efektif</li>
+                        <li>Teknik mengurangi grogi</li>
+                        <li>Latihan dengan rekaman dan analisis</li>
+                    </ul>
+                </div>
+                
+                <div class="glass p-4 rounded-lg">
+                    <h3 class="font-bold text-lg mb-2">Tahapan Belajar:</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">1</div>
+                            <div>Pengenalan dasar public speaking</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">2</div>
+                            <div>Teknik vokal dan body language</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">3</div>
+                            <div>Menyusun materi presentasi</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">4</div>
+                            <div>Simulasi di depan audiens</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Arabic 1 Modal -->
+        <div id="arabic1-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('arabic1-modal')">&times;</span>
+                <h2 class="text-2xl font-bold mb-4 text-orange-400">Muadalah Al-Azhar</h2>
+                <div class="arabic text-xl mb-4">
+                    إِنَّآ أَنزَلْنَـٰهُ قُرْءَٰنًا عَرَبِيًّۭا لَّعَلَّكُمْ تَعْقِلُونَ
+                </div>
+                <p class="mb-4">"Sesungguhnya Kami menurunkannya berupa Al-Qur'an berbahasa Arab agar kamu mengerti" (Yusuf 12:2)</p>
+                
+                <div class="glass p-4 rounded-lg mb-4">
+                    <h3 class="font-bold text-lg mb-2">Fitur Program:</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Belajar bahasa Arab dari dasar</li>
+                        <li>Kurikulum khusus persiapan Al-Azhar</li>
+                        <li>Penguasaan bahasa akademik</li>
+                        <li>Bimbingan beasiswa ke Mesir</li>
+                        <li>Simulasi tes masuk</li>
+                    </ul>
+                </div>
+                
+                <div class="glass p-4 rounded-lg">
+                    <h3 class="font-bold text-lg mb-2">Tahapan Belajar:</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">1</div>
+                            <div>Dasar-dasar bahasa Arab</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">2</div>
+                            <div>Kosakata akademik</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">3</div>
+                            <div>Percakapan sehari-hari</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">4</div>
+                            <div>Persiapan tes masuk</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Arabic 2 Modal -->
+        <div id="arabic2-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('arabic2-modal')">&times;</span>
+                <h2 class="text-2xl font-bold mb-4 text-orange-400">Program Makkah Madinah</h2>
+                <div class="arabic text-xl mb-4">
+                    وَٱلَّذِينَ جَـٰهَدُوا۟ فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا
+                </div>
+                <p class="mb-4">"Dan orang-orang yang bersungguh-sungguh untuk (mencari keridhaan) Kami, benar-benar akan Kami tunjukkan kepada mereka jalan-jalan Kami" (Al-Ankabut 29:69)</p>
+                
+                <div class="glass p-4 rounded-lg mb-4">
+                    <h3 class="font-bold text-lg mb-2">Fitur Program:</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Bahasa Arab tingkat lanjut</li>
+                        <li>Persiapan kuliah di Arab Saudi</li>
+                        <li>Bahasa Arab untuk studi Islam</li>
+                        <li>Budaya dan adab Timur Tengah</li>
+                        <li>Bimbingan aplikasi beasiswa</li>
+                    </ul>
+                </div>
+                
+                <div class="glass p-4 rounded-lg">
+                    <h3 class="font-bold text-lg mb-2">Tahapan Belajar:</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">1</div>
+                            <div>Penyegaran bahasa Arab dasar</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">2</div>
+                            <div>Bahasa Arab akademik</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">3</div>
+                            <div>Bahasa Arab untuk studi Islam</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">4</div>
+                            <div>Persiapan akhir dan simulasi wawancara</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOEFL Modal -->
+        <div id="toefl-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('toefl-modal')">&times;</span>
+                <h2 class="text-2xl font-bold mb-4 text-orange-400">TOEFL Mastery Program</h2>
+                <p class="mb-4">"Achieve your dreams of studying abroad with excellent English proficiency"</p>
+                
+                <div class="glass p-4 rounded-lg mb-4">
+                    <h3 class="font-bold text-lg mb-2">Fitur Program:</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Strategi menjawab soal TOEFL</li>
+                        <li>Latihan listening intensif</li>
+                        <li>Penguasaan grammar tingkat lanjut</li>
+                        <li>Teknik reading cepat</li>
+                        <li>Simulasi tes berkala</li>
+                    </ul>
+                </div>
+                
+                <div class="glass p-4 rounded-lg">
+                    <h3 class="font-bold text-lg mb-2">Tahapan Belajar:</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">1</div>
+                            <div>Diagnosis kemampuan awal</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">2</div>
+                            <div>Penguatan dasar grammar</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">3</div>
+                            <div>Latihan soal struktur TOEFL</div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-orange-500/20 text-orange-400 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">4</div>
+                            <div>Simulasi tes lengkap</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Ayat -->
+        <section class="py-16 px-6 bg-gradient-to-b from-orange-900/30 to-transparent">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-8 cyber-glow" data-aos="fade-up">
+                    <span class="text-orange-500">Today's</span> Reflection
+                </h2>
+                <div class="glass p-8 rounded-xl mb-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="arabic text-2xl leading-loose mb-6">
+                        يَـٰٓأَيُّهَا ٱلنَّاسُ إِنَّا خَلَقْنَـٰكُم مِّن ذَكَرٍۢ وَأُنثَىٰ وَجَعَلْنَـٰكُمْ شُعُوبًۭا وَقَبَآئِلَ لِتَعَارَفُوٓا۟
+                    </div>
+                    <p class="text-lg opacity-90 mb-4">
+                    "Wahai manusia! Sungguh, Kami telah menciptakan kamu dari seorang laki-laki dan seorang perempuan, kemudian Kami jadikan kamu berbangsa-bangsa dan bersuku-suku agar kamu saling mengenal"
+                    </p>
+                    <p class="text-orange-400">Surah Al-Hujurat (49:13)</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-out-quad'
+        });
+    </script>
+    <script src="js/script.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/background.js"></script>
+</body>
+</html>

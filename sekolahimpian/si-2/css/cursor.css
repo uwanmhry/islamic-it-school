@@ -1,0 +1,78 @@
+/* Hide default cursor */
+html, body, a, button {
+    cursor: none !important;
+}
+
+/* Neon Cursor Styles */
+.cursor-neon {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fb923c;
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: screen;
+    box-shadow: 0 0 10px #fb923c, 0 0 20px #fb923c, 0 0 30px #fb923c;
+    transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease;
+}
+
+.cursor-trail {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background-color: #fb923c;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    box-shadow: 0 0 5px #fb923c, 0 0 10px #fb923c;
+    opacity: 0;
+}
+
+/* Falling Star Effect */
+@keyframes fall {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(30deg) translateY(100px);
+        opacity: 0;
+    }
+}
+
+.star {
+    position: fixed;
+    width: 2px;
+    height: 10px;
+    background: linear-gradient(to bottom, transparent, #fb923c);
+    pointer-events: none;
+    z-index: 9997;
+    transform-origin: center bottom;
+    opacity: 0;
+}
+
+/* Click Effect */
+@keyframes clickEffect {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+
+.click-effect {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fb923c;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    animation: clickEffect 0.5s ease-out forwards;
+    box-shadow: 0 0 10px #fb923c;
+}
