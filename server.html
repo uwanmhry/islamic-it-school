@@ -180,17 +180,30 @@
             transform: translate(-50%, -50%);
         }
         
-        .maintenance-schedule {
+        .maintenance-info {
             background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
             border-radius: 12px;
         }
         
-        .time-box {
+        .info-box {
             background: rgba(255, 255, 255, 0.15);
             border-radius: 8px;
             padding: 12px;
             text-align: center;
             backdrop-filter: blur(4px);
+        }
+        
+        .floating-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
     </style>
 </head>
@@ -198,7 +211,7 @@
     <div class="maintenance-card w-full max-w-4xl p-6 md:p-8">
         <div class="text-center mb-8">
             <div class="flex justify-center mb-6">
-                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-primary-100 to-primary-200 p-1">
+                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-primary-100 to-primary-200 p-1 floating-icon">
                     <div class="w-full h-full rounded-full bg-white flex items-center justify-center">
                         <i class="fas fa-server text-3xl text-primary-600"></i>
                     </div>
@@ -209,23 +222,19 @@
             <p class="text-secondary-600 max-w-2xl mx-auto">Kami sedang melakukan migrasi server database dan backend. Layanan akan kembali normal setelah proses migrasi selesai.</p>
         </div>
         
-        <!-- Maintenance Schedule -->
-        <div class="maintenance-schedule text-white p-6 mb-8 rounded-xl">
-            <h2 class="text-lg font-semibold mb-4 text-center"><i class="fas fa-calendar-alt mr-2"></i>Jadwal Pemeliharaan</h2>
+        <!-- Maintenance Info -->
+        <div class="maintenance-info text-white p-6 mb-8 rounded-xl">
+            <h2 class="text-lg font-semibold mb-4 text-center"><i class="fas fa-info-circle mr-2"></i>Informasi Pemeliharaan</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="time-box">
-                    <div class="text-sm opacity-80">Mulai</div>
-                    <div class="text-xl font-bold">Jumat, 20:00 WIB</div>
-                </div>
-                <div class="time-box">
-                    <div class="text-sm opacity-80">Perkiraan Selesai</div>
-                    <div class="text-xl font-bold">Sabtu, 06:00 WIB</div>
+            <div class="grid grid-cols-1 gap-4">
+                <div class="info-box">
+                    <div class="text-sm opacity-80">Layanan yang Terdampak</div>
+                    <div class="text-lg font-bold">Database & Backend Server</div>
                 </div>
             </div>
             
             <div class="mt-4 text-center text-sm opacity-80">
-                <i class="fas fa-info-circle mr-1"></i> Total perkiraan waktu: 10 jam
+                <i class="fas fa-exclamation-triangle mr-1"></i> Kami sedang bekerja untuk menyelesaikan proses ini secepatnya
             </div>
         </div>
         
@@ -234,7 +243,7 @@
             <div class="bg-secondary-50 rounded-xl p-6">
                 <h2 class="text-lg font-semibold text-secondary-800 mb-4 flex items-center">
                     <span class="pulse-dot pulse-maintenance mr-2"></span>
-                    <span>Progress Pemeliharaan</span>
+                    <span>Status Pemeliharaan</span>
                 </h2>
                 
                 <div class="mb-4">
@@ -333,16 +342,16 @@
             <p class="text-sm text-secondary-500 mt-2"><i class="fas fa-info-circle mr-1"></i> Beberapa fitur tidak tersedia selama pemeliharaan</p>
         </div>
         
-        <!-- Countdown & Contact -->
+        <!-- Status & Contact -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="bg-primary-50 rounded-xl p-6">
                 <h2 class="text-lg font-semibold text-primary-800 mb-4">
-                    <i class="fas fa-clock mr-2"></i>Status Pemeliharaan
+                    <i class="fas fa-tasks mr-2"></i>Status Pemeliharaan
                 </h2>
                 <div class="text-center py-2">
                     <div class="text-xl font-bold text-primary-700 mb-2">Server Database & Backend</div>
                     <div class="text-lg font-medium text-primary-600 mb-2">Dalam Proses Migrasi</div>
-                    <p class="text-sm text-primary-600">Proses mungkin memakan waktu beberapa jam</p>
+                    <p class="text-sm text-primary-600">Kami memprioritaskan keamanan dan keandalan data</p>
                 </div>
             </div>
             
@@ -351,7 +360,7 @@
                     <i class="fas fa-headset mr-2"></i>Bantuan Darurat
                 </h2>
                 <p class="text-sm text-secondary-600 mb-3">Untuk keadaan darurat teknis selama pemeliharaan</p>
-             <div class="space-y-2">
+                 <div class="space-y-2">
     <!-- Email -->
     <a href="mailto:sekolahimpianstudio@gmail.com" class="flex items-center text-sm text-primary-700">
         <i class="fas fa-envelope mr-2"></i> sekolahimpianstudio@gmail.com
@@ -367,7 +376,6 @@
         <i class="fas fa-comment-alt mr-2"></i> Live Chat Support
     </a>
 </div>
-
             </div>
         </div>
         
@@ -396,18 +404,6 @@
                     }
                 }
             }, 5000);
-            
-            // Quick access checkbox functionality
-            const checkboxes = document.querySelectorAll('.quick-access input[type="checkbox"]');
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    if (this.checked) {
-                        this.parentElement.classList.add('text-primary-700');
-                    } else {
-                        this.parentElement.classList.remove('text-primary-700');
-                    }
-                });
-            });
             
             // Update status message
             const statusMessages = [
