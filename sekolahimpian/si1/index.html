@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/logo-si.png">
+  <title>Sekolah Impian - Integrasi Al-Quran dan Teknologi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#f97316',
+            secondary: '#10B981',
+            dark: '#1F2937',
+            light: '#F9FAFB',
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-out',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/about.css">
+  <link rel="stylesheet" href="css/program-data.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-white text-gray-800">
+  <!-- ===== Futuristic Navbar (Light Mode) ===== -->
+  <header class="fixed w-full bg-white/80 backdrop-blur-md shadow-md z-50 transition-all duration-300">
+    <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <img src="img/logo-si.png" alt="Logo Sekolah Impian"
+          class="w-12 h-12 rounded-full border-2 border-gradient-to-r from-yellow-400 to-orange-400 shadow-lg">
+      </div>
+
+      <!-- Desktop Menu -->
+      <nav class="hidden md:flex space-x-8 text-gray-700 font-medium">
+        <a href="#beranda" class="nav-link relative group px-2 py-1 transition">Beranda
+          <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-yellow-400 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#tentang" class="nav-link relative group px-2 py-1 transition">Tentang SI
+          <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-yellow-400 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#program" class="nav-link relative group px-2 py-1 transition">Program
+          <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-yellow-400 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#pendaftaran" class="nav-link relative group px-2 py-1 transition">Pendaftaran
+          <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-yellow-400 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#kontak" class="nav-link relative group px-2 py-1 transition">Kontak
+          <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-yellow-400 transition-all group-hover:w-full"></span>
+        </a>
+      </nav>
+
+      <!-- Mobile Toggle -->
+      <button id="mobile-menu-button" class="md:hidden text-gray-800 p-2 rounded-lg hover:bg-gray-100 transition">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+      class="hidden md:hidden bg-white/90 backdrop-blur-md shadow-lg mt-1 rounded-xl mx-4 p-4 transition-all">
+      <ul class="flex flex-col space-y-3 text-gray-700 font-medium">
+        <li><a href="#beranda" class="mobile-link block hover:text-yellow-500 transition">Beranda</a></li>
+        <li><a href="#tentang" class="mobile-link block hover:text-yellow-500 transition">Tentang SI</a></li>
+        <li><a href="#program" class="mobile-link block hover:text-yellow-500 transition">Program</a></li>
+        <li><a href="#pendaftaran" class="mobile-link block hover:text-yellow-500 transition">Pendaftaran</a></li>
+        <li><a href="#kontak" class="mobile-link block hover:text-yellow-500 transition">Kontak</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="beranda"
+    class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white overflow-hidden">
+    <!-- Background Glow -->
+    <div class="absolute inset-0">
+      <div class="absolute w-[600px] h-[600px] bg-orange-500/30 rounded-full blur-3xl -top-32 -left-32 animate-pulse">
+      </div>
+      <div class="absolute w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-3xl bottom-0 right-0 animate-pulse">
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 container mx-auto px-6 text-center">
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight leading-tight">
+        Sekolah Impian<br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-yellow-300 to-orange-500">
+          Prototype Santri Masa Depan
+        </span>
+      </h1>
+
+      <p class="text-lg md:text-2xl max-w-3xl mx-auto mb-10 text-gray-300 leading-relaxed">
+        Mengintegrasikan <span class="text-orange-400 font-semibold">Al-Quran</span> dengan
+        <span class="text-blue-400 font-semibold">Teknologi</span>,
+        <span class="text-green-400 font-semibold">Bahasa</span>, dan
+        <span class="text-purple-400 font-semibold">Karakter</span>. <br>
+        Mencetak generasi <strong>Ahlul Quran</strong> sekaligus <strong>Ahlul IT</strong> yang siap memimpin masa
+        depan.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#pendaftaran" target="_blank" rel="noopener noreferrer"
+          class="px-8 py-4 rounded-xl font-semibold bg-gradient-to-r from-orange-500 to-yellow-400 text-gray-900 shadow-lg hover:scale-105 transition transform">
+          Pendaftaran Santri Baru
+        </a>
+        <a href="#program"
+          class="px-8 py-4 rounded-xl font-semibold border-2 border-gray-200 hover:bg-gray-100 hover:text-gray-900 transition">
+          Program Kami
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Tentang SI Section -->
+  <section id="tentang" class="py-16">
+    <div class="container mx-auto px-4">
+      <!-- <h2 class="text-3xl font-bold text-center mb-12 section-title">Tentang Sekolah Impian</h2> -->
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-14 text-gray-900 tracking-tight">
+        Tentang Sekolah Impian
+      </h2>
+
+      <div class="flex flex-col lg:flex-row items-center gap-12 mb-20">
+        <div class="w-full lg:w-1/2">
+          <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+            <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 opacity-20 rounded-2xl">
+            </div>
+            <div class="video-container relative">
+              <iframe src="https://www.youtube.com/embed/-plMLDUNNus" class="w-full h-80 rounded-2xl" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/2">
+          <div
+            class="bg-gradient-to-r from-orange-50 to-green-50 p-6 rounded-2xl shadow-lg border-l-4 border-orange-500">
+            <p class="text-lg font-medium text-gray-800">
+              Strategi pendidikan kami adalah mengintegrasikan Al-Quran dengan teknologi, bahasa, dan
+              karakter. Sehingga dapat menghasilkan Prototype santri impian, yaitu generasi yang Ahlul
+              Quran (Hufazh) sekaligus Ahlul IT (Technopreneur) yang menguasai bahasa agama (Arab) dan
+              teknologi (Inggris) dan memiliki karakter, mental, softskill yang Quranic!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logo Grid Section -->
+      <div class="mt-20 relative">
+        <div class="text-center mb-12">
+          <h3 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
+            Alumni Kami Berada di Universitas Terkemuka
+          </h3>
+          <p class="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Alhamdulillah alumni kami tersebar di universitas-universitas berkualitas, baik di dalam maupun
+            luar negeri :
+          </p>
+        </div>
+
+        <!-- Grid untuk desktop/tablet -->
+        <div class="grid" id="university-grid">
+          <!-- Logo akan diisi oleh JavaScript -->
+        </div>
+
+        <!-- Slider untuk mobile -->
+        <div class="slider-container" id="slider-container">
+          <div class="slider-track" id="slider-track">
+            <!-- Slider items akan diisi oleh JavaScript -->
+          </div>
+          <div class="slider-nav" id="slider-nav">
+            <!-- Navigation dots akan diisi oleh JavaScript -->
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- Program Section -->
+  <section id="program" class="py-16">
+    <div class="container mx-auto px-4">
+      <!-- <h2 class="text-3xl font-bold text-center mb-12 section-title">Program Unggulan</h2> -->
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-14 text-gray-900 tracking-tight">
+        Program Kami
+      </h2>
+
+      <!-- Program Navigation -->
+      <div class="program-nav mb-12" id="program-nav">
+        <!-- Akan diisi oleh JavaScript -->
+      </div>
+
+      <!-- Program Sections -->
+      <div id="program-sections">
+        <!-- Akan diisi oleh JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Pendaftaran Section -->
+  <section id="pendaftaran" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <!-- Title -->
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
+          Pendaftaran Santri Baru
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          Temukan jalur pendaftaran yang paling sesuai untuk perjalanan pendidikanmu di Sekolah Impian.
+        </p>
+      </div>
+
+      <!-- Tabs (Mobile Only) -->
+      <div class="flex justify-center mb-10 space-x-2 sm:hidden" id="pendaftaran-tabs">
+        <!-- Render via JS -->
+      </div>
+
+      <!-- Cards -->
+      <div id="pendaftaran-items" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Render via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontak Section -->
+  <section id="kontak" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-14 text-gray-900 tracking-tight">
+        Hubungi Kami
+      </h2>
+
+      <div class="flex flex-col md:flex-row gap-10">
+
+        <!-- Informasi Kontak -->
+        <div class="md:w-1/2">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300">
+            <h3 class="text-xl font-semibold mb-8 text-gray-800">Informasi Kontak</h3>
+
+            <!-- Alamat -->
+            <div class="flex items-start mb-6">
+              <a href="https://maps.app.goo.gl/ZFvrhhu3yvjGdAGY7" target="_blank" rel="noopener noreferrer"
+                class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center text-orange-500 text-xl hover:bg-orange-200 transition mr-4">
+                <i class="fas fa-map-marker-alt"></i>
+              </a>
+              <div>
+                <h4 class="font-semibold text-gray-800">Alamat</h4>
+                <p class="text-gray-600">
+                  Kampung Ciangsana, RT.02/RW.04, Tapos I, Kec. Tenjolaya, Kabupaten Bogor, Jawa Barat 16371
+                </p>
+              </div>
+            </div>
+
+            <!-- Telepon -->
+            <div class="flex items-start mb-6">
+              <a href="https://wa.me/6281312633302" target="_blank" rel="noopener noreferrer"
+                class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center text-green-500 text-xl hover:bg-green-200 transition mr-4">
+                <i class="fas fa-phone"></i>
+              </a>
+              <div>
+                <h4 class="font-semibold text-gray-800">Telepon</h4>
+                <p class="text-gray-600">081312633302</p>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="flex items-start">
+              <a href="mailto:info@sekolahimpian.com"
+                class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center text-blue-500 text-xl hover:bg-blue-200 transition mr-4">
+                <i class="fas fa-envelope"></i>
+              </a>
+              <div>
+                <h4 class="font-semibold text-gray-800">Email</h4>
+                <p class="text-gray-600">info@sekolahimpian.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Kontak -->
+        <div class="md:w-1/2">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300">
+            <h3 class="text-xl font-semibold mb-8 text-gray-800">Kirim Pesan</h3>
+
+            <form id="contactForm" class="space-y-5">
+              <div>
+                <label for="name" class="block text-gray-700 mb-2 font-medium">Nama Lengkap</label>
+                <input type="text" id="name"
+                  class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition"
+                  required>
+              </div>
+
+              <div>
+                <label for="email" class="block text-gray-700 mb-2 font-medium">Email</label>
+                <input type="email" id="email"
+                  class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition"
+                  required>
+              </div>
+
+              <div>
+                <label for="message" class="block text-gray-700 mb-2 font-medium">Pesan</label>
+                <textarea id="message" rows="4"
+                  class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition"
+                  required></textarea>
+              </div>
+
+              <button type="submit"
+                class="w-full bg-gradient-to-r from-orange-500 to-yellow-400 hover:from-orange-600 hover:to-yellow-500 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition">
+                <i class="fas fa-paper-plane mr-2"></i> Kirim Pesan
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Kontak Section -->
+
+  <!-- Tambahin Font Awesome -->
+  <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+
+  <!-- Footer -->
+  <footer class="relative bg-gradient-to-br from-gray-900 via-black to-gray-800 text-gray-300 py-12">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-12">
+
+        <!-- Brand -->
+        <div>
+          <h3 class="text-2xl font-bold mb-4 text-white">Sekolah Impian</h3>
+          <p class="mb-6 leading-relaxed">
+            Pondok pesantren modern yang mengintegrasikan
+            <span class="text-orange-400 font-semibold">Al-Quran</span> dengan
+            <span class="text-blue-400 font-semibold">Teknologi</span>,
+            <span class="text-green-400 font-semibold">Bahasa</span>, dan
+            <span class="text-purple-400 font-semibold">Karakter</span>.
+          </p>
+          <div class="flex space-x-4">
+            <a href="https://www.facebook.com/quadrantboardingschool"
+              class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-orange-500 hover:scale-110 transition transform shadow-lg">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/sekolahimpianofficial"
+              class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-pink-500 hover:scale-110 transition transform shadow-lg">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@sekolahimpianku"
+              class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-red-500 hover:scale-110 transition transform shadow-lg">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://wa.me/6281312633302"
+              class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-green-500 hover:scale-110 transition transform shadow-lg">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-xl font-semibold mb-4 text-white">Tautan Cepat</h3>
+          <ul class="space-y-3">
+            <li><a href="#beranda" class="hover:text-orange-400 transition">Beranda</a></li>
+            <li><a href="#tentang" class="hover:text-orange-400 transition">Tentang SI</a></li>
+            <li><a href="#program" class="hover:text-orange-400 transition">Program</a></li>
+            <li><a href="#pendaftaran" class="hover:text-orange-400 transition">Pendaftaran</a></li>
+            <li><a href="#kontak" class="hover:text-orange-400 transition">Kontak</a></li>
+          </ul>
+        </div>
+
+        <!-- Map -->
+        <div>
+          <h3 class="text-xl font-semibold mb-4 text-white">Lokasi</h3>
+          <div class="rounded-xl overflow-hidden shadow-lg border border-gray-700">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.9246855336864!2d106.69447597607008!3d-6.656256865072977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69d1027ef9ea39%3A0x8bc33d5bc117c098!2sQuadrant%20Boarding%20School%20(QBS)!5e0!3m2!1sid!2sid!4v1756307600492!5m2!1sid!2sid"
+              width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom -->
+      <div class="border-t border-gray-700 mt-12 pt-6 text-center text-sm text-gray-400">
+        <p>&copy; <span id="year"></span> Sekolah Impian. All rights reserved.</p>
+      </div>
+    </div>
+
+    <!-- Year Script -->
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </footer>
+
+
+  <!-- Modal -->
+  <div id="programModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modal-body">
+        <!-- Modal content will be dynamically inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- External JavaScript Files -->
+  <script src="js/about.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/logo-data.js"></script>
+  <script src="js/pendaftaran.js"></script>
+  <script src="js/program-data.js"></script>
+  <script src="js/program-section.js"></script>
+</body>
+
+</html>

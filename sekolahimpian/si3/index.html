@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VidGallery - Platform Video Modern</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        orange: {
+                            500: '#FF7B31',
+                            600: '#E86A22',
+                        },
+                        green: {
+                            500: '#2ECC71',
+                            600: '#25A25A',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .video-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .category-btn {
+            transition: all 0.2s ease;
+        }
+        .category-btn:hover {
+            background-color: #FF7B31;
+            color: white;
+        }
+        .player-wrapper {
+            position: relative;
+            padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+        }
+        .player-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0.5rem;
+        }
+        .filter-btn {
+            transition: all 0.2s ease;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #FF7B31;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header/Navbar -->
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-lg bg-orange-500 flex items-center justify-center mr-3">
+                        <i class="fas fa-play text-white text-lg"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-800">Vid<span class="text-orange-500">Gallery</span></span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-600 hover:text-orange-500 font-medium">Beranda</a>
+                    <a href="#" class="text-gray-600 hover:text-orange-500 font-medium">Jelajahi</a>
+                    <a href="#" class="text-gray-600 hover:text-orange-500 font-medium">Kategori</a>
+                    <a href="#" class="text-gray-600 hover:text-orange-500 font-medium">Tentang</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:block relative">
+                        <input type="text" placeholder="Cari video..." class="w-64 px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                        <i class="fas fa-search absolute right-3 top-2.5 text-gray-400"></i>
+                    </div>
+                    <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-full font-medium transition duration-300">
+                        <i class="fas fa-user-plus mr-2"></i>Daftar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="mb-12">
+            <div class="rounded-xl overflow-hidden shadow-lg relative">
+                <div class="bg-gradient-to-r from-orange-500 to-green-500 h-96 flex items-center">
+                    <div class="absolute inset-0 bg-black opacity-30"></div>
+                    <div class="relative z-10 px-12 text-white max-w-2xl">
+                        <h1 class="text-4xl font-bold mb-4">Temukan Video Terbaik di Sini</h1>
+                        <p class="text-xl mb-6">Jelajahi koleksi video berkualitas tinggi dari berbagai kategori dan creator terbaik.</p>
+                        <button class="bg-white text-orange-500 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
+                            <i class="fas fa-play-circle mr-2"></i>Jelajahi Sekarang
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="mb-10">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Kategori Populer</h2>
+                <a href="#" class="text-orange-500 font-medium hover:text-orange-600">Lihat Semua</a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <button class="category-btn bg-white py-4 px-6 rounded-xl shadow border border-gray-200 font-medium text-gray-700">
+                    <i class="fas fa-music text-orange-500 mr-2"></i>Musik
+                </button>
+                <button class="category-btn bg-white py-4 px-6 rounded-xl shadow border border-gray-200 font-medium text-gray-700">
+                    <i class="fas fa-gamepad text-orange-500 mr-2"></i>Gaming
+                </button>
+                <button class="category-btn bg-white py-4 px-6 rounded-xl shadow border border-gray-200 font-medium text-gray-700">
+                    <i class="fas fa-basketball text-orange-500 mr-2"></i>Olahraga
+                </button>
+                <button class="category-btn bg-white py-4 px-6 rounded-xl shadow border border-gray-200 font-medium text-gray-700">
+                    <i class="fas fa-graduation-cap text-orange-500 mr-2"></i>Edukasi
+                </button>
+            </div>
+        </section>
+
+        <!-- Featured Videos -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Video Terpopuler</h2>
+                <a href="#" class="text-orange-500 font-medium hover:text-orange-600">Lihat Semua</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Video Card 1 -->
+                <div class="video-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="player-wrapper">
+                        <iframe src="https://www.youtube.com/embed/6stlCkUDG_s" title="Cara Membuat Website Modern dengan Tailwind CSS" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2 text-lg">Cara Membuat Website Modern dengan Tailwind CSS</h3>
+                        <p class="text-gray-600 text-sm mb-3">WebDev Simplified • 250K ditonton • 2 hari yang lalu</p>
+                    </div>
+                </div>
+
+                <!-- Video Card 2 -->
+                <div class="video-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="player-wrapper">
+                        <iframe src="https://www.youtube.com/embed/W0guBL5j1C4" title="Tips Coding JavaScript yang Efisien dan Modern" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2 text-lg">Tips Coding JavaScript yang Efisien dan Modern</h3>
+                        <p class="text-gray-600 text-sm mb-3">CodeWithHarry • 500K ditonton • 1 minggu yang lalu</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+                            <div class="text-sm">
+                                <p class="font-medium">Coding Master</p>
+                                <p class="text-gray-500">450K subscriber</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 3 -->
+                <div class="video-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="player-wrapper">
+                        <iframe src="https://www.youtube.com/embed/m2W0Ke5lz7A" title="Belajar UI/UX Design untuk Pemula - Tutorial Lengkap" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2 text-lg">Belajar UI/UX Design untuk Pemula - Tutorial Lengkap</h3>
+                        <p class="text-gray-600 text-sm mb-3">DesignCourse • 350K ditonton • 3 hari yang lalu</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+                            <div class="text-sm">
+                                <p class="font-medium">Design Masters</p>
+                                <p class="text-gray-500">300K subscriber</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 4 -->
+                <div class="video-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="player-wrapper">
+                        <iframe src="https://www.youtube.com/embed/7U1y-19hqzw" title="HTML & CSS Full Course untuk Pemula" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2 text-lg">HTML & CSS Full Course untuk Pemula</h3>
+                        <p class="text-gray-600 text-sm mb-3">FreeCodeCamp • 1.2M ditonton • 1 bulan yang lalu</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+                            <div class="text-sm">
+                                <p class="font-medium">FreeCodeCamp</p>
+                                <p class="text-gray-500">2.5M subscriber</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 5 -->
+                <div class="video-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="player-wrapper">
+                        <iframe src="https://www.youtube.com/embed/8PhdfcX9tG0" title="JavaScript Dasar untuk Pemula" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2 text-lg">JavaScript Dasar untuk Pemula</h3>
+                        <p class="text-gray-600 text-sm mb-3">Programming dengan Mosh • 850K ditonton • 2 minggu yang lalu</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+                            <div class="text-sm">
+                                <p class="font-medium">Mosh Programming</p>
+                                <p class="text-gray-500">1.8M subscriber</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 6 -->
+                <div class="video-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="player-wrapper">
+                        <iframe src="https://www.youtube.com/embed/7TF00hJI78Y" title="Membangun Aplikasi Web dengan React.js" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2 text-lg">Membangun Aplikasi Web dengan React.js</h3>
+                        <p class="text-gray-600 text-sm mb-3">The Net Ninja • 450K ditonton • 5 hari yang lalu</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+                            <div class="text-sm">
+                                <p class="font-medium">The Net Ninja</p>
+                                <p class="text-gray-500">950K subscriber</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- More Videos Section -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Video Lainnya</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Mini Video Card 1 -->
+                <div class="video-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="player-wrapper">
+                        <iframe src="https://www.youtube.com/embed/8gNrZ4lAnAw" title="Tips Menguasai CSS Grid" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2">Tips Menguasai CSS Grid</h3>
+                        <p class="text-gray-600 text-sm">Web Dev Simplified • 120K ditonton</p>
+                    </div>
+                </div>
+
+                <!-- Mini Video Card 2 -->
+                <div class="video-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="player-wrapper">
+                        <iframe src="https://www.youtube.com/embed/R7gqJkdc5dM" title="React Hooks Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2">React Hooks Tutorial</h3>
+                        <p class="text-gray-600 text-sm">Academind • 95K ditonton</p>
+                    </div>
+                </div>
+
+                <!-- Mini Video Card 3 -->
+                <div class="video-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="player-wrapper">
+                        <iframe src="https://www.youtube.com/embed/4UZrsTqkcW4" title="JavaScript ES6 Features" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2">JavaScript ES6 Features</h3>
+                        <p class="text-gray-600 text-sm">Colt Steele • 180K ditonton</p>
+                    </div>
+                </div>
+
+                <!-- Mini Video Card 4 -->
+                <div class="video-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="player-wrapper">
+                        <iframe src="https://www.youtube.com/embed/3PHXvlpOkf4" title="Build 15 JavaScript Projects" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2">Build 15 JavaScript Projects</h3>
+                        <p class="text-gray-600 text-sm">freeCodeCamp • 350K ditonton</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-orange-500 flex items-center justify-center mr-3">
+                            <i class="fas fa-play text-white text-lg"></i>
+                        </div>
+                        <span class="text-2xl font-bold">Vid<span class="text-orange-500">Gallery</span></span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Platform video terdepan untuk konten berkualitas tinggi dari berbagai creator.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Tautan Cepat</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Beranda</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Jelajahi</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Kategori</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Tentang Kami</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Kategori</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Musik</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Gaming</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Olahraga</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Edukasi</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Berlangganan</h3>
+                    <p class="text-gray-400 mb-4">Dapatkan notifikasi video terbaru dari kami.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Alamat email" class="px-4 py-2 rounded-l-lg w-full text-gray-800 focus:outline-none">
+                        <button class="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 VidGallery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add event listeners when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effect to category buttons
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            categoryButtons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        icon.style.color = 'white';
+                    }
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        icon.style.color = '#FF7B31';
+                    }
+                });
+            });
+
+            // Lazy loading for iframes
+            const lazyLoadIframes = () => {
+                const iframes = document.querySelectorAll('iframe');
+                
+                const options = {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.1
+                };
+                
+                const iframeObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const iframe = entry.target;
+                            iframe.src = iframe.dataset.src;
+                            iframeObserver.unobserve(iframe);
+                        }
+                    });
+                }, options);
+                
+                iframes.forEach(iframe => {
+                    iframe.dataset.src = iframe.src;
+                    iframe.src = '';
+                    iframeObserver.observe(iframe);
+                });
+            };
+
+            // Initialize lazy loading
+            if ('IntersectionObserver' in window) {
+                lazyLoadIframes();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.slider-container {
+  display: none;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 1.5rem;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.3s ease;
+  padding: 0.5rem 0;
+}
+
+.slider-item {
+  flex: 0 0 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding: 0 0.5rem;
+  height: 720px; /* 4 baris x 150px (tinggi card) + 3 gap x 20px */
+}
+
+.slider-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #cbd5e0;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.slider-dot.active {
+  background-color: #4a5568;
+}
+
+/* Card styles untuk mobile */
+.slider-item .university-card {
+  height: 150px; /* Tinggi card untuk 4 baris */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.slider-item .university-card img {
+  max-height: 60px;
+}
+
+/* Media queries untuk responsivitas */
+@media (min-width: 426px) and (max-width: 768px) {
+  /* Tablet: 4 kolom */
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .slider-container {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Desktop: 5 kolom */
+  .grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  
+  .slider-container {
+    display: none !important;
+  }
+}
+
+@media (max-width: 425px) {
+  /* Mobile: sembunyikan grid, tampilkan slider */
+  .grid {
+    display: none;
+  }
+  
+  .slider-container {
+    display: block;
+  }
+  
+  /* Atur tinggi card untuk mobile */
+  .slider-item .university-card {
+    height: 150px;
+  }
+}
+
+/* Card styles */
+.university-card {
+  position: relative;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.university-card img {
+  max-height: 4rem;
+  object-fit: contain;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.university-card:hover img {
+  opacity: 1;
+}
+
+.university-card .tooltip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to right, #059669, #ea580c);
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.25rem 0;
+  text-align: center;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.university-card:hover .tooltip {
+  opacity: 1;
+}
+
+/* Hover effect untuk desktop */
+.university-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.university-card:hover {
+  transform: translateY(-10px) scale(1.05) rotateX(5deg) rotateY(-5deg);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 0 20px rgba(249, 116, 22, 0.475);
+  border-color: rgba(249, 116, 22, 0.678);
+}
+
+/* Animasi Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
