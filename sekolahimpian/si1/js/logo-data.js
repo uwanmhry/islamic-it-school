@@ -16,6 +16,10 @@ const universityLogos = [
     { name: "UIN Raden Fatah Palembang", logo: "img/logo-uin-palembang.png" },
 
     // --- Luar Negeri ---
-    { name: "Al-Azhar University Cairo", logo: "img/logo-alazhar.png" },
-    { name: "The University of Tokyo", logo: "img/logo-tokyo-university.png" }
+    { name: "Al-Azhar University, Cairo", logo: "img/logo-alazhar.png" },
+    { name: "The University of Tokyo", logo: "img/logo-tokyo-university.png" },
+    { name: "Yarmouk University", logo: "img/logo-yarmouk_university.png" },
+    { name: "Universiti Kebangsaan Malaysia (UKM)", logo: "img/logo-universiti-kebangsaan-malay.png" },
+    { name: "Anadolu University", logo: "img/logo-anadolu-universitesi.png" }
+
 ];
