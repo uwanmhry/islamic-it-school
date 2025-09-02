@@ -2,7 +2,7 @@
 function renderProgramNavigation() {
     const programNav = document.getElementById('program-nav');
     let navHTML = '';
-    
+
     Object.keys(programData.programs).forEach((programKey, index) => {
         const program = programData.programs[programKey];
         const isActive = index === 0 ? 'active' : '';
@@ -12,7 +12,7 @@ function renderProgramNavigation() {
             </div>
         `;
     });
-    
+
     programNav.innerHTML = navHTML;
 }
 
@@ -20,11 +20,11 @@ function renderProgramNavigation() {
 function renderProgramSections() {
     const programSections = document.getElementById('program-sections');
     let sectionsHTML = '';
-    
+
     Object.keys(programData.programs).forEach((programKey, index) => {
         const program = programData.programs[programKey];
         const isActive = index === 0 ? 'active' : '';
-        
+
         let roadmapItemsHTML = '';
         program.items.forEach((item, itemIndex) => {
             const number = itemIndex + 1; // Nomor urut dimulai dari 1
@@ -39,15 +39,18 @@ function renderProgramSections() {
                 </div>
             `;
         });
-        
+
         sectionsHTML += `
             <div id="${program.id}" class="program-section ${isActive}">
                 <div class="bg-white p-8 rounded-lg shadow-md">
-                    <div class="flex items-center mb-8">
+                    <div class="flex items-center mb-4">
                         <div class="w-16 h-16 rounded-full bg-${program.color} bg-opacity-20 flex items-center justify-center text-${program.color} text-3xl mr-4">
                             <i class="${program.icon}"></i>
                         </div>
-                        <h3 class="text-2xl font-semibold">${program.title}</h3>
+                        <div>
+                            <h3 class="text-2xl font-semibold">${program.title}</h3>
+                            ${program.subtitle ? `<p class="text-gray-600 mt-2">${program.subtitle}</p>` : ''}
+                        </div>
                     </div>
                     
                     <div class="roadmap-container">
@@ -67,14 +70,14 @@ function renderProgramSections() {
             </div>
         `;
     });
-    
+
     programSections.innerHTML = sectionsHTML;
 }
 
 // Untuk setiap program item
 programItems.forEach((item, index) => {
-  const itemElement = document.createElement('div');
-  itemElement.className = 'program-item';
-  itemElement.setAttribute('data-aos', 'fade-up');
-  itemElement.setAttribute('data-aos-delay', (index % 4) * 100);
+    const itemElement = document.createElement('div');
+    itemElement.className = 'program-item';
+    itemElement.setAttribute('data-aos', 'fade-up');
+    itemElement.setAttribute('data-aos-delay', (index % 4) * 100);
 });
