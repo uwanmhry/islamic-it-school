@@ -162,3 +162,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 250);
   });
 });
+
+// Untuk setiap logo universitas
+universities.forEach((university, index) => {
+  const logoElement = document.createElement('div');
+  logoElement.className = 'university-logo';
+  logoElement.setAttribute('data-aos', 'zoom-in');
+  logoElement.setAttribute('data-aos-delay', (index % 6) * 100);
+});

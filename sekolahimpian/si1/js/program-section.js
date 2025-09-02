@@ -70,3 +70,11 @@ function renderProgramSections() {
     
     programSections.innerHTML = sectionsHTML;
 }
+
+// Untuk setiap program item
+programItems.forEach((item, index) => {
+  const itemElement = document.createElement('div');
+  itemElement.className = 'program-item';
+  itemElement.setAttribute('data-aos', 'fade-up');
+  itemElement.setAttribute('data-aos-delay', (index % 4) * 100);
+});

@@ -83,8 +83,8 @@ function initNavbarHighlight() {
 
     // Fungsi set active link
     function setActiveLink(link, links) {
-        links.forEach(l => l.classList.remove("text-yellow-500", "font-bold"));
-        link.classList.add("text-yellow-500", "font-bold");
+        links.forEach(l => l.classList.remove("text-orange-500", "font-bold"));
+        link.classList.add("text-orange-500", "font-bold");
     }
 
     // Klik desktop
@@ -111,14 +111,14 @@ function initNavbarHighlight() {
 
             if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
                 // Desktop
-                navLinks.forEach(link => link.classList.remove("text-yellow-500", "font-bold"));
+                navLinks.forEach(link => link.classList.remove("text-orange-500", "font-bold"));
                 const activeDesktop = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-                if (activeDesktop) activeDesktop.classList.add("text-yellow-500", "font-bold");
+                if (activeDesktop) activeDesktop.classList.add("text-orange-500", "font-bold");
 
                 // Mobile
-                mobileLinks.forEach(link => link.classList.remove("text-yellow-500", "font-bold"));
+                mobileLinks.forEach(link => link.classList.remove("text-orange-500", "font-bold"));
                 const activeMobile = document.querySelector(`.mobile-link[href="#${sectionId}"]`);
-                if (activeMobile) activeMobile.classList.add("text-yellow-500", "font-bold");
+                if (activeMobile) activeMobile.classList.add("text-orange-500", "font-bold");
             }
         });
     });
