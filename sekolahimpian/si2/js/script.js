@@ -167,3 +167,141 @@ document.querySelectorAll('.nav-item').forEach(item => {
     }
   });
 });
+
+// Fungsi untuk scroll spy
+function initScrollSpy() {
+  const stacks = document.querySelectorAll('.image-stack');
+  const navItems = document.querySelectorAll('.nav-item');
+  let currentStack = '';
+  let isManualScroll = true; // Flag untuk membedakan scroll manual dan klik
+  let lastClickedItem = null; // Menyimpan item yang terakhir diklik
+  let isScrolling = false; // Flag untuk menandai sedang scrolling
+
+  // Fungsi untuk mengupdate navbar aktif berdasarkan scroll
+  function updateActiveNav() {
+    // Jika scroll dilakukan secara manual (bukan dari klik navbar)
+    if (isManualScroll) {
+      // Reset state klik sebelumnya
+      if (lastClickedItem) {
+        lastClickedItem.classList.remove('active');
+        lastClickedItem = null;
+      }
+      
+      // Cari stack yang sedang dilihat
+      let newCurrentStack = '';
+      stacks.forEach(stack => {
+        const stackTop = stack.offsetTop;
+        const stackHeight = stack.offsetHeight;
+        const scrollPosition = window.scrollY + (window.innerHeight / 3);
+        
+        if (scrollPosition >= stackTop && scrollPosition < stackTop + stackHeight) {
+          newCurrentStack = stack.getAttribute('id');
+        }
+      });
+      
+      // Hanya update jika stack yang aktif berubah
+      if (newCurrentStack !== currentStack) {
+        currentStack = newCurrentStack;
+        // Update kelas aktif pada navbar
+        updateNavActiveState(currentStack);
+      }
+    }
+  }
+
+  // Fungsi untuk mengupdate state aktif navbar
+  function updateNavActiveState(targetId) {
+    navItems.forEach(item => {
+      const href = item.getAttribute('href');
+      
+      // Skip untuk link eksternal dan daftar
+      if (href.includes('http') || href === 'https://psb.sekolahimpian.com/daftar/') {
+        return;
+      }
+      
+      item.classList.remove('active');
+      const itemTargetId = href.substring(1);
+      
+      if (itemTargetId === targetId) {
+        item.classList.add('active');
+      }
+    });
+  }
+
+  // Smooth scroll untuk navigasi
+  navItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      
+      // Hanya tangani anchor link internal
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        
+        // Set flag bahwa scroll berasal dari klik navbar
+        isManualScroll = false;
+        isScrolling = true;
+        
+        const targetId = href.substring(1);
+        const targetStack = document.querySelector(href);
+        
+        if (targetStack) {
+          // Simpan item yang diklik
+          lastClickedItem = this;
+          
+          // Update state aktif sebelum scroll
+          updateNavActiveState(targetId);
+          
+          window.scrollTo({
+            top: targetStack.offsetTop,
+            behavior: 'smooth'
+          });
+          
+          // Set timeout untuk mengembalikan flag setelah scroll selesai
+          setTimeout(() => {
+            isManualScroll = true;
+            isScrolling = false;
+          }, 1000);
+        }
+      }
+      // Untuk link eksternal, biarkan browser menanganinya
+    });
+  });
+  
+  // Handle event scroll untuk mobile
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    // Tandai bahwa sedang scrolling
+    isScrolling = true;
+    
+    // Debounce scroll event untuk performa
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      updateActiveNav();
+      isScrolling = false;
+    }, 100);
+  });
+  
+  // Handle touch events untuk mobile
+  document.addEventListener('touchstart', () => {
+    // Reset state klik ketika pengguna mulai scroll dengan touch
+    if (lastClickedItem && isScrolling) {
+      lastClickedItem.classList.remove('active');
+      lastClickedItem = null;
+      isManualScroll = true;
+    }
+  });
+  
+  window.addEventListener('load', () => {
+    isManualScroll = true;
+    updateActiveNav();
+  });
+  
+  // Jalankan sekali pada awal untuk set status aktif
+  setTimeout(updateActiveNav, 100);
+}
+
+// Inisialisasi scroll spy setelah halaman dimuat
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initScrollSpy);
+} else {
+  initScrollSpy();
+}
