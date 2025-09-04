@@ -109,12 +109,19 @@ body {
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateX(-50%) translateY(0);
   }
+
   40% {
     transform: translateX(-50%) translateY(-10px);
   }
+
   60% {
     transform: translateX(-50%) translateY(-5px);
   }
@@ -146,43 +153,103 @@ body {
   opacity: 1;
 }
 
-/* ===== BUTTON PENDAFTARAN ===== */
-.daftar-button {
+/* ===== BOTTOM NAVBAR ===== */
+.bottom-navbar {
   position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  background: linear-gradient(135deg, #e16400, #ffd234);
-  color: white;
-  padding: 12px 30px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  animation: pulse 2s infinite;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
   display: flex;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  white-space: nowrap;
+  padding: 10px 0;
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-radius: 20px 20px 0 0;
 }
 
-.daftar-button:hover {
-  transform: translateX(-50%) scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #7f8c8d;
+  font-size: 0.7rem;
+  transition: all 0.3s ease;
+  width: 60px;
+  height: 50px;
+  border-radius: 15px;
+  position: relative;
+}
+
+.nav-item:hover {
+  color: #3498db;
+  background: #f5f7fa;
+}
+
+.nav-item.active {
+  color: #3498db;
+}
+
+.nav-icon {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.daftar-nav-item {
+  background: linear-gradient(135deg, #e16400, #ffd234);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  box-shadow: 0 4px 10px rgba(225, 100, 0, 0.3);
+  animation: pulse 2s infinite;
+  width: auto;
+  height: auto;
+}
+
+.daftar-nav-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(225, 100, 0, 0.4);
+  background: linear-gradient(135deg, #ff7b00, #ffdd67);
+  color: white;
 }
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 4px 15px rgba(78, 84, 200, 0.4);
+    box-shadow: 0 4px 10px rgba(225, 100, 0, 0.3);
   }
+
   50% {
-    box-shadow: 0 4px 20px rgba(78, 84, 200, 0.8);
+    box-shadow: 0 4px 15px rgba(225, 100, 0, 0.6);
   }
+
   100% {
-    box-shadow: 0 4px 15px rgba(78, 84, 200, 0.4);
+    box-shadow: 0 4px 10px rgba(225, 100, 0, 0.3);
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-text {
+    font-size: 0.6rem;
+  }
+
+  .nav-item {
+    width: 50px;
+    height: 45px;
+  }
+
+  .nav-icon {
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+  }
+
+  .daftar-nav-item {
+    padding: 6px 12px;
+    font-size: 0.7rem;
   }
 }
 
@@ -255,20 +322,20 @@ body {
     padding: 12px 15px;
     border-radius: 40px;
   }
-  
+
   .sosmed-item {
     font-size: 12px;
     padding: 0 5px;
   }
-  
+
   .sosmed-icon {
     font-size: 20px;
   }
-  
+
   .sosmed-text {
     font-size: 18px;
   }
-  
+
   .daftar-button {
     padding: 10px 25px;
     font-size: 15px;
@@ -281,15 +348,15 @@ body {
     padding: 10px 12px;
     border-radius: 30px;
   }
-  
+
   .sosmed-icon {
     font-size: 18px;
   }
-  
+
   .sosmed-text {
     font-size: 15px;
   }
-  
+
   .daftar-button {
     padding: 10px 20px;
     font-size: 14px;
@@ -301,13 +368,13 @@ body {
   .navigation-dots {
     right: 5px;
   }
-  
+
   .dot {
     width: 10px;
     height: 10px;
     margin: 8px 0;
   }
-  
+
   .scroll-to-top {
     bottom: 15px;
     right: 15px;
@@ -315,24 +382,24 @@ body {
     height: 35px;
     font-size: 16px;
   }
-  
+
   .sosmed-bar {
     padding: 8px 10px;
     border-radius: 25px;
   }
-  
+
   .sosmed-icon {
     font-size: 16px;
   }
-  
+
   .sosmed-text {
     font-size: 12px;
   }
-  
+
   .sosmed-container {
     bottom: 30px;
   }
-  
+
   .daftar-button {
     padding: 8px 18px;
     font-size: 13px;
@@ -345,11 +412,11 @@ body {
     border-radius: 25px;
     padding: 4px;
   }
-        
+
   .sosmed-text {
     font-size: 10px;
   }
-  
+
   .daftar-button {
     padding: 8px 15px;
     font-size: 12px;

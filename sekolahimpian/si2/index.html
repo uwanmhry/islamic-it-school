@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -7,44 +8,72 @@
   <link rel="icon" href="img/logo-si.png" type="image/png">
   <!-- Library AOS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <!-- Boxicons -->
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <!-- Progress Bar -->
   <div class="progress-container">
     <div class="progress-bar" id="progressBar"></div>
   </div>
-  
+
   <!-- Navigation Dots -->
   <div class="navigation-dots" id="navDots"></div>
-  
+
   <!-- Scroll Indicator -->
   <div class="scroll-indicator" id="scrollIndicator">Scroll ke bawah</div>
-  
+
   <!-- Scroll to Top Button -->
   <button class="scroll-to-top" id="scrollToTop">↑</button>
-  
-  <!-- Button Pendaftaran -->
-  <a href="https://psb.sekolahimpian.com/daftar/" class="daftar-button" id="daftarButton">Daftar Sekarang</a>
-  
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="bottom-navbar">
+    <a href="https://islamic-it-school.com/sekolahimpian/" class="nav-item">
+      <i class="fas fa-home nav-icon"></i>
+      <span class="nav-text">Home</span>
+    </a>
+    <a href="#" class="nav-item">
+      <i class="fas fa-book-quran nav-icon"></i>
+      <span class="nav-text">Al-Quran</span>
+    </a>
+    <a href="#" class="nav-item">
+      <i class="fas fa-microchip nav-icon"></i>
+      <span class="nav-text">Teknologi</span>
+    </a>
+    <a href="#" class="nav-item">
+      <i class="fas fa-language nav-icon"></i>
+      <span class="nav-text">Bahasa</span>
+    </a>
+    <a href="#" class="nav-item">
+      <i class="fas fa-heart nav-icon"></i>
+      <span class="nav-text">Karakter</span>
+    </a>
+    <a href="https://psb.sekolahimpian.com/daftar/" class="nav-item daftar-nav-item">
+      <span>Daftar</span>
+    </a>
+  </nav>
+  <!-- End Bottom Nav Bar -->
+
+  <!-- Mobile Container -->
   <div class="mobile-container">
     <!-- Stack Pertama -->
     <div class="image-stack first-stack" id="stack1">
       <div class="image-wrapper">
         <img src="img/page-1/simple/background.png" loading="eager">
-        <img src="img/page-1/simple/judul.png" class="overlay-img" style="object-position: center top;" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500" loading="eager">
-        <img src="img/page-1/simple/akhwat.png" class="overlay-img" style="object-position: left bottom;" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="700" loading="eager">
-        <img src="img/page-1/simple/ikhwan.png" class="overlay-img" style="object-position: right bottom;" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="900" loading="eager">
-        <img src="img/page-1/Light-depen.png" class="overlay-img" style="object-position: center center;" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="1350" loading="eager">
+        <img src="img/page-1/simple/judul.png" class="overlay-img" style="object-position: center top;"
+          data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500" loading="eager">
+        <img src="img/page-1/simple/akhwat.png" class="overlay-img" style="object-position: left bottom;"
+          data-aos="fade-left" data-aos-duration="1000" data-aos-delay="700" loading="eager">
+        <img src="img/page-1/simple/ikhwan.png" class="overlay-img" style="object-position: right bottom;"
+          data-aos="fade-right" data-aos-duration="1000" data-aos-delay="900" loading="eager">
+        <img src="img/page-1/Light-depen.png" class="overlay-img" style="object-position: center center;"
+          data-aos="fade-up" data-aos-duration="1200" data-aos-delay="1350" loading="eager">
 
         <!-- Sosmed -->
-        <div class="sosmed-container" 
-             data-aos="fade-up" 
-             data-aos-duration="500" 
-             data-aos-delay="1400">
+        <div class="sosmed-container" data-aos="fade-up" data-aos-duration="500" data-aos-delay="1400">
           <div class="sosmed-bar">
             <a href="https://www.sekolahimpian.com" target="_blank" class="sosmed-item">
               <div class="sosmed-icon">
@@ -52,14 +81,14 @@
                 <span class="sosmed-text">www.sekolahimpian.com</span>
               </div>
             </a>
-            
+
             <a href="https://www.youtube.com/@sekolahimpianku" target="_blank" class="sosmed-item">
               <div class="sosmed-icon">
                 <i class='bx bxl-youtube'></i>
                 <span class="sosmed-text">GSI Channel</span>
               </div>
             </a>
-            
+
             <a href="https://www.instagram.com/sekolahimpianofficial" target="_blank" class="sosmed-item">
               <div class="sosmed-icon">
                 <i class='bx bxl-instagram'></i>
@@ -70,18 +99,25 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Stack Kedua -->
     <div class="image-stack second-stack" id="stack2">
       <div class="image-wrapper">
         <img src="img/page-2/shape-bawah.png" loading="eager">
-        <img src="img/page-2/shape-alquran.png" class="overlay-img" style="object-position: left center;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="200" loading="lazy">
-        <img src="img/page-2/shape-teknologi.png" class="overlay-img" style="object-position: right center;" data-aos="fade-left" data-aos-duration="600" data-aos-delay="400" loading="lazy">
-        <img src="img/page-2/shape-bahasa.png" class="overlay-img" style="object-position: left center;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="600" loading="lazy">
-        <img src="img/page-2/shape-karakter.png" class="overlay-img" style="object-position: right center;" data-aos="fade-left" data-aos-duration="600" data-aos-delay="800" loading="lazy">
-        <img src="img/page-2/SekolahImpian-Tengah.png" class="overlay-img" style="object-position: center center;" data-aos="zoom-in" data-aos-duration="600" loading="lazy">
-        <img src="img/page-2/kata-kata1.png" class="overlay-img" style="object-position: center bottom;" data-aos="fade" data-aos-duration="1000" loading="lazy">
-        <img src="img/page-2/kata-kata2.png" class="overlay-img" style="object-position: center bottom;" data-aos="fade" data-aos-duration="1000" loading="lazy">
+        <img src="img/page-2/shape-alquran.png" class="overlay-img" style="object-position: left center;"
+          data-aos="fade-right" data-aos-duration="600" data-aos-delay="200" loading="lazy">
+        <img src="img/page-2/shape-teknologi.png" class="overlay-img" style="object-position: right center;"
+          data-aos="fade-left" data-aos-duration="600" data-aos-delay="400" loading="lazy">
+        <img src="img/page-2/shape-bahasa.png" class="overlay-img" style="object-position: left center;"
+          data-aos="fade-right" data-aos-duration="600" data-aos-delay="600" loading="lazy">
+        <img src="img/page-2/shape-karakter.png" class="overlay-img" style="object-position: right center;"
+          data-aos="fade-left" data-aos-duration="600" data-aos-delay="800" loading="lazy">
+        <img src="img/page-2/SekolahImpian-Tengah.png" class="overlay-img" style="object-position: center center;"
+          data-aos="zoom-in" data-aos-duration="600" loading="lazy">
+        <img src="img/page-2/kata-kata1.png" class="overlay-img" style="object-position: center bottom;" data-aos="fade"
+          data-aos-duration="1000" loading="lazy">
+        <img src="img/page-2/kata-kata2.png" class="overlay-img" style="object-position: center bottom;" data-aos="fade"
+          data-aos-duration="1000" loading="lazy">
       </div>
     </div>
 
@@ -89,19 +125,32 @@
     <div class="image-stack third-stack" id="stack3">
       <div class="image-wrapper">
         <img src="img/page-3/Background.png" loading="lazy">
-        <img src="img/page-3/shapeBawah.png" class="overlay-img" style="object-position: center bottom;" data-aos="fade" data-aos-duration="1000" data-aos-delay="100" loading="lazy">
-        <img src="img/page-3/Awan-kiri.png" class="overlay-img" style="object-position: left top;" data-aos="fade-right" data-aos-duration="500" data-aos-delay="200" loading="lazy">
-        <img src="img/page-3/Awan-kanan.png" class="overlay-img" style="object-position: right top;" data-aos="fade-left" data-aos-duration="500" data-aos-delay="200" loading="lazy">
-        <img src="img/page-3/Burung-kanan.png" class="overlay-img" style="object-position: right center;" data-aos="fade-left" data-aos-duration="500" data-aos-delay="450" loading="lazy">
-        <img src="img/page-3/ShapeTengah.png" class="overlay-img" style="object-position: center center;" data-aos="fade" data-aos-duration="500" data-aos-delay="100" loading="lazy">
-        <img src="img/page-3/Light.png" class="overlay-img" style="object-position: center center;" data-aos="fade" data-aos-duration="1200" data-aos-delay="400" loading="lazy">
-        <img src="img/page-3/simple/kiri-atas.png" class="overlay-img" style="object-position: left top;" data-aos="fade-right" data-aos-duration="500" data-aos-delay="400" loading="lazy">
-        <img src="img/page-3/simple/kanan-atas.png" class="overlay-img" style="object-position: right top;" data-aos="fade-left" data-aos-duration="500" data-aos-delay="600" loading="lazy">
-        <img src="img/page-3/simple/kanan-bawah.png" class="overlay-img" style="object-position: right bottom;" data-aos="fade-left" data-aos-duration="500" data-aos-delay="1000" loading="lazy">
-        <img src="img/page-3/TalentTengah.png" class="overlay-img" style="object-position: center center;" data-aos="fade" data-aos-duration="500" data-aos-delay="300" loading="lazy">
-        <img src="img/page-3/simple/kiri-bawah.png" class="overlay-img" style="object-position: left bottom;" data-aos="fade-right" data-aos-duration="500" data-aos-delay="800" loading="lazy">
-        <img src="img/page-3/BurungAtas.png" class="overlay-img" style="object-position: left top;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="200" loading="lazy">
-        <img src="img/page-3/BurungBawah.png" class="overlay-img" style="object-position: left bottom;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="200" loading="lazy">
+        <img src="img/page-3/shapeBawah.png" class="overlay-img" style="object-position: center bottom;" data-aos="fade"
+          data-aos-duration="1000" data-aos-delay="100" loading="lazy">
+        <img src="img/page-3/Awan-kiri.png" class="overlay-img" style="object-position: left top;" data-aos="fade-right"
+          data-aos-duration="500" data-aos-delay="200" loading="lazy">
+        <img src="img/page-3/Awan-kanan.png" class="overlay-img" style="object-position: right top;"
+          data-aos="fade-left" data-aos-duration="500" data-aos-delay="200" loading="lazy">
+        <img src="img/page-3/Burung-kanan.png" class="overlay-img" style="object-position: right center;"
+          data-aos="fade-left" data-aos-duration="500" data-aos-delay="450" loading="lazy">
+        <img src="img/page-3/ShapeTengah.png" class="overlay-img" style="object-position: center center;"
+          data-aos="fade" data-aos-duration="500" data-aos-delay="100" loading="lazy">
+        <img src="img/page-3/Light.png" class="overlay-img" style="object-position: center center;" data-aos="fade"
+          data-aos-duration="1200" data-aos-delay="400" loading="lazy">
+        <img src="img/page-3/simple/kiri-atas.png" class="overlay-img" style="object-position: left top;"
+          data-aos="fade-right" data-aos-duration="500" data-aos-delay="400" loading="lazy">
+        <img src="img/page-3/simple/kanan-atas.png" class="overlay-img" style="object-position: right top;"
+          data-aos="fade-left" data-aos-duration="500" data-aos-delay="600" loading="lazy">
+        <img src="img/page-3/simple/kanan-bawah.png" class="overlay-img" style="object-position: right bottom;"
+          data-aos="fade-left" data-aos-duration="500" data-aos-delay="1000" loading="lazy">
+        <img src="img/page-3/TalentTengah.png" class="overlay-img" style="object-position: center center;"
+          data-aos="fade" data-aos-duration="500" data-aos-delay="300" loading="lazy">
+        <img src="img/page-3/simple/kiri-bawah.png" class="overlay-img" style="object-position: left bottom;"
+          data-aos="fade-right" data-aos-duration="500" data-aos-delay="800" loading="lazy">
+        <img src="img/page-3/BurungAtas.png" class="overlay-img" style="object-position: left top;"
+          data-aos="fade-right" data-aos-duration="600" data-aos-delay="200" loading="lazy">
+        <img src="img/page-3/BurungBawah.png" class="overlay-img" style="object-position: left bottom;"
+          data-aos="fade-right" data-aos-duration="600" data-aos-delay="200" loading="lazy">
       </div>
     </div>
 
@@ -109,14 +158,22 @@
     <div class="image-stack fourth-stack" id="stack4">
       <div class="image-wrapper">
         <img src="img/page-4/simple/background.png" loading="lazy">
-        <img src="img/page-4/simple/kiri-atas-banget.png" class="overlay-img" style="object-position: left top;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="200" loading="lazy">
-        <img src="img/page-4/simple/kanan-atas-banget.png" class="overlay-img" style="object-position: right top;" data-aos="fade-left" data-aos-duration="600" data-aos-delay="400" loading="lazy">
-        <img src="img/page-4/simple/kiri-atas.png" class="overlay-img" style="object-position: left top;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="600" loading="lazy">
-        <img src="img/page-4/simple/kanan-atas.png" class="overlay-img" style="object-position: right top;" data-aos="fade-left" data-aos-duration="600" data-aos-delay="800" loading="lazy">
-        <img src="img/page-4/simple/kiri-bawah.png" class="overlay-img" style="object-position: left bottom;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="1000" loading="lazy">
-        <img src="img/page-4/simple/kiri-bawah-banget.png" class="overlay-img" style="object-position: left bottom;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="1200" loading="lazy">
-        <img src="img/page-4/akhwat.png" class="overlay-img" style="object-position: left center;" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="100" loading="lazy">
-        <img src="img/page-4/ikhwan.png" class="overlay-img" style="object-position: right center;" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200" loading="lazy">
+        <img src="img/page-4/simple/kiri-atas-banget.png" class="overlay-img" style="object-position: left top;"
+          data-aos="fade-right" data-aos-duration="600" data-aos-delay="200" loading="lazy">
+        <img src="img/page-4/simple/kanan-atas-banget.png" class="overlay-img" style="object-position: right top;"
+          data-aos="fade-left" data-aos-duration="600" data-aos-delay="400" loading="lazy">
+        <img src="img/page-4/simple/kiri-atas.png" class="overlay-img" style="object-position: left top;"
+          data-aos="fade-right" data-aos-duration="600" data-aos-delay="600" loading="lazy">
+        <img src="img/page-4/simple/kanan-atas.png" class="overlay-img" style="object-position: right top;"
+          data-aos="fade-left" data-aos-duration="600" data-aos-delay="800" loading="lazy">
+        <img src="img/page-4/simple/kiri-bawah.png" class="overlay-img" style="object-position: left bottom;"
+          data-aos="fade-right" data-aos-duration="600" data-aos-delay="1000" loading="lazy">
+        <img src="img/page-4/simple/kiri-bawah-banget.png" class="overlay-img" style="object-position: left bottom;"
+          data-aos="fade-right" data-aos-duration="600" data-aos-delay="1200" loading="lazy">
+        <img src="img/page-4/akhwat.png" class="overlay-img" style="object-position: left center;" data-aos="fade-right"
+          data-aos-duration="1200" data-aos-delay="100" loading="lazy">
+        <img src="img/page-4/ikhwan.png" class="overlay-img" style="object-position: right center;" data-aos="fade-left"
+          data-aos-duration="1200" data-aos-delay="200" loading="lazy">
       </div>
     </div>
 
@@ -124,11 +181,16 @@
     <div class="image-stack fifth-stack" id="stack5">
       <div class="image-wrapper">
         <img src="img/page-5/simple/background.png" loading="lazy">
-        <img src="img/page-5/simple/kiri.png" class="overlay-img" style="object-position: left center;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="200" loading="lazy">
-        <img src="img/page-5/simple/tengah.png" class="overlay-img" style="object-position: center center;" data-aos="fade-left" data-aos-duration="600" data-aos-delay="500" loading="lazy">
-        <img src="img/page-5/simple/bawah.png" class="overlay-img" style="object-position: center bottom;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="800" loading="lazy">
-        <img src="img/page-5/ikhwan1.png" class="overlay-img" style="object-position: left center;" data-aos="fade-right" data-aos-duration="600" data-aos-delay="1000" loading="lazy">
-        <img src="img/page-5/ikhwan2.png" class="overlay-img" style="object-position: right center;" data-aos="fade-left" data-aos-duration="600" data-aos-delay="1200" loading="lazy">
+        <img src="img/page-5/simple/kiri.png" class="overlay-img" style="object-position: left center;"
+          data-aos="fade-right" data-aos-duration="600" data-aos-delay="200" loading="lazy">
+        <img src="img/page-5/simple/tengah.png" class="overlay-img" style="object-position: center center;"
+          data-aos="fade-left" data-aos-duration="600" data-aos-delay="500" loading="lazy">
+        <img src="img/page-5/simple/bawah.png" class="overlay-img" style="object-position: center bottom;"
+          data-aos="fade-right" data-aos-duration="600" data-aos-delay="800" loading="lazy">
+        <img src="img/page-5/ikhwan1.png" class="overlay-img" style="object-position: left center;"
+          data-aos="fade-right" data-aos-duration="600" data-aos-delay="1000" loading="lazy">
+        <img src="img/page-5/ikhwan2.png" class="overlay-img" style="object-position: right center;"
+          data-aos="fade-left" data-aos-duration="600" data-aos-delay="1200" loading="lazy">
       </div>
     </div>
 
@@ -136,15 +198,24 @@
     <div class="image-stack sixth-stack" id="stack6">
       <div class="image-wrapper">
         <img src="img/page-6/background-1.png" loading="lazy">
-        <img src="img/page-6/awan-atas.png" class="overlay-img" style="object-position: center top;" data-aos="fade" data-aos-duration="1200" data-aos-delay="100" loading="lazy">
-        <img src="img/page-6/teks-atas.png" class="overlay-img" style="object-position: center top;" data-aos="fade-down" data-aos-duration="500" data-aos-delay="200" loading="lazy">
-        <img src="img/page-6/img-atas.png" class="overlay-img" style="object-position: center top;" data-aos="fade-down" data-aos-duration="500" data-aos-delay="500" loading="lazy">
-        <img src="img/page-6/img-kiri.png" class="overlay-img" style="object-position: left center;" data-aos="fade-right" data-aos-duration="500" data-aos-delay="800" loading="lazy">
-        <img src="img/page-6/img-kanan.png" class="overlay-img" style="object-position: right center;" data-aos="fade-left" data-aos-duration="500" data-aos-delay="1000" loading="lazy">
-        <img src="img/page-6/img-bawah.png" class="overlay-img" style="object-position: center bottom;" data-aos="fade-up" data-aos-duration="500" data-aos-delay="1200" loading="lazy">
-        <img src="img/page-6/teks-kiri.png" class="overlay-img" style="object-position: left center;" data-aos="fade-right" data-aos-duration="500" data-aos-delay="1400" loading="lazy">
-        <img src="img/page-6/teks-kanan.png" class="overlay-img" style="object-position: right center;" data-aos="fade-left" data-aos-duration="500" data-aos-delay="1600" loading="lazy">
-        <img src="img/page-6/teks-bawah.png" class="overlay-img" style="object-position: center bottom;" data-aos="fade-up" data-aos-duration="500" data-aos-delay="1800" loading="lazy">
+        <img src="img/page-6/awan-atas.png" class="overlay-img" style="object-position: center top;" data-aos="fade"
+          data-aos-duration="1200" data-aos-delay="100" loading="lazy">
+        <img src="img/page-6/teks-atas.png" class="overlay-img" style="object-position: center top;"
+          data-aos="fade-down" data-aos-duration="500" data-aos-delay="200" loading="lazy">
+        <img src="img/page-6/img-atas.png" class="overlay-img" style="object-position: center top;" data-aos="fade-down"
+          data-aos-duration="500" data-aos-delay="500" loading="lazy">
+        <img src="img/page-6/img-kiri.png" class="overlay-img" style="object-position: left center;"
+          data-aos="fade-right" data-aos-duration="500" data-aos-delay="800" loading="lazy">
+        <img src="img/page-6/img-kanan.png" class="overlay-img" style="object-position: right center;"
+          data-aos="fade-left" data-aos-duration="500" data-aos-delay="1000" loading="lazy">
+        <img src="img/page-6/img-bawah.png" class="overlay-img" style="object-position: center bottom;"
+          data-aos="fade-up" data-aos-duration="500" data-aos-delay="1200" loading="lazy">
+        <img src="img/page-6/teks-kiri.png" class="overlay-img" style="object-position: left center;"
+          data-aos="fade-right" data-aos-duration="500" data-aos-delay="1400" loading="lazy">
+        <img src="img/page-6/teks-kanan.png" class="overlay-img" style="object-position: right center;"
+          data-aos="fade-left" data-aos-duration="500" data-aos-delay="1600" loading="lazy">
+        <img src="img/page-6/teks-bawah.png" class="overlay-img" style="object-position: center bottom;"
+          data-aos="fade-up" data-aos-duration="500" data-aos-delay="1800" loading="lazy">
       </div>
     </div>
 
@@ -152,24 +223,13 @@
     <div class="image-stack seventh-stack" id="stack7">
       <div class="image-wrapper">
         <img src="img/page-7/simple/background.png" loading="lazy">
-        <img src="img/page-7/simple/judul.png" class="overlay-img" 
-            style="object-position: center top;" 
-            data-aos="fade-down" 
-            data-aos-duration="500" 
-            data-aos-delay="500" 
-            loading="lazy">
-        <img src="img/page-7/simple/ikhwan-akhwat.png" class="overlay-img" 
-            style="object-position: center center;" 
-            data-aos="fade-up" 
-            data-aos-duration="500" 
-            data-aos-delay="900" 
-            loading="lazy">
+        <img src="img/page-7/simple/judul.png" class="overlay-img" style="object-position: center top;"
+          data-aos="fade-down" data-aos-duration="500" data-aos-delay="500" loading="lazy">
+        <img src="img/page-7/simple/ikhwan-akhwat.png" class="overlay-img" style="object-position: center center;"
+          data-aos="fade-up" data-aos-duration="500" data-aos-delay="900" loading="lazy">
 
         <!-- Sosmed -->
-        <div class="sosmed-container" 
-             data-aos="fade-up" 
-             data-aos-duration="500" 
-             data-aos-delay="1400">
+        <div class="sosmed-container" data-aos="fade-up" data-aos-duration="500" data-aos-delay="1400">
           <div class="sosmed-bar">
             <a href="https://www.sekolahimpian.com" target="_blank" class="sosmed-item">
               <div class="sosmed-icon">
@@ -177,14 +237,14 @@
                 <span class="sosmed-text">www.sekolahimpian.com</span>
               </div>
             </a>
-            
+
             <a href="https://www.youtube.com/@sekolahimpianku" target="_blank" class="sosmed-item">
               <div class="sosmed-icon">
                 <i class='bx bxl-youtube'></i>
                 <span class="sosmed-text">GSI Channel</span>
               </div>
             </a>
-            
+
             <a href="https://www.instagram.com/sekolahimpianofficial" target="_blank" class="sosmed-item">
               <div class="sosmed-icon">
                 <i class='bx bxl-instagram'></i>
@@ -202,4 +262,5 @@
   <!-- Custom JS -->
   <script src="js/script.js"></script>
 </body>
+
 </html>
