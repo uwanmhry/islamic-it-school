@@ -181,7 +181,12 @@ function getFilteredVideos() {
     let filtered = videoData.moreVideos;
 
     if (currentCategory !== 'all') {
-        filtered = filtered.filter(v => v.category === currentCategory);
+    filtered = filtered.filter(v => {
+        if (Array.isArray(v.category)) {
+        return v.category.includes(currentCategory); // ✅ cek array
+        }
+        return v.category === currentCategory; // ✅ fallback lama
+    });
     }
 
     if (searchQuery) {

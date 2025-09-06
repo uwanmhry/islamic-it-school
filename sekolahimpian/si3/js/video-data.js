@@ -80,12 +80,6 @@ const videoData = {
       allowFullScreen: true
     },
     {
-      title: "Integrasi Antara Al-Quran, Teknologi dan Bahasa - Tentang GSI Ep. 10",
-      iframe: "https://www.youtube.com/embed/ZhpaG2cM6CA?si=",
-      category: "quran",
-      allowFullScreen: true
-    },
-    {
       title: "Idealnya Visi Misi Hidup Muslim Adalah Al-Quran !",
       iframe: "https://www.youtube.com/embed/hOMAXATrA3w?si=",
       category: "quran",
@@ -112,12 +106,6 @@ const videoData = {
       allowFullScreen: true
     },
     {
-      title: "Integrasi Antara Al-Quran, Teknologi dan Bahasa - Tentang GSI Ep. 10",
-      iframe: "https://www.youtube.com/embed/ZhpaG2cM6CA?si=",
-      category: "technology",
-      allowFullScreen: true
-    },
-    {
       title: "Lesson Plan ITMI Fest",
       iframe: "https://www.youtube.com/embed/Mo2wwBBq9EE?si=",
       category: "technology",
@@ -138,25 +126,19 @@ const videoData = {
 
     // Bahasa
     {
-      title: "Bahasa 1 (ZhpaG2cM6CA)",
-      iframe: "https://www.youtube.com/embed/ZhpaG2cM6CA?si=",
-      category: "language",
-      allowFullScreen: true
-    },
-    {
-      title: "Bahasa 2",
+      title: "Memahami Block System di Sekolah Impian",
       iframe: "https://www.youtube.com/embed/hxFtgSi_uNU?si=",
       category: "language",
       allowFullScreen: true
     },
     {
-      title: "Bahasa 3",
+      title: "'Tempa Api' Drama Wisuda Sekolah Impian 2024",
       iframe: "https://www.youtube.com/embed/BIu8eUS0wag?si=",
       category: "language",
       allowFullScreen: true
     },
     {
-      title: "Bahasa 4",
+      title: "'Kurikulum Terbaik' - Bincang Tokoh Ep. 5",
       iframe: "https://www.youtube.com/embed/y35m2x3jEf8?si=",
       category: "language",
       allowFullScreen: true
@@ -198,6 +180,14 @@ const videoData = {
       iframe: "https://www.youtube.com/embed/FHUjKohIMUA?si=",
       category: "character",
       allowFullScreen: true
-    }
+    },
+
+    // Multiple Categories
+    {
+      title: "Integrasi Antara Al-Quran, Teknologi dan Bahasa - Tentang GSI Ep. 10",
+      iframe: "https://www.youtube.com/embed/ZhpaG2cM6CA?si=",
+      category: ["quran", "technology", "language"],
+      allowFullScreen: true
+    },
   ]
 };
