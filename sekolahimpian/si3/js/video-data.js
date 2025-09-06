@@ -74,31 +74,31 @@ const videoData = {
 
     // Al-Quran
     {
-      title: "Al-Quran 1",
+      title: "Kenapa Kita Harus Mempelajari Al-Quran ?? - Tentang GSI Ep.3",
       iframe: "https://www.youtube.com/embed/dIIs-HjaOpE?si=",
       category: "quran",
       allowFullScreen: true
     },
     {
-      title: "Al-Quran 2",
+      title: "Integrasi Antara Al-Quran, Teknologi dan Bahasa - Tentang GSI Ep. 10",
       iframe: "https://www.youtube.com/embed/ZhpaG2cM6CA?si=",
       category: "quran",
       allowFullScreen: true
     },
     {
-      title: "Al-Quran 3",
+      title: "Idealnya Visi Misi Hidup Muslim Adalah Al-Quran !",
       iframe: "https://www.youtube.com/embed/hOMAXATrA3w?si=",
       category: "quran",
       allowFullScreen: true
     },
     {
-      title: "Al-Quran 4",
+      title: "Butuh Cinta Untuk Menghafal, dan Butuh Setia Untuk Menjaga Hafalan | Kenal Team GSI Ep. 3",
       iframe: "https://www.youtube.com/embed/bO8kI-Dxnao?si=",
       category: "quran",
       allowFullScreen: true
     },
     {
-      title: "Al-Quran 5",
+      title: "Yuk Cetak Anak Kita Menjadi Bisnisman yang Hafal Quran - Islamic Parenthink Ep. 6",
       iframe: "https://www.youtube.com/embed/iwIhuTY662U?si=",
       category: "quran",
       allowFullScreen: true
