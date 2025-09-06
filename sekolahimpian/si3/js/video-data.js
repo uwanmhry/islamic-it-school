@@ -15,25 +15,25 @@ const videoData = {
       allowFullScreen: true
     },
     {
-      title: "Al-Quran 1",
+      title: "Kenapa Kita Harus Mempelajari Al-Quran ?? - Tentang GSI Ep.3",
       iframe: "https://www.youtube.com/embed/dIIs-HjaOpE?si=",
       category: "quran",
       allowFullScreen: true
     },
     {
-      title: "Teknologi 1",
+      title: "Kenapa Kita Harus Mempelajari IT ?? - Tentang GSI Ep.4",
       iframe: "https://www.youtube.com/embed/OiyWnmnGSc8?si=",
       category: "technology",
       allowFullScreen: true
     },
     {
-      title: "Bahasa 2",
+      title: "Memahami Block System di Sekolah Impian",
       iframe: "https://www.youtube.com/embed/hxFtgSi_uNU?si=",
       category: "language",
       allowFullScreen: true
     },
     {
-      title: "Karakter 1",
+      title: "Inilah Kenapa Diperlukan Sinkronisasi Pola Asuh Di Rumah & Di Sekolah - Tentang GSI Ep. 7",
       iframe: "https://www.youtube.com/embed/CwMciPR8D0I?si=",
       category: "character",
       allowFullScreen: true
