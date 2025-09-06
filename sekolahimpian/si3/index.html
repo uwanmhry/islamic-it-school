@@ -114,17 +114,19 @@
                             Mencetak generasi <span class="font-bold text-yellow-300">Ahlul Qur'an</span> sekaligus
                             <span class="font-bold text-yellow-300">Ahlul IT</span> yang siap memimpin masa depan.
                         </p>
-                        <button
-                            class="bg-white text-orange-600 px-6 py-3 rounded-full font-bold hover:bg-orange-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                            <i class="fas fa-play-circle mr-2"></i>Jelajahi Sekarang
-                        </button>
+                        <a href="#moreSection">
+                            <button
+                                class="bg-white text-orange-600 px-6 py-3 rounded-full font-bold hover:bg-orange-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                                <i class="fas fa-play-circle mr-2"></i>Jelajahi Sekarang
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Featured Videos -->
-        <section class="mb-16" data-aos="fade-up" data-aos-delay="200">
+        <section id="featuredSection" class="mb-16" data-aos="fade-up" data-aos-delay="200">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl md:text-3xl font-bold text-black">Video Terpopuler</h2>
                 <a href="#" onclick="event.preventDefault(); openFeaturedModal();"
@@ -132,18 +134,32 @@
                     Lihat Semua <i class="fas fa-arrow-right ml-1"></i>
                 </a>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4" id="featuredVideosContainer">
-                <!-- Loading skeletons -->
-                <div class="bg-gray-200 animate-pulse rounded-xl h-64"></div>
-                <div class="bg-gray-200 animate-pulse rounded-xl h-64"></div>
-                <div class="bg-gray-200 animate-pulse rounded-xl h-64"></div>
-                <div class="bg-gray-200 animate-pulse rounded-xl h-64"></div>
-                <div class="bg-gray-200 animate-pulse rounded-xl h-64"></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="featuredVideosContainer">
+                <!-- JS inject -->
             </div>
         </section>
 
+        <!-- Modal Featured -->
+        <div id="featuredModal"
+            class="fixed inset-0 bg-black bg-opacity-70 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl max-w-6xl w-full h-[90vh] overflow-y-auto relative shadow-xl">
+                <!-- Close button -->
+                <button onclick="closeFeaturedModal()"
+                    class="absolute top-3 right-3 bg-gray-100 hover:bg-gray-200 rounded-full p-2">
+                    <i class="fas fa-times text-gray-700"></i>
+                </button>
+
+                <h2 class="text-2xl font-bold text-gray-800 px-6 py-4 border-b">Semua Video Terpopuler</h2>
+
+                <!-- Featured videos list -->
+                <div id="featuredModalContent" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+                    <!-- JS inject -->
+                </div>
+            </div>
+        </div>
+
         <!-- More Videos Section -->
-        <section class="mb-16" data-aos="fade-up" data-aos-delay="300">
+        <section id="moreSection" class="mb-16" data-aos="fade-up" data-aos-delay="300" data-section="more">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl md:text-3xl font-bold text-black">Video Lainnya</h2>
                 <button id="loadMoreBtn"
@@ -163,82 +179,85 @@
                 <!-- Pagination will be loaded here -->
             </div>
         </section>
+
     </main>
 
-<footer class="relative bg-gradient-to-br from-gray-900 via-black to-gray-800 text-gray-300 py-12" id="footer" data-aos="fade-up">
-  <div class="container mx-auto px-6">
-    <div class="grid md:grid-cols-3 gap-12">
+    <footer class="relative bg-gradient-to-br from-gray-900 via-black to-gray-800 text-gray-300 py-12" id="footer"
+        data-aos="fade-up">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12">
 
-      <!-- Brand -->
-      <div>
-        <div class="flex items-center mb-4">
-          <img src="img/logo-si.png" alt="Logo Sekolah Impian" class="w-12 h-12 rounded-xl mr-3">
-          <h3 class="text-2xl font-bold text-white">Sekolah Impian</h3>
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="img/logo-si.png" alt="Logo Sekolah Impian" class="w-12 h-12 rounded-xl mr-3">
+                        <h3 class="text-2xl font-bold text-white">Sekolah Impian</h3>
+                    </div>
+                    <p class="mb-6 leading-relaxed">
+                        Pondok pesantren modern yang mengintegrasikan
+                        <span class="text-orange-400 font-semibold">Al-Qur’an</span> dengan
+                        <span class="text-blue-400 font-semibold">Teknologi</span>,
+                        <span class="text-green-400 font-semibold">Bahasa</span>, dan
+                        <span class="text-purple-400 font-semibold">Karakter</span>.
+                        <br> Bersama kami, lahirkan generasi <span class="text-yellow-400 font-semibold">pemimpin masa
+                            depan</span> yang berakhlak, cerdas, dan siap menghadapi tantangan global.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/quadrantboardingschool"
+                            class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-orange-500 hover:scale-110 transition transform shadow-lg">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/sekolahimpianofficial"
+                            class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-pink-500 hover:scale-110 transition transform shadow-lg">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@sekolahimpianku"
+                            class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-red-500 hover:scale-110 transition transform shadow-lg">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://wa.me/6281312633302"
+                            class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-green-500 hover:scale-110 transition transform shadow-lg">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kategori Video -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-white">Kategori Video</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-orange-400 transition">Semua</a></li>
+                        <li><a href="#" class="hover:text-orange-400 transition">Tentang SI</a></li>
+                        <li><a href="#" class="hover:text-orange-400 transition">Bidang Al-Quran</a></li>
+                        <li><a href="#" class="hover:text-orange-400 transition">Bidang Teknologi</a></li>
+                        <li><a href="#" class="hover:text-orange-400 transition">Bidang Bahasa</a></li>
+                        <li><a href="#" class="hover:text-orange-400 transition">Bidang Karakter</a></li>
+                    </ul>
+                </div>
+
+                <!-- Map -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-white">Lokasi</h3>
+                    <div class="rounded-xl overflow-hidden shadow-lg border border-gray-700">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.9246855336864!2d106.69447597607008!3d-6.656256865072977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69d1027ef9ea39%3A0x8bc33d5bc117c098!2sQuadrant%20Boarding%20School%20(QBS)!5e0!3m2!1sid!2sid!4v1756307600492!5m2!1sid!2sid"
+                            width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom -->
+            <div class="border-t border-gray-700 mt-12 pt-6 text-center text-sm text-gray-400">
+                <p>&copy; <span id="year"></span> Sekolah Impian. Semua hak cipta dilindungi undang-undang.</p>
+            </div>
         </div>
-        <p class="mb-6 leading-relaxed">
-          Pondok pesantren modern yang mengintegrasikan 
-          <span class="text-orange-400 font-semibold">Al-Qur’an</span> dengan 
-          <span class="text-blue-400 font-semibold">Teknologi</span>, 
-          <span class="text-green-400 font-semibold">Bahasa</span>, dan 
-          <span class="text-purple-400 font-semibold">Karakter</span>.  
-          <br> Bersama kami, lahirkan generasi <span class="text-yellow-400 font-semibold">pemimpin masa depan</span> yang berakhlak, cerdas, dan siap menghadapi tantangan global.
-        </p>
-        <div class="flex space-x-4">
-          <a href="https://www.facebook.com/quadrantboardingschool"
-            class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-orange-500 hover:scale-110 transition transform shadow-lg">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="https://www.instagram.com/sekolahimpianofficial"
-            class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-pink-500 hover:scale-110 transition transform shadow-lg">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://www.youtube.com/@sekolahimpianku"
-            class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-red-500 hover:scale-110 transition transform shadow-lg">
-            <i class="fab fa-youtube"></i>
-          </a>
-          <a href="https://wa.me/6281312633302"
-            class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-green-500 hover:scale-110 transition transform shadow-lg">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-        </div>
-      </div>
 
-      <!-- Kategori Video -->
-      <div>
-        <h3 class="text-xl font-semibold mb-4 text-white">Kategori Video</h3>
-        <ul class="space-y-3">
-          <li><a href="#" class="hover:text-orange-400 transition">Semua</a></li>
-          <li><a href="#" class="hover:text-orange-400 transition">Tentang SI</a></li>
-          <li><a href="#" class="hover:text-orange-400 transition">Bidang Al-Quran</a></li>
-          <li><a href="#" class="hover:text-orange-400 transition">Bidang Teknologi</a></li>
-          <li><a href="#" class="hover:text-orange-400 transition">Bidang Bahasa</a></li>
-          <li><a href="#" class="hover:text-orange-400 transition">Bidang Karakter</a></li>
-        </ul>
-      </div>
-
-      <!-- Map -->
-      <div>
-        <h3 class="text-xl font-semibold mb-4 text-white">Lokasi</h3>
-        <div class="rounded-xl overflow-hidden shadow-lg border border-gray-700">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.9246855336864!2d106.69447597607008!3d-6.656256865072977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69d1027ef9ea39%3A0x8bc33d5bc117c098!2sQuadrant%20Boarding%20School%20(QBS)!5e0!3m2!1sid!2sid!4v1756307600492!5m2!1sid!2sid"
-            width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Bottom -->
-    <div class="border-t border-gray-700 mt-12 pt-6 text-center text-sm text-gray-400">
-      <p>&copy; <span id="year"></span> Sekolah Impian. Semua hak cipta dilindungi undang-undang.</p>
-    </div>
-  </div>
-
-  <!-- Year Script -->
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</footer>
+        <!-- Year Script -->
+        <script>
+            document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
+    </footer>
 
 
 
