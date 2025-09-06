@@ -146,37 +146,31 @@ const videoData = {
 
     // Karakter
     {
-      title: "Karakter 1",
+      title: "Inilah Kenapa Diperlukan Sinkronisasi Pola Asuh Di Rumah & Di Sekolah - Tentang GSI Ep. 7",
       iframe: "https://www.youtube.com/embed/CwMciPR8D0I?si=",
       category: "character",
       allowFullScreen: true
     },
     {
-      title: "Karakter 2",
+      title: "Kiamat Pendidikan - Tidak Memprioritaskan Apa Yang Allah Lebih Cintai | ISLAMIC PARENTHINK Ep. 2",
       iframe: "https://www.youtube.com/embed/dg9TtNQsST0?si=",
       category: "character",
       allowFullScreen: true
     },
     {
-      title: "Karakter 3 (duplicate dg9TtNQsST0)",
-      iframe: "https://www.youtube.com/embed/dg9TtNQsST0?si=",
-      category: "character",
-      allowFullScreen: true
-    },
-    {
-      title: "Karakter 4",
+      title: "Kiamat Pendidikan - Anak Tanpa Niat | ISLAMIC PARENTHINK Ep. 3",
       iframe: "https://www.youtube.com/embed/B6FS4WGmZNI?si=",
       category: "character",
       allowFullScreen: true
     },
     {
-      title: "Karakter 5",
+      title: "Supaya anak betah di pondok pesantren | Islamic Parenthink Ep. 7",
       iframe: "https://www.youtube.com/embed/a-1OCi7uufI?si=",
       category: "character",
       allowFullScreen: true
     },
     {
-      title: "Karakter 6",
+      title: "'Fastabiqul Khairat' ala Si Kembar - Cerita Santri Ep. 3",
       iframe: "https://www.youtube.com/embed/FHUjKohIMUA?si=",
       category: "character",
       allowFullScreen: true
