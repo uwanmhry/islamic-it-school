@@ -106,31 +106,31 @@ const videoData = {
 
     // Teknologi
     {
-      title: "Teknologi 1",
+      title: "Kenapa Kita Harus Mempelajari IT ?? - Tentang GSI Ep.4",
       iframe: "https://www.youtube.com/embed/OiyWnmnGSc8?si=",
       category: "technology",
       allowFullScreen: true
     },
     {
-      title: "Teknologi 2 (ZhpaG2cM6CA)",
+      title: "Integrasi Antara Al-Quran, Teknologi dan Bahasa - Tentang GSI Ep. 10",
       iframe: "https://www.youtube.com/embed/ZhpaG2cM6CA?si=",
       category: "technology",
       allowFullScreen: true
     },
     {
-      title: "Teknologi 3",
+      title: "Lesson Plan ITMI Fest",
       iframe: "https://www.youtube.com/embed/Mo2wwBBq9EE?si=",
       category: "technology",
       allowFullScreen: true
     },
     {
-      title: "Teknologi 4",
+      title: "Daya kreatifitas yang mengubah peradaban",
       iframe: "https://www.youtube.com/embed/nLClvIAKyhk?si=",
       category: "technology",
       allowFullScreen: true
     },
     {
-      title: "Teknologi 5",
+      title: "Ini Dia Cara Agar Kamu Jadi Kreatif",
       iframe: "https://www.youtube.com/embed/5ATUPIjtj0w?si=",
       category: "technology",
       allowFullScreen: true
