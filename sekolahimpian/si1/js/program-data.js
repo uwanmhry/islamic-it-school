@@ -3,7 +3,7 @@ const programData = {
     "alquran": {
       "id": "alquran",
       "title": "Bidang Al-Quran",
-      "subtitle": "Di bidang Tahfizh inilah kelas-kelas yang akan diberikan kepada ananda:",
+      "subtitle": "Di bidang Tahfizh, inilah kelas-kelas yang akan diberikan kepada ananda:",
       "icon": "fas fa-quran",
       "color": "primary",
       "items": [
@@ -75,7 +75,7 @@ const programData = {
     "teknologi": {
       "id": "teknologi",
       "title": "Bidang Teknologi",
-      "subtitle": "Di bidang IT inilah kelas-kelas yang akan diberikan kepada ananda:",
+      "subtitle": "Di bidang IT, inilah kelas-kelas yang akan diberikan kepada ananda:",
       "icon": "fas fa-laptop-code",
       "color": "secondary",
       "items": [
@@ -154,7 +154,7 @@ const programData = {
     "bahasa": {
       "id": "bahasa",
       "title": "Bidang Bahasa",
-      "subtitle": "Di bidang Bahasa inilah kelas-kelas yang akan diberikan kepada ananda:",
+      "subtitle": "Di bidang Bahasa, inilah kelas-kelas yang akan diberikan kepada ananda:",
       "icon": "fas fa-language",
       "color": "accent",
       "items": [
@@ -212,7 +212,7 @@ const programData = {
     "karakter": {
       "id": "karakter",
       "title": "Bidang Karakter",
-      "subtitle": "Di bidang Karakter inilah kelas-kelas yang akan diberikan kepada ananda:",
+      "subtitle": "Di bidang Karakter, inilah kelas-kelas yang akan diberikan kepada ananda:",
       "icon": "fas fa-hands-helping",
       "color": "primary",
       "items": [
