@@ -158,27 +158,37 @@
             </div>
         </div>
 
-        <!-- More Videos Section -->
-        <section id="moreSection" class="mb-16" data-aos="fade-up" data-aos-delay="300" data-section="more">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl md:text-3xl font-bold text-black">Video Lainnya</h2>
+        <!-- Section Video Lainnya -->
+        <section id="moreSection" class="py-12">
+            <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-black mb-6">Video Lainnya</h2>
+            <div id="moreVideosContainer"
+                class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
+            </div>
+            <div id="paginationContainer" class="mt-8 flex justify-center items-center space-x-2 hidden"></div>
+            <div class="flex justify-center mt-6">
                 <button id="loadMoreBtn"
-                    class="bg-gradient-to-r from-orange-500 to-green-500 text-white px-4 py-2 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
-                    <i class="fas fa-reload mr-1"></i>Muat Lebih Banyak
+                        class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium transition">
+                Muat Lebih Banyak
                 </button>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="moreVideosContainer">
-                <!-- Loading skeletons -->
-                <div class="bg-gray-200 animate-pulse rounded-xl h-48"></div>
-                <div class="bg-gray-200 animate-pulse rounded-xl h-48"></div>
-                <div class="bg-gray-200 animate-pulse rounded-xl h-48"></div>
-                <div class="bg-gray-200 animate-pulse rounded-xl h-48"></div>
-                <div class="bg-gray-200 animate-pulse rounded-xl h-48"></div>
-            </div>
-            <div id="paginationContainer" class="mt-8 flex justify-center items-center space-x-2 hidden">
-                <!-- Pagination will be loaded here -->
             </div>
         </section>
+
+        <!-- Modal Video Mobile -->
+        <div id="videoModal"
+            class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50">
+            <div class="relative w-full max-w-3xl mx-auto p-4">
+            <div class="relative pt-[56.25%]">
+                <iframe id="videoModalIframe" src=""
+                class="absolute top-0 left-0 w-full h-full rounded-lg"
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+            <button onclick="closeVideoModal()"
+                class="absolute top-2 right-2 bg-white text-black rounded-full w-8 h-8 flex items-center justify-center">✕</button>
+            </div>
+        </div>
 
     </main>
 

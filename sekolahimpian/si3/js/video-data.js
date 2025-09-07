@@ -123,6 +123,30 @@ const videoData = {
       category: "technology",
       allowFullScreen: true
     },
+    {
+      title: "Kenapa Kita Harus Mempelajari IT ?? - Tentang GSI Ep.4",
+      iframe: "https://www.youtube.com/embed/OiyWnmnGSc8?si=",
+      category: "technology",
+      allowFullScreen: true
+    },
+    {
+      title: "Lesson Plan ITMI Fest",
+      iframe: "https://www.youtube.com/embed/Mo2wwBBq9EE?si=",
+      category: "technology",
+      allowFullScreen: true
+    },
+    {
+      title: "Daya kreatifitas yang mengubah peradaban",
+      iframe: "https://www.youtube.com/embed/nLClvIAKyhk?si=",
+      category: "technology",
+      allowFullScreen: true
+    },
+    {
+      title: "Ini Dia Cara Agar Kamu Jadi Kreatif",
+      iframe: "https://www.youtube.com/embed/5ATUPIjtj0w?si=",
+      category: "technology",
+      allowFullScreen: true
+    },
 
     // Bahasa
     {

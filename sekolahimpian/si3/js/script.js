@@ -19,6 +19,20 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeApp();
     initEventListeners();
     initNavbarHighlight();
+
+    // Safe bind backdrop for mobile video modal (jaga2 kalau modal belum ada)
+    const videoModalEl = document.getElementById('videoModal');
+    if (videoModalEl) {
+        videoModalEl.addEventListener('click', function (e) {
+            if (e.target.id === 'videoModal') closeVideoModal();
+        });
+    }
+
+    // Re-render grid mode saat resize (ubah mobile/desktop rendering)
+    window.addEventListener('resize', () => {
+        // render ulang kartu sesuai mode mobile/desktop
+        loadMoreVideos();
+    });
 });
 
 // =========================
@@ -175,18 +189,18 @@ function closeModal() {
 }
 
 // =========================
-// More Videos (Pagination)
+/** More Videos (Pagination) */
 // =========================
 function getFilteredVideos() {
     let filtered = videoData.moreVideos;
 
     if (currentCategory !== 'all') {
-    filtered = filtered.filter(v => {
-        if (Array.isArray(v.category)) {
-        return v.category.includes(currentCategory); // ✅ cek array
-        }
-        return v.category === currentCategory; // ✅ fallback lama
-    });
+        filtered = filtered.filter(v => {
+            if (Array.isArray(v.category)) {
+                return v.category.includes(currentCategory);
+            }
+            return v.category === currentCategory;
+        });
     }
 
     if (searchQuery) {
@@ -205,8 +219,27 @@ function loadMoreVideos() {
         ? allVideos
         : allVideos.slice(startIndex, startIndex + videosPerPage);
 
+    const isMobile = window.innerWidth <= 768;
+
     container.innerHTML = paginatedVideos.length
-        ? paginatedVideos.map(video => `
+        ? paginatedVideos.map(video => {
+            // Mobile: kartu bisa diklik buka modal, iframe non-interaktif
+            if (isMobile) {
+                return `
+                <div class="video-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up">
+                    <div class="relative pt-[56.25%] cursor-pointer" onclick="openVideoModal('${video.iframe}')">
+                        <iframe src="${video.iframe}" title="${video.title}" frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen class="absolute top-0 left-0 w-full h-full pointer-events-none"></iframe>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-medium text-gray-800 text-xs line-clamp-2">${video.title}</h3>
+                    </div>
+                </div>
+                `;
+            }
+            // Desktop: iframe interaktif (tanpa modal)
+            return `
             <div class="video-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up">
                 <div class="relative pt-[56.25%]">
                     <iframe src="${video.iframe}" title="${video.title}" frameborder="0" 
@@ -217,7 +250,8 @@ function loadMoreVideos() {
                     <h3 class="font-medium text-gray-800 text-xs line-clamp-2">${video.title}</h3>
                 </div>
             </div>
-        `).join("")
+            `;
+        }).join("")
         : `<p class="text-center text-gray-500 col-span-full">Video tidak ditemukan</p>`;
 
     updatePagination(allVideos.length);
@@ -270,16 +304,25 @@ function updatePagination(totalVideos) {
 }
 
 function changePage(page) {
+    // Simpan posisi scroll
+    const scrollY = window.scrollY;
+
     currentPage = page;
     showingAllVideos = false;
     loadMoreVideos();
+
+    // Balikkan posisi scroll
+    window.scrollTo(0, scrollY);
 }
 
 function updateLoadMoreButton() {
     const loadMoreBtn = document.getElementById('loadMoreBtn');
     if (!loadMoreBtn) return;
 
-    if (searchQuery) {
+    const totalVideos = getFilteredVideos().length;
+
+    // Hide kalau hasil search, atau video sedikit (≤ videosPerPage)
+    if (searchQuery || totalVideos <= videosPerPage) {
         loadMoreBtn.classList.add("hidden");
         return;
     } else {
@@ -301,6 +344,35 @@ function toggleAllVideos() {
     showingAllVideos = !showingAllVideos;
     currentPage = 1;
     loadMoreVideos();
+}
+
+// =========================
+// Video Modal (Mobile)
+// =========================
+function openVideoModal(iframeUrl) {
+    // Buka modal hanya pada mobile; di desktop biarkan inline
+    if (window.innerWidth > 768) return;
+
+    const modal = document.getElementById('videoModal');
+    const iframe = document.getElementById('videoModalIframe');
+    if (!modal || !iframe) return; // guard kalau HTML modal belum ditambahkan
+
+    iframe.src = iframeUrl;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+
+    // Minta full screen (opsional, kalau diizinkan)
+    // Catatan: kebanyakan browser mobile batasi auto fullscreen tanpa user gesture yang langsung ke video element.
+}
+
+function closeVideoModal() {
+    const modal = document.getElementById('videoModal');
+    const iframe = document.getElementById('videoModalIframe');
+    if (!modal || !iframe) return;
+
+    iframe.src = "";
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
 }
 
 // =========================
@@ -330,7 +402,7 @@ function initEventListeners() {
         loadMoreBtn.addEventListener('click', toggleAllVideos);
     }
 
-    // Modal backdrop click
+    // Modal backdrop click (featured)
     document.addEventListener('click', function (e) {
         const modal = document.getElementById('featuredModal');
         if (modal && e.target === modal) {
