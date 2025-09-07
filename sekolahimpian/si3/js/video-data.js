@@ -156,12 +156,6 @@ const videoData = {
       allowFullScreen: true
     },
     {
-      title: "'Tempa Api' Drama Wisuda Sekolah Impian 2024",
-      iframe: "https://www.youtube.com/embed/BIu8eUS0wag?si=",
-      category: "language",
-      allowFullScreen: true
-    },
-    {
       title: "'Kurikulum Terbaik' - Bincang Tokoh Ep. 5",
       iframe: "https://www.youtube.com/embed/y35m2x3jEf8?si=",
       category: "language",
