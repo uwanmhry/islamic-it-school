@@ -91,15 +91,21 @@ function renderVideosByCategory(categoryId) {
 // =========================
 function updateMoreHeading() {
     const heading = document.querySelector("#moreSection h2");
+    const subtitle = document.getElementById("moreSubtitle");
+
     if (searchQuery) {
         heading.textContent = "Hasil Pencarian";
+        subtitle.textContent = `Menampilkan hasil untuk: "${searchQuery}"`;
     } else if (currentCategory === "all") {
         heading.textContent = "Video Lainnya";
+        subtitle.textContent = "Koleksi video pilihan untuk Anda";
     } else {
         const cat = videoData.categories.find(c => c.id === currentCategory);
         heading.textContent = cat ? `${cat.name}` : "Video Lainnya";
+        subtitle.textContent = cat ? `Kumpulan video dari kategori ${cat.name}` : "Koleksi video pilihan lainnya";
     }
 }
+
 
 // =========================
 // Search Function
