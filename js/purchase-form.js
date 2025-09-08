@@ -1,476 +1,504 @@
-// PRODUCTION CONFIGURATION
-const API_BASE_URL = 'https://iis.portalsi.com'; 
-// const API_BASE_URL = 'http://127.0.0.1:8000'; 
+// ===============================
+// Configuration & Constants
+// ===============================
+const CONFIG = {
+  API_BASE_URL: 'https://iis.portalsi.com/api',
+  ONGKIR: 15000,
+  DISCOUNT_RATE: 0.95, // 5% discount
+  MESSAGE_TIMEOUT: 5000,
+  PAYMENT_REDIRECT_DELAY: 3000
+};
 
-// Konstanta ongkir
-const ONGKIR = 15000;
+// ===============================
+// Application State
+// ===============================
+class PaymentFormState {
+  constructor() {
+    this.bookTitle = '';
+    this.price = 0;
+    this.referralCode = '';
+    this.isReferralValid = false;
+    this.referralValidated = false;
+    this.elements = {};
+    this.init();
+  }
 
-// Ambil parameter dari URL
-const urlParams = new URLSearchParams(window.location.search);
-const bookTitle = urlParams.get('book_title') || 'Judul Buku Tidak Tersedia';
-const price = parseFloat(urlParams.get('price')) || 0;
-const ref = urlParams.get('ref') || '';
+  init() {
+    this.parseUrlParams();
+    this.cacheElements();
+    this.validateInitialData();
+  }
 
-// State untuk validasi referral
-let isReferralValid = false;
-let referralValidated = false;
-let currentReferralCode = ref; // Track kode referral yang sedang aktif
+  parseUrlParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    this.bookTitle = urlParams.get('book_title')?.trim() || '';
+    this.price = Math.max(0, parseFloat(urlParams.get('price')) || 0);
+    this.referralCode = urlParams.get('ref')?.trim() || '';
+  }
 
-// Validasi parameter dan inisialisasi
-function initializeForm() {
-  if (!bookTitle || price <= 0) {
+  cacheElements() {
+    const elementIds = [
+      'book_title', 'price', 'referral_code', 'judulDisplay', 
+      'hargaAsliDisplay', 'refDisplay', 'input_referral', 
+      'validateRefBtn', 'purchaseForm', 'submitBtn', 'diskonInfo', 
+      'refErrorInfo', 'is_referral_valid', 'hargaFinalDisplay', 
+      'hargaFinal'
+    ];
+    
+    elementIds.forEach(id => {
+      this.elements[id] = document.getElementById(id);
+    });
+  }
+
+  validateInitialData() {
+    if (!this.bookTitle || this.price <= 0) {
+      this.showErrorPage();
+      return false;
+    }
+    return true;
+  }
+
+  showErrorPage() {
     document.body.innerHTML = `
       <div class="min-h-screen flex items-center justify-center p-6">
         <div class="max-w-md bg-white p-8 rounded-lg shadow-lg text-center">
           <h1 class="text-xl font-bold text-red-600 mb-4">Error</h1>
           <p class="text-gray-600">Parameter buku tidak valid. Silakan kembali ke halaman sebelumnya.</p>
-          <button onclick="window.history.back()" class="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button onclick="window.history.back()" 
+                  class="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
             Kembali
           </button>
         </div>
       </div>
     `;
-    return;
-  }
-
-  // Isi hidden fields
-  document.getElementById('book_title').value = bookTitle;
-  document.getElementById('price').value = price;
-  document.getElementById('referral_code').value = ref;
-
-  // Tampilkan informasi buku awal
-  document.getElementById('judulDisplay').textContent = bookTitle;
-  document.getElementById('hargaAsliDisplay').textContent = price.toLocaleString('id-ID');
-  document.getElementById('ongkirDisplay').textContent = ONGKIR.toLocaleString('id-ID');
-  document.getElementById('refDisplay').textContent = (ref && ref !== 'NO_REF') ? ref : '-';
-  
-  // Set input referral dengan kode dari URL jika ada
-  if (ref && ref.trim() !== '' && ref !== 'NO_REF') {
-    document.getElementById('input_referral').value = ref;
-    validateReferralCode(ref);
-  } else {
-    // Tidak ada referral, langsung tampilkan harga normal + ongkir
-    updatePriceDisplay(price, false);
-    referralValidated = true;
   }
 }
 
-// Event listener untuk tombol validasi referral
-function setupEventListeners() {
-  document.getElementById('validateRefBtn').addEventListener('click', function() {
-    const inputRef = document.getElementById('input_referral').value.trim();
-    
-    if (!inputRef) {
-      showMessage('Masukkan kode referral terlebih dahulu!', 'warning');
-      return;
-    }
-    
-    // Update kode referral yang aktif
-    currentReferralCode = inputRef;
-    document.getElementById('referral_code').value = inputRef;
-    document.getElementById('refDisplay').textContent = inputRef;
-    
-    // Validasi kode baru
-    validateReferralCode(inputRef);
-  });
-
-  // Auto-validate saat user mengetik dan menekan Enter
-  document.getElementById('input_referral').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      document.getElementById('validateRefBtn').click();
-    }
-  });
-
-  // Validasi real-time untuk nomor telepon
-  document.getElementById('nomor_pembeli').addEventListener('input', function(e) {
-    const value = e.target.value;
-    const isValid = /^[0-9+\-\s]*$/.test(value);
-    
-    if (!isValid) {
-      e.target.setCustomValidity('Hanya boleh menggunakan angka, +, -, dan spasi');
-    } else {
-      e.target.setCustomValidity('');
-    }
-  });
-
-  // Validasi real-time untuk kode pos
-  document.getElementById('kode_pos').addEventListener('input', function(e) {
-    const value = e.target.value;
-    const isValid = /^[0-9]*$/.test(value);
-    
-    if (!isValid) {
-      e.target.value = value.replace(/[^0-9]/g, '');
-    }
-    
-    if (value.length !== 5 && value.length > 0) {
-      e.target.setCustomValidity('Kode pos harus 5 digit angka');
-    } else {
-      e.target.setCustomValidity('');
-    }
-  });
-
-  // Validasi real-time untuk email
-  document.getElementById('customer_email').addEventListener('input', function(e) {
-    const value = e.target.value;
-    if (value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-      e.target.setCustomValidity('Format email tidak valid');
-    } else {
-      e.target.setCustomValidity('');
-    }
-  });
-
-  // Handle form submission
-  document.getElementById('purchaseForm').addEventListener('submit', handleFormSubmit);
-}
-
-// Fungsi untuk memvalidasi kode referral dengan database
-async function validateReferralCode(refCode) {
-  const loadingElement = document.getElementById('refValidationLoading');
-  const diskonInfo = document.getElementById('diskonInfo');
-  const refErrorInfo = document.getElementById('refErrorInfo');
-  const validateBtn = document.getElementById('validateRefBtn');
-  
-  try {
-    // Tampilkan loading
-    loadingElement.classList.remove('hidden');
-    diskonInfo.classList.add('hidden');
-    refErrorInfo.classList.add('hidden');
-    validateBtn.disabled = true;
-    validateBtn.textContent = '...';
-    
-    const response = await fetch(`${API_BASE_URL}/api/referal`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json'
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+// ===============================
+// API Service
+// ===============================
+class ApiService {
+  static async validateReferral(refCode) {
+    if (!refCode?.trim()) {
+      throw new Error('Kode referral tidak boleh kosong');
     }
 
-    const referralCodes = await response.json();
-    
-    // Cek apakah kode referral ada di database
-    const validReferral = referralCodes.find(item => 
-      item.kode_referal === refCode
-    );
-
-    if (validReferral) {
-      isReferralValid = true;
-      document.getElementById('is_referral_valid').value = 'true';
-      diskonInfo.classList.remove('hidden');
-      updatePriceDisplay(price, true);
-      showMessage('✅ Kode referral valid! Diskon 5% telah diterapkan.', 'success');
-    } else {
-      isReferralValid = false;
-      document.getElementById('is_referral_valid').value = 'false';
-      refErrorInfo.classList.remove('hidden');
-      updatePriceDisplay(price, false);
-      showMessage('❌ Kode referral tidak valid. Silakan periksa kembali.', 'error');
-    }
-    
-  } catch (error) {
-    console.error('Error validating referral code:', error);
-    isReferralValid = false;
-    document.getElementById('is_referral_valid').value = 'false';
-    refErrorInfo.classList.remove('hidden');
-    updatePriceDisplay(price, false);
-    
-    // Tampilkan pesan error jika gagal koneksi ke server
-    showMessage('⚠️ Gagal memvalidasi kode referral. Pembelian akan dilanjutkan tanpa diskon.', 'warning');
-  } finally {
-    loadingElement.classList.add('hidden');
-    validateBtn.disabled = false;
-    validateBtn.textContent = 'Cek';
-    referralValidated = true;
-  }
-}
-
-// Fungsi untuk update tampilan harga
-function updatePriceDisplay(originalPrice, hasValidDiscount) {
-  const discountedPrice = hasValidDiscount ? Math.round(originalPrice * 0.95) : originalPrice;
-  const finalPrice = discountedPrice + ONGKIR;
-  
-  document.getElementById('hargaFinalDisplay').textContent = finalPrice.toLocaleString('id-ID');
-  
-  const hargaFinalElement = document.getElementById('hargaFinal');
-  if (hasValidDiscount) {
-    hargaFinalElement.classList.add('text-green-600');
-    hargaFinalElement.classList.remove('text-blue-800');
-  } else {
-    hargaFinalElement.classList.remove('text-green-600');
-    hargaFinalElement.classList.add('text-blue-800');
-  }
-}
-
-// Fungsi untuk menambah usage referral code
-async function incrementReferralUsage(refCode) {
-  try {
-    const response = await fetch(`${API_BASE_URL}/api/referal/use/${refCode}`, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const result = await response.json();
-    console.log('Referral usage incremented:', result.message);
-    
-  } catch (error) {
-    console.error('Error incrementing referral usage:', error);
-    // Jangan hentikan proses pembelian jika gagal update usage
-  }
-}
-
-// Handle form submission
-async function handleFormSubmit(e) {
-  e.preventDefault();
-  
-  // Ambil kode referral terbaru dari input
-  const inputRefCode = document.getElementById('input_referral').value.trim();
-  if (inputRefCode && inputRefCode !== currentReferralCode) {
-    showMessage('Anda telah mengubah kode referral. Silakan klik "Cek" terlebih dahulu untuk memvalidasi.', 'warning');
-    return;
-  }
-  
-  const submitBtn = document.getElementById('submitBtn');
-  const submitText = document.getElementById('submitText');
-  const loadingText = document.getElementById('loadingText');
-  const resultMessage = document.getElementById('resultMessage');
-  
-  // Disable button dan tampilkan loading
-  submitBtn.disabled = true;
-  submitText.classList.add('hidden');
-  loadingText.classList.remove('hidden');
-  resultMessage.classList.add('hidden');
-
-  const formData = new FormData(e.target);
-  
-  // Update referral code dengan yang ada di input
-  if (inputRefCode) {
-    formData.set('referral_code', inputRefCode);
-    currentReferralCode = inputRefCode;
-  }
-
-  // Validasi form
-  const nama = formData.get('nama_pembeli').trim();
-  const alamat = formData.get('alamat').trim();
-  const kodePos = formData.get('kode_pos').trim();
-  const nomor = formData.get('nomor_pembeli').trim();
-  const customerEmail = formData.get('customer_email') ? formData.get('customer_email').trim() : '';
-  
-  if (!nama || !alamat || !kodePos || !nomor) {
-    showMessage('Harap isi semua field yang wajib!', 'error');
-    resetButton();
-    return;
-  }
-
-  // Validasi nomor telepon
-  if (!/^[0-9+\-\s]{10,15}$/.test(nomor)) {
-    showMessage('Format nomor telepon tidak valid!', 'error');
-    resetButton();
-    return;
-  }
-
-  // Validasi kode pos
-  if (!/^[0-9]{5}$/.test(kodePos)) {
-    showMessage('Kode pos harus 5 digit angka!', 'error');
-    resetButton();
-    return;
-  }
-
-  // Validasi email jika diisi
-  if (customerEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
-    showMessage('Format email tidak valid!', 'error');
-    resetButton();
-    return;
-  }
-
-  const originalPrice = parseFloat(formData.get('price'));
-  const referralCode = formData.get('referral_code') || '';
-  const isValidReferral = formData.get('is_referral_valid') === 'true';
-  
-  // Hitung harga final berdasarkan validasi referral
-  let bookPrice = originalPrice;
-  if (isValidReferral && referralCode.trim() !== '' && referralCode !== 'NO_REF') {
-    bookPrice = Math.round(originalPrice * 0.95); // Diskon 5%
-  }
-  
-  const finalPrice = bookPrice + ONGKIR;
-
-  // Gabungkan alamat dengan kode pos
-  const alamatLengkap = `${alamat}, ${kodePos}`;
-
-  // Data untuk log-click tanpa order_id dulu
-  const logData = {
-    book_title: formData.get('book_title'),
-    referral_code: referralCode,
-    is_referral_valid: isValidReferral,
-    user_agent: navigator.userAgent,
-    nama_pembeli: nama,
-    alamat: alamatLengkap, // Alamat sudah digabung dengan kode pos
-    nomor_pembeli: nomor,
-    harga: finalPrice,
-    harga_asli: originalPrice,
-    ongkir: ONGKIR,
-    diskon_amount: originalPrice - bookPrice,
-    timestamp: new Date().toISOString()
-  };
-
-  try {
-    // Log ke database dulu
-    const response = await fetch(`${API_BASE_URL}/api/log-click`, {
-      method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(logData)
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const result = await response.json();
-    
-    if (result.success !== false) {
-      // Update referral usage jika valid
-      if (isValidReferral && referralCode.trim() !== '' && referralCode !== 'NO_REF') {
-        await incrementReferralUsage(referralCode);
-      }
-
-      // Buat transaksi Midtrans menggunakan Snap Preference
-      try {
-        const midtransResponse = await fetch(`${API_BASE_URL}/api/midtrans/create-transaction`, {
-          method: 'POST',
+    try {
+      const response = await fetch(
+        `${CONFIG.API_BASE_URL}/referral/check/${encodeURIComponent(refCode)}`,
+        {
+          method: 'GET',
           headers: {
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({
-            nama: nama,
-            nomor: nomor,
-            alamat: alamatLengkap, // Kirim alamat yang sudah digabung
-            amount: finalPrice,
-            item_name: formData.get('book_title'),
-            referral_code: referralCode,
-            customer_email: customerEmail,
-            log_id: result.id || result.insertId
-          })
-        });
-
-        if (!midtransResponse.ok) {
-          const errorData = await midtransResponse.json();
-          console.error('Midtrans Error Response:', errorData);
-          throw new Error(`Midtrans Error: ${errorData.message || midtransResponse.status}`);
+          signal: AbortSignal.timeout(10000) // 10 second timeout
         }
+      );
 
-        const midtransResult = await midtransResponse.json();
-
-        if (midtransResult.success && midtransResult.token) {
-          // Reset button sebelum buka Snap
-          resetButton();
-          
-          // Buka Midtrans Snap popup
-          window.snap.pay(midtransResult.token, {
-            onSuccess: function(result) {
-              console.log('Payment success:', result);
-              showMessage('✅ Pembayaran berhasil! Terima kasih atas pembelian Anda.', 'success');
-              
-              // Optional: redirect ke halaman sukses setelah beberapa detik
-              setTimeout(() => {
-                window.location.href = '/payment-success.html?order_id=' + midtransResult.order_id;
-              }, 3000);
-            },
-            onPending: function(result) {
-              console.log('Payment pending:', result);
-              showMessage('⏳ Pembayaran pending. Silakan selesaikan pembayaran Anda.', 'warning');
-            },
-            onError: function(result) {
-              console.log('Payment error:', result);
-              showMessage('❌ Terjadi kesalahan saat memproses pembayaran.', 'error');
-            },
-            onClose: function() {
-              console.log('Payment popup closed');
-              showMessage('ℹ️ Pembayaran dibatalkan atau ditutup.', 'warning');
-            }
-          });
-
-        } else {
-          showMessage('❌ Gagal membuat transaksi pembayaran: ' + (midtransResult.message || 'Unknown error'), 'error');
-        }
-
-      } catch (midtransErr) {
-        console.error('Midtrans Error:', midtransErr);
-        showMessage('❌ Terjadi kesalahan saat menghubungkan ke sistem pembayaran: ' + midtransErr.message, 'error');
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
-    } else {
-      showMessage('❌ Gagal menyimpan data pembelian.', 'error');
+
+      return await response.json();
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        throw new Error('Request timeout. Silakan coba lagi.');
+      }
+      throw error;
     }
-    
-  } catch (error) {
-    console.error('Error:', error);
-    
-    if (error.name === 'TypeError' && error.message.includes('fetch')) {
-      showMessage('⚠️ Tidak dapat terhubung ke server. Periksa koneksi internet Anda.', 'error');
-    } else {
-      showMessage('❌ Terjadi kesalahan sistem. Silakan coba lagi.', 'error');
+  }
+
+  static async createPayment(paymentData) {
+    try {
+      const response = await fetch(`${CONFIG.API_BASE_URL}/payment/create`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(paymentData),
+        signal: AbortSignal.timeout(15000) // 15 second timeout
+      });
+
+      if (!response.ok) {
+        let errorMessage = 'Gagal membuat transaksi pembayaran.';
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.message || errorMessage;
+        } catch (e) {
+          console.warn('Failed to parse error response:', e);
+        }
+        throw new Error(errorMessage);
+      }
+
+      return await response.json();
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        throw new Error('Request timeout. Silakan coba lagi.');
+      }
+      throw error;
     }
-  } finally {
-    resetButton();
   }
 }
 
-// Utility functions
-function showMessage(message, type) {
-  const resultMessage = document.getElementById('resultMessage');
-  resultMessage.textContent = message;
-  
-  let colorClass;
-  switch(type) {
-    case 'success':
-      colorClass = 'text-green-700 bg-green-100 border border-green-300';
-      break;
-    case 'warning':
-      colorClass = 'text-yellow-700 bg-yellow-100 border border-yellow-300';
-      break;
-    case 'error':
-    default:
-      colorClass = 'text-red-700 bg-red-100 border border-red-300';
-      break;
+// ===============================
+// Form Handler
+// ===============================
+class PaymentFormHandler {
+  constructor(state) {
+    this.state = state;
+    this.messageElement = null;
   }
-  
-  resultMessage.className = `mt-4 text-sm text-center p-3 rounded-lg ${colorClass}`;
-  resultMessage.classList.remove('hidden');
+
+  initialize() {
+    if (!this.state.validateInitialData()) return;
+    
+    this.populateFormFields();
+    this.setupEventListeners();
+    this.handleInitialReferral();
+  }
+
+  populateFormFields() {
+    const { elements, bookTitle, price, referralCode } = this.state;
+    
+    elements.book_title.value = bookTitle;
+    elements.price.value = price;
+    elements.referral_code.value = referralCode;
+    elements.judulDisplay.textContent = bookTitle;
+    elements.hargaAsliDisplay.textContent = this.formatCurrency(price);
+    elements.refDisplay.textContent = this.getReferralDisplay(referralCode);
+  }
+
+  getReferralDisplay(refCode) {
+    return (refCode && refCode !== 'NO_REF') ? refCode : '-';
+  }
+
+  setupEventListeners() {
+    const { elements } = this.state;
+
+    // Referral validation
+    elements.validateRefBtn.addEventListener('click', () => this.handleReferralValidation());
+    
+    // Enter key support for referral input
+    elements.input_referral.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        this.handleReferralValidation();
+      }
+    });
+
+    // Form submission
+    elements.purchaseForm.addEventListener('submit', (e) => this.handleFormSubmit(e));
+
+    // Input validation
+    this.setupInputValidation();
+  }
+
+  setupInputValidation() {
+    // Phone number validation
+    const phoneInput = document.querySelector('input[name="phone"]');
+    if (phoneInput) {
+      phoneInput.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/[^\d+\-\s]/g, '');
+      });
+    }
+
+    // Postal code validation
+    const postalInput = document.querySelector('input[name="kode_pos"]');
+    if (postalInput) {
+      postalInput.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/\D/g, '').slice(0, 5);
+      });
+    }
+  }
+
+  handleInitialReferral() {
+    const { referralCode } = this.state;
+    
+    if (referralCode && referralCode.trim() !== '' && referralCode !== 'NO_REF') {
+      this.state.elements.input_referral.value = referralCode;
+      this.validateReferralCode(referralCode);
+    } else {
+      this.updatePriceDisplay(false);
+      this.state.referralValidated = true;
+    }
+  }
+
+  async handleReferralValidation() {
+    const inputRef = this.state.elements.input_referral.value.trim();
+    
+    if (!inputRef) {
+      this.showMessage('Masukkan kode referral terlebih dahulu!', 'warning');
+      return;
+    }
+
+    this.state.referralCode = inputRef;
+    this.state.elements.referral_code.value = inputRef;
+    this.state.elements.refDisplay.textContent = inputRef;
+    
+    await this.validateReferralCode(inputRef);
+  }
+
+  async validateReferralCode(refCode) {
+    const { elements } = this.state;
+    const { diskonInfo, refErrorInfo, validateRefBtn } = elements;
+
+    try {
+      // Reset UI state
+      this.resetReferralUI();
+      this.setButtonLoading(validateRefBtn, true, '...');
+
+      const result = await ApiService.validateReferral(refCode);
+
+      if (result.valid === true) {
+        this.handleValidReferral(result);
+      } else {
+        this.handleInvalidReferral(result);
+      }
+
+    } catch (error) {
+      console.error('Referral validation error:', error);
+      this.handleReferralError(error.message);
+    } finally {
+      this.setButtonLoading(validateRefBtn, false, 'Cek');
+      this.state.referralValidated = true;
+    }
+  }
+
+  resetReferralUI() {
+    const { diskonInfo, refErrorInfo } = this.state.elements;
+    diskonInfo.classList.add('hidden');
+    refErrorInfo.classList.add('hidden');
+  }
+
+  handleValidReferral(result) {
+    this.state.isReferralValid = true;
+    this.state.elements.is_referral_valid.value = 'true';
+    this.state.elements.diskonInfo.classList.remove('hidden');
+    this.updatePriceDisplay(true);
+    this.showMessage(`✅ ${result.message} - Owner: ${result.owner}`, 'success');
+  }
+
+  handleInvalidReferral(result) {
+    this.state.isReferralValid = false;
+    this.state.elements.is_referral_valid.value = 'false';
+    this.state.elements.refErrorInfo.classList.remove('hidden');
+    this.updatePriceDisplay(false);
+    this.showMessage('❌ ' + (result.message || 'Kode referral tidak valid.'), 'error');
+  }
+
+  handleReferralError(errorMessage) {
+    this.state.isReferralValid = false;
+    this.state.elements.is_referral_valid.value = 'false';
+    this.state.elements.refErrorInfo.classList.remove('hidden');
+    this.updatePriceDisplay(false);
+    this.showMessage(`⚠️ ${errorMessage}`, 'warning');
+  }
+
+  updatePriceDisplay(hasValidDiscount) {
+    const { price } = this.state;
+    const { hargaFinalDisplay, hargaFinal } = this.state.elements;
+    
+    const discountedPrice = hasValidDiscount ? 
+      Math.round(price * CONFIG.DISCOUNT_RATE) : price;
+    const finalPrice = discountedPrice ;
+    
+    hargaFinalDisplay.textContent = this.formatCurrency(finalPrice);
+    
+    // Update styling
+    hargaFinal.className = hasValidDiscount ? 
+      'text-green-600 font-semibold' : 'text-blue-800 font-semibold';
+  }
+
+  async handleFormSubmit(e) {
+    e.preventDefault();
+
+    if (!this.validateForm(e.target)) return;
+
+    this.setButtonLoading(this.state.elements.submitBtn, true, 'Memproses...');
+
+    try {
+      const paymentData = this.buildPaymentData(new FormData(e.target));
+      const result = await ApiService.createPayment(paymentData);
+      
+      this.handlePaymentSuccess(result);
+    } catch (error) {
+      console.error('Payment error:', error);
+      this.showMessage(`❌ ${error.message}`, 'error');
+    } finally {
+      this.setButtonLoading(this.state.elements.submitBtn, false, 'Bayar Sekarang');
+    }
+  }
+
+  validateForm(form) {
+    const formData = new FormData(form);
+    const requiredFields = ['buyer_name', 'address', 'kode_pos', 'phone'];
+    
+    for (const field of requiredFields) {
+      if (!formData.get(field)?.trim()) {
+        this.showMessage('Harap isi semua field yang wajib!', 'error');
+        return false;
+      }
+    }
+
+    // Phone validation
+    const phone = formData.get('phone').trim();
+    if (phone.length < 10) {
+      this.showMessage('Nomor telepon harus minimal 10 digit!', 'error');
+      return false;
+    }
+
+    // Postal code validation
+    const kodePos = formData.get('kode_pos').trim();
+    if (kodePos.length !== 5) {
+      this.showMessage('Kode pos harus 5 digit!', 'error');
+      return false;
+    }
+
+    return true;
+  }
+
+  buildPaymentData(formData) {
+    const { price, referralCode, isReferralValid } = this.state;
+    
+    const alamat = formData.get('address').trim();
+    const kodePos = formData.get('kode_pos').trim();
+    const alamatLengkap = `${alamat}, ${kodePos}`;
+
+    return {
+      book_title: formData.get('book_title'),
+      buyer_name: formData.get('buyer_name').trim(),
+      address: alamatLengkap,
+      email: formData.get('email')?.trim() || "noemail@example.com",
+      phone: formData.get('phone').trim(),
+      original_price: price,
+      referral_code: (referralCode && isReferralValid) ? referralCode : null,
+      discounted_price: isReferralValid ? Math.round(price * 0.95) : price,
+      ongkir: CONFIG.ONGKIR
+    };
+  }
+
+  handlePaymentSuccess(result) {
+    console.log('Payment response:', result);
+
+    // Store order ID for success page
+    if (result.order_id) {
+      try {
+        localStorage.setItem('last_order_id', result.order_id);
+      } catch (e) {
+        console.warn('Failed to store order ID:', e);
+      }
+    }
+
+    if (!result.snap_token) {
+      throw new Error('Token pembayaran tidak diterima dari server.');
+    }
+
+    this.initiateMidtransPayment(result.snap_token);
+  }
+
+  initiateMidtransPayment(snapToken) {
+    if (typeof window.snap === 'undefined') {
+      throw new Error('Midtrans Snap tidak tersedia. Silakan refresh halaman.');
+    }
+
+    window.snap.pay(snapToken, {
+      onSuccess: (result) => {
+        console.log('Payment success:', result);
+        this.showMessage('✅ Pembayaran berhasil! Terima kasih atas pembelian Anda.', 'success');
+        setTimeout(() => {
+          window.location.href = '/payment-success.html';
+        }, CONFIG.PAYMENT_REDIRECT_DELAY);
+      },
+      onPending: (result) => {
+        console.log('Payment pending:', result);
+        this.showMessage('⏳ Pembayaran pending. Silakan selesaikan pembayaran Anda.', 'warning');
+      },
+      onError: (result) => {
+        console.log('Payment error:', result);
+        this.showMessage('❌ Terjadi kesalahan dalam proses pembayaran.', 'error');
+      },
+      onClose: () => {
+        console.log('Payment popup closed');
+        this.showMessage('ℹ️ Jendela pembayaran ditutup. Anda dapat melanjutkan pembayaran kapan saja.', 'warning');
+      }
+    });
+  }
+
+  // Utility methods
+  formatCurrency(amount) {
+    return new Intl.NumberFormat('id-ID').format(amount);
+  }
+
+  setButtonLoading(button, isLoading, text) {
+    if (!button) return;
+    button.disabled = isLoading;
+    button.textContent = text;
+  }
+
+  showMessage(message, type = 'info') {
+    if (!this.messageElement) {
+      this.messageElement = document.createElement('div');
+      this.messageElement.id = 'resultMessage';
+      this.state.elements.purchaseForm.appendChild(this.messageElement);
+    }
+
+    const colorClasses = {
+      success: 'text-green-700 bg-green-100 border border-green-300',
+      warning: 'text-yellow-700 bg-yellow-100 border border-yellow-300',
+      error: 'text-red-700 bg-red-100 border border-red-300',
+      info: 'text-blue-700 bg-blue-100 border border-blue-300'
+    };
+
+    this.messageElement.textContent = message;
+    this.messageElement.className = `mt-4 text-sm text-center p-3 rounded-lg transition-all duration-300 ${colorClasses[type] || colorClasses.info}`;
+
+    // Auto-hide for non-error messages
+    if (type !== 'error') {
+      setTimeout(() => {
+        if (this.messageElement) {
+          this.messageElement.classList.add('opacity-0');
+          setTimeout(() => {
+            if (this.messageElement) {
+              this.messageElement.remove();
+              this.messageElement = null;
+            }
+          }, 300);
+        }
+      }, CONFIG.MESSAGE_TIMEOUT);
+    }
+  }
 }
 
-function resetButton() {
-  const submitBtn = document.getElementById('submitBtn');
-  const submitText = document.getElementById('submitText');
-  const loadingText = document.getElementById('loadingText');
-  
-  submitBtn.disabled = false;
-  submitText.classList.remove('hidden');
-  loadingText.classList.add('hidden');
+// ===============================
+// Application Initialization
+// ===============================
+class PaymentFormApp {
+  constructor() {
+    this.state = new PaymentFormState();
+    this.formHandler = new PaymentFormHandler(this.state);
+  }
+
+  init() {
+    this.checkDependencies();
+    this.formHandler.initialize();
+  }
+
+  checkDependencies() {
+    window.addEventListener('load', () => {
+      if (typeof window.snap === 'undefined') {
+        console.error('Midtrans Snap.js failed to load');
+        this.formHandler.showMessage('❌ Gagal memuat sistem pembayaran. Silakan refresh halaman.', 'error');
+      }
+    });
+  }
 }
 
-// Handle jika Snap.js gagal dimuat
-window.addEventListener('load', function() {
-  if (typeof window.snap === 'undefined') {
-    console.error('Midtrans Snap.js failed to load');
-    showMessage('❌ Gagal memuat sistem pembayaran. Silakan refresh halaman.', 'error');
-  }
-});
-
-// Initialize saat DOM loaded
-document.addEventListener('DOMContentLoaded', function() {
-  initializeForm();
-  setupEventListeners();
+// ===============================
+// Start Application
+// ===============================
+document.addEventListener('DOMContentLoaded', () => {
+  const app = new PaymentFormApp();
+  app.init();
 });

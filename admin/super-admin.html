@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Sidebar -->
+    <div class="flex h-screen">
+        <div class="fixed inset-y-0 left-0 w-64 bg-blue-900 text-white transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0 -translate-x-full" id="sidebar">
+            <div class="p-5 border-b border-blue-800">
+                <h1 class="text-xl font-bold">Super Admin Panel</h1>
+            </div>
+            <nav class="mt-5">
+                <a href="#" class="flex items-center p-4 text-white hover:bg-blue-800 transition duration-300 active-nav-link" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt mr-3"></i>
+                    Dashboard
+                </a>
+                <a href="#" class="flex items-center p-4 text-white hover:bg-blue-800 transition duration-300" data-section="admin-management">
+                    <i classfas fa-users-cog mr-3"></i>
+                    Kelola Admin
+                </a>
+                <a href="#" class="flex items-center p-4 text-white hover:bg-blue-800 transition duration-300" data-section="referral-management">
+                    <i class="fas fa-link mr-3"></i>
+                    Kelola Referral
+                </a>
+                <a href="#" class="flex items-center p-4 text-white hover:bg-blue-800 transition duration-300" data-section="purchase-logs">
+                    <i class="fas fa-shopping-cart mr-3"></i>
+                    Log Pembelian
+                </a>
+                <a href="#" class="flex items-center p-4 text-white hover:bg-blue-800 transition duration-300" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt mr-3"></i>
+                    Keluar
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="bg-white shadow">
+                <div class="flex items-center justify-between p-4">
+                    <button class="text-gray-500 focus:outline-none md:hidden" id="sidebarToggle">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                    <div class="flex items-center">
+                        <div class="relative">
+                            <button class="flex items-center focus:outline-none" id="userMenuButton">
+                                <img src="https://via.placeholder.com/40" alt="User" class="h-10 w-10 rounded-full">
+                                <span class="ml-2 text-gray-700">Super Admin</span>
+                                <i class="fas fa-chevron-down ml-1 text-gray-500"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="flex-1 overflow-y-auto p-6">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="content-section active">
+                    <h2 class="text-2xl font-bold mb-6">Dashboard Super Admin</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                                    <i class="fas fa-users text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-gray-500">Total Admin</p>
+                                    <h3 class="text-2xl font-bold" id="totalAdmins">0</h3>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-green-100 text-green-600">
+                                    <i class="fas fa-link text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-gray-500">Total Kode Referral</p>
+                                    <h3 class="text-2xl font-bold" id="totalReferralCodes">0</h3>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                                    <i class="fas fa-shopping-cart text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-gray-500">Total Pembelian</p>
+                                    <h3 class="text-2xl font-bold" id="totalPurchases">0</h3>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+                                    <i class="fas fa-chart-line text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-gray-500">Penggunaan Referral</p>
+                                    <h3 class="text-2xl font-bold" id="referralUsage">0%</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-lg font-bold mb-4">Aktivitas Terbaru</h3>
+                            <div class="space-y-4" id="recentActivities">
+                                <div class="flex items-center justify-between border-b pb-3">
+                                    <div class="flex items-center">
+                                        <div class="p-2 rounded-full bg-blue-100 text-blue-600 mr-3">
+                                            <i class="fas fa-user-plus"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">Admin baru dibuat</p>
+                                            <p class="text-sm text-gray-500">2 menit yang lalu</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between border-b pb-3">
+                                    <div class="flex items-center">
+                                        <div class="p-2 rounded-full bg-green-100 text-green-600 mr-3">
+                                            <i class="fas fa-link"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">Kode referral dibuat</p>
+                                            <p class="text-sm text-gray-500">10 menit yang lalu</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-lg font-bold mb-4">Statistik Penggunaan</h3>
+                            <canvas id="usageChart" height="200"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Admin Management Section -->
+                <section id="admin-management" class="content-section hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold">Kelola Admin</h2>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300" id="createAdminBtn">
+                            <i class="fas fa-plus mr-2"></i>Tambah Admin
+                        </button>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kode Referral</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Penggunaan</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="adminList">
+                                    <!-- Data akan diisi oleh JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Referral Management Section -->
+                <section id="referral-management" class="content-section hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold">Kelola Kode Referral</h2>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300" id="createReferralBtn">
+                            <i class="fas fa-plus mr-2"></i>Buat Kode Baru
+                        </button>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow overflow-hidden mb-8">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pemilik</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kode Referral</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jumlah Penggunaan</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="referralList">
+                                    <!-- Data akan diisi oleh JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold mb-4">Log Referral</h3>
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kode</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pengguna</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="referralLogs">
+                                    <!-- Data akan diisi oleh JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Purchase Logs Section -->
+                <section id="purchase-logs" class="content-section hidden">
+                    <h2 class="text-2xl font-bold mb-6">Log Pembelian</h2>
+                    
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID Pesanan</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Judul Buku</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama Pembeli</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Telepon</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Harga Akhir</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status Pembayaran</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Kode Referral</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="purchaseLogs">
+                                    <!-- Data akan diisi oleh JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal Create Admin -->
+    <div id="createAdminModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg w-full max-w-md p-6">
+            <h3 class="text-xl font-bold mb-4">Buat Admin Baru</h3>
+            <form id="createAdminForm">
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2" name="name" for="adminName">Nama</label>
+                    <input type="text" id="adminName" class="w-full p-2 border border-gray-300 rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2" name="email" for="adminEmail">Email</label>
+                    <input type="email" id="adminEmail" class="w-full p-2 border border-gray-300 rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2" name="password" for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" class="w-full p-2 border border-gray-300 rounded" required>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 mb-2" name="passwordConfirmation" for="adminPasswordConfirmation">Konfirmasi Password</label>
+                    <input type="password" id="adminPasswordConfirmation" class="w-full p-2 border border-gray-300 rounded" required>
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" class="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2" id="cancelCreateAdmin">Batal</button>
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Buat</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Create Referral -->
+<div id="createReferralModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg w-full max-w-md p-6 mx-4">
+        <h3 class="text-xl font-bold mb-4">Buat Kode Referral Baru</h3>
+        <form id="createReferralForm">
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2" for="referralAdmin">Pilih Admin</label>
+                <select id="referralAdmin" class="w-full p-2 border border-gray-300 rounded" required>
+                    <option value="">-- Pilih Admin --</option>
+                    <!-- Options akan diisi oleh JavaScript -->
+                </select>
+                <p class="text-sm text-gray-500 mt-1">Hanya menampilkan admin yang belum memiliki kode referral</p>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2" for="referralCode">Kode Referral (Opsional)</label>
+                <input type="text" id="referralCode" class="w-full p-2 border border-gray-300 rounded" 
+                       placeholder="Kosongkan untuk generate otomatis" maxlength="20">
+                <p class="text-sm text-gray-500 mt-1">Maksimal 20 karakter</p>
+            </div>
+            <div class="flex justify-end space-x-2">
+                <button type="button" class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 transition-colors" id="cancelCreateReferral">Batal</button>
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
+                    <span class="btn-text">Buat</span>
+                    <span class="btn-spinner hidden"><i class="fas fa-spinner fa-spin"></i></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

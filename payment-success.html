@@ -85,7 +85,13 @@
 
 <script>
   const urlParams = new URLSearchParams(window.location.search);
-  const orderId = urlParams.get('order_id');
+let orderId = urlParams.get('order_id');
+
+// fallback ke localStorage
+if (!orderId) {
+  orderId = localStorage.getItem('last_order_id');
+}
+
 
   // Elements
   const statusUpdate = document.getElementById('statusUpdate');
@@ -117,8 +123,8 @@
     }
   } else {
     document.getElementById('orderId').textContent = 'Tidak tersedia';
-    statusError.classList.remove('hidden');
-    statusError.querySelector('p').textContent = '⚠️ Order ID tidak ditemukan';
+  statusError.classList.remove('hidden');
+  statusError.querySelector('p').textContent = '⚠️ Order ID tidak ditemukan';
   }
 
   // Fixed function to update status using log_id
@@ -127,13 +133,12 @@
       console.log('Updating status for log_id:', logId);
       
       // First, check current status to avoid unnecessary updates
-      const checkResponse = await fetch(`http://iis.dreamapps.id/api/logs`);
+      const checkResponse = await fetch(`https://iis.portalsi.com/api/logs/${logId}`);
       if (checkResponse.ok) {
-        const logs = await checkResponse.json();
-        const currentLog = logs.find(log => log.id == logId);
+        const currentLog = await checkResponse.json();
         
-        if (currentLog && currentLog.status === 'beli') {
-          console.log('Status already updated to "beli" by webhook');
+        if (currentLog && currentLog.status === 'success') {
+          console.log('Status already updated to "success" by webhook');
           statusUpdate.classList.add('hidden');
           statusSuccess.classList.remove('hidden');
           statusSuccess.querySelector('p').textContent = '✅ Status transaksi sudah diperbarui (via webhook)';
@@ -142,13 +147,13 @@
       }
       
       // Update using log_id (not order_id)
-      const response = await fetch(`http://iis.dreamapps.id/api/logs/${logId}`, {
+      const response = await fetch(`https://iis.portalsi.com/api/logs/${logId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ 
-          status: 'beli',
+          status: 'success',
           order_id: orderIdParam // Also update order_id if not set
         })
       });
@@ -164,6 +169,8 @@
       // Hide loading, show success
       statusUpdate.classList.add('hidden');
       statusSuccess.classList.remove('hidden');
+      localStorage.removeItem('last_order_id');
+
       
     } catch (error) {
       console.error('Gagal memperbarui status log:', error);

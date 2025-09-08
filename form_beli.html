@@ -5,146 +5,250 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Form Pembelian Buku</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Midtrans Snap.js PRODUCTION -->
-  <script type="text/javascript" src="https://app.midtrans.com/snap/snap.js" data-client-key="Mid-client-YOUR-PRODUCTION-CLIENT-KEY"></script>
-   <!-- <script type="text/javascript"  src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="Mid-client-YourSandboxClientKey"></script> -->
+  <!-- Midtrans Snap.js (pakai PRODUCTION / SANDBOX sesuai kebutuhan) -->
+ <script type="text/javascript" 
+        src="https://app.midtrans.com/snap/snap.js" 
+        data-client-key="PROD-Mid-client-XXXXX">
+</script>
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
   <div class="max-w-xl w-full bg-white p-8 rounded-lg shadow-lg">
     <h1 class="text-2xl font-bold text-gray-800 mb-6">Form Pembelian Buku</h1>
-    
-    <!-- Loading indicator untuk validasi referral -->
-    <div id="refValidationLoading" class="mb-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200 hidden">
-      <p class="text-sm text-yellow-700">🔄 Memvalidasi kode referral...</p>
-    </div>
-    
+
     <!-- Informasi Buku -->
     <div class="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
       <h2 class="text-lg font-semibold text-blue-800 mb-2">Detail Buku</h2>
-      <p class="text-sm text-blue-700"><strong>Judul:</strong> <span id="judulDisplay">-</span></p>
-      <p class="text-sm text-blue-700"><strong>Harga Buku:</strong> Rp <span id="hargaAsliDisplay">0</span></p>
+      <p class="text-sm text-blue-700"><strong>Judul:</strong> <span id="judulDisplay">Buku Teknologi Islami</span></p>
+      <p class="text-sm text-blue-700"><strong>Harga Buku:</strong> Rp <span id="hargaAsliDisplay">100.000</span></p>
       <p class="text-sm text-blue-700"><strong>Ongkos Kirim + Packing:</strong> Rp <span id="ongkirDisplay">15.000</span></p>
       <p class="text-sm text-blue-700"><strong>Kode Referral:</strong> <span id="refDisplay">-</span></p>
-      
+
       <div id="diskonInfo" class="mt-2 p-2 bg-green-100 text-green-700 text-sm rounded hidden">
         ✅ Diskon 5% dari kode referral telah diterapkan!
       </div>
-      
       <div id="refErrorInfo" class="mt-2 p-2 bg-red-100 text-red-700 text-sm rounded hidden">
         ❌ Kode referral tidak valid atau tidak ditemukan
       </div>
-      
+
       <div id="hargaFinal" class="mt-2 text-lg font-bold text-blue-800">
-        <strong>Total Bayar: Rp <span id="hargaFinalDisplay">0</span></strong>
+        <strong>Total Bayar: Rp <span id="hargaFinalDisplay"></span> harga belum termasuk ongkos kirim</strong>
       </div>
     </div>
 
-    <form id="purchaseForm" class="space-y-5">
-      <!-- Hidden fields untuk data buku -->
-      <input type="hidden" id="book_title" name="book_title">
-      <input type="hidden" id="price" name="price">
-      <input type="hidden" id="referral_code" name="referral_code">
+    <form id="purchaseForm" class="space-y-5" novalidate>
+      <!-- Hidden field untuk data buku -->
+      <input type="hidden" id="book_title" name="book_title" value="Buku Teknologi Islami">
+      <input type="hidden" id="price" name="price" value="100000">
       <input type="hidden" id="is_referral_valid" name="is_referral_valid" value="false">
-      <input type="hidden" id="ongkir" name="ongkir" value="15000">
+      <input type="hidden" id="referral_code" name="referral_code" value="">
 
-      <!-- Input Kode Referral -->
+      <!-- Input Referral -->
       <div class="p-4 bg-green-50 rounded-lg border border-green-200">
         <label for="input_referral" class="block text-sm font-semibold text-green-800 mb-2">
           🎁 Kode Referral (Opsional)
         </label>
         <div class="flex gap-2">
           <input type="text" id="input_referral" name="input_referral"
-            placeholder="Masukkan kode referral untuk diskon 5%"
+            placeholder="Masukkan kode referral"
+            maxlength="50"
+            pattern="[A-Za-z0-9_-]+"
+            title="Kode referral hanya boleh mengandung huruf, angka, underscore, dan dash"
             class="flex-1 px-4 py-2 border border-green-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 text-sm">
           <button type="button" id="validateRefBtn"
-            class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition duration-200 text-sm font-medium">
+            class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm transition duration-200">
             Cek
           </button>
         </div>
-        <p class="text-xs text-green-600 mt-2">
-          💡 Tip: Dapatkan diskon 5% dengan kode referral yang valid!
-        </p>
       </div>
 
+      <!-- Nama Pembeli -->
       <div>
-        <label for="nama_pembeli" class="block text-sm font-semibold text-gray-700 mb-2">
+        <label for="buyer_name" class="block text-sm font-semibold text-gray-700 mb-2">
           Nama Pembeli *
         </label>
-        <input type="text" id="nama_pembeli" name="nama_pembeli" required
+        <input type="text" id="buyer_name" name="buyer_name" required
           placeholder="Masukkan nama lengkap"
+          maxlength="100"
+          pattern="[A-Za-z\s.]+"
+          title="Nama hanya boleh mengandung huruf, spasi, dan titik"
           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
       </div>
 
+      <!-- Alamat -->
       <div>
-        <label for="alamat" class="block text-sm font-semibold text-gray-700 mb-2">
+        <label for="address" class="block text-sm font-semibold text-gray-700 mb-2">
           Alamat Lengkap *
         </label>
-        <textarea id="alamat" name="alamat" required rows="3"
-          placeholder="Masukkan alamat lengkap untuk pengiriman"
+        <textarea id="address" name="address" required rows="3"
+          placeholder="Masukkan alamat lengkap (Jalan, RT/RW, Kelurahan, Kecamatan, Kota)"
+          maxlength="500"
           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 resize-none"></textarea>
       </div>
 
+      <!-- Kode Pos -->
       <div>
         <label for="kode_pos" class="block text-sm font-semibold text-gray-700 mb-2">
           Kode Pos *
         </label>
         <input type="text" id="kode_pos" name="kode_pos" required
-          placeholder="Contoh: 16710"
-          pattern="[0-9]{5}"
+          placeholder="Contoh: 12345"
           maxlength="5"
+          pattern="[0-9]{5}"
+          title="Kode pos harus 5 digit angka"
           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
       </div>
 
+      <!-- Nomor HP -->
       <div>
-        <label for="nomor_pembeli" class="block text-sm font-semibold text-gray-700 mb-2">
+        <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">
           Nomor HP/WhatsApp *
         </label>
-        <input type="tel" id="nomor_pembeli" name="nomor_pembeli" required
-          placeholder="Contoh: 08123456789"
-          pattern="[0-9+\-\s]+"
+        <input type="tel" id="phone" name="phone" required
+          placeholder="08123456789"
+          maxlength="15"
+          pattern="[0-9]{10,15}"
+          title="Nomor HP harus 10-15 digit angka"
           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
       </div>
 
+      <!-- Email -->
       <div>
-        <label for="customer_email" class="block text-sm font-semibold text-gray-700 mb-2">
+        <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
           Email (Opsional)
         </label>
-        <input type="email" id="customer_email" name="customer_email"
+        <input type="email" id="email" name="email"
           placeholder="contoh@email.com"
+          maxlength="100"
           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
       </div>
 
-      <!-- Info Pembayaran -->
-      <div class="p-4 bg-green-50 rounded-lg border border-green-200">
-        <h3 class="text-sm font-semibold text-green-800 mb-2">💳 Metode Pembayaran</h3>
-        <p class="text-sm text-green-700">
-          Setelah klik "Bayar Sekarang", Anda akan dapat memilih metode pembayaran:
-        </p>
-        <ul class="text-xs text-green-600 mt-2 space-y-1">
-          <li>• Kartu Kredit/Debit</li>
-          <li>• Bank Transfer ( BNI, BRI, Mandiri)</li>
-          <li>• E-Wallet (GoPay, OVO)</li>
-          <li>• QRIS & Virtual Account</li>
-        </ul>
+      <!-- Loading Indicator -->
+      <div id="loadingIndicator" class="text-center text-blue-600 hidden">
+        <div class="inline-flex items-center">
+          <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Memproses pembayaran...
+        </div>
       </div>
 
+      <!-- Tombol Submit -->
       <button type="submit" id="submitBtn"
-        class="w-full py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition duration-200 font-semibold">
-        <span id="submitText">Bayar Sekarang</span>
-        <span id="loadingText" class="hidden">Memproses...</span>
+        class="w-full py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed">
+        💳 Bayar Sekarang
       </button>
+
+      <!-- Message Area -->
+      <div id="resultMessage" class="hidden mt-4 text-sm text-center p-3 rounded-lg"></div>
     </form>
 
-    <div id="resultMessage" class="mt-4 text-center text-sm hidden"></div>
-    
-    <!-- Info tambahan -->
-    <div class="mt-6 text-xs text-gray-500 text-center">
-      <p>Dengan melakukan pembelian, Anda menyetujui syarat dan ketentuan yang berlaku.</p>
-      <p class="mt-1">Pembayaran diproses dengan aman melalui Midtrans</p>
+    <!-- Footer Info -->
+    <div class="mt-6 p-3 bg-gray-50 rounded-lg text-xs text-gray-600 text-center">
+      🔒 Transaksi aman menggunakan Midtrans • Data pribadi Anda terlindungi
     </div>
   </div>
 
-  <!-- Load JavaScript file terpisah -->
+  <!-- Script -->
+  <script>
+    // Prevent form submission on Enter key in input fields (except submit button)
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && e.target.tagName !== 'BUTTON' && e.target.type !== 'submit') {
+        e.preventDefault();
+      }
+    });
+
+    // Basic input sanitization
+    document.addEventListener('input', function(e) {
+      const target = e.target;
+      
+      // Remove HTML tags and dangerous characters
+      if (target.type === 'text' || target.tagName === 'TEXTAREA') {
+        target.value = target.value.replace(/<[^>]*>/g, '').replace(/[<>'"]/g, '');
+      }
+      
+      // Phone number: only numbers
+      if (target.id === 'phone') {
+        target.value = target.value.replace(/[^0-9]/g, '');
+      }
+      
+      // Postal code: only numbers, max 5 digits
+      if (target.id === 'kode_pos') {
+        target.value = target.value.replace(/[^0-9]/g, '').substring(0, 5);
+      }
+      
+      // Referral code: alphanumeric, underscore, dash only
+      if (target.id === 'input_referral') {
+        target.value = target.value.replace(/[^A-Za-z0-9_-]/g, '').toUpperCase();
+      }
+    });
+
+    // Validate form before submission
+    document.getElementById('purchaseForm').addEventListener('submit', function(e) {
+      const requiredFields = ['buyer_name', 'address', 'kode_pos', 'phone'];
+      let isValid = true;
+      
+      requiredFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        const value = field.value.trim();
+        
+        // Remove existing error styling
+        field.classList.remove('border-red-500', 'bg-red-50');
+        
+        if (!value) {
+          field.classList.add('border-red-500', 'bg-red-50');
+          isValid = false;
+        }
+        
+        // Specific validations
+        if (fieldId === 'phone' && value && !/^[0-9]{10,15}$/.test(value)) {
+          field.classList.add('border-red-500', 'bg-red-50');
+          isValid = false;
+        }
+        
+        if (fieldId === 'kode_pos' && value && !/^[0-9]{5}$/.test(value)) {
+          field.classList.add('border-red-500', 'bg-red-50');
+          isValid = false;
+        }
+      });
+      
+      // Email validation if provided
+      const email = document.getElementById('email').value.trim();
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById('email').classList.add('border-red-500', 'bg-red-50');
+        isValid = false;
+      }
+      
+      if (!isValid) {
+        e.preventDefault();
+        showMessage('❌ Harap isi semua field yang wajib dengan benar!', 'error');
+        return false;
+      }
+    });
+
+    // Show message function
+    function showMessage(message, type) {
+      const resultMessage = document.getElementById('resultMessage');
+      resultMessage.textContent = message;
+      
+      let colorClass;
+      switch(type) {
+        case 'success': 
+          colorClass = 'text-green-700 bg-green-100 border border-green-300'; 
+          break;
+        case 'warning': 
+          colorClass = 'text-yellow-700 bg-yellow-100 border border-yellow-300'; 
+          break;
+        case 'error': 
+        default: 
+          colorClass = 'text-red-700 bg-red-100 border border-red-300'; 
+          break;
+      }
+      
+      resultMessage.className = `mt-4 text-sm text-center p-3 rounded-lg ${colorClass}`;
+      resultMessage.classList.remove('hidden');
+    }
+  </script>
   <script src="./js/purchase-form.js"></script>
 </body>
 </html>

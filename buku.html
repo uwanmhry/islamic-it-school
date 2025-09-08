@@ -730,8 +730,8 @@
           e.preventDefault();
           const bookTitle = button.getAttribute("data-book") || "Tanpa Judul";
           const price = button.getAttribute("data-price") || "0";
-          // const redirectUrl = `/form_beli.html?book_title=${encodeURIComponent(bookTitle)}&ref=${encodeURIComponent(ref)}&price=${encodeURIComponent(price)}`;
-          const redirectUrl = `/server.html`
+          const redirectUrl = `/form_beli.html?book_title=${encodeURIComponent(bookTitle)}&ref=${encodeURIComponent(ref)}&price=${encodeURIComponent(price)}`;
+          // const redirectUrl = `/server.html`
           window.location.href = redirectUrl;
         });
       });

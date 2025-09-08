@@ -1,492 +1,70 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-  <meta charset="UTF-8" />
-  <title>Admin Panel - Referral Management</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/admin-styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Admin Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-
-<body class="min-h-screen">
-  <!-- Background Elements -->
-  <div class="fixed inset-0 overflow-hidden pointer-events-none">
-    <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-orange-200/20 to-transparent rounded-full floating-element"></div>
-    <div class="absolute top-40 right-20 w-24 h-24 bg-gradient-to-br from-teal-200/20 to-transparent rounded-full floating-element" style="animation-delay: 2s;"></div>
-    <div class="absolute bottom-20 left-1/4 w-20 h-20 bg-gradient-to-br from-orange-300/15 to-transparent rounded-full floating-element" style="animation-delay: 4s;"></div>
-  </div>
-
-  <!-- Header -->
-  <header class="relative z-50 py-4 glass sticky top-0">
-    <div class="max-w-7xl mx-auto px-4 md:px-6">
-      <div class="flex justify-between items-center">
-        <div class="flex items-center space-x-4">
-          <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg">
-            <i class='bx bx-shield-check text-white text-xl'></i>
-          </div>
-          <div>
-            <h1 class="text-2xl font-bold gradient-text">Admin Panel</h1>
-            <p class="text-sm text-gray-600">Management System</p>
-          </div>
+<body class="bg-gradient-to-r from-blue-500 to-purple-600 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl flex flex-col md:flex-row w-full max-w-4xl">
+        <div class="bg-blue-900 text-white rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none md:w-2/5 p-5 flex flex-col justify-center items-center">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold mb-2">Admin Portal</h2>
+                <div class="border-2 w-10 border-white inline-block mb-2"></div>
+                <p class="mb-6">Masuk ke dashboard admin Anda</p>
+                <a href="#" class="border-2 border-white rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-blue-900">Info Lebih Lanjut</a>
+            </div>
         </div>
         
-        <div class="flex items-center space-x-4">
-          <div class="hidden md:flex items-center space-x-2 bg-white/80 px-4 py-2 rounded-lg shadow-sm">
-            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span class="text-sm text-gray-700">Online</span>
-          </div>
-          <button class="w-10 h-10 bg-white/80 rounded-lg flex items-center justify-center hover:bg-white transition-all shadow-sm">
-            <i class='bx bx-user text-gray-700'></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <!-- Tabs -->
-    <div class="mb-8">
-      <div class="flex space-x-2 bg-white/80 p-2 rounded-xl shadow-sm overflow-x-auto">
-        <button onclick="switchTab('logs')" id="tab-logs" class="tab-button active flex-1 px-4 py-3 rounded-lg font-medium text-center flex items-center justify-center space-x-2 whitespace-nowrap">
-          <i class='bx bx-list-ul'></i>
-          <span>Referral Logs</span>
-        </button>
-        <button onclick="switchTab('codes')" id="tab-codes" class="tab-button flex-1 px-4 py-3 rounded-lg font-medium text-center flex items-center justify-center space-x-2 text-gray-600 hover:bg-gray-100 whitespace-nowrap">
-          <i class='bx bx-code-alt'></i>
-          <span>Referral Codes</span>
-        </button>
-        <button onclick="switchTab('rekap')" id="tab-rekap" class="tab-button flex-1 px-4 py-3 rounded-lg font-medium text-center flex items-center justify-center space-x-2 text-gray-600 hover:bg-gray-100 whitespace-nowrap">
-          <i class='bx bx-bar-chart-alt-2'></i>
-          <span>Rekap Data</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Logs Tab Content -->
-    <div id="content-logs" class="tab-content">
-      <!-- Stats Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div class="card rounded-xl p-6 relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-teal-200/20 to-transparent rounded-full -translate-y-10 translate-x-10"></div>
-          <div class="relative z-10">
-            <div class="flex items-center justify-between mb-4">
-              <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center">
-                <i class='bx bx-check-circle text-white text-xl'></i>
-              </div>
-              <span id="total-beli" class="text-2xl font-bold text-teal-600">-</span>
+        <div class="p-5 md:w-3/5">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-blue-900">Selamat Datang</h2>
+                <div class="border-2 w-10 border-blue-900 inline-block mb-2"></div>
             </div>
-            <h3 class="text-gray-800 font-semibold">Total Beli</h3>
-            <p class="text-gray-600 text-sm">Status sudah beli</p>
-          </div>
+            
+            <form id="loginForm" class="space-y-6">
+                <div class="relative">
+                    <span class="absolute left-3 top-3 text-gray-400">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                    <input type="email" id="email" name="email" placeholder="Email" class="pl-10 w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-blue-900" required>
+                </div>
+                
+                <div class="relative">
+                    <span class="absolute left-3 top-3 text-gray-400">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                    <input type="password" id="password" name="password" placeholder="Password" class="pl-10 w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-blue-900" required>
+                    <span class="absolute right-3 top-3 text-gray-400 cursor-pointer" onclick="togglePassword()">
+                        <i class="fas fa-eye" id="eyeIcon"></i>
+                    </span>
+                </div>
+                
+                <div class="flex justify-between items-center mt-6">
+                    <label class="flex items-center text-sm text-gray-600">
+                        <input type="checkbox" class="form-checkbox">
+                        <span class="ml-2">Ingat saya</span>
+                    </label>
+                    <a href="#" class="text-sm text-blue-900 hover:underline">Lupa Password?</a>
+                </div>
+                
+                <div class="mt-8">
+                    <button type="submit" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white w-full py-3 rounded-full font-bold hover:from-blue-600 hover:to-purple-700 transition-all duration-300">
+                        <span id="loginText">Masuk</span>
+                        <div id="loginSpinner" class="hidden justify-center">
+                            <div class="w-6 h-6 border-t-2 border-r-2 border-white rounded-full animate-spin"></div>
+                        </div>
+                    </button>
+                </div>
+            </form>
+            
+            <div id="loginMessage" class="mt-4 text-center hidden"></div>
         </div>
-
-        <div class="card rounded-xl p-6 relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-200/20 to-transparent rounded-full -translate-y-10 translate-x-10"></div>
-          <div class="relative z-10">
-            <div class="flex items-center justify-between mb-4">
-              <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
-                <i class='bx bx-clock text-white text-xl'></i>
-              </div>
-              <span id="total-belum" class="text-2xl font-bold text-orange-600">-</span>
-            </div>
-            <h3 class="text-gray-800 font-semibold">Belum Beli</h3>
-            <p class="text-gray-600 text-sm">Status belum beli</p>
-          </div>
-        </div>
-
-        <div class="card rounded-xl p-6 relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-gray-200/20 to-transparent rounded-full -translate-y-10 translate-x-10"></div>
-          <div class="relative z-10">
-            <div class="flex items-center justify-between mb-4">
-              <div class="w-12 h-12 bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg flex items-center justify-center">
-                <i class='bx bx-list-ul text-white text-xl'></i>
-              </div>
-              <span id="total-all" class="text-2xl font-bold text-gray-600">-</span>
-            </div>
-            <h3 class="text-gray-800 font-semibold">Total Logs</h3>
-            <p class="text-gray-600 text-sm">Semua data referral</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Controls -->
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 flex-wrap mb-6">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
-          <h2 class="text-lg sm:text-xl font-bold text-gray-800">Referral Logs</h2>
-          <div class="flex items-center space-x-2">
-            <div class="w-2 h-2 bg-teal-500 rounded-full"></div>
-            <span class="text-sm text-gray-600">Live Data</span>
-          </div>
-        </div>
-
-        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
-          <div class="relative w-full sm:w-60">
-            <input 
-              type="text" 
-              id="search-input"
-              placeholder="Cari referral..." 
-              class="pl-10 pr-4 py-2 w-full border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/80"
-            >
-            <i class='bx bx-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400'></i>
-          </div>
-
-          <select id="status-filter" class="w-full sm:w-auto px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white/80">
-            <option value="">Semua Status</option>
-            <option value="beli">Beli</option>
-            <option value="belum beli">Belum Beli</option>
-          </select>
-
-          <button onclick="refreshData()" class="btn-primary px-4 py-2 text-white rounded-lg font-medium flex items-center justify-center space-x-2 hover:shadow-lg transition-all">
-            <i class='bx bx-refresh'></i>
-            <span>Refresh</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Logs Table -->
-      <div class="card rounded-xl overflow-hidden">
-        <div class="overflow-x-auto">
-          <table class="w-full">
-            <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
-              <tr>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Referral Code</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Detail Pembeli</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Harga</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tanggal</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>
-              </tr>
-            </thead>
-            <tbody id="logs-tbody" class="bg-white divide-y divide-gray-100">
-              <!-- Loading state -->
-              <tr>
-                <td colspan="7" class="px-6 py-12 text-center">
-                  <div class="flex flex-col items-center space-y-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-teal-500 rounded-full flex items-center justify-center loading">
-                      <i class='bx bx-loader-alt text-white text-xl'></i>
-                    </div>
-                    <p class="text-gray-600">Memuat data...</p>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div id="logs-pagination" class="mt-4"></div>
-      </div>
     </div>
 
-    <!-- Codes Tab Content -->
-    <div id="content-codes" class="tab-content hidden">
-      <!-- Add Code Form -->
-      <div class="card rounded-xl p-6 mb-6">
-        <div class="flex items-center justify-between mb-6">
-          <h3 class="text-xl font-bold text-gray-800">Tambah Kode Referral Baru</h3>
-        </div>
-        
-        <form id="add-code-form" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2">Kode Referral</label>
-            <input 
-              type="text" 
-              id="new-kode-referal" 
-              placeholder="Masukkan kode referral" 
-              class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
-              required
-            >
-          </div>
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2">Username</label>
-            <input 
-              type="text" 
-              id="new-username" 
-              placeholder="Masukkan username" 
-              class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
-              required
-            >
-          </div>
-          <div class="flex items-end">
-            <button type="submit" class="btn-success w-full px-4 py-2 text-white rounded-lg font-medium hover:shadow-lg transition-all flex items-center justify-center space-x-2">
-              <i class='bx bx-plus'></i>
-              <span>Tambah Kode</span>
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!-- Codes Search -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-        <h2 class="text-xl font-bold text-gray-800">Daftar Kode Referral</h2>
-        
-        <div class="flex items-center gap-3">
-          <div class="relative w-full sm:w-60">
-            <input 
-              type="text" 
-              id="search-codes"
-              placeholder="Cari kode atau username..." 
-              class="pl-10 pr-4 py-2 w-full border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/80"
-            >
-            <i class='bx bx-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400'></i>
-          </div>
-          
-          <button onclick="loadReferralCodes()" class="btn-primary px-4 py-2 text-white rounded-lg font-medium flex items-center space-x-2 hover:shadow-lg transition-all">
-            <i class='bx bx-refresh'></i>
-            <span>Refresh</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Codes Table -->
-      <div class="card rounded-xl overflow-hidden">
-        <div class="overflow-x-auto">
-          <table class="w-full">
-            <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
-              <tr>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Kode Referral</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Username</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Dibuat</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Total Usage</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>
-              </tr>
-            </thead>
-            <tbody id="codes-tbody" class="bg-white divide-y divide-gray-100">
-              <!-- Loading state -->
-              <tr>
-                <td colspan="6" class="px-6 py-12 text-center">
-                  <div class="flex flex-col items-center space-y-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-teal-500 rounded-full flex items-center justify-center loading">
-                      <i class='bx bx-loader-alt text-white text-xl'></i>
-                    </div>
-                    <p class="text-gray-600">Memuat data...</p>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div id="codes-pagination" class="mt-4"></div>
-      </div>
-    </div>
-
-    <!-- Rekap Tab Content -->
-    <div id="content-rekap" class="tab-content hidden">
-      <!-- Summary Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div class="card rounded-xl p-6 relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-green-200/20 to-transparent rounded-full -translate-y-10 translate-x-10"></div>
-          <div class="relative z-10">
-            <div class="flex items-center justify-between mb-4">
-              <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-                <i class='bx bx-check-circle text-white text-xl'></i>
-              </div>
-              <span id="rekap-total-beli" class="text-2xl font-bold text-green-600">-</span>
-            </div>
-            <h3 class="text-gray-800 font-semibold">Total Pembeli</h3>
-            <p class="text-gray-600 text-sm">Yang sudah beli</p>
-          </div>
-        </div>
-
-        <div class="card rounded-xl p-6 relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-200/20 to-transparent rounded-full -translate-y-10 translate-x-10"></div>
-          <div class="relative z-10">
-            <div class="flex items-center justify-between mb-4">
-              <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-                <i class='bx bx-money text-white text-xl'></i>
-              </div>
-              <span id="rekap-total-pendapatan" class="text-2xl font-bold text-blue-600">-</span>
-            </div>
-            <h3 class="text-gray-800 font-semibold">Total Pendapatan</h3>
-            <p class="text-gray-600 text-sm">Dari penjualan</p>
-          </div>
-        </div>
-
-        <div class="card rounded-xl p-6 relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-purple-200/20 to-transparent rounded-full -translate-y-10 translate-x-10"></div>
-          <div class="relative z-10">
-            <div class="flex items-center justify-between mb-4">
-              <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <i class='bx bx-code-alt text-white text-xl'></i>
-              </div>
-              <span id="rekap-kode-aktif" class="text-2xl font-bold text-purple-600">-</span>
-            </div>
-            <h3 class="text-gray-800 font-semibold">Kode Aktif</h3>
-            <p class="text-gray-600 text-sm">Yang digunakan</p>
-          </div>
-        </div>
-
-        <div class="card rounded-xl p-6 relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-indigo-200/20 to-transparent rounded-full -translate-y-10 translate-x-10"></div>
-          <div class="relative z-10">
-            <div class="flex items-center justify-between mb-4">
-              <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center">
-                <i class='bx bx-trending-up text-white text-xl'></i>
-              </div>
-              <span id="rekap-rata-harga" class="text-2xl font-bold text-indigo-600">-</span>
-            </div>
-            <h3 class="text-gray-800 font-semibold">Rata-rata Harga</h3>
-            <p class="text-gray-600 text-sm">Per transaksi</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Export Controls -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-        <h2 class="text-xl font-bold text-gray-800">Rekap Data Pembelian</h2>
-        
-        <div class="flex items-center gap-3">
-          <div class="flex items-center gap-2">
-            <label for="date-from" class="text-sm font-medium text-gray-700">Dari:</label>
-            <input type="date" id="date-from" class="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
-          </div>
-          <div class="flex items-center gap-2">
-            <label for="date-to" class="text-sm font-medium text-gray-700">Sampai:</label>
-            <input type="date" id="date-to" class="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
-          </div>
-          <button onclick="filterRekapData()" class="btn-primary px-4 py-2 text-white rounded-lg font-medium flex items-center space-x-2">
-            <i class='bx bx-filter'></i>
-            <span>Filter</span>
-          </button>
-          <button onclick="exportRekapData()" class="btn-success px-4 py-2 text-white rounded-lg font-medium flex items-center space-x-2">
-            <i class='bx bx-download'></i>
-            <span>Export</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Rekap Table -->
-      <div class="card rounded-xl overflow-hidden">
-        <div class="overflow-x-auto">
-          <table class="w-full">
-            <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
-              <tr>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Kode Referral</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Username</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Total Penjualan</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Total Pendapatan</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Rata-rata Harga</th>
-                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Transaksi Terakhir</th>
-              </tr>
-            </thead>
-            <tbody id="rekap-tbody" class="bg-white divide-y divide-gray-100">
-              <!-- Loading state -->
-              <tr>
-                <td colspan="6" class="px-6 py-12 text-center">
-                  <div class="flex flex-col items-center space-y-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-teal-500 rounded-full flex items-center justify-center loading">
-                      <i class='bx bx-loader-alt text-white text-xl'></i>
-                    </div>
-                    <p class="text-gray-600">Memuat data rekap...</p>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div id="rekap-pagination" class="mt-4"></div>
-      </div>
-    </div>
-  </main>
-
-  <!-- Edit Modal -->
-  <div id="edit-modal" class="fixed inset-0 z-50 hidden">
-    <div class="modal-backdrop absolute inset-0" onclick="closeModal()"></div>
-    <div class="flex items-center justify-center min-h-screen p-4">
-      <div class="card relative w-full max-w-md rounded-2xl p-6 fade-in">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-teal-500 rounded-t-2xl"></div>
-        
-        <div class="flex items-center justify-between mb-6">
-          <h3 class="text-xl font-bold text-gray-800">Edit Status</h3>
-          <button onclick="closeModal()" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-all">
-            <i class='bx bx-x text-gray-600'></i>
-          </button>
-        </div>
-
-        <form id="edit-form">
-          <input type="hidden" id="edit-id">
-          
-          <div class="mb-6">
-            <label class="block text-sm font-semibold text-gray-700 mb-3">Referral Code</label>
-            <div class="bg-gray-50 px-4 py-3 rounded-lg">
-              <span id="edit-referral-code" class="text-gray-800 font-mono"></span>
-            </div>
-          </div>
-          
-          <div class="mb-6">
-            <label class="block text-sm font-semibold text-gray-700 mb-3">Status</label>
-            <select id="edit-status" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white">
-              <option value="beli">Beli</option>
-              <option value="belum beli">Belum Beli</option>
-            </select>
-          </div>
-          
-          <div class="flex space-x-3">
-            <button type="button" onclick="closeModal()" class="flex-1 px-4 py-3 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 transition-all">
-              Batal
-            </button>
-            <button type="submit" class="flex-1 btn-primary px-4 py-3 text-white font-semibold rounded-lg hover:shadow-lg transition-all">
-              Simpan
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- Delete Confirmation Modal -->
-  <div id="delete-modal" class="fixed inset-0 z-50 hidden">
-    <div class="modal-backdrop absolute inset-0" onclick="closeDeleteModal()"></div>
-    <div class="flex items-center justify-center min-h-screen p-4">
-      <div class="card relative w-full max-w-md rounded-2xl p-6 fade-in">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-red-600 rounded-t-2xl"></div>
-        
-        <div class="flex items-center justify-between mb-6">
-          <h3 class="text-xl font-bold text-gray-800">Hapus Kode Referral</h3>
-          <button onclick="closeDeleteModal()" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-all">
-            <i class='bx bx-x text-gray-600'></i>
-          </button>
-        </div>
-
-        <div class="mb-6">
-          <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mx-auto mb-4">
-            <i class='bx bx-trash text-red-600 text-2xl'></i>
-          </div>
-          <p class="text-gray-700 text-center mb-2">Apakah Anda yakin ingin menghapus kode referral ini?</p>
-          <div class="bg-gray-50 px-4 py-3 rounded-lg text-center">
-            <span id="delete-code-text" class="text-gray-800 font-mono font-semibold"></span>
-          </div>
-        </div>
-        
-        <div class="flex space-x-3">
-          <button type="button" onclick="closeDeleteModal()" class="flex-1 px-4 py-3 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 transition-all">
-            Batal
-          </button>
-          <button type="button" onclick="confirmDelete()" class="flex-1 btn-danger px-4 py-3 text-white font-semibold rounded-lg hover:shadow-lg transition-all">
-            Hapus
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-4 right-4 z-50 hidden">
-    <div class="card px-6 py-4 rounded-lg shadow-lg max-w-sm">
-      <div class="flex items-center space-x-3">
-        <div id="toast-icon" class="w-8 h-8 rounded-full flex items-center justify-center"></div>
-        <div>
-          <p id="toast-message" class="font-semibold text-gray-800"></p>
-          <p id="toast-description" class="text-sm text-gray-600"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="./js/admin-panel.js"></script>
+    <script src="js/script.js"></script>
 </body>
-
 </html>
