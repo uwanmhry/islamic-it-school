@@ -1,4 +1,6 @@
-// Initialize AOS
+// =========================
+// AOS Init
+// =========================
 AOS.init({
     duration: 800,
     once: true,
@@ -11,26 +13,28 @@ AOS.init({
 let currentPage = 1;
 const videosPerPage = 15;
 let showingAllVideos = false;
-let currentCategory = 'all';
+let currentCategory = "all";
 let searchQuery = "";
 
-// DOM Content Loaded
-document.addEventListener('DOMContentLoaded', function () {
+// =========================
+// DOM Ready
+// =========================
+document.addEventListener("DOMContentLoaded", function () {
     initializeApp();
     initEventListeners();
     initNavbarHighlight();
+    loadFeaturedModalVideos();
 
-    // Safe bind backdrop for mobile video modal (jaga2 kalau modal belum ada)
-    const videoModalEl = document.getElementById('videoModal');
+    // Safe bind backdrop modal
+    const videoModalEl = document.getElementById("videoModal");
     if (videoModalEl) {
-        videoModalEl.addEventListener('click', function (e) {
-            if (e.target.id === 'videoModal') closeVideoModal();
+        videoModalEl.addEventListener("click", function (e) {
+            if (e.target.id === "videoModal") closeVideoModal();
         });
     }
 
-    // Re-render grid mode saat resize (ubah mobile/desktop rendering)
-    window.addEventListener('resize', () => {
-        // render ulang kartu sesuai mode mobile/desktop
+    // Re-render grid mode saat resize
+    window.addEventListener("resize", () => {
         loadMoreVideos();
     });
 });
@@ -43,7 +47,7 @@ function initializeApp() {
     setTimeout(() => {
         loadFeaturedVideos();
         loadMoreVideos();
-        toggleFeaturedSection(); // kontrol awal
+        toggleFeaturedSection();
     }, 500);
 }
 
@@ -51,15 +55,22 @@ function initializeApp() {
 // Categories
 // =========================
 function loadCategories() {
-    const container = document.getElementById('categoriesContainer');
-    container.innerHTML = videoData.categories.map((category, index) => `
+    const container = document.getElementById("categoriesContainer");
+    container.innerHTML = videoData.categories
+        .map(
+            (category, index) => `
         <button data-id="${category.id}" 
             onclick="renderVideosByCategory('${category.id}')"
-            class="px-4 py-1.5 ${index === 0 ? 'bg-orange-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} 
+            class="px-4 py-1.5 ${index === 0
+                    ? "bg-orange-500 text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                } 
             rounded-full font-medium whitespace-nowrap transition">
             ${category.name}
         </button>
-    `).join('');
+    `
+        )
+        .join("");
 }
 
 function renderVideosByCategory(categoryId) {
@@ -72,17 +83,21 @@ function renderVideosByCategory(categoryId) {
     loadMoreVideos();
     toggleFeaturedSection();
 
-    // Update button aktif
-    const categoryButtons = document.querySelectorAll('#categoriesContainer button');
-    categoryButtons.forEach(btn => {
-        btn.classList.remove('bg-orange-500', 'text-white');
-        btn.classList.add('bg-gray-100', 'text-gray-700');
+    // Update active button
+    const categoryButtons = document.querySelectorAll(
+        "#categoriesContainer button"
+    );
+    categoryButtons.forEach((btn) => {
+        btn.classList.remove("bg-orange-500", "text-white");
+        btn.classList.add("bg-gray-100", "text-gray-700");
     });
 
-    const activeBtn = document.querySelector(`#categoriesContainer button[data-id="${categoryId}"]`);
+    const activeBtn = document.querySelector(
+        `#categoriesContainer button[data-id="${categoryId}"]`
+    );
     if (activeBtn) {
-        activeBtn.classList.remove('bg-gray-100', 'text-gray-700');
-        activeBtn.classList.add('bg-orange-500', 'text-white');
+        activeBtn.classList.remove("bg-gray-100", "text-gray-700");
+        activeBtn.classList.add("bg-orange-500", "text-white");
     }
 }
 
@@ -100,15 +115,16 @@ function updateMoreHeading() {
         heading.textContent = "Video Lainnya";
         subtitle.textContent = "Koleksi video pilihan untuk Anda";
     } else {
-        const cat = videoData.categories.find(c => c.id === currentCategory);
+        const cat = videoData.categories.find((c) => c.id === currentCategory);
         heading.textContent = cat ? `${cat.name}` : "Video Lainnya";
-        subtitle.textContent = cat ? `Kumpulan video dari kategori ${cat.name}` : "Koleksi video pilihan lainnya";
+        subtitle.textContent = cat
+            ? `Kumpulan video dari kategori ${cat.name}`
+            : "Koleksi video pilihan lainnya";
     }
 }
 
-
 // =========================
-// Search Function
+// Search
 // =========================
 function searchVideos(keyword) {
     searchQuery = keyword.trim().toLowerCase();
@@ -121,33 +137,56 @@ function searchVideos(keyword) {
 }
 
 // =========================
+// Helpers (YouTube ID + Thumbnail)
+// =========================
+function getVideoId(iframeUrl) {
+    const match = iframeUrl.match(/embed\/([^?]+)/);
+    return match ? match[1] : null;
+}
+
+function getThumbnailUrl(iframeUrl) {
+    const videoId = getVideoId(iframeUrl);
+    return videoId
+        ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+        : "";
+}
+
+// =========================
 // Featured Videos
 // =========================
 function loadFeaturedVideos() {
-    const container = document.getElementById('featuredVideosContainer');
-    container.innerHTML = '';
+    const container = document.getElementById("featuredVideosContainer");
+    container.innerHTML = "";
 
-    container.classList.remove('grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-5');
-    container.classList.add('grid-cols-1', 'md:grid-cols-3', 'gap-6');
+    container.classList.remove("grid-cols-1", "md:grid-cols-2", "lg:grid-cols-5");
+    container.classList.add("grid-cols-1", "md:grid-cols-3", "gap-6");
 
     const displayVideos = videoData.featuredVideos.slice(0, 3);
 
-    container.innerHTML = displayVideos.map(video => `
-        <div class="video-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in">
-            <div class="relative pt-[56.25%]">
-                <iframe src="${video.iframe}" title="${video.title}" frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen class="absolute top-0 left-0 w-full h-full"></iframe>
+    container.innerHTML = displayVideos
+        .map((video) => {
+            const thumbnail = getThumbnailUrl(video.iframe);
+            return `
+      <div class="video-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in">
+        <div class="relative pt-[56.25%] cursor-pointer" onclick="openVideoModal('${video.iframe}')">
+          <img src="${thumbnail}" alt="${video.title}" class="absolute top-0 left-0 w-full h-full object-cover">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-14 h-14 bg-black bg-opacity-60 rounded-full flex items-center justify-center">
+              <i class="fas fa-play text-white text-xl"></i>
             </div>
-            <div class="p-4">
-                <h3 class="font-semibold text-gray-800 text-lg line-clamp-2">${video.title}</h3>
-            </div>
+          </div>
         </div>
-    `).join('');
+        <div class="p-4">
+          <h3 class="font-semibold text-gray-800 text-lg line-clamp-2">${video.title}</h3>
+        </div>
+      </div>
+    `;
+        })
+        .join("");
 }
 
 function toggleFeaturedSection() {
-    const featuredSection = document.querySelector('#featuredSection');
+    const featuredSection = document.querySelector("#featuredSection");
     if (!featuredSection) return;
 
     if (currentCategory === "all" && !searchQuery) {
@@ -157,51 +196,57 @@ function toggleFeaturedSection() {
     }
 }
 
-// =========================
-// Featured Modal Functions
-// =========================
+// Buka modal Featured
 function openFeaturedModal() {
     const modal = document.getElementById('featuredModal');
-    const modalContent = document.getElementById('featuredModalContent');
-
-    modalContent.innerHTML = videoData.featuredVideos.map(video => `
-    <div class="video-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="zoom-in">
-      <div class="relative pt-[56.25%]">
-        <iframe src="${video.iframe}" title="${video.title}" frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen class="absolute top-0 left-0 w-full h-full"></iframe>
-      </div>
-      <div class="p-4">
-        <h3 class="font-semibold text-gray-800 text-lg line-clamp-2">${video.title}</h3>
-      </div>
-    </div>
-  `).join("");
-
-    modal.classList.remove("hidden");
+    modal.classList.remove('hidden'); // munculin modal
+    modal.classList.add('flex'); // biar aktif flexbox centernya
 }
 
+// Tutup modal Featured
 function closeFeaturedModal() {
-    document.getElementById('featuredModal').classList.add("hidden");
+    const modal = document.getElementById('featuredModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
 }
 
-function closeModal() {
-    const modal = document.getElementById('featuredModal');
-    if (modal) {
-        modal.classList.remove('open');
-        setTimeout(() => {
-            document.body.removeChild(modal);
-        }, 300);
-    }
+function loadFeaturedModalVideos() {
+    const container = document.getElementById('featuredModalContent');
+    container.innerHTML = '';
+
+    videoData.featuredVideos.forEach(video => {
+        const videoId = video.iframe.split('/embed/')[1].split('?')[0];
+        const thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+
+        const videoCard = `
+        <div class="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer"
+            onclick="openVideoModal('${video.iframe}')">
+            <div class="relative w-full h-48">
+            <img src="${thumbnail}" alt="${video.title}" class="w-full h-full object-cover">
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-12 h-12 bg-black bg-opacity-60 rounded-full flex items-center justify-center">
+                <i class="fas fa-play text-white text-lg"></i>
+                </div>
+            </div>
+            </div>
+            <div class="p-4">
+            <h3 class="text-gray-800 font-semibold text-lg">${video.title}</h3>
+            </div>
+        </div>
+        `;
+        container.innerHTML += videoCard;
+    });
 }
+
 
 // =========================
-/** More Videos (Pagination) */
+// More Videos (Pagination)
 // =========================
 function getFilteredVideos() {
     let filtered = videoData.moreVideos;
 
-    if (currentCategory !== 'all') {
-        filtered = filtered.filter(v => {
+    if (currentCategory !== "all") {
+        filtered = filtered.filter((v) => {
             if (Array.isArray(v.category)) {
                 return v.category.includes(currentCategory);
             }
@@ -210,14 +255,16 @@ function getFilteredVideos() {
     }
 
     if (searchQuery) {
-        filtered = filtered.filter(v => v.title.toLowerCase().includes(searchQuery));
+        filtered = filtered.filter((v) =>
+            v.title.toLowerCase().includes(searchQuery)
+        );
     }
 
     return filtered;
 }
 
 function loadMoreVideos() {
-    const container = document.getElementById('moreVideosContainer');
+    const container = document.getElementById("moreVideosContainer");
     const allVideos = getFilteredVideos();
 
     const startIndex = (currentPage - 1) * videosPerPage;
@@ -225,39 +272,27 @@ function loadMoreVideos() {
         ? allVideos
         : allVideos.slice(startIndex, startIndex + videosPerPage);
 
-    const isMobile = window.innerWidth <= 768;
-
     container.innerHTML = paginatedVideos.length
-        ? paginatedVideos.map(video => {
-            // Mobile: kartu bisa diklik buka modal, iframe non-interaktif
-            if (isMobile) {
+        ? paginatedVideos
+            .map((video) => {
+                const thumbnail = getThumbnailUrl(video.iframe);
                 return `
-                <div class="video-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up">
-                    <div class="relative pt-[56.25%] cursor-pointer" onclick="openVideoModal('${video.iframe}')">
-                        <iframe src="${video.iframe}" title="${video.title}" frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen class="absolute top-0 left-0 w-full h-full pointer-events-none"></iframe>
-                    </div>
-                    <div class="p-3">
-                        <h3 class="font-medium text-gray-800 text-xs line-clamp-2">${video.title}</h3>
-                    </div>
+          <div class="video-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up">
+            <div class="relative pt-[56.25%] cursor-pointer" onclick="openVideoModal('${video.iframe}')">
+              <img src="${thumbnail}" alt="${video.title}" class="absolute top-0 left-0 w-full h-full object-cover">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-12 h-12 bg-black bg-opacity-60 rounded-full flex items-center justify-center">
+                  <i class="fas fa-play text-white text-lg"></i>
                 </div>
-                `;
-            }
-            // Desktop: iframe interaktif (tanpa modal)
-            return `
-            <div class="video-card bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up">
-                <div class="relative pt-[56.25%]">
-                    <iframe src="${video.iframe}" title="${video.title}" frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen class="absolute top-0 left-0 w-full h-full"></iframe>
-                </div>
-                <div class="p-3">
-                    <h3 class="font-medium text-gray-800 text-xs line-clamp-2">${video.title}</h3>
-                </div>
+              </div>
             </div>
-            `;
-        }).join("")
+            <div class="p-3">
+              <h3 class="font-medium text-gray-800 text-xs line-clamp-2">${video.title}</h3>
+            </div>
+          </div>
+        `;
+            })
+            .join("")
         : `<p class="text-center text-gray-500 col-span-full">Video tidak ditemukan</p>`;
 
     updatePagination(allVideos.length);
@@ -266,22 +301,23 @@ function loadMoreVideos() {
 
 function updatePagination(totalVideos) {
     const totalPages = Math.ceil(totalVideos / videosPerPage);
-    const paginationContainer = document.getElementById('paginationContainer');
+    const paginationContainer = document.getElementById("paginationContainer");
 
     if (totalPages <= 1 || showingAllVideos || searchQuery) {
-        paginationContainer.classList.add('hidden');
+        paginationContainer.classList.add("hidden");
         return;
     }
 
-    paginationContainer.classList.remove('hidden');
-    let paginationHTML = '';
+    paginationContainer.classList.remove("hidden");
+    let paginationHTML = "";
 
     if (currentPage > 1) {
         paginationHTML += `
-            <button onclick="changePage(${currentPage - 1})" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200">
-                <i class="fas fa-chevron-left text-sm"></i>
-            </button>
-        `;
+        <button onclick="changePage(${currentPage - 1
+            })" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200">
+            <i class="fas fa-chevron-left text-sm"></i>
+        </button>
+    `;
     }
 
     const maxVisiblePages = 5;
@@ -293,41 +329,40 @@ function updatePagination(totalVideos) {
     }
 
     for (let i = startPage; i <= endPage; i++) {
-        paginationHTML += i === currentPage
-            ? `<button class="w-10 h-10 flex items-center justify-center rounded-full bg-orange-500 text-white font-medium">${i}</button>`
-            : `<button onclick="changePage(${i})" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200">${i}</button>`;
+        paginationHTML +=
+            i === currentPage
+                ? `<button class="w-10 h-10 flex items-center justify-center rounded-full bg-orange-500 text-white font-medium">${i}</button>`
+                : `<button onclick="changePage(${i})" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200">${i}</button>`;
     }
 
     if (currentPage < totalPages) {
         paginationHTML += `
-            <button onclick="changePage(${currentPage + 1})" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200">
-                <i class="fas fa-chevron-right text-sm"></i>
-            </button>
-        `;
+        <button onclick="changePage(${currentPage + 1
+            })" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200">
+            <i class="fas fa-chevron-right text-sm"></i>
+        </button>
+    `;
     }
 
     paginationContainer.innerHTML = paginationHTML;
 }
 
 function changePage(page) {
-    // Simpan posisi scroll
     const scrollY = window.scrollY;
 
     currentPage = page;
     showingAllVideos = false;
     loadMoreVideos();
 
-    // Balikkan posisi scroll
     window.scrollTo(0, scrollY);
 }
 
 function updateLoadMoreButton() {
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const loadMoreBtn = document.getElementById("loadMoreBtn");
     if (!loadMoreBtn) return;
 
     const totalVideos = getFilteredVideos().length;
 
-    // Hide kalau hasil search, atau video sedikit (≤ videosPerPage)
     if (searchQuery || totalVideos <= videosPerPage) {
         loadMoreBtn.classList.add("hidden");
         return;
@@ -337,12 +372,21 @@ function updateLoadMoreButton() {
 
     if (showingAllVideos) {
         loadMoreBtn.innerHTML = '<i class="fas fa-times mr-1"></i>Batalkan';
-        loadMoreBtn.classList.remove('bg-gradient-to-r', 'from-orange-500', 'to-green-500');
-        loadMoreBtn.classList.add('bg-gray-500');
+        loadMoreBtn.classList.remove(
+            "bg-gradient-to-r",
+            "from-orange-500",
+            "to-green-500"
+        );
+        loadMoreBtn.classList.add("bg-gray-500");
     } else {
-        loadMoreBtn.innerHTML = '<i class="fas fa-reload mr-1"></i>Muat Lebih Banyak';
-        loadMoreBtn.classList.remove('bg-gray-500');
-        loadMoreBtn.classList.add('bg-gradient-to-r', 'from-orange-500', 'to-green-500');
+        loadMoreBtn.innerHTML =
+            '<i class="fas fa-reload mr-1"></i>Muat Lebih Banyak';
+        loadMoreBtn.classList.remove("bg-gray-500");
+        loadMoreBtn.classList.add(
+            "bg-gradient-to-r",
+            "from-orange-500",
+            "to-green-500"
+        );
     }
 }
 
@@ -353,39 +397,32 @@ function toggleAllVideos() {
 }
 
 // =========================
-// Video Modal (Mobile)
+// Video Modal
 // =========================
 function openVideoModal(iframeUrl) {
-    // Buka modal hanya pada mobile; di desktop biarkan inline
-    if (window.innerWidth > 768) return;
+    const modal = document.getElementById("videoModal");
+    const iframe = document.getElementById("videoModalIframe");
+    if (!modal || !iframe) return;
 
-    const modal = document.getElementById('videoModal');
-    const iframe = document.getElementById('videoModalIframe');
-    if (!modal || !iframe) return; // guard kalau HTML modal belum ditambahkan
-
-    iframe.src = iframeUrl;
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-
-    // Minta full screen (opsional, kalau diizinkan)
-    // Catatan: kebanyakan browser mobile batasi auto fullscreen tanpa user gesture yang langsung ke video element.
+    iframe.src = iframeUrl + "&autoplay=1";
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
 }
 
 function closeVideoModal() {
-    const modal = document.getElementById('videoModal');
-    const iframe = document.getElementById('videoModalIframe');
+    const modal = document.getElementById("videoModal");
+    const iframe = document.getElementById("videoModalIframe");
     if (!modal || !iframe) return;
 
     iframe.src = "";
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
 }
 
 // =========================
 // Event Listeners
 // =========================
 function initEventListeners() {
-    // Search
     const searchInput = document.getElementById("searchInput");
     const searchButton = document.getElementById("searchButton");
 
@@ -402,27 +439,9 @@ function initEventListeners() {
         }
     });
 
-    // Load More
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const loadMoreBtn = document.getElementById("loadMoreBtn");
     if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', toggleAllVideos);
-    }
-
-    // Modal backdrop click (featured)
-    document.addEventListener('click', function (e) {
-        const modal = document.getElementById('featuredModal');
-        if (modal && e.target === modal) {
-            closeModal();
-        }
-    });
-
-    // "Lihat Semua" Featured
-    const featuredSeeAll = document.querySelector('#featuredSection a');
-    if (featuredSeeAll) {
-        featuredSeeAll.addEventListener('click', function (e) {
-            e.preventDefault();
-            openFeaturedModal();
-        });
+        loadMoreBtn.addEventListener("click", toggleAllVideos);
     }
 }
 
@@ -436,15 +455,17 @@ function initNavbarHighlight() {
     const mobileMenu = document.getElementById("mobile-menu");
 
     function setActiveLink(link, links) {
-        links.forEach(l => l.classList.remove("text-orange-500", "font-bold"));
+        links.forEach((l) =>
+            l.classList.remove("text-orange-500", "font-bold")
+        );
         link.classList.add("text-orange-500", "font-bold");
     }
 
-    navLinks.forEach(link => {
+    navLinks.forEach((link) => {
         link.addEventListener("click", () => setActiveLink(link, navLinks));
     });
 
-    mobileLinks.forEach(link => {
+    mobileLinks.forEach((link) => {
         link.addEventListener("click", () => {
             setActiveLink(link, mobileLinks);
             if (mobileMenu) mobileMenu.classList.add("hidden");
@@ -453,19 +474,29 @@ function initNavbarHighlight() {
 
     window.addEventListener("scroll", () => {
         let scrollY = window.pageYOffset;
-        sections.forEach(section => {
+        sections.forEach((section) => {
             const sectionTop = section.offsetTop - 100;
             const sectionHeight = section.offsetHeight;
             const sectionId = section.getAttribute("id");
 
             if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                navLinks.forEach(link => link.classList.remove("text-orange-500", "font-bold"));
-                const activeDesktop = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-                if (activeDesktop) activeDesktop.classList.add("text-orange-500", "font-bold");
+                navLinks.forEach((link) =>
+                    link.classList.remove("text-orange-500", "font-bold")
+                );
+                const activeDesktop = document.querySelector(
+                    `.nav-link[href="#${sectionId}"]`
+                );
+                if (activeDesktop)
+                    activeDesktop.classList.add("text-orange-500", "font-bold");
 
-                mobileLinks.forEach(link => link.classList.remove("text-orange-500", "font-bold"));
-                const activeMobile = document.querySelector(`.mobile-link[href="#${sectionId}"]`);
-                if (activeMobile) activeMobile.classList.add("text-orange-500", "font-bold");
+                mobileLinks.forEach((link) =>
+                    link.classList.remove("text-orange-500", "font-bold")
+                );
+                const activeMobile = document.querySelector(
+                    `.mobile-link[href="#${sectionId}"]`
+                );
+                if (activeMobile)
+                    activeMobile.classList.add("text-orange-500", "font-bold");
             }
         });
     });

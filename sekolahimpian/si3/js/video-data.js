@@ -123,7 +123,7 @@ const videoData = {
       category: "technology",
       allowFullScreen: true
     },
-    
+
     // Bahasa
     {
       title: "Memahami Block System di Sekolah Impian",
