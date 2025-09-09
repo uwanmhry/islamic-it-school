@@ -9,33 +9,21 @@ const videoData = {
   ],
   featuredVideos: [
     {
-      title: "Tentang Gerakan Sekolah Impian Channel - Ep.1",
-      iframe: "https://www.youtube.com/embed/ghWiI9MUQzI?si=",
-      category: "about",
+      title: "Introduction Sekolah Impian",
+      iframe: "https://www.youtube.com/embed/VLV02bOCPFc?si=",
+      category: "general",
       allowFullScreen: true
     },
     {
-      title: "Kenapa Kita Harus Mempelajari Al-Quran ?? - Tentang GSI Ep.3",
-      iframe: "https://www.youtube.com/embed/dIIs-HjaOpE?si=",
-      category: "quran",
+      title: "Roadmap Tahfiz",
+      iframe: "https://www.youtube.com/embed/7tR7EASxpeE?si=",
+      category: "general",
       allowFullScreen: true
     },
     {
-      title: "Kenapa Kita Harus Mempelajari IT ?? - Tentang GSI Ep.4",
-      iframe: "https://www.youtube.com/embed/OiyWnmnGSc8?si=",
-      category: "technology",
-      allowFullScreen: true
-    },
-    {
-      title: "Memahami Block System di Sekolah Impian",
-      iframe: "https://www.youtube.com/embed/hxFtgSi_uNU?si=",
-      category: "language",
-      allowFullScreen: true
-    },
-    {
-      title: "Inilah Kenapa Diperlukan Sinkronisasi Pola Asuh Di Rumah & Di Sekolah - Tentang GSI Ep. 7",
-      iframe: "https://www.youtube.com/embed/CwMciPR8D0I?si=",
-      category: "character",
+      title: "Roadmap IT",
+      iframe: "https://www.youtube.com/embed/cU6MBn3E3So?si=",
+      category: "general",
       allowFullScreen: true
     }
   ],
