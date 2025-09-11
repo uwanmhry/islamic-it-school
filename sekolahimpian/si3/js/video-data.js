@@ -1,29 +1,83 @@
 const videoData = {
   categories: [
-    { id: 'all', name: 'Semua' },
-    { id: 'about', name: 'Tentang SI' },
-    { id: 'quran', name: 'Bidang Al-Quran' },
-    { id: 'technology', name: 'Bidang Teknologi' },
-    { id: 'language', name: 'Bidang Bahasa' },
-    { id: 'character', name: 'Bidang Karakter' }
+    { 
+      id: 'all', 
+      name: 'Semua',
+      featuredTitle: "Semua Video Utama",
+      featuredSubtitle: "Temukan rangkaian video utama dari seluruh bidang di Sekolah Impian.",
+      moreTitle: "Video Lainnya",
+      moreSubtitle: "Jelajahi kumpulan video pilihan menarik yang bisa menambah wawasan Anda."
+    },
+    { 
+      id: 'about', 
+      name: 'Tentang SI',
+      featuredTitle: "Video Tentang SI",
+      featuredSubtitle: "Kenali lebih dekat perjalanan, visi, dan cerita di balik Sekolah Impian.",
+      moreTitle: "Video Lainnya",
+      moreSubtitle: "Nikmati konten seputar profil, kegiatan, dan inspirasi dari Sekolah Impian."
+    },
+    { 
+      id: 'quran', 
+      name: 'Bidang Al-Quran',
+      featuredTitle: "Video Bidang Al-Quran",
+      featuredSubtitle: "Kumpulan video utama yang menginspirasi dalam pembelajaran Al-Quran.",
+      moreTitle: "Video Lainnya",
+      moreSubtitle: "Pelajari lebih banyak seputar kajian, hafalan, dan keindahan Al-Quran."
+    },
+    { 
+      id: 'technology', 
+      name: 'Bidang Teknologi',
+      featuredTitle: "Video Bidang Teknologi",
+      featuredSubtitle: "Video utama yang menghubungkan ilmu teknologi dengan dunia pendidikan.",
+      moreTitle: "Video Lainnya",
+      moreSubtitle: "Ikuti berbagai video tentang coding, digital, dan inovasi teknologi di sini."
+    },
+    { 
+      id: 'language', 
+      name: 'Bidang Bahasa',
+      featuredTitle: "Video Bidang Bahasa",
+      featuredSubtitle: "Video utama untuk mengasah kemampuan bahasa internasional Anda.",
+      moreTitle: "Video Lainnya",
+      moreSubtitle: "Jelajahi berbagai konten seputar bahasa asing, komunikasi, dan budaya."
+    },
+    { 
+      id: 'character', 
+      name: 'Bidang Karakter',
+      featuredTitle: "Video Bidang Karakter",
+      featuredSubtitle: "Video utama yang membentuk pribadi berkarakter dan berakhlak mulia.",
+      moreTitle: "Video Lainnya",
+      moreSubtitle: "Dapatkan inspirasi seputar pembinaan karakter, akhlak, dan motivasi hidup."
+    }
   ],
   featuredVideos: [
     {
-      title: "Introduction Sekolah Impian",
+      title: "Sekilas Tentang Sekolah Impian",
       iframe: "https://www.youtube.com/embed/VLV02bOCPFc?si=",
-      category: "general",
+      category: "about",
       allowFullScreen: true
     },
     {
-      title: "Roadmap Tahfiz",
+      title: "Program Pembelajaran Tahfiz Sekolah Impian",
       iframe: "https://www.youtube.com/embed/7tR7EASxpeE?si=",
-      category: "general",
+      category: "quran",
       allowFullScreen: true
     },
     {
-      title: "Roadmap IT",
+      title: "Program Pembelajaran IT Sekolah Impian",
       iframe: "https://www.youtube.com/embed/cU6MBn3E3So?si=",
-      category: "general",
+      category: "technology",
+      allowFullScreen: true
+    },
+    {
+      title: "Program Pembelajaran Bahasa Sekolah Impian",
+      iframe: "https://www.youtube.com/embed/1P08HT4kHJQ?si=",
+      category: "language",
+      allowFullScreen: true
+    },
+    {
+      title: "Program Pembelajaran Karakter Sekolah Impian",
+      iframe: "https://www.youtube.com/embed/AddWOq1Hbq4?si=",
+      category: "character",
       allowFullScreen: true
     }
   ],
