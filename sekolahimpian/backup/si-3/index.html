@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/logo-si.png">
+    <title>Sekolah Impian</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        orange: {
+                            400: '#FB923C',
+                            500: '#FF7B31',
+                            600: '#E86A22',
+                            700: '#C2410C'
+                        },
+                        green: {
+                            400: '#4ADE80',
+                            500: '#2ECC71',
+                            600: '#25A25A',
+                            700: '#16A34A'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glassmorphism {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .video-card {
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg,
+                    rgba(255, 123, 49, 0.9) 0%,
+                    rgba(232, 106, 34, 0.8) 25%,
+                    rgba(46, 204, 113, 0.8) 75%,
+                    rgba(37, 162, 90, 0.9) 100%);
+        }
+
+        .skeleton {
+        background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 37%, #e5e7eb 63%);
+        background-size: 400% 100%;
+        animation: shimmer 1.4s ease infinite;
+        }
+
+        @keyframes shimmer {
+        0% {
+            background-position: -400px 0;
+        }
+        100% {
+            background-position: 400px 0;
+        }
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-gray-50 via-orange-50 to-green-50 min-h-screen">
+    <!-- Header/Navbar -->
+
+    <header class="fixed w-full bg-white/90 backdrop-blur-md shadow-md z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+                <a href="https://islamic-it-school.com/sekolahimpian/">
+                    <img src="img/logo-si.png" alt="Logo Sekolah Impian" class="w-12 h-12 rounded-xl object-cover">
+                </a>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="flex-1 max-w-xl mx-6">
+                <div class="flex items-center bg-gray-100 rounded-full px-4 py-2 shadow-inner">
+                    <input type="text" id="searchInput" placeholder="Cari..."
+                        class="w-full bg-transparent focus:outline-none text-gray-700" />
+                    <button id="searchButton" class="text-gray-500 hover:text-orange-500 transition">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- Category Bar -->
+        <div class="bg-white/95 backdrop-blur-md border-t shadow-sm">
+            <div id="categoriesContainer" class="container mx-auto px-6 py-2 flex gap-3 overflow-x-auto no-scrollbar">
+                <!-- Kategori akan dimuat lewat JS -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pt-24 pb-8">
+        <!-- Hero Section -->
+        <section class="mb-16" data-aos="fade-up">
+            <div class="rounded-2xl overflow-hidden shadow-xl">
+                <div class="hero-bg h-[400px] flex items-center relative">
+                    <div class="absolute inset-0 bg-black/20"></div>
+                    <div class="relative z-10 px-8 text-white max-w-3xl">
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                            Sekolah Impian
+                        </h1>
+                        <!-- <p class="text-xl md:text-2xl font-semibold mb-3">
+                            Prototype Santri Masa Depan
+                        </p> -->
+                        <p class="text-base md:text-lg mb-6 leading-relaxed max-w-2xl">
+                            Pondok pesantren untuk tingkat SMP dan SMA yang berkedudukan di Bogor,
+                            yang mengintegrasikan <span class="font-bold text-yellow-300">Al-Qur'an</span>,
+                            <span class="font-bold text-yellow-300">Teknologi</span>,
+                            <span class="font-bold text-yellow-300">Bahasa</span>, dan
+                            <span class="font-bold text-yellow-300">Karakter</span>. <br>
+                            Mencetak generasi yang mulia diakhirat dengan <span class="font-bold text-yellow-300">Al-Qur'an</span> 
+                            sekaligus mulia di dunia dengan <span class="font-bold text-yellow-300">teknologi, bisnis, dan dakwah</span>.
+                        </p>
+                        <a href="#moreSection">
+                            <button
+                                class="bg-white text-orange-600 px-6 py-3 rounded-full font-bold hover:bg-orange-50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                                <i class="fas fa-play-circle mr-2"></i>Jelajahi Sekarang
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Videos -->
+        <section id="featuredSection" class="mb-16" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl md:text-3xl font-bold text-black">Video Terpopuler</h2>
+                <a href="#" onclick="event.preventDefault(); openFeaturedModal();"
+                    class="text-orange-500 font-semibold hover:text-orange-600 transition-all duration-300">
+                    Lihat Semua <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="featuredVideosContainer">
+                <!-- Skeleton loading -->
+                <div class="rounded-xl overflow-hidden shadow-md">
+                    <div class="w-full h-48 skeleton"></div>
+                    <div class="p-4 space-y-2">
+                    <div class="w-3/4 h-4 rounded skeleton"></div>
+                    <div class="w-1/2 h-4 rounded skeleton"></div>
+                    </div>
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-md">
+                    <div class="w-full h-48 skeleton"></div>
+                    <div class="p-4 space-y-2">
+                    <div class="w-3/4 h-4 rounded skeleton"></div>
+                    <div class="w-1/2 h-4 rounded skeleton"></div>
+                    </div>
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-md">
+                    <div class="w-full h-48 skeleton"></div>
+                    <div class="p-4 space-y-2">
+                    <div class="w-3/4 h-4 rounded skeleton"></div>
+                    <div class="w-1/2 h-4 rounded skeleton"></div>
+                    </div>
+                </div>
+                </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="featuredVideosContainer">
+                <!-- JS inject -->
+            </div>
+        </section>
+
+        <!-- Modal Featured -->
+        <div id="featuredModal"
+            class="fixed inset-0 bg-black bg-opacity-70 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl max-w-6xl w-full h-[90vh] overflow-y-auto relative shadow-xl">
+                <!-- Close button -->
+                <button onclick="closeFeaturedModal()"
+                    class="absolute top-3 right-3 bg-gray-100 hover:bg-gray-200 rounded-full p-2">
+                    <i class="fas fa-times text-gray-700"></i>
+                </button>
+
+                <h2 class="text-2xl font-bold text-gray-800 px-6 py-4 border-b">Semua Video Terpopuler</h2>
+
+                <!-- Featured videos list -->
+                <div id="featuredModalContent" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+                    <!-- JS inject -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Video Lainnya -->
+        <section id="moreSection" class="py-12">
+            <div class="container mx-auto px-4">
+                <h2 class="text-2xl md:text-3xl font-bold text-black">Video Lainnya</h2>
+                <p id="moreSubtitle" class="text-gray-500 text-sm mt-1 mb-6">
+                    Koleksi video pilihan untuk Anda
+                </p>
+
+                <div id="moreVideosContainer"
+                    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
+                </div>
+
+                <div id="paginationContainer" class="mt-8 flex justify-center items-center space-x-2 hidden"></div>
+
+                <div class="flex justify-center mt-6">
+                    <button id="loadMoreBtn"
+                            class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium transition">
+                        Muat Lebih Banyak
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- End Section Video Lainnya -->
+
+        <!-- Video Modal -->
+<!-- Video Modal -->
+<div id="videoModal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50">
+  <div class="relative w-full max-w-4xl mx-4 bg-black rounded-xl overflow-hidden">
+    <button onclick="closeVideoModal()" 
+            class="absolute top-3 right-3 text-white text-2xl z-10 hover:text-orange-400">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="relative pt-[56.25%]">
+      <iframe id="videoModalIframe" 
+              class="absolute top-0 left-0 w-full h-full rounded-xl"
+              src="" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+        <!-- End Modal Video -->
+
+    </main>
+
+    <footer class="relative bg-gradient-to-br from-gray-900 via-black to-gray-800 text-gray-300 py-12" id="footer"
+        data-aos="fade-up">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12">
+
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="img/logo-si.png" alt="Logo Sekolah Impian" class="w-12 h-12 rounded-xl mr-3">
+                        <h3 class="text-2xl font-bold text-white">Sekolah Impian</h3>
+                    </div>
+                    <p class="mb-6 leading-relaxed">
+                        Pondok pesantren modern yang mengintegrasikan
+                        <span class="text-orange-400 font-semibold">Al-Qur’an</span> dengan
+                        <span class="text-blue-400 font-semibold">Teknologi</span>,
+                        <span class="text-green-400 font-semibold">Bahasa</span>, dan
+                        <span class="text-purple-400 font-semibold">Karakter</span>.
+                        <br> Mencetak generasi yang mulia diakhirat dengan <span class="text-yellow-400 font-semibold">Al-Qur'an</span> 
+                        sekaligus mulia di dunia dengan <span class="text-yellow-400 font-semibold">teknologi, bisnis, dan dakwah</span>.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/quadrantboardingschool"
+                            class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-orange-500 hover:scale-110 transition transform shadow-lg">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/sekolahimpianofficial"
+                            class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-pink-500 hover:scale-110 transition transform shadow-lg">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@sekolahimpianku"
+                            class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-red-500 hover:scale-110 transition transform shadow-lg">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://wa.me/6281312633302"
+                            class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-green-500 hover:scale-110 transition transform shadow-lg">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kategori Video -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-white">Kategori Video</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-orange-400 transition">Semua</a></li>
+                        <li><a href="#" class="hover:text-orange-400 transition">Tentang SI</a></li>
+                        <li><a href="#" class="hover:text-orange-400 transition">Bidang Al-Quran</a></li>
+                        <li><a href="#" class="hover:text-orange-400 transition">Bidang Teknologi</a></li>
+                        <li><a href="#" class="hover:text-orange-400 transition">Bidang Bahasa</a></li>
+                        <li><a href="#" class="hover:text-orange-400 transition">Bidang Karakter</a></li>
+                    </ul>
+                </div>
+
+                <!-- Map -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-white">Lokasi</h3>
+                    <div class="rounded-xl overflow-hidden shadow-lg border border-gray-700">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.9246855336864!2d106.69447597607008!3d-6.656256865072977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69d1027ef9ea39%3A0x8bc33d5bc117c098!2sQuadrant%20Boarding%20School%20(QBS)!5e0!3m2!1sid!2sid!4v1756307600492!5m2!1sid!2sid"
+                            width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom -->
+            <div class="border-t border-gray-700 mt-12 pt-6 text-center text-sm text-gray-400">
+                <p>&copy; <span id="year"></span> Sekolah Impian. Semua hak cipta dilindungi undang-undang.</p>
+            </div>
+        </div>
+
+        <!-- Year Script -->
+        <script>
+            document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
+    </footer>
+
+
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/video-data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
