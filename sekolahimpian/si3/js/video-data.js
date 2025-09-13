@@ -14,13 +14,13 @@ const videoData = {
       featuredTitle: "Video Tentang SI",
       featuredSubtitle: "Kenali lebih dekat perjalanan, visi, dan cerita di balik Sekolah Impian.",
       moreTitle: "Video Lainnya",
-      moreSubtitle: "Nikmati konten seputar profil, kegiatan, dan inspirasi dari Sekolah Impian."
+      moreSubtitle: "Nikmati konten seputar profil, kegiatan, dan inspirasi dari Sekolah Impian?"
     },
     { 
       id: 'quran', 
       name: 'Bidang Al-Quran',
       featuredTitle: "Video Bidang Al-Quran",
-      featuredSubtitle: "Kumpulan video utama yang menginspirasi dalam pembelajaran Al-Quran.",
+      featuredSubtitle: "Bagaimana strategi Sekolah Impian menjalankan mapel-mapel bidang Al-Quran?",
       moreTitle: "Video Lainnya",
       moreSubtitle: "Pelajari lebih banyak seputar kajian, hafalan, dan keindahan Al-Quran."
     },
@@ -28,7 +28,7 @@ const videoData = {
       id: 'technology', 
       name: 'Bidang Teknologi',
       featuredTitle: "Video Bidang Teknologi",
-      featuredSubtitle: "Video utama yang menghubungkan ilmu teknologi dengan dunia pendidikan.",
+      featuredSubtitle: "Bagaimana strategi Sekolah Impian menjalankan mapel-mapel bidang Teknologi?",
       moreTitle: "Video Lainnya",
       moreSubtitle: "Ikuti berbagai video tentang coding, digital, dan inovasi teknologi di sini."
     },
@@ -36,7 +36,7 @@ const videoData = {
       id: 'language', 
       name: 'Bidang Bahasa',
       featuredTitle: "Video Bidang Bahasa",
-      featuredSubtitle: "Video utama untuk mengasah kemampuan bahasa internasional Anda.",
+      featuredSubtitle: "Bagaimana strategi Sekolah Impian menjalankan mapel-mapel bidang Bahasa?",
       moreTitle: "Video Lainnya",
       moreSubtitle: "Jelajahi berbagai konten seputar bahasa asing, komunikasi, dan budaya."
     },
@@ -44,7 +44,7 @@ const videoData = {
       id: 'character', 
       name: 'Bidang Karakter',
       featuredTitle: "Video Bidang Karakter",
-      featuredSubtitle: "Video utama yang membentuk pribadi berkarakter dan berakhlak mulia.",
+      featuredSubtitle: "Bagaimana strategi Sekolah Impian menjalankan mapel-mapel bidang Karakter.",
       moreTitle: "Video Lainnya",
       moreSubtitle: "Dapatkan inspirasi seputar pembinaan karakter, akhlak, dan motivasi hidup."
     }
