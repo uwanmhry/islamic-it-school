@@ -2,8 +2,9 @@
 <html lang="id" class="scroll-smooth">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/si1/img/logo-si.png" />
     <title>Sekolah Impian - Pilih Gaya Website Anda</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -11,19 +12,19 @@
             theme: {
                 extend: {
                     colors: {
-                        'brand-orange': '#ff6b35',
-                        'brand-orange-light': '#ff8c69',
-                        'brand-orange-dark': '#e55a2b'
-                    }
-                }
-            }
-        }
+                        "brand-orange": "#ff6b35",
+                        "brand-orange-light": "#ff8c69",
+                        "brand-orange-dark": "#e55a2b",
+                    },
+                },
+            },
+        };
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" />
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: "Poppins", sans-serif;
         }
 
         .gradient-bg {
@@ -71,7 +72,6 @@
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100">
-
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <!-- Welcome Section -->
@@ -83,9 +83,11 @@
                 </h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-brand-orange to-brand-orange-light mx-auto mb-6"></div>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                    Selamat datang di <span class="font-semibold text-brand-orange">Sekolah Impian</span>!
-                    Kami menyediakan pengalaman website yang dapat disesuaikan dengan preferensi dan kebutuhan Anda.
-                    Silakan pilih gaya tampilan website yang paling cocok untuk Anda.
+                    Selamat datang di
+                    <span class="font-semibold text-brand-orange">Sekolah Impian</span>!
+                    Kami menyediakan pengalaman website yang dapat disesuaikan dengan
+                    preferensi dan kebutuhan Anda. Silakan pilih gaya tampilan website
+                    yang paling cocok untuk Anda.
                 </p>
             </div>
         </div>
@@ -99,7 +101,8 @@
                     <div class="text-center mb-4">
                         <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
                             <!-- Chart Bar Icon -->
-                            <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
                                 <path d="M3 3v18h18M9 17V9m4 8V5m4 12v-6" />
                             </svg>
                         </div>
@@ -109,8 +112,8 @@
                 </div>
                 <div class="p-6">
                     <p class="text-gray-600 mb-6 leading-relaxed">
-                        Tampilan formal dengan bahasa resmi dan teknis. Dilengkapi penjelasan tentang program dan
-                        strategi belajarnya.
+                        Tampilan formal dengan bahasa resmi dan teknis. Dilengkapi
+                        penjelasan tentang program dan strategi belajarnya.
                     </p>
                     <div class="space-y-3 mb-6">
                         <div class="flex items-center text-sm text-gray-700">
@@ -160,8 +163,9 @@
                 </div>
                 <div class="p-6">
                     <p class="text-gray-600 mb-6 leading-relaxed">
-                        Gaya santai dengan bahasa gaul yang mudah dipahami. Banyak elemen visual menarik,
-                        ikon colorful, dan konten yang engaging untuk generasi muda.
+                        Gaya santai dengan bahasa gaul yang mudah dipahami. Banyak elemen
+                        visual menarik, ikon colorful, dan konten yang engaging untuk
+                        generasi muda.
                     </p>
                     <div class="space-y-3 mb-6">
                         <div class="flex items-center text-sm text-gray-700">
@@ -200,7 +204,8 @@
                     <div class="text-center mb-4">
                         <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
                             <!-- Play Button Icon -->
-                            <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
                                 <polygon points="5 3 19 12 5 21 5 3" />
                             </svg>
                         </div>
@@ -210,8 +215,9 @@
                 </div>
                 <div class="p-6">
                     <p class="text-gray-600 mb-6 leading-relaxed">
-                        Pengalaman multimedia dengan konten audio dan video. Perfect untuk mereka yang lebih suka
-                        belajar melalui media visual dan pendengaran.
+                        Pengalaman multimedia dengan konten audio dan video. Perfect untuk
+                        mereka yang lebih suka belajar melalui media visual dan
+                        pendengaran.
                     </p>
                     <div class="space-y-3 mb-6">
                         <div class="flex items-center text-sm text-gray-700">
@@ -256,70 +262,77 @@
 
     <script>
         function selectOption(type) {
-            // Show selection feedback
-            const selectedCard = event.target.closest('.card-hover');
-            selectedCard.style.transform = 'scale(0.95)';
-            selectedCard.style.opacity = '0.8';
+            const selectedCard = event.target.closest(".card-hover");
+            selectedCard.style.transform = "scale(0.95)";
+            selectedCard.style.opacity = "0.8";
 
             setTimeout(() => {
-                selectedCard.style.transform = 'scale(1)';
-                selectedCard.style.opacity = '1';
+                selectedCard.style.transform = "scale(1)";
+                selectedCard.style.opacity = "1";
             }, 200);
 
-            // Set navigation URL
+            const messages = {
+                formal: "Mengarahkan ke Mode Profesional...",
+                casual: "Mengarahkan ke Mode Kreatif...",
+                multimedia: "Mengarahkan ke Mode Multimedia...",
+            };
+
+            const paths = {
+                formal: "si1/index.html",
+                casual: "si2/index.html",
+                multimedia: "si3/index.html",
+            };
+
+            // Show loading screen
+            document.body.innerHTML = `
+        <div class="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100 flex items-center justify-center">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-gradient-to-r from-brand-orange to-brand-orange-light rounded-full flex items-center justify-center mx-auto mb-4 animate-spin">
+                    <div class="w-8 h-8 bg-white rounded-full"></div>
+                </div>
+                <h3 id="loadingText" class="text-xl font-semibold text-gray-800 mb-2">${messages[type]}</h3>
+                <p class="text-gray-600">Mohon tunggu sebentar...</p>
+            </div>
+        </div>
+      `;
+
+            // Redirect
             setTimeout(() => {
-                const messages = {
-                    formal: 'Mengarahkan ke Mode Profesional...',
-                    casual: 'Mengarahkan ke Mode Kreatif...',
-                    multimedia: 'Mengarahkan ke Mode Multimedia...'
-                };
-
-                const paths = {
-                    formal: 'si1/index.html',
-                    casual: 'si2/index.html',
-                    multimedia: 'si3/index.html'
-                };
-
-                // Show loading message
-                document.body.innerHTML = `
-                  <div class="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100 flex items-center justify-center">
-                      <div class="text-center">
-                          <div class="w-16 h-16 bg-gradient-to-r from-brand-orange to-brand-orange-light rounded-full flex items-center justify-center mx-auto mb-4 animate-spin">
-                              <div class="w-8 h-8 bg-white rounded-full"></div>
-                          </div>
-                          <h3 class="text-xl font-semibold text-gray-800 mb-2">${messages[type]}</h3>
-                          <p class="text-gray-600">Mohon tunggu sebentar...</p>
-                      </div>
-                  </div>
-              `;
-
-                // Redirect to the path (works for both local and production)
                 window.location.href = paths[type];
-
             }, 500);
         }
 
+        // Saat kembali dengan tombol Back
+        window.addEventListener("pageshow", function (event) {
+            if (event.persisted) {
+                const loadingText = document.getElementById("loadingText");
+                if (loadingText) {
+                    loadingText.textContent = "Kembali ke menu utama...";
+                }
+            }
+        });
+
         // Add scroll animations
-        window.addEventListener('scroll', () => {
-            const elements = document.querySelectorAll('.fade-in');
-            elements.forEach(element => {
+        window.addEventListener("scroll", () => {
+            const elements = document.querySelectorAll(".fade-in");
+            elements.forEach((element) => {
                 const elementTop = element.getBoundingClientRect().top;
                 const elementVisible = 150;
 
                 if (elementTop < window.innerHeight - elementVisible) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
+                    element.style.opacity = "1";
+                    element.style.transform = "translateY(0)";
                 }
             });
         });
 
         // Initialize animations on load
-        window.addEventListener('load', () => {
-            const elements = document.querySelectorAll('.fade-in');
+        window.addEventListener("load", () => {
+            const elements = document.querySelectorAll(".fade-in");
             elements.forEach((element, index) => {
                 setTimeout(() => {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
+                    element.style.opacity = "1";
+                    element.style.transform = "translateY(0)";
                 }, index * 200);
             });
         });
