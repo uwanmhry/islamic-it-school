@@ -56,18 +56,19 @@
         }
 
         .skeleton {
-        background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 37%, #e5e7eb 63%);
-        background-size: 400% 100%;
-        animation: shimmer 1.4s ease infinite;
+            background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 37%, #e5e7eb 63%);
+            background-size: 400% 100%;
+            animation: shimmer 1.4s ease infinite;
         }
 
         @keyframes shimmer {
-        0% {
-            background-position: -400px 0;
-        }
-        100% {
-            background-position: 400px 0;
-        }
+            0% {
+                background-position: -400px 0;
+            }
+
+            100% {
+                background-position: 400px 0;
+            }
         }
     </style>
 </head>
@@ -104,6 +105,34 @@
         </div>
     </header>
 
+    <!-- Floating Daftar Button -->
+    <a href="https://psb.sekolahimpian.com" target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 
+            bg-gradient-to-br from-orange-400 to-orange-500
+            hover:from-orange-500 hover:to-orange-600
+            text-white rounded-full flex items-center justify-center 
+            shadow-lg transition transform hover:scale-110 animate-bounce-slow">
+        <i class="fas fa-edit text-xl"></i>
+    </a>
+
+    <style>
+        /* Animasi bounce slow */
+        @keyframes bounce-slow {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .animate-bounce-slow {
+            animation: bounce-slow 2s infinite;
+        }
+    </style>
+
     <!-- Main Content -->
     <main class="container mx-auto px-4 pt-24 pb-8">
         <!-- Hero Section -->
@@ -124,8 +153,10 @@
                             <span class="font-bold text-yellow-300">Teknologi</span>,
                             <span class="font-bold text-yellow-300">Bahasa</span>, dan
                             <span class="font-bold text-yellow-300">Karakter</span>. <br>
-                            Mencetak generasi yang mulia diakhirat dengan <span class="font-bold text-yellow-300">Al-Qur'an</span> 
-                            sekaligus mulia di dunia dengan <span class="font-bold text-yellow-300">teknologi, bisnis, dan dakwah</span>.
+                            Mencetak generasi yang mulia diakhirat dengan <span
+                                class="font-bold text-yellow-300">Al-Qur'an</span>
+                            sekaligus mulia di dunia dengan <span class="font-bold text-yellow-300">teknologi, bisnis,
+                                dan dakwah</span>.
                         </p>
                         <a href="#moreSection">
                             <button
@@ -140,45 +171,45 @@
 
         <!-- Featured Videos -->
         <section id="featuredSection" class="mb-16" data-aos="fade-up" data-aos-delay="200">
-        <div class="flex justify-between items-center">
-            <!-- Title dinamis -->
-            <h2 id="featuredTitle" class="text-2xl md:text-3xl font-bold text-black">Sorotan</h2>
+            <div class="flex justify-between items-center">
+                <!-- Title dinamis -->
+                <h2 id="featuredTitle" class="text-2xl md:text-3xl font-bold text-black">Sorotan</h2>
 
-            <!-- <a href="#" onclick="event.preventDefault(); openFeaturedModal();"
+                <!-- <a href="#" onclick="event.preventDefault(); openFeaturedModal();"
             class="text-orange-500 font-semibold hover:text-orange-600 transition-all duration-300">
             Lihat Semua <i class="fas fa-arrow-right ml-1"></i>
             </a> -->
-        </div>
+            </div>
 
-        <!-- Subtitle dinamis -->
-        <p id="featuredSubtitle" class="text-gray-500 text-sm mb-6">
-            Menampilkan video populer dari semua bidang
-        </p>
+            <!-- Subtitle dinamis -->
+            <p id="featuredSubtitle" class="text-gray-500 text-sm mb-6">
+                Menampilkan video populer dari semua bidang
+            </p>
 
-        <!-- Container (default skeleton, nanti diganti JS) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="featuredVideosContainer">
-            <div class="rounded-xl overflow-hidden shadow-md">
-            <div class="w-full h-48 skeleton"></div>
-            <div class="p-4 space-y-2">
-                <div class="w-3/4 h-4 rounded skeleton"></div>
-                <div class="w-1/2 h-4 rounded skeleton"></div>
+            <!-- Container (default skeleton, nanti diganti JS) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="featuredVideosContainer">
+                <div class="rounded-xl overflow-hidden shadow-md">
+                    <div class="w-full h-48 skeleton"></div>
+                    <div class="p-4 space-y-2">
+                        <div class="w-3/4 h-4 rounded skeleton"></div>
+                        <div class="w-1/2 h-4 rounded skeleton"></div>
+                    </div>
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-md">
+                    <div class="w-full h-48 skeleton"></div>
+                    <div class="p-4 space-y-2">
+                        <div class="w-3/4 h-4 rounded skeleton"></div>
+                        <div class="w-1/2 h-4 rounded skeleton"></div>
+                    </div>
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-md">
+                    <div class="w-full h-48 skeleton"></div>
+                    <div class="p-4 space-y-2">
+                        <div class="w-3/4 h-4 rounded skeleton"></div>
+                        <div class="w-1/2 h-4 rounded skeleton"></div>
+                    </div>
+                </div>
             </div>
-            </div>
-            <div class="rounded-xl overflow-hidden shadow-md">
-            <div class="w-full h-48 skeleton"></div>
-            <div class="p-4 space-y-2">
-                <div class="w-3/4 h-4 rounded skeleton"></div>
-                <div class="w-1/2 h-4 rounded skeleton"></div>
-            </div>
-            </div>
-            <div class="rounded-xl overflow-hidden shadow-md">
-            <div class="w-full h-48 skeleton"></div>
-            <div class="p-4 space-y-2">
-                <div class="w-3/4 h-4 rounded skeleton"></div>
-                <div class="w-1/2 h-4 rounded skeleton"></div>
-            </div>
-            </div>
-        </div>
         </section>
         <!-- End Featured Videos -->
 
@@ -222,7 +253,7 @@
 
                 <div class="flex justify-center mt-6">
                     <button id="loadMoreBtn"
-                            class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium transition">
+                        class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium transition">
                         Muat Lebih Banyak
                     </button>
                 </div>
@@ -232,19 +263,18 @@
 
         <!-- Video Modal -->
         <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50">
-        <div class="relative w-full max-w-4xl mx-4 bg-black rounded-xl overflow-hidden">
-            <button onclick="closeVideoModal()" 
+            <div class="relative w-full max-w-4xl mx-4 bg-black rounded-xl overflow-hidden">
+                <button onclick="closeVideoModal()"
                     class="absolute top-3 right-3 text-white text-2xl z-10 hover:text-orange-400">
-            <i class="fas fa-times"></i>
-            </button>
-            <div class="relative pt-[56.25%]">
-            <iframe id="videoModalIframe" 
-                    class="absolute top-0 left-0 w-full h-full rounded-xl"
-                    src="" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="relative pt-[56.25%]">
+                    <iframe id="videoModalIframe" class="absolute top-0 left-0 w-full h-full rounded-xl" src=""
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
             </div>
-        </div>
         </div>
         <!-- End Modal Video -->
 
@@ -267,8 +297,10 @@
                         <span class="text-blue-400 font-semibold">Teknologi</span>,
                         <span class="text-green-400 font-semibold">Bahasa</span>, dan
                         <span class="text-purple-400 font-semibold">Karakter</span>.
-                        <br> Mencetak generasi yang mulia diakhirat dengan <span class="text-yellow-400 font-semibold">Al-Qur'an</span> 
-                        sekaligus mulia di dunia dengan <span class="text-yellow-400 font-semibold">teknologi, bisnis, dan dakwah</span>.
+                        <br> Mencetak generasi yang mulia diakhirat dengan <span
+                            class="text-yellow-400 font-semibold">Al-Qur'an</span>
+                        sekaligus mulia di dunia dengan <span class="text-yellow-400 font-semibold">teknologi, bisnis,
+                            dan dakwah</span>.
                     </p>
                     <div class="flex space-x-4">
                         <a href="https://www.facebook.com/quadrantboardingschool"
