@@ -265,20 +265,20 @@
             <h3 class="text-xl font-bold mb-4">Buat Admin Baru</h3>
             <form id="createAdminForm">
                 <div class="mb-4">
-                    <label class="block text-gray-700 mb-2" name="name" for="adminName">Nama</label>
-                    <input type="text" id="adminName" class="w-full p-2 border border-gray-300 rounded" required>
+                    <label class="block text-gray-700 mb-2" for="adminName">Nama</label>
+                    <input type="text" id="adminName" name="name"  class="w-full p-2 border border-gray-300 rounded" required>
                 </div>
                 <div class="mb-4">
-                    <label class="block text-gray-700 mb-2" name="email" for="adminEmail">Email</label>
-                    <input type="email" id="adminEmail" class="w-full p-2 border border-gray-300 rounded" required>
+                    <label class="block text-gray-700 mb-2"for="adminEmail">Email</label>
+                    <input type="email" id="adminEmail" name="email"  class="w-full p-2 border border-gray-300 rounded" required>
                 </div>
                 <div class="mb-4">
-                    <label class="block text-gray-700 mb-2" name="password" for="adminPassword">Password</label>
-                    <input type="password" id="adminPassword" class="w-full p-2 border border-gray-300 rounded" required>
+                    <label class="block text-gray-700 mb-2" for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" name="password"  class="w-full p-2 border border-gray-300 rounded" required>
                 </div>
                 <div class="mb-6">
-                    <label class="block text-gray-700 mb-2" name="passwordConfirmation" for="adminPasswordConfirmation">Konfirmasi Password</label>
-                    <input type="password" id="adminPasswordConfirmation" class="w-full p-2 border border-gray-300 rounded" required>
+                    <label class="block text-gray-700 mb-2"  for="adminPasswordConfirmation">Konfirmasi Password</label>
+                    <input type="password" id="adminPasswordConfirmation" name="passwordConfirmation" class="w-full p-2 border border-gray-300 rounded" required>
                 </div>
                 <div class="flex justify-end">
                     <button type="button" class="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2" id="cancelCreateAdmin">Batal</button>
@@ -295,7 +295,7 @@
         <form id="createReferralForm">
             <div class="mb-4">
                 <label class="block text-gray-700 mb-2" for="referralAdmin">Pilih Admin</label>
-                <select id="referralAdmin" class="w-full p-2 border border-gray-300 rounded" required>
+                <select id="referralAdmin" name="userId" class="w-full p-2 border border-gray-300 rounded" required>
                     <option value="">-- Pilih Admin --</option>
                     <!-- Options akan diisi oleh JavaScript -->
                 </select>
@@ -303,7 +303,7 @@
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700 mb-2" for="referralCode">Kode Referral (Opsional)</label>
-                <input type="text" id="referralCode" class="w-full p-2 border border-gray-300 rounded" 
+                <input type="text" id="referralCode" name="code" class="w-full p-2 border border-gray-300 rounded" 
                        placeholder="Kosongkan untuk generate otomatis" maxlength="20">
                 <p class="text-sm text-gray-500 mt-1">Maksimal 20 karakter</p>
             </div>
